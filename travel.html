@@ -9,9 +9,10 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#F5F0E6;--text:#2C2820;--text-soft:#5C5448;--text-muted:#9C9488;
-  --accent:#6A8C5A;--rule:rgba(106,140,90,0.18);--nav-bg:rgba(245,240,230,0.95);
-  --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+  --serif:'Lora',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --bg:#F5F0E8;--text:#2C2820;--text-soft:#5C5448;--text-muted:#9C9488;
+  --accent:#3A8C3A;--rule:rgba(58,140,58,0.15);--nav-bg:rgba(245,240,232,0.96);
 }
 html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;transition:background 1.4s ease,color 0.9s ease;}
@@ -24,7 +25,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
 .region-indicator{position:fixed;top:50%;right:2rem;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:0.75rem;}
 .region-dot{width:7px;height:7px;border-radius:50%;background:transparent;border:1.5px solid var(--text-muted);cursor:pointer;transition:all 0.35s;}
-.region-dot.active{background:var(--accent);border-color:var(--accent);transform:scale(1.4);}
+.region-dot.active{background:var(--accent);border-color:var(--accent);transform:scale(1.5);}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4rem 5rem;padding-top:80px;}
@@ -35,18 +36,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .stat-num{font-family:var(--serif);font-size:2.5rem;color:var(--accent);line-height:1;transition:color 0.9s;}
 .stat-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem;transition:color 0.9s;}
 
-/* REGION SECTIONS */
-.region-section{min-height:100vh;padding:8rem 4rem;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
-.region-chapter{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;transition:color 0.9s;}
-.region-name{font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);font-weight:400;line-height:1.0;color:var(--text);margin-bottom:0.5rem;transition:color 0.9s;}
+/* REGION */
+.region-section{min-height:100vh;padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
+.region-content{}
+.region-chapter{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;transition:color 0.9s;}
+.region-name{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;line-height:1.0;color:var(--text);margin-bottom:0.4rem;transition:color 0.9s;}
 .region-name em{font-style:italic;}
-.region-countries{font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3rem;transition:color 0.9s;}
-.region-body{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.region-text{font-size:1.0rem;color:var(--text-soft);font-weight:300;line-height:1.9;transition:color 0.9s;}
-.region-quote{font-family:var(--serif);font-size:1.25rem;font-style:italic;color:var(--text);line-height:1.65;border-left:2px solid var(--accent);padding-left:1.5rem;transition:color 0.9s,border-color 0.9s;}
+.region-countries{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2rem;transition:color 0.9s;}
+.region-text{font-size:1.0rem;color:var(--text-soft);font-weight:300;line-height:1.9;margin-bottom:1.5rem;transition:color 0.9s;}
+.region-quote{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--text);border-left:3px solid var(--accent);padding-left:1.25rem;transition:color 0.9s,border-color 0.9s;}
+.region-visual{display:flex;align-items:center;justify-content:center;}
+.region-visual svg{width:100%;max-width:420px;height:auto;}
 
 /* REFLECTION */
-.reflection{min-height:60vh;padding:8rem 4rem;display:flex;align-items:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
+.reflection{min-height:50vh;padding:7rem 4rem;display:flex;align-items:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
 .reflection-inner{max-width:680px;}
 .reflection-eyebrow{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;transition:color 0.9s;}
 .reflection-title{font-family:var(--serif);font-size:clamp(1.75rem,4vw,3rem);font-weight:400;color:var(--text);margin-bottom:2rem;line-height:1.2;transition:color 0.9s;}
@@ -55,15 +58,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
 footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;transition:border-color 0.9s;}
 .footer-text{font-size:0.75rem;color:var(--text-muted);transition:color 0.9s;}
-.footer-link{font-size:0.75rem;color:var(--accent);text-decoration:none;transition:color 0.9s;}
+.footer-link{font-size:0.75rem;color:var(--accent);text-decoration:none;}
 
 .fade{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .fade.in{opacity:1;transform:none;}
 
-@media(max-width:860px){
+@media(max-width:900px){
   nav{padding:1rem 1.5rem;}
-  .hero,.region-section,.reflection{padding-left:1.5rem;padding-right:1.5rem;}
-  .region-body{grid-template-columns:1fr;gap:2.5rem;}
+  .hero,.reflection{padding-left:1.5rem;padding-right:1.5rem;}
+  .region-section{grid-template-columns:1fr;padding:5rem 1.5rem;gap:3rem;min-height:auto;}
+  .region-visual{order:-1;}
   .region-indicator{display:none;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
 }
@@ -90,7 +94,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
   <div class="region-dot" data-target="reflection"></div>
 </div>
 
-<!-- HERO — sage meadow -->
+<!-- HERO -->
 <section class="hero" id="hero" data-theme="meadow">
   <h1 class="hero-title">Two years,<br><em>a lot of ground</em></h1>
   <p class="hero-sub">Asia, South America, Australia, Europe, North America. It changed how I see things — the contrasts in how people live, what communities face, and how much goes unseen from home.</p>
@@ -101,47 +105,257 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
   </div>
 </section>
 
-<!-- SE ASIA — warm jungle green -->
+<!-- SE ASIA — deep jungle green -->
 <section class="region-section" id="sea" data-theme="jungle">
-  <p class="region-chapter fade">Region 01</p>
-  <h2 class="region-name fade">Southeast <em>Asia</em></h2>
-  <p class="region-countries fade">Vietnam &middot; Thailand &middot; Cambodia &middot; Indonesia &middot; and more</p>
-  <div class="region-body">
-    <p class="region-text fade">The region that probably changes you most the first time. The density of life, the heat, the noise — and the contrast between the tourist trail and everything just off it. You realise quickly how much of the world runs on very little, and how much life still exists in that.</p>
+  <div class="region-content">
+    <p class="region-chapter fade">Region 01</p>
+    <h2 class="region-name fade">Southeast <em>Asia</em></h2>
+    <p class="region-countries fade">Vietnam &middot; Thailand &middot; Cambodia &middot; Indonesia &middot; and more</p>
+    <p class="region-text fade">The region that probably changes you most the first time. The density of life, the heat, the noise — and the contrast between the tourist trail and everything just off it. You realise quickly how much of the world runs on very little.</p>
     <p class="region-quote fade">The contrast between the tourist trail and everything just off it.</p>
   </div>
+  <div class="region-visual fade">
+    <!-- Temple / jungle SVG illustration -->
+    <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sky -->
+      <rect width="400" height="340" fill="#1A3A1A"/>
+      <!-- Moon -->
+      <circle cx="340" cy="55" r="28" fill="#F5E890" opacity="0.9"/>
+      <!-- Stars -->
+      <circle cx="40" cy="30" r="2" fill="#F5E890" opacity="0.7"/>
+      <circle cx="80" cy="60" r="1.5" fill="#F5E890" opacity="0.6"/>
+      <circle cx="160" cy="20" r="2" fill="#F5E890" opacity="0.8"/>
+      <circle cx="260" cy="40" r="1.5" fill="#F5E890" opacity="0.5"/>
+      <!-- Jungle foliage background -->
+      <ellipse cx="20" cy="280" rx="70" ry="120" fill="#0E2A0E" opacity="0.9"/>
+      <ellipse cx="380" cy="290" rx="80" ry="110" fill="#0E2A0E" opacity="0.9"/>
+      <ellipse cx="60" cy="310" rx="60" ry="80" fill="#162A16"/>
+      <ellipse cx="340" cy="320" rx="70" ry="70" fill="#162A16"/>
+      <!-- Temple base -->
+      <rect x="120" y="200" width="160" height="120" fill="#8B6914"/>
+      <!-- Temple steps -->
+      <rect x="110" y="190" width="180" height="20" fill="#A07820"/>
+      <rect x="100" y="175" width="200" height="20" fill="#8B6914"/>
+      <rect x="90" y="162" width="220" height="18" fill="#A07820"/>
+      <!-- Temple spire tiers -->
+      <rect x="145" y="140" width="110" height="25" fill="#C89020"/>
+      <rect x="160" y="118" width="80" height="25" fill="#A07820"/>
+      <rect x="172" y="98" width="56" height="22" fill="#C89020"/>
+      <rect x="182" y="80" width="36" height="22" fill="#A07820"/>
+      <!-- Spire point -->
+      <polygon points="200,50 188,82 212,82" fill="#F5C842"/>
+      <!-- Temple door -->
+      <rect x="182" y="240" width="36" height="80" rx="18" fill="#1A0A00"/>
+      <!-- Temple windows -->
+      <rect x="138" y="215" width="22" height="30" rx="11" fill="#1A0A00"/>
+      <rect x="240" y="215" width="22" height="30" rx="11" fill="#1A0A00"/>
+      <!-- Lantern lights -->
+      <circle cx="140" cy="198" r="6" fill="#F5C842" opacity="0.9"/>
+      <circle cx="260" cy="198" r="6" fill="#F5C842" opacity="0.9"/>
+      <circle cx="200" cy="175" r="5" fill="#F5C842" opacity="0.8"/>
+      <!-- Ground -->
+      <rect x="0" y="310" width="400" height="30" fill="#0A1A0A"/>
+      <!-- Foreground palms -->
+      <rect x="30" y="160" width="8" height="150" fill="#2A1A0A"/>
+      <ellipse cx="34" cy="150" rx="35" ry="20" fill="#1A4A1A" transform="rotate(-20 34 150)"/>
+      <ellipse cx="34" cy="145" rx="30" ry="18" fill="#2A5A2A" transform="rotate(10 34 145)"/>
+      <rect x="362" y="170" width="8" height="140" fill="#2A1A0A"/>
+      <ellipse cx="366" cy="162" rx="35" ry="20" fill="#1A4A1A" transform="rotate(20 366 162)"/>
+      <ellipse cx="366" cy="158" rx="28" ry="16" fill="#2A5A2A" transform="rotate(-15 366 158)"/>
+      <!-- Reflection in water -->
+      <rect x="60" y="316" width="280" height="24" fill="#0A2A1A" opacity="0.6"/>
+      <rect x="185" y="317" width="8" height="20" fill="#F5C842" opacity="0.3"/>
+    </svg>
+  </div>
 </section>
 
-<!-- SOUTH AMERICA — warm terracotta earth -->
-<section class="region-section" id="southam" data-theme="terra">
-  <p class="region-chapter fade">Region 02</p>
-  <h2 class="region-name fade">South <em>America</em></h2>
-  <p class="region-countries fade">Colombia &middot; Peru &middot; Bolivia &middot; Brazil &middot; and more</p>
-  <div class="region-body">
-    <p class="region-text fade">Where the university microgrid project became real to me. Communities without reliable power aren't an abstraction when you've spent time in places like that — you've felt the heat, eaten the food, talked to the people. It makes the engineering feel like it actually matters.</p>
+<!-- SOUTH AMERICA — warm terracotta -->
+<section class="region-section" id="southam" data-theme="andes">
+  <div class="region-content">
+    <p class="region-chapter fade">Region 02</p>
+    <h2 class="region-name fade">South <em>America</em></h2>
+    <p class="region-countries fade">Colombia &middot; Peru &middot; Bolivia &middot; Brazil &middot; and more</p>
+    <p class="region-text fade">Where the university microgrid project became real to me. Communities without reliable power aren't an abstraction when you've spent time in places like that — you've felt the heat, eaten the food, talked to the people.</p>
     <p class="region-quote fade">Communities without reliable power aren't an abstraction when you've spent time there.</p>
   </div>
-</section>
-
-<!-- AUSTRALIA — open sky bright -->
-<section class="region-section" id="australia" data-theme="sky">
-  <p class="region-chapter fade">Region 03</p>
-  <h2 class="region-name fade"><em>Australia</em></h2>
-  <p class="region-countries fade">Melbourne &middot; East Coast &middot; Worked in hospitality</p>
-  <div class="region-body">
-    <p class="region-text fade">Spent real time here rather than passing through. Working in a Melbourne venue was its own education — in people, pressure, and the ability to integrate quickly into a team where you know nobody. Eight hours on your feet in a busy bar teaches you more about communication than most things.</p>
-    <p class="region-quote fade">Eight hours on your feet teaches you more about communication than most things.</p>
+  <div class="region-visual fade">
+    <!-- Machu Picchu / Andes SVG -->
+    <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sky gradient layers -->
+      <rect width="400" height="220" fill="#E87830"/>
+      <rect width="400" height="160" fill="#D05A18" opacity="0.5"/>
+      <rect width="400" height="100" fill="#A03010" opacity="0.4"/>
+      <!-- Sun -->
+      <circle cx="200" cy="70" r="45" fill="#F5C842" opacity="0.9"/>
+      <circle cx="200" cy="70" r="38" fill="#FAE070"/>
+      <!-- Clouds -->
+      <ellipse cx="80" cy="55" rx="50" ry="18" fill="#FAEAC8" opacity="0.7"/>
+      <ellipse cx="320" cy="45" rx="45" ry="15" fill="#FAEAC8" opacity="0.6"/>
+      <!-- Far mountains -->
+      <polygon points="0,200 80,100 160,180 0,180" fill="#8A4A20" opacity="0.6"/>
+      <polygon points="100,200 200,80 300,200" fill="#A05A28" opacity="0.7"/>
+      <polygon points="240,200 340,90 400,170 400,200" fill="#8A4A20" opacity="0.6"/>
+      <!-- Mid mountains -->
+      <polygon points="0,240 120,140 240,240" fill="#6A3A18"/>
+      <polygon points="160,240 280,130 400,240" fill="#7A4420"/>
+      <!-- Ruins platform -->
+      <rect x="60" y="220" width="280" height="20" fill="#C89050"/>
+      <rect x="80" y="200" width="240" height="22" fill="#D8A060"/>
+      <!-- Inca walls -->
+      <rect x="100" y="170" width="50" height="32" fill="#C07830"/>
+      <rect x="160" y="162" width="80" height="40" fill="#D08840"/>
+      <rect x="250" y="170" width="50" height="32" fill="#C07830"/>
+      <!-- Wall details (stones) -->
+      <line x1="110" y1="182" x2="140" y2="182" stroke="#A06020" stroke-width="1.5"/>
+      <line x1="110" y1="192" x2="140" y2="192" stroke="#A06020" stroke-width="1.5"/>
+      <line x1="125" y1="170" x2="125" y2="202" stroke="#A06020" stroke-width="1.5"/>
+      <line x1="170" y1="175" x2="230" y2="175" stroke="#A06020" stroke-width="1.5"/>
+      <line x1="170" y1="185" x2="230" y2="185" stroke="#A06020" stroke-width="1.5"/>
+      <line x1="170" y1="195" x2="230" y2="195" stroke="#A06020" stroke-width="1.5"/>
+      <line x1="200" y1="162" x2="200" y2="202" stroke="#A06020" stroke-width="1.5"/>
+      <!-- Doorways -->
+      <polygon points="178,202 178,175 190,168 202,175 202,202" fill="#401800"/>
+      <!-- Llama! -->
+      <ellipse cx="340" cy="225" rx="18" ry="12" fill="#E8D0A0"/>
+      <rect x="330" y="215" width="8" height="20" fill="#E8D0A0"/>
+      <rect x="346" y="215" width="8" height="20" fill="#E8D0A0"/>
+      <ellipse cx="352" cy="210" rx="10" ry="8" fill="#E8D0A0"/>
+      <ellipse cx="358" cy="205" rx="5" ry="7" fill="#E8D0A0"/>
+      <!-- Ground -->
+      <rect x="0" y="238" width="400" height="102" fill="#4A7A28"/>
+      <!-- Grass tufts -->
+      <ellipse cx="50" cy="240" rx="25" ry="8" fill="#5A8A30"/>
+      <ellipse cx="150" cy="242" rx="30" ry="8" fill="#4A7A28"/>
+      <ellipse cx="300" cy="241" rx="28" ry="7" fill="#5A8A30"/>
+    </svg>
   </div>
 </section>
 
-<!-- EUROPE — warm stone -->
-<section class="region-section" id="europe" data-theme="stone">
-  <p class="region-chapter fade">Region 04</p>
-  <h2 class="region-name fade">Europe &amp; <em>Americas</em></h2>
-  <p class="region-countries fade">Various countries across Europe and North America</p>
-  <div class="region-body">
-    <p class="region-text fade">The familiar made unfamiliar. Easier to travel, harder to pay attention. But different cities have different pulses — and noticing that, the way a place moves and what people care about, is what keeps travel interesting long after the novelty wears off.</p>
+<!-- AUSTRALIA — bright open -->
+<section class="region-section" id="australia" data-theme="outback">
+  <div class="region-content">
+    <p class="region-chapter fade">Region 03</p>
+    <h2 class="region-name fade"><em>Australia</em></h2>
+    <p class="region-countries fade">Melbourne &middot; East Coast &middot; Worked in hospitality</p>
+    <p class="region-text fade">Spent real time here rather than passing through. Working in a Melbourne venue was its own education — in people, pressure, and integrating quickly into a team where you know nobody.</p>
+    <p class="region-quote fade">Eight hours on your feet teaches you more about communication than most things.</p>
+  </div>
+  <div class="region-visual fade">
+    <!-- Outback / Sydney Opera House SVG -->
+    <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Sky -->
+      <rect width="400" height="240" fill="#5AB8F0"/>
+      <!-- Sun -->
+      <circle cx="320" cy="60" r="40" fill="#FAE030" opacity="0.95"/>
+      <!-- Clouds -->
+      <ellipse cx="80" cy="70" rx="55" ry="22" fill="white" opacity="0.85"/>
+      <ellipse cx="60" cy="75" rx="35" ry="18" fill="white" opacity="0.85"/>
+      <ellipse cx="110" cy="75" rx="40" ry="18" fill="white" opacity="0.85"/>
+      <ellipse cx="200" cy="50" rx="45" ry="18" fill="white" opacity="0.7"/>
+      <!-- Harbour water -->
+      <rect x="0" y="240" width="400" height="100" fill="#2878B8"/>
+      <!-- Water shimmer -->
+      <line x1="20" y1="260" x2="80" y2="260" stroke="#5AB8F0" stroke-width="2" opacity="0.5"/>
+      <line x1="100" y1="270" x2="180" y2="270" stroke="#5AB8F0" stroke-width="2" opacity="0.4"/>
+      <line x1="220" y1="258" x2="300" y2="258" stroke="#5AB8F0" stroke-width="2" opacity="0.5"/>
+      <line x1="320" y1="272" x2="390" y2="272" stroke="#5AB8F0" stroke-width="2" opacity="0.4"/>
+      <!-- Opera House base -->
+      <rect x="110" y="210" width="180" height="35" fill="#F0EEE8"/>
+      <!-- Opera House shells -->
+      <path d="M120,212 Q140,150 165,212 Z" fill="#F8F6F0"/>
+      <path d="M145,212 Q168,140 195,212 Z" fill="#EEEAE4"/>
+      <path d="M170,212 Q195,155 222,212 Z" fill="#F8F6F0"/>
+      <path d="M200,212 Q220,160 245,212 Z" fill="#EEEAE4"/>
+      <path d="M225,212 Q240,170 258,212 Z" fill="#F8F6F0"/>
+      <!-- Harbour bridge -->
+      <rect x="0" y="185" width="400" height="8" fill="#404040"/>
+      <path d="M60,193 Q200,120 340,193" fill="none" stroke="#606060" stroke-width="6"/>
+      <path d="M60,193 Q200,120 340,193" fill="none" stroke="#808080" stroke-width="3"/>
+      <!-- Bridge supports -->
+      <rect x="55" y="150" width="12" height="43" fill="#505050"/>
+      <rect x="333" y="150" width="12" height="43" fill="#505050"/>
+      <!-- Bridge cables -->
+      <line x1="61" y1="150" x2="130" y2="193" stroke="#808080" stroke-width="1.5"/>
+      <line x1="61" y1="150" x2="160" y2="193" stroke="#808080" stroke-width="1.5"/>
+      <line x1="339" y1="150" x2="270" y2="193" stroke="#808080" stroke-width="1.5"/>
+      <line x1="339" y1="150" x2="240" y2="193" stroke="#808080" stroke-width="1.5"/>
+      <!-- City buildings -->
+      <rect x="10" y="155" width="30" height="38" fill="#8A9AAA"/>
+      <rect x="20" y="140" width="18" height="53" fill="#7A8A9A"/>
+      <rect x="355" y="160" width="30" height="33" fill="#8A9AAA"/>
+      <rect x="362" y="148" width="18" height="45" fill="#7A8A9A"/>
+      <!-- Seagulls -->
+      <path d="M150,100 Q158,94 166,100" fill="none" stroke="white" stroke-width="2"/>
+      <path d="M200,80 Q208,74 216,80" fill="none" stroke="white" stroke-width="2"/>
+      <path d="M250,105 Q257,99 264,105" fill="none" stroke="white" stroke-width="2"/>
+    </svg>
+  </div>
+</section>
+
+<!-- EUROPE — warm golden hour -->
+<section class="region-section" id="europe" data-theme="golden">
+  <div class="region-content">
+    <p class="region-chapter fade">Region 04</p>
+    <h2 class="region-name fade">Europe &amp;<br><em>Americas</em></h2>
+    <p class="region-countries fade">Various countries across Europe and North America</p>
+    <p class="region-text fade">The familiar made unfamiliar. Easier to travel, harder to pay attention. But different cities have different pulses — and noticing that, the way a place moves and what people care about, is what keeps travel interesting.</p>
     <p class="region-quote fade">Different cities have different pulses. Noticing that is what keeps it interesting.</p>
+  </div>
+  <div class="region-visual fade">
+    <!-- European cityscape SVG -->
+    <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Golden hour sky -->
+      <rect width="400" height="260" fill="#F5A830"/>
+      <rect width="400" height="200" fill="#E87820" opacity="0.5"/>
+      <rect width="400" height="120" fill="#C04010" opacity="0.3"/>
+      <!-- Sun low on horizon -->
+      <circle cx="200" cy="220" r="60" fill="#F5C842" opacity="0.6"/>
+      <circle cx="200" cy="220" r="40" fill="#FAD850" opacity="0.7"/>
+      <!-- Clouds warm tones -->
+      <ellipse cx="80" cy="100" rx="60" ry="22" fill="#F5C070" opacity="0.7"/>
+      <ellipse cx="320" cy="80" rx="55" ry="20" fill="#F5C070" opacity="0.6"/>
+      <ellipse cx="160" cy="60" rx="45" ry="16" fill="#FAEAA0" opacity="0.5"/>
+      <!-- Eiffel tower -->
+      <polygon points="195,80 205,80 220,240 180,240" fill="#2A2A2A"/>
+      <polygon points="197,120 203,120 213,180 187,180" fill="#333333"/>
+      <rect x="182" y="175" width="36" height="5" fill="#222222"/>
+      <rect x="186" y="145" width="28" height="4" fill="#222222"/>
+      <rect x="189" y="120" width="22" height="3" fill="#222222"/>
+      <line x1="200" y1="80" x2="200" y2="68" stroke="#333" stroke-width="2"/>
+      <!-- Buildings left -->
+      <rect x="20" y="180" width="45" height="70" fill="#8A6020"/>
+      <rect x="30" y="160" width="28" height="88" fill="#6A4818"/>
+      <rect x="65" y="190" width="40" height="60" fill="#A07030"/>
+      <rect x="70" y="172" width="25" height="78" fill="#8A5A20"/>
+      <!-- Windows left buildings -->
+      <rect x="35" y="170" width="8" height="10" fill="#F5C842" opacity="0.8"/>
+      <rect x="35" y="188" width="8" height="10" fill="#F5C842" opacity="0.7"/>
+      <rect x="35" y="206" width="8" height="10" fill="#F5C842" opacity="0.8"/>
+      <rect x="22" y="188" width="8" height="10" fill="#F5C842" opacity="0.6"/>
+      <rect x="22" y="206" width="8" height="10" fill="#F5C842" opacity="0.7"/>
+      <!-- Buildings right -->
+      <rect x="240" y="185" width="50" height="65" fill="#7A5818"/>
+      <rect x="248" y="165" width="30" height="85" fill="#906828"/>
+      <rect x="295" y="190" width="45" height="60" fill="#8A6020"/>
+      <rect x="340" y="170" width="50" height="80" fill="#6A4818"/>
+      <!-- Windows right -->
+      <rect x="252" y="175" width="8" height="10" fill="#F5C842" opacity="0.8"/>
+      <rect x="252" y="193" width="8" height="10" fill="#F5C842" opacity="0.7"/>
+      <rect x="252" y="211" width="8" height="10" fill="#F5C842" opacity="0.8"/>
+      <rect x="300" y="198" width="8" height="10" fill="#F5C842" opacity="0.6"/>
+      <rect x="300" y="214" width="8" height="10" fill="#F5C842" opacity="0.7"/>
+      <rect x="348" y="182" width="8" height="10" fill="#F5C842" opacity="0.8"/>
+      <rect x="348" y="200" width="8" height="10" fill="#F5C842" opacity="0.7"/>
+      <!-- River -->
+      <rect x="0" y="250" width="400" height="90" fill="#C07828" opacity="0.6"/>
+      <rect x="0" y="260" width="400" height="80" fill="#E09030" opacity="0.4"/>
+      <!-- Reflections in river -->
+      <line x1="197" y1="262" x2="203" y2="320" stroke="#F5C842" stroke-width="3" opacity="0.4"/>
+      <line x1="180" y1="265" x2="185" y2="310" stroke="#F5C842" stroke-width="2" opacity="0.2"/>
+      <line x1="215" y1="265" x2="218" y2="310" stroke="#F5C842" stroke-width="2" opacity="0.2"/>
+      <!-- Ground / road -->
+      <rect x="0" y="242" width="400" height="12" fill="#4A3818"/>
+    </svg>
   </div>
 </section>
 
@@ -163,27 +377,12 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </footer>
 
 <script>
-const themes = {
-  meadow:{
-    '--bg':'#F5F0E6','--text':'#2C2820','--text-soft':'#5C5448','--text-muted':'#9C9488',
-    '--accent':'#6A8C5A','--rule':'rgba(106,140,90,0.18)','--nav-bg':'rgba(245,240,230,0.95)'
-  },
-  jungle:{
-    '--bg':'#EBF0E2','--text':'#1E2818','--text-soft':'#485C38','--text-muted':'#7A9068',
-    '--accent':'#4A7838','--rule':'rgba(74,120,56,0.18)','--nav-bg':'rgba(235,240,226,0.95)'
-  },
-  terra:{
-    '--bg':'#F5EDE0','--text':'#2C1E14','--text-soft':'#6C4830','--text-muted':'#A08060',
-    '--accent':'#A05830','--rule':'rgba(160,88,48,0.18)','--nav-bg':'rgba(245,237,224,0.95)'
-  },
-  sky:{
-    '--bg':'#F0F4F8','--text':'#181E28','--text-soft':'#384858','--text-muted':'#7888A0',
-    '--accent':'#3868A8','--rule':'rgba(56,104,168,0.15)','--nav-bg':'rgba(240,244,248,0.97)'
-  },
-  stone:{
-    '--bg':'#F0EDE6','--text':'#28241E','--text-soft':'#585048','--text-muted':'#989080',
-    '--accent':'#786848','--rule':'rgba(120,104,72,0.18)','--nav-bg':'rgba(240,237,230,0.95)'
-  }
+const themes={
+  meadow:{'--bg':'#F5F0E8','--text':'#2C2820','--text-soft':'#5C5448','--text-muted':'#9C9488','--accent':'#3A8C3A','--rule':'rgba(58,140,58,0.15)','--nav-bg':'rgba(245,240,232,0.96)'},
+  jungle:{'--bg':'#0E2010','--text':'#D0EAC0','--text-soft':'#70A860','--text-muted':'#3A6030','--accent':'#8CD858','--rule':'rgba(140,216,88,0.15)','--nav-bg':'rgba(14,32,16,0.96)'},
+  andes:{'--bg':'#2A1408','--text':'#F0D8A8','--text-soft':'#C09060','--text-muted':'#806040','--accent':'#F5C842','--rule':'rgba(245,200,66,0.18)','--nav-bg':'rgba(42,20,8,0.96)'},
+  outback:{'--bg':'#E8F4FC','--text':'#182030','--text-soft':'#406080','--text-muted':'#8090A8','--accent':'#2878B8','--rule':'rgba(40,120,184,0.15)','--nav-bg':'rgba(232,244,252,0.97)'},
+  golden:{'--bg':'#1A0E04','--text':'#F0D8A0','--text-soft':'#C09840','--text-muted':'#806030','--accent':'#F5A830','--rule':'rgba(245,168,48,0.18)','--nav-bg':'rgba(26,14,4,0.96)'}
 };
 
 function applyTheme(name){
@@ -197,27 +396,19 @@ const ids=['hero','sea','southam','australia','europe','reflection'];
 
 const themeObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-    if(entry.isIntersecting&&entry.intersectionRatio>0.35){
+    if(entry.isIntersecting&&entry.intersectionRatio>0.3){
       applyTheme(entry.target.dataset.theme);
       const idx=ids.indexOf(entry.target.id);
       dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
     }
   });
-},{threshold:0.35});
+},{threshold:0.3});
 
 sections.forEach(s=>themeObs.observe(s));
-
-dots.forEach((dot,i)=>{
-  dot.addEventListener('click',()=>{
-    const id=ids[i];
-    if(id)document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
-  });
-});
+dots.forEach((dot,i)=>dot.addEventListener('click',()=>document.getElementById(ids[i])?.scrollIntoView({behavior:'smooth'})));
 
 const fadeObs=new IntersectionObserver(entries=>{
-  entries.forEach((e,i)=>{
-    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);fadeObs.unobserve(e.target);}
-  });
+  entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);fadeObs.unobserve(e.target);}});
 },{threshold:0.1});
 document.querySelectorAll('.fade').forEach(el=>fadeObs.observe(el));
 </script>

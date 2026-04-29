@@ -9,72 +9,73 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --stone:#F5F0E6;--stone2:#EDE6D8;--stone3:#E2D9C8;
-  --ink:#2C2820;--ink-soft:#5C5448;--ink-muted:#9C9488;
-  --sage:#6A8C5A;--sage-light:#8FAF7E;--sage-pale:#C8DABC;--sage-dim:rgba(106,140,90,0.1);
-  --terra:#A85C38;--terra-light:#C8906C;--terra-pale:#EDD8C8;--terra-dim:rgba(168,92,56,0.1);
+  --honey:#F5C842;--honey-light:#FAE07A;--honey-pale:#FDF4C8;--honey-mid:#E8B830;--honey-dim:rgba(245,200,66,0.15);
+  --green:#3A8C3A;--green-light:#5CB85C;--green-pale:#C8EAC8;--green-dim:rgba(58,140,58,0.1);
+  --warm:#FDFAF0;--warm2:#FAF3D8;--warm3:#F5EAC0;
+  --ink:#1E1C14;--ink-soft:#4A4830;--ink-muted:#8A8870;
   --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--stone);color:var(--ink);line-height:1.7;font-size:16px;}
+body{font-family:var(--sans);background:var(--warm);color:var(--ink);line-height:1.7;font-size:16px;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(245,240,230,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--stone3);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(253,250,240,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--warm3);}
 .nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--ink);text-decoration:none;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-size:0.78rem;color:var(--ink-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}
-.nav-links a:hover,.nav-links a.active{color:var(--sage);}
+.nav-links a:hover,.nav-links a.active{color:var(--honey-mid);}
 
-.page-header{min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:10rem 4rem 5rem;border-bottom:1px solid var(--stone3);}
-.chapter-tag{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--sage);margin-bottom:1.25rem;}
-.page-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:1.0;color:var(--ink);margin-bottom:1.25rem;}
-.page-title em{font-style:italic;color:var(--sage-light);}
-.page-sub{font-size:1rem;color:var(--ink-soft);font-weight:300;max-width:500px;line-height:1.85;}
+.page-header{min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:10rem 4rem 5rem;border-bottom:1px solid var(--warm3);position:relative;overflow:hidden;background:var(--honey-dim);}
+.header-blob{position:absolute;width:600px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(245,200,66,0.2) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+.chapter-tag{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--honey-mid);margin-bottom:1.25rem;position:relative;}
+.page-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:1.0;color:var(--ink);margin-bottom:1.25rem;position:relative;}
+.page-title em{font-style:italic;color:var(--honey-mid);}
+.page-sub{font-size:1rem;color:var(--ink-soft);font-weight:300;max-width:500px;line-height:1.85;position:relative;}
 
 /* HOBBIES */
-.hobbies{padding:6rem 4rem;border-bottom:1px solid var(--stone3);}
-.section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--sage);margin-bottom:0.75rem;}
+.hobbies{padding:6rem 4rem;border-bottom:1px solid var(--warm3);}
+.section-label{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--honey-mid);margin-bottom:0.75rem;}
 .section-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:400;color:var(--ink);margin-bottom:3rem;}
 .hobbies-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
-.hobby-card{background:var(--stone2);padding:2.25rem 2rem;border-radius:2px;border:1px solid var(--stone3);transition:border-color 0.2s,background 0.2s;}
-.hobby-card:hover{border-color:var(--sage-pale);background:var(--stone);}
-.hobby-icon{font-size:1.5rem;margin-bottom:1rem;display:block;}
+.hobby-card{background:var(--warm2);padding:2.25rem 2rem;border:1px solid var(--warm3);transition:border-color 0.2s,background 0.2s,transform 0.2s;}
+.hobby-card:hover{border-color:var(--honey);background:var(--honey-pale);transform:translateY(-2px);}
+.hobby-icon{font-size:1.75rem;margin-bottom:1rem;display:block;}
 .hobby-name{font-family:var(--serif);font-size:1.05rem;color:var(--ink);margin-bottom:0.5rem;}
 .hobby-desc{font-size:0.85rem;color:var(--ink-muted);font-weight:300;line-height:1.7;}
 
 /* SIDE PROJECTS */
-.side-projects{padding:6rem 4rem;border-bottom:1px solid var(--stone3);background:var(--stone2);}
-.sp-item{display:grid;grid-template-columns:1fr 2fr;gap:4rem;padding:2.5rem 0;border-bottom:1px solid var(--stone3);align-items:start;}
-.sp-item:first-of-type{border-top:1px solid var(--stone3);}
-.sp-status{display:inline-block;font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.22rem 0.65rem;border-radius:1px;margin-bottom:0.75rem;}
-.status-exploring{border:1px solid var(--sage-pale);color:var(--sage);background:var(--sage-dim);}
-.status-ongoing{border:1px solid var(--terra-pale);color:var(--terra);background:var(--terra-dim);}
+.side-projects{padding:6rem 4rem;border-bottom:1px solid var(--warm3);background:var(--warm2);}
+.sp-item{display:grid;grid-template-columns:1fr 2fr;gap:4rem;padding:2.5rem 0;border-bottom:1px solid var(--warm3);align-items:start;}
+.sp-item:first-of-type{border-top:1px solid var(--warm3);}
+.sp-status{display:inline-block;font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.22rem 0.7rem;margin-bottom:0.75rem;}
+.status-exploring{background:var(--green-pale);color:var(--green);border:1px solid var(--green-pale);}
+.status-ongoing{background:var(--honey-pale);color:#8A6A00;border:1px solid var(--honey-light);}
 .sp-name{font-family:var(--serif);font-size:1.15rem;color:var(--ink);margin-bottom:0.25rem;}
 .sp-category{font-size:0.75rem;color:var(--ink-muted);}
 .sp-desc{font-size:0.92rem;color:var(--ink-soft);font-weight:300;line-height:1.85;}
 .sp-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;}
-.sp-tag{font-size:0.68rem;padding:0.22rem 0.6rem;border:1px solid var(--stone3);color:var(--ink-muted);background:var(--stone);}
+.sp-tag{font-size:0.68rem;padding:0.22rem 0.65rem;border:1px solid var(--warm3);color:var(--ink-muted);background:var(--warm);}
 
 /* READING */
-.reading{padding:6rem 4rem;border-bottom:1px solid var(--stone3);}
+.reading{padding:6rem 4rem;border-bottom:1px solid var(--warm3);}
 .reading-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:6rem;align-items:start;}
 .reading-intro{font-size:0.95rem;color:var(--ink-soft);font-weight:300;line-height:1.9;}
 .book-list{display:flex;flex-direction:column;}
-.book-item{padding:1.25rem 0;border-bottom:1px solid var(--stone3);display:flex;gap:1.5rem;align-items:start;}
-.book-item:first-child{border-top:1px solid var(--stone3);}
-.book-num{font-size:0.68rem;color:var(--ink-muted);padding-top:0.3rem;min-width:20px;}
+.book-item{padding:1.25rem 0;border-bottom:1px solid var(--warm3);display:flex;gap:1.5rem;align-items:start;}
+.book-item:first-child{border-top:1px solid var(--warm3);}
+.book-num{font-size:0.68rem;color:var(--honey-mid);font-weight:500;padding-top:0.3rem;min-width:20px;}
 .book-title{font-family:var(--serif);font-size:0.95rem;color:var(--ink);margin-bottom:0.15rem;}
 .book-author{font-size:0.78rem;color:var(--ink-muted);font-weight:300;}
 
 /* CONTACT */
-.contact{padding:5rem 4rem;display:flex;justify-content:space-between;align-items:center;background:var(--sage-dim);border-top:1px solid var(--sage-pale);}
-.contact-left{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.5rem);font-style:italic;color:var(--ink-soft);line-height:1.3;}
+.contact{padding:5rem 4rem;display:flex;justify-content:space-between;align-items:center;background:var(--honey);border-top:1px solid var(--honey-light);}
+.contact-left{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.5rem);font-style:italic;color:var(--ink);line-height:1.3;}
 .contact-links{display:flex;flex-direction:column;gap:0.75rem;text-align:right;}
-.contact-link{font-size:0.85rem;color:var(--sage);text-decoration:none;transition:color 0.2s;}
-.contact-link:hover{color:var(--sage-light);}
+.contact-link{font-size:0.85rem;color:var(--ink-soft);text-decoration:none;transition:color 0.2s;}
+.contact-link:hover{color:var(--ink);}
 
-footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justify-content:space-between;}
+footer{padding:1.5rem 4rem;border-top:1px solid var(--warm3);display:flex;justify-content:space-between;}
 .footer-text{font-size:0.75rem;color:var(--ink-muted);}
-.footer-link{font-size:0.75rem;color:var(--sage);text-decoration:none;}
+.footer-link{font-size:0.75rem;color:var(--green);text-decoration:none;}
 
 .fade{opacity:0;transform:translateY(16px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .fade.in{opacity:1;transform:none;}
@@ -104,6 +105,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
 </nav>
 
 <header class="page-header">
+  <div class="header-blob"></div>
   <p class="chapter-tag">Chapter 03</p>
   <h1 class="page-title">Life &amp;<br><em>Projects</em></h1>
   <p class="page-sub">The stuff outside the office — hobbies, things I'm building, and what I'm reading.</p>
@@ -121,27 +123,27 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
     <div class="hobby-card fade">
       <span class="hobby-icon">&#129042;</span>
       <div class="hobby-name">Bouldering</div>
-      <div class="hobby-desc">Short, hard problems with no rope. Good for when you want to train hard without the faff. The London wall scene is solid.</div>
+      <div class="hobby-desc">Short, hard problems with no rope. Good for when you want to train without the faff. The London wall scene is solid.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#129354;</span>
       <div class="hobby-name">Martial arts</div>
-      <div class="hobby-desc">The discipline side matters as much as the physical — showing up consistently, being comfortable being a beginner again.</div>
+      <div class="hobby-desc">The discipline matters as much as the physical — showing up consistently, being comfortable being a beginner again.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#128214;</span>
       <div class="hobby-name">Reading</div>
-      <div class="hobby-desc">Broadly across science, technology, and fiction. More interested in ideas than genres — something that makes me think differently.</div>
+      <div class="hobby-desc">Broadly across science, technology, and fiction. More interested in ideas than genres — anything that makes me think differently.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#127758;</span>
       <div class="hobby-name">Travel</div>
-      <div class="hobby-desc">Two years of it before starting work. Still the thing I think about most when planning what comes next. See the travel page.</div>
+      <div class="hobby-desc">Two years of it before starting work. Still the thing I think about most when planning what comes next.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#9889;</span>
       <div class="hobby-name">Renewable energy</div>
-      <div class="hobby-desc">Professionally and personally interested. The intersection of engineering, economics, and politics around energy transition is endlessly interesting.</div>
+      <div class="hobby-desc">Professionally and personally. The intersection of engineering, economics, and politics around energy transition is endlessly interesting.</div>
     </div>
   </div>
 </section>
@@ -157,11 +159,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
     </div>
     <div>
       <p class="sp-desc">An idea for helping engineering graduates navigate job applications — CV tailoring, curated job lists, interview prep. The market for new graduates is messier than it should be and most advice is generic. Starting with friends to test whether it's actually useful before building anything formal.</p>
-      <div class="sp-tags">
-        <span class="sp-tag">Early stage</span>
-        <span class="sp-tag">Engineering careers</span>
-        <span class="sp-tag">Education</span>
-      </div>
+      <div class="sp-tags"><span class="sp-tag">Early stage</span><span class="sp-tag">Engineering careers</span><span class="sp-tag">Education</span></div>
     </div>
   </div>
   <div class="sp-item fade">
@@ -171,11 +169,8 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
       <div class="sp-category">Personal project</div>
     </div>
     <div>
-      <p class="sp-desc">Somewhere to put things properly rather than just having a LinkedIn. A work in progress — more will land here over time as I figure out what I actually want it to be.</p>
-      <div class="sp-tags">
-        <span class="sp-tag">Personal</span>
-        <span class="sp-tag">Ongoing</span>
-      </div>
+      <p class="sp-desc">Somewhere to put things properly rather than just having a LinkedIn. A work in progress — more will land here over time.</p>
+      <div class="sp-tags"><span class="sp-tag">Personal</span><span class="sp-tag">Ongoing</span></div>
     </div>
   </div>
 </section>
@@ -185,21 +180,12 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
   <div class="reading-grid">
     <div>
       <h2 class="section-title" style="margin-bottom:1.25rem;">On the shelf</h2>
-      <p class="reading-intro">A mix of fiction, science, and things that don't fit neatly anywhere. Update this with what you're actually reading — the slots below are just structure.</p>
+      <p class="reading-intro">A mix of fiction, science, and things that don't fit neatly anywhere. Update this with what you're actually reading.</p>
     </div>
     <div class="book-list fade">
-      <div class="book-item">
-        <span class="book-num">01</span>
-        <div><div class="book-title">Add what you're reading here</div><div class="book-author">Author</div></div>
-      </div>
-      <div class="book-item">
-        <span class="book-num">02</span>
-        <div><div class="book-title">Add something you've read recently</div><div class="book-author">Author</div></div>
-      </div>
-      <div class="book-item">
-        <span class="book-num">03</span>
-        <div><div class="book-title">Add a recommendation</div><div class="book-author">Author</div></div>
-      </div>
+      <div class="book-item"><span class="book-num">01</span><div><div class="book-title">Add what you're reading here</div><div class="book-author">Author</div></div></div>
+      <div class="book-item"><span class="book-num">02</span><div><div class="book-title">Add something you've read recently</div><div class="book-author">Author</div></div></div>
+      <div class="book-item"><span class="book-num">03</span><div><div class="book-title">Add a recommendation</div><div class="book-author">Author</div></div></div>
     </div>
   </div>
 </section>
