@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel — Seth Jarrett</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F5F0E6;--text:#2C2820;--text-soft:#5C5448;--text-muted:#9C9488;
+  --accent:#6A8C5A;--rule:rgba(106,140,90,0.18);--nav-bg:rgba(245,240,230,0.95);
+  --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;transition:background 1.4s ease,color 0.9s ease;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);transition:background 1.4s ease,border-color 0.9s ease;}
+.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;transition:color 0.9s;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.78rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+
+.region-indicator{position:fixed;top:50%;right:2rem;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;gap:0.75rem;}
+.region-dot{width:7px;height:7px;border-radius:50%;background:transparent;border:1.5px solid var(--text-muted);cursor:pointer;transition:all 0.35s;}
+.region-dot.active{background:var(--accent);border-color:var(--accent);transform:scale(1.4);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 4rem 5rem;padding-top:80px;}
+.hero-title{font-family:var(--serif);font-size:clamp(3.5rem,9vw,7rem);font-weight:400;line-height:0.95;color:var(--text);margin-bottom:1.5rem;transition:color 0.9s;}
+.hero-title em{font-style:italic;color:var(--accent);transition:color 0.9s;}
+.hero-sub{font-size:1.05rem;color:var(--text-soft);font-weight:300;line-height:1.9;max-width:520px;margin-bottom:3rem;transition:color 0.9s;}
+.hero-stats{display:flex;gap:3.5rem;padding-top:2rem;border-top:1px solid var(--rule);transition:border-color 0.9s;}
+.stat-num{font-family:var(--serif);font-size:2.5rem;color:var(--accent);line-height:1;transition:color 0.9s;}
+.stat-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem;transition:color 0.9s;}
+
+/* REGION SECTIONS */
+.region-section{min-height:100vh;padding:8rem 4rem;display:flex;flex-direction:column;justify-content:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
+.region-chapter{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;transition:color 0.9s;}
+.region-name{font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);font-weight:400;line-height:1.0;color:var(--text);margin-bottom:0.5rem;transition:color 0.9s;}
+.region-name em{font-style:italic;}
+.region-countries{font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:3rem;transition:color 0.9s;}
+.region-body{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.region-text{font-size:1.0rem;color:var(--text-soft);font-weight:300;line-height:1.9;transition:color 0.9s;}
+.region-quote{font-family:var(--serif);font-size:1.25rem;font-style:italic;color:var(--text);line-height:1.65;border-left:2px solid var(--accent);padding-left:1.5rem;transition:color 0.9s,border-color 0.9s;}
+
+/* REFLECTION */
+.reflection{min-height:60vh;padding:8rem 4rem;display:flex;align-items:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
+.reflection-inner{max-width:680px;}
+.reflection-eyebrow{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;transition:color 0.9s;}
+.reflection-title{font-family:var(--serif);font-size:clamp(1.75rem,4vw,3rem);font-weight:400;color:var(--text);margin-bottom:2rem;line-height:1.2;transition:color 0.9s;}
+.reflection-text{font-size:1.0rem;color:var(--text-soft);font-weight:300;line-height:1.9;transition:color 0.9s;}
+.reflection-text p{margin-bottom:1.25rem;}
+
+footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;transition:border-color 0.9s;}
+.footer-text{font-size:0.75rem;color:var(--text-muted);transition:color 0.9s;}
+.footer-link{font-size:0.75rem;color:var(--accent);text-decoration:none;transition:color 0.9s;}
+
+.fade{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.fade.in{opacity:1;transform:none;}
+
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  .hero,.region-section,.reflection{padding-left:1.5rem;padding-right:1.5rem;}
+  .region-body{grid-template-columns:1fr;gap:2.5rem;}
+  .region-indicator{display:none;}
+  footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Seth Jarrett</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="travel.html" class="active">Travel</a></li>
+    <li><a href="engineering.html">Engineering</a></li>
+    <li><a href="life.html">Life</a></li>
+  </ul>
+</nav>
+
+<div class="region-indicator">
+  <div class="region-dot active" data-target="hero"></div>
+  <div class="region-dot" data-target="sea"></div>
+  <div class="region-dot" data-target="southam"></div>
+  <div class="region-dot" data-target="australia"></div>
+  <div class="region-dot" data-target="europe"></div>
+  <div class="region-dot" data-target="reflection"></div>
+</div>
+
+<!-- HERO — sage meadow -->
+<section class="hero" id="hero" data-theme="meadow">
+  <h1 class="hero-title">Two years,<br><em>a lot of ground</em></h1>
+  <p class="hero-sub">Asia, South America, Australia, Europe, North America. It changed how I see things — the contrasts in how people live, what communities face, and how much goes unseen from home.</p>
+  <div class="hero-stats">
+    <div><div class="stat-num">2</div><div class="stat-label">Years</div></div>
+    <div><div class="stat-num">4</div><div class="stat-label">Continents</div></div>
+    <div><div class="stat-num">20+</div><div class="stat-label">Countries</div></div>
+  </div>
+</section>
+
+<!-- SE ASIA — warm jungle green -->
+<section class="region-section" id="sea" data-theme="jungle">
+  <p class="region-chapter fade">Region 01</p>
+  <h2 class="region-name fade">Southeast <em>Asia</em></h2>
+  <p class="region-countries fade">Vietnam &middot; Thailand &middot; Cambodia &middot; Indonesia &middot; and more</p>
+  <div class="region-body">
+    <p class="region-text fade">The region that probably changes you most the first time. The density of life, the heat, the noise — and the contrast between the tourist trail and everything just off it. You realise quickly how much of the world runs on very little, and how much life still exists in that.</p>
+    <p class="region-quote fade">The contrast between the tourist trail and everything just off it.</p>
+  </div>
+</section>
+
+<!-- SOUTH AMERICA — warm terracotta earth -->
+<section class="region-section" id="southam" data-theme="terra">
+  <p class="region-chapter fade">Region 02</p>
+  <h2 class="region-name fade">South <em>America</em></h2>
+  <p class="region-countries fade">Colombia &middot; Peru &middot; Bolivia &middot; Brazil &middot; and more</p>
+  <div class="region-body">
+    <p class="region-text fade">Where the university microgrid project became real to me. Communities without reliable power aren't an abstraction when you've spent time in places like that — you've felt the heat, eaten the food, talked to the people. It makes the engineering feel like it actually matters.</p>
+    <p class="region-quote fade">Communities without reliable power aren't an abstraction when you've spent time there.</p>
+  </div>
+</section>
+
+<!-- AUSTRALIA — open sky bright -->
+<section class="region-section" id="australia" data-theme="sky">
+  <p class="region-chapter fade">Region 03</p>
+  <h2 class="region-name fade"><em>Australia</em></h2>
+  <p class="region-countries fade">Melbourne &middot; East Coast &middot; Worked in hospitality</p>
+  <div class="region-body">
+    <p class="region-text fade">Spent real time here rather than passing through. Working in a Melbourne venue was its own education — in people, pressure, and the ability to integrate quickly into a team where you know nobody. Eight hours on your feet in a busy bar teaches you more about communication than most things.</p>
+    <p class="region-quote fade">Eight hours on your feet teaches you more about communication than most things.</p>
+  </div>
+</section>
+
+<!-- EUROPE — warm stone -->
+<section class="region-section" id="europe" data-theme="stone">
+  <p class="region-chapter fade">Region 04</p>
+  <h2 class="region-name fade">Europe &amp; <em>Americas</em></h2>
+  <p class="region-countries fade">Various countries across Europe and North America</p>
+  <div class="region-body">
+    <p class="region-text fade">The familiar made unfamiliar. Easier to travel, harder to pay attention. But different cities have different pulses — and noticing that, the way a place moves and what people care about, is what keeps travel interesting long after the novelty wears off.</p>
+    <p class="region-quote fade">Different cities have different pulses. Noticing that is what keeps it interesting.</p>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="reflection" id="reflection" data-theme="meadow">
+  <div class="reflection-inner">
+    <p class="reflection-eyebrow fade">What it did</p>
+    <h2 class="reflection-title fade">More than a gap year</h2>
+    <div class="reflection-text fade">
+      <p>Two years travelling gave me a real appreciation for how differently people live — the varying standards of living, the cultural contrasts, and the challenges communities face that often go unseen from home.</p>
+      <p>It left me with a genuine drive to do work that has impact beyond a project deliverable, and pointed me towards international engineering as the direction I want my career to go.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">Seth Jarrett — Travel</span>
+  <a href="engineering.html" class="footer-link">Engineering &#8594;</a>
+</footer>
+
+<script>
+const themes = {
+  meadow:{
+    '--bg':'#F5F0E6','--text':'#2C2820','--text-soft':'#5C5448','--text-muted':'#9C9488',
+    '--accent':'#6A8C5A','--rule':'rgba(106,140,90,0.18)','--nav-bg':'rgba(245,240,230,0.95)'
+  },
+  jungle:{
+    '--bg':'#EBF0E2','--text':'#1E2818','--text-soft':'#485C38','--text-muted':'#7A9068',
+    '--accent':'#4A7838','--rule':'rgba(74,120,56,0.18)','--nav-bg':'rgba(235,240,226,0.95)'
+  },
+  terra:{
+    '--bg':'#F5EDE0','--text':'#2C1E14','--text-soft':'#6C4830','--text-muted':'#A08060',
+    '--accent':'#A05830','--rule':'rgba(160,88,48,0.18)','--nav-bg':'rgba(245,237,224,0.95)'
+  },
+  sky:{
+    '--bg':'#F0F4F8','--text':'#181E28','--text-soft':'#384858','--text-muted':'#7888A0',
+    '--accent':'#3868A8','--rule':'rgba(56,104,168,0.15)','--nav-bg':'rgba(240,244,248,0.97)'
+  },
+  stone:{
+    '--bg':'#F0EDE6','--text':'#28241E','--text-soft':'#585048','--text-muted':'#989080',
+    '--accent':'#786848','--rule':'rgba(120,104,72,0.18)','--nav-bg':'rgba(240,237,230,0.95)'
+  }
+};
+
+function applyTheme(name){
+  const t=themes[name];if(!t)return;
+  Object.entries(t).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));
+}
+
+const sections=document.querySelectorAll('[data-theme]');
+const dots=document.querySelectorAll('.region-dot');
+const ids=['hero','sea','southam','australia','europe','reflection'];
+
+const themeObs=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting&&entry.intersectionRatio>0.35){
+      applyTheme(entry.target.dataset.theme);
+      const idx=ids.indexOf(entry.target.id);
+      dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    }
+  });
+},{threshold:0.35});
+
+sections.forEach(s=>themeObs.observe(s));
+
+dots.forEach((dot,i)=>{
+  dot.addEventListener('click',()=>{
+    const id=ids[i];
+    if(id)document.getElementById(id)?.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+const fadeObs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);fadeObs.unobserve(e.target);}
+  });
+},{threshold:0.1});
+document.querySelectorAll('.fade').forEach(el=>fadeObs.observe(el));
+</script>
+</body>
+</html>

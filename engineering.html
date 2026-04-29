@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering — Seth Jarrett</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#181C1A;--bg2:#1E2420;--bg3:#242C28;--bg4:#2C3630;
+  --text:#D8E8D0;--text-soft:#7A9A80;--text-muted:#3A5040;
+  --cyan:#50C8A8;--cyan-dim:rgba(80,200,168,0.1);
+  --sage:#8ABE78;--sage-dim:rgba(138,190,120,0.1);
+  --amber:#C8A050;
+  --rule:rgba(80,200,168,0.1);
+  --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(24,28,26,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
+.nav-name{font-family:var(--mono);font-size:0.88rem;color:var(--cyan);text-decoration:none;letter-spacing:0.04em;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan);}
+.nav-links a.active::before{content:'> ';}
+
+.page-header{min-height:55vh;display:flex;flex-direction:column;justify-content:flex-end;padding:10rem 4rem 4rem;position:relative;overflow:hidden;border-bottom:1px solid var(--rule);}
+.header-grid{position:absolute;inset:0;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:48px 48px;opacity:0.5;}
+.chapter-tag{font-family:var(--mono);font-size:0.68rem;color:var(--sage);letter-spacing:0.1em;margin-bottom:1rem;position:relative;}
+.chapter-tag::before{content:'// ';}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);font-weight:400;line-height:1.0;color:var(--text);margin-bottom:1.5rem;position:relative;}
+.page-title em{font-style:italic;color:var(--cyan);}
+.header-meta{display:flex;gap:3rem;position:relative;flex-wrap:wrap;}
+.meta-item{border-left:1px solid var(--rule);padding-left:1rem;}
+.meta-label{font-family:var(--mono);font-size:0.63rem;color:var(--text-muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.2rem;}
+.meta-value{font-size:0.88rem;color:var(--text-soft);}
+
+.skills-bar{padding:1.25rem 4rem;border-bottom:1px solid var(--rule);display:flex;gap:0.75rem;flex-wrap:wrap;background:var(--bg2);}
+.skill-chip{font-family:var(--mono);font-size:0.63rem;letter-spacing:0.06em;padding:0.28rem 0.75rem;border:1px solid var(--rule);color:var(--text-muted);background:var(--bg3);}
+.skill-chip.on{border-color:rgba(80,200,168,0.3);color:var(--cyan);background:var(--cyan-dim);}
+
+.projects{padding:0;}
+.project-block{display:grid;grid-template-columns:260px 1fr;border-bottom:1px solid var(--rule);transition:background 0.2s;}
+.project-block:hover{background:rgba(80,200,168,0.02);}
+.project-sidebar{padding:2.5rem 2rem 2.5rem 4rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:1.25rem;}
+.project-idx{font-family:var(--mono);font-size:0.63rem;color:var(--text-muted);letter-spacing:0.1em;}
+.project-type-tag{display:inline-block;font-family:var(--mono);font-size:0.6rem;letter-spacing:0.06em;padding:0.18rem 0.55rem;border:1px solid rgba(138,190,120,0.3);color:var(--sage);background:var(--sage-dim);}
+.project-scale{font-family:var(--mono);font-size:0.65rem;color:var(--text-muted);line-height:1.6;margin-top:auto;}
+.project-scale strong{display:block;color:var(--amber);font-weight:300;margin-bottom:0.15rem;}
+.project-body{padding:2.5rem 4rem 2.5rem 2.5rem;}
+.project-name{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--text);margin-bottom:0.9rem;}
+.project-desc{font-size:0.9rem;color:var(--text-soft);font-weight:300;line-height:1.8;margin-bottom:1.1rem;}
+.project-points{display:flex;flex-direction:column;gap:0.45rem;}
+.project-point{font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);display:flex;gap:0.7rem;line-height:1.55;}
+.project-point::before{content:'&#x25B8;';color:var(--cyan);flex-shrink:0;}
+
+.education{padding:5rem 4rem;background:var(--bg2);border-top:1px solid var(--rule);}
+.edu-hdr{font-family:var(--mono);font-size:0.65rem;color:var(--cyan);letter-spacing:0.1em;margin-bottom:3rem;}
+.edu-hdr::before{content:'// ';}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
+.edu-title{font-family:var(--serif);font-size:1.5rem;color:var(--text);margin-bottom:2rem;font-weight:400;line-height:1.2;}
+.edu-row{display:flex;justify-content:space-between;padding:0.85rem 0;border-bottom:1px solid var(--rule);}
+.edu-row-label{font-family:var(--mono);font-size:0.68rem;color:var(--text-muted);letter-spacing:0.05em;}
+.edu-row-value{font-size:0.85rem;color:var(--text-soft);text-align:right;}
+.edu-proj-hdr{font-family:var(--mono);font-size:0.65rem;color:var(--sage);letter-spacing:0.1em;margin:2rem 0 1.25rem;}
+.edu-proj-hdr::before{content:'// ';}
+.edu-proj{padding:1.1rem 0;border-bottom:1px solid var(--rule);}
+.edu-proj-name{font-size:0.92rem;color:var(--text);margin-bottom:0.3rem;}
+.edu-proj-desc{font-family:var(--mono);font-size:0.7rem;color:var(--text-muted);line-height:1.65;font-weight:300;}
+
+footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;}
+.footer-text{font-family:var(--mono);font-size:0.65rem;color:var(--text-muted);}
+.footer-link{font-family:var(--mono);font-size:0.65rem;color:var(--cyan);text-decoration:none;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade.in{opacity:1;transform:none;}
+
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  .page-header,.skills-bar,.education{padding-left:1.5rem;padding-right:1.5rem;}
+  .project-block{grid-template-columns:1fr;}
+  .project-sidebar{padding:2rem 1.5rem 1rem;}
+  .project-body{padding:0 1.5rem 2rem;}
+  .edu-grid{grid-template-columns:1fr;gap:2.5rem;}
+  footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">SJ.engineer</a>
+  <ul class="nav-links">
+    <li><a href="index.html">home</a></li>
+    <li><a href="travel.html">travel</a></li>
+    <li><a href="engineering.html" class="active">engineering</a></li>
+    <li><a href="life.html">life</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="header-grid"></div>
+  <p class="chapter-tag">chapter_02 / electrical_engineering</p>
+  <h1 class="page-title">Power<br><em>Infrastructure</em></h1>
+  <div class="header-meta">
+    <div class="meta-item"><div class="meta-label">Role</div><div class="meta-value">Graduate Electrical Engineer, RED Engineering Design</div></div>
+    <div class="meta-item"><div class="meta-label">Sectors</div><div class="meta-value">Data centres, MV/LV, Renewables</div></div>
+    <div class="meta-item"><div class="meta-label">Education</div><div class="meta-value">MEng First Class, Bristol</div></div>
+  </div>
+</header>
+
+<div class="skills-bar">
+  <span class="skill-chip on">MV/LV Design</span>
+  <span class="skill-chip on">Solar PV</span>
+  <span class="skill-chip on">BESS</span>
+  <span class="skill-chip on">AutoCAD</span>
+  <span class="skill-chip on">MATLAB-Simulink</span>
+  <span class="skill-chip on">Redundancy Analysis</span>
+  <span class="skill-chip">DIALux</span>
+  <span class="skill-chip">Excel Modelling</span>
+  <span class="skill-chip">Amtech</span>
+  <span class="skill-chip">Revit</span>
+  <span class="skill-chip">Python</span>
+</div>
+
+<section class="projects">
+
+  <div class="project-block fade">
+    <div class="project-sidebar">
+      <div class="project-idx">project_01</div>
+      <span class="project-type-tag">MV/LV + AutoCAD</span>
+      <div class="project-scale"><strong>1GW — UAE</strong>STARGATE / RIBA Stage 1 &amp; 2</div>
+    </div>
+    <div class="project-body">
+      <div class="project-name">STARGATE — MV Distribution</div>
+      <p class="project-desc">Proposed MV-LV schematic architectures with 2-to-1 redundancy, presenting the design strategy directly to the client. Built Excel models to validate busbar routing and identify failure cases.</p>
+      <div class="project-points">
+        <div class="project-point">Designed 2-to-1 redundant cable configs to minimise crossover and maximise resilience</div>
+        <div class="project-point">AutoCAD schematics — presented findings to senior engineer</div>
+        <div class="project-point">Excel models to analyse distributed redundancy and evaluate alternative routing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-block fade">
+    <div class="project-sidebar">
+      <div class="project-idx">project_02</div>
+      <span class="project-type-tag">Power Systems + Load Modelling</span>
+      <div class="project-scale"><strong>300MW — Netherlands</strong>AMS01 Amsterdam / RIBA Stage 3</div>
+    </div>
+    <div class="project-body">
+      <div class="project-name">AMS01 — Amsterdam Tower</div>
+      <p class="project-desc">Maximum demand calculations, string-level load modelling, SLD and earthing GA reviews, and coordination across mechanical, BIM, security, and controls teams.</p>
+      <div class="project-points">
+        <div class="project-point">Floor-function load analysis for maximum demand calculations</div>
+        <div class="project-point">Excel tools to validate transformer, UPS, and DB sizing after design changes</div>
+        <div class="project-point">Organised and ran coordination call with mechanical team to resolve clashes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-block fade">
+    <div class="project-sidebar">
+      <div class="project-idx">project_03</div>
+      <span class="project-type-tag">Busbar Routing + MV Schematics</span>
+      <div class="project-scale"><strong>420MW</strong>LEGO / RIBA Stage 1 &amp; 2</div>
+    </div>
+    <div class="project-body">
+      <div class="project-name">LEGO — MV Distribution &amp; Busbar Routing</div>
+      <p class="project-desc">Algorithm to calculate unique busbar string combinations across a data hall. Validated a 4-to-make-3 redundancy topology across rack ratings from 600kW to 4.8MW. Technical notes on AIS vs GIS switchgear.</p>
+      <div class="project-points">
+        <div class="project-point">Excel redundancy model — 4-to-make-3 topology, 600kW to 4.8MW rack ratings</div>
+        <div class="project-point">MV substation schematics on CAD</div>
+        <div class="project-point">Technical notes: AIS vs GIS, block vs distributed redundancy, legislation changes</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-block fade">
+    <div class="project-sidebar">
+      <div class="project-idx">project_04</div>
+      <span class="project-type-tag">Solar PV + BESS + Simulink</span>
+      <div class="project-scale"><strong>University</strong>Solar Microgrid / Group Project</div>
+    </div>
+    <div class="project-body">
+      <div class="project-name">Solar DC Microgrid — Brazilian Amazon</div>
+      <p class="project-desc">Co-designed and helped build a solar DC microgrid for a remote community. Full lifecycle from concept through to validated hardware.</p>
+      <div class="project-points">
+        <div class="project-point">Led PV sizing, battery selection, wire sizing, and system specification</div>
+        <div class="project-point">MATLAB algorithms using 5 years of real irradiance data</div>
+        <div class="project-point">Simulink model: MPPT, droop control, bidirectional BMS — validated vs PCB prototype</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-block fade">
+    <div class="project-sidebar">
+      <div class="project-idx">project_05</div>
+      <span class="project-type-tag">Feasibility + Cost Modelling</span>
+      <div class="project-scale"><strong>University</strong>Wind-Solar / 83% Exemplar</div>
+    </div>
+    <div class="project-body">
+      <div class="project-name">Wind-Solar Mini-Grid Feasibility Study</div>
+      <p class="project-desc">Independent end-to-end feasibility study across four load scenarios covering battery DOD optimisation, Weibull wind modelling, and full capital and O&amp;M cost analysis.</p>
+      <div class="project-points">
+        <div class="project-point">Battery DOD and lifecycle optimisation across four load scenarios</div>
+        <div class="project-point">Wind power modelling using Weibull distributions</div>
+        <div class="project-point">Full cost analysis: capex, O&amp;M, payback — awarded 83%, used as exemplar paper</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-block fade">
+    <div class="project-sidebar">
+      <div class="project-idx">project_06</div>
+      <span class="project-type-tag">Lighting + Planning</span>
+      <div class="project-scale"><strong>100MW+ — England</strong>Heathrow Area / RIBA 2 &amp; 3</div>
+    </div>
+    <div class="project-body">
+      <div class="project-name">Exterior Lighting &amp; Environmental Assessment</div>
+      <p class="project-desc">Recreated existing site lighting from as-built drawings in DIALux, redesigned around a new gantry structure, and produced an obtrusive lighting report for a council planning submission.</p>
+      <div class="project-points">
+        <div class="project-point">Vertical illuminance analysis along canal boundary — 3.7 lux compliance</div>
+        <div class="project-point">Ecology report analysis and local authority constraint assessment</div>
+        <div class="project-point">Planning proposal for updated external lighting scheme</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<section class="education fade">
+  <p class="edu-hdr">education</p>
+  <div class="edu-grid">
+    <div>
+      <h2 class="edu-title">MEng Mechanical &amp; Electrical Engineering</h2>
+      <div class="edu-row"><span class="edu-row-label">University</span><span class="edu-row-value">University of Bristol</span></div>
+      <div class="edu-row"><span class="edu-row-label">Classification</span><span class="edu-row-value">First Class Honours — 73%</span></div>
+      <div class="edu-row"><span class="edu-row-label">Years</span><span class="edu-row-value">2019 — 2023</span></div>
+      <div class="edu-row"><span class="edu-row-label">A-Levels</span><span class="edu-row-value">Maths A* &middot; Physics A* &middot; Chemistry A</span></div>
+    </div>
+    <div>
+      <p class="edu-proj-hdr">key_projects</p>
+      <div class="edu-proj">
+        <div class="edu-proj-name">Solar DC Microgrid Design &amp; Build</div>
+        <div class="edu-proj-desc">Group project. Full lifecycle for remote Brazilian community. PV sizing, Simulink modelling, PCB validation.</div>
+      </div>
+      <div class="edu-proj">
+        <div class="edu-proj-name">Wind-Solar Mini-Grid Design</div>
+        <div class="edu-proj-desc">Individual research. 83%, exemplar paper. Weibull modelling, DOD optimisation, cost analysis across four scenarios.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">// seth_jarrett — engineering</span>
+  <a href="life.html" class="footer-link">life &amp; projects &#8594;</a>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*60);obs.unobserve(e.target);}}),{threshold:0.06});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
