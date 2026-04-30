@@ -9,80 +9,140 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#2E4A2C;--bg2:#364E34;--bg3:#405A3E;
-  --text:#EAF2E6;--text-soft:#B0CCA8;--text-muted:#78986E;
-  --green-bright:#7EC87A;--green-light:#A8D8A4;--green-pale:#C8E8C4;
-  --green-dark:#1E3A1C;--green-mid:#4A7848;
-  --accent:#7EC87A;
+  --bg:#F4F0E8;--bg2:#EDE7DA;--bg3:#E4DDD0;
+  --ink:#1E2E1C;--ink-soft:#3A4E38;--ink-muted:#7A8E78;
+  --green:#2A4A28;--green-mid:#3E6A3C;--green-light:#6A9A68;--green-pale:#C4D8C0;
+  --warm:#C8A87A;--warm-pale:#EEE4D4;
+  --rule:rgba(42,74,40,0.12);
   --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;min-height:100vh;}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;font-size:16px;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(46,74,44,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);}
-.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(244,240,232,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
+.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--green);text-decoration:none;letter-spacing:0.01em;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{font-size:0.78rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}
-.nav-links a:hover,.nav-links a.active{color:var(--green-light);}
+.nav-links a{font-size:0.75rem;font-weight:400;color:var(--ink-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--green);}
 
-/* HERO */
-.hero{min-height:100vh;display:grid;grid-template-rows:1fr auto;padding:0 4rem;padding-top:80px;position:relative;overflow:hidden;}
-.hero-texture{position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 55% 45% at 88% 12%, rgba(126,200,122,0.1) 0%, transparent 60%),
-    radial-gradient(ellipse 45% 55% at 8% 88%, rgba(126,200,122,0.07) 0%, transparent 60%);
-  pointer-events:none;}
-.hero-main{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:3.5rem;position:relative;}
-.hero-eyebrow{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--green-light);margin-bottom:1.5rem;opacity:0.85;}
-.hero-name{font-family:var(--serif);font-size:clamp(4.5rem,10vw,8.5rem);font-weight:400;line-height:0.92;color:var(--text);margin-bottom:1.75rem;}
-.hero-name em{font-style:italic;color:var(--green-bright);}
-.hero-desc{font-size:1.05rem;color:var(--text-soft);font-weight:300;line-height:1.9;max-width:520px;margin-bottom:2.5rem;}
-.hero-tags{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:3rem;}
-.hero-tag{font-size:0.72rem;font-weight:400;padding:0.3rem 0.85rem;border-radius:20px;letter-spacing:0.03em;background:rgba(255,255,255,0.08);color:var(--text-soft);border:1px solid rgba(255,255,255,0.1);}
+/* HERO — full viewport, photo left, text right */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:72px;}
+.hero-photo-col{position:relative;overflow:hidden;background:var(--bg3);}
+.hero-photo{width:100%;height:100%;object-fit:cover;display:block;}
+.hero-photo-placeholder{width:100%;height:100%;background:linear-gradient(160deg,var(--bg3) 0%,var(--bg2) 60%,var(--green-pale) 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;cursor:pointer;}
+.placeholder-icon{font-size:2.5rem;opacity:0.25;}
+.placeholder-text{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);opacity:0.6;}
+/* To add your photo: replace the div.hero-photo-placeholder with: <img src="your-photo.jpg" class="hero-photo" alt="Seth Jarrett"> */
 
-.hero-bottom{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:1px solid rgba(255,255,255,0.1);position:relative;}
-.hero-nav-card{padding:2rem 0;text-decoration:none;display:flex;flex-direction:column;gap:0.4rem;border-right:1px solid rgba(255,255,255,0.08);padding-right:2rem;transition:all 0.2s;}
-.hero-nav-card:last-child{border-right:none;padding-left:2rem;padding-right:0;}
-.hero-nav-card:nth-child(2){padding-left:2rem;}
-.hero-nav-num{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-muted);}
-.hero-nav-title{font-family:var(--serif);font-size:1.2rem;color:var(--text);transition:color 0.2s;}
-.hero-nav-card:hover .hero-nav-title{color:var(--green-bright);}
-.hero-nav-sub{font-size:0.8rem;color:var(--text-muted);font-weight:300;}
-.hero-nav-arrow{font-size:0.85rem;color:var(--green-bright);margin-top:0.5rem;transition:transform 0.2s;opacity:0.7;}
-.hero-nav-card:hover .hero-nav-arrow{transform:translateX(4px);opacity:1;}
+.hero-text-col{display:flex;flex-direction:column;justify-content:flex-end;padding:4rem 4rem 4rem 3.5rem;background:var(--bg);}
+.hero-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--green-light);margin-bottom:1.5rem;}
+.hero-name{font-family:var(--serif);font-size:clamp(3rem,5.5vw,5rem);font-weight:400;line-height:1.0;color:var(--green);margin-bottom:0.5rem;}
+.hero-name em{font-style:italic;color:var(--green-mid);display:block;}
+.hero-rule{width:48px;height:2px;background:var(--warm);margin:1.75rem 0;}
+.hero-desc{font-size:1rem;color:var(--ink-soft);font-weight:300;line-height:1.9;max-width:380px;margin-bottom:2.5rem;}
+.hero-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:3rem;}
+.hero-tag{font-size:0.68rem;padding:0.28rem 0.75rem;border:1px solid var(--green-pale);color:var(--green-light);background:transparent;letter-spacing:0.04em;}
+.hero-scroll{display:flex;align-items:center;gap:0.75rem;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);}
+.hero-scroll-line{width:32px;height:1px;background:var(--ink-muted);}
 
-/* ABOUT */
-.about{padding:7rem 4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:6rem;background:var(--bg2);border-top:1px solid rgba(255,255,255,0.06);}
-.about-title{font-family:var(--serif);font-size:clamp(1.75rem,3.5vw,2.75rem);font-weight:400;color:var(--text);line-height:1.2;margin-bottom:2rem;}
-.about-title em{font-style:italic;color:var(--green-bright);}
-.about-body p{font-size:0.98rem;color:var(--text-soft);font-weight:300;line-height:1.9;margin-bottom:1.25rem;}
-.facts{display:flex;flex-direction:column;}
-.fact{padding:1.25rem 0;border-bottom:1px solid rgba(255,255,255,0.08);}
-.fact:first-child{border-top:1px solid rgba(255,255,255,0.08);}
-.fact-label{font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:0.3rem;}
-.fact-value{font-family:var(--serif);font-size:1rem;color:var(--text);}
+/* ABOUT — text + second photo */
+.about{padding:7rem 4rem;display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:center;border-top:1px solid var(--rule);background:var(--bg);}
+.about-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-light);margin-bottom:1rem;}
+.about-title{font-family:var(--serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:var(--green);line-height:1.2;margin-bottom:2rem;}
+.about-title em{font-style:italic;}
+.about-body p{font-size:0.97rem;color:var(--ink-soft);font-weight:300;line-height:1.9;margin-bottom:1.25rem;}
+.about-body p:last-child{margin-bottom:0;}
+.about-photo-wrap{position:relative;}
+.about-photo-box{width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,var(--bg3) 0%,var(--green-pale) 100%);overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;}
+/* To add your photo: replace div.about-photo-box content with: <img src="photo2.jpg" style="width:100%;height:100%;object-fit:cover"> */
+.about-photo-box .placeholder-icon{font-size:2rem;opacity:0.2;}
+.about-photo-box .placeholder-text{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);opacity:0.5;}
+.about-photo-caption{font-size:0.75rem;color:var(--ink-muted);font-style:italic;margin-top:0.75rem;font-family:var(--serif);}
+
+/* FACTS ROW */
+.facts-row{padding:4rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--bg2);}
+.fact{padding:1.5rem 2rem;border-right:1px solid var(--rule);}
+.fact:first-child{padding-left:0;}
+.fact:last-child{border-right:none;}
+.fact-label{font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.4rem;}
+.fact-value{font-family:var(--serif);font-size:0.95rem;color:var(--green);line-height:1.4;}
+
+/* SECTIONS PREVIEW — the three chapter cards as you scroll */
+.chapters{padding:7rem 4rem;border-top:1px solid var(--rule);background:var(--bg);}
+.chapters-header{margin-bottom:4rem;}
+.chapters-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-light);margin-bottom:0.75rem;}
+.chapters-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:400;color:var(--green);line-height:1.2;}
+.chapters-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.chapter-card{text-decoration:none;display:flex;flex-direction:column;border:1px solid var(--rule);transition:border-color 0.3s,transform 0.2s;background:var(--bg);}
+.chapter-card:hover{transform:translateY(-3px);}
+.chapter-img{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
+.chapter-img-placeholder{font-size:1.75rem;opacity:0.22;}
+.chapter-body{padding:1.75rem;}
+.chapter-num{font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;}
+.chapter-name{font-family:var(--serif);font-size:1.25rem;margin-bottom:0.6rem;}
+.chapter-desc{font-size:0.85rem;font-weight:300;line-height:1.7;margin-bottom:1.25rem;}
+.chapter-link{font-size:0.75rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:0.5rem;transition:gap 0.2s;}
+.chapter-card:hover .chapter-link{gap:0.85rem;}
+
+/* Travel card — warm dusk tones */
+.card-travel{background:#F5EEE2;border-color:rgba(180,130,80,0.2);}
+.card-travel:hover{border-color:rgba(180,130,80,0.4);}
+.card-travel .chapter-img{background:linear-gradient(160deg,#E8D8B8 0%,#D4B880 100%);}
+.card-travel .chapter-num{color:#A07840;}
+.card-travel .chapter-name{color:#5A3A18;}
+.card-travel .chapter-desc{color:#8A7050;}
+.card-travel .chapter-link{color:#A07840;}
+
+/* Engineering card — cool slate, precise */
+.card-engineering{background:#EEF0F2;border-color:rgba(60,80,100,0.15);}
+.card-engineering:hover{border-color:rgba(60,80,100,0.3);}
+.card-engineering .chapter-img{background:linear-gradient(160deg,#D8DDE4 0%,#B8C4D0 100%);}
+.card-engineering .chapter-num{color:#5A7080;}
+.card-engineering .chapter-name{color:#1E2E3A;}
+.card-engineering .chapter-desc{color:#6A7880;}
+.card-engineering .chapter-link{color:#3A6080;}
+
+/* Life card — warm sage, relaxed */
+.card-life{background:#EFF4EC;border-color:rgba(80,130,80,0.15);}
+.card-life:hover{border-color:rgba(80,130,80,0.35);}
+.card-life .chapter-img{background:linear-gradient(160deg,#D4E4CC 0%,#B8D0B0 100%);}
+.card-life .chapter-num{color:#5A8858;}
+.card-life .chapter-name{color:#1E3A1E;}
+.card-life .chapter-desc{color:#6A8868;}
+.card-life .chapter-link{color:#4A7848;}
 
 /* CONTACT */
-.contact-strip{margin:0 4rem 5rem;padding:2.5rem 3rem;background:var(--bg3);border:1px solid rgba(255,255,255,0.1);display:flex;justify-content:space-between;align-items:center;}
-.contact-strip-text{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--text-soft);}
-.contact-links{display:flex;gap:2.5rem;}
-.contact-link{font-size:0.85rem;color:var(--green-light);text-decoration:none;transition:color 0.2s;}
-.contact-link:hover{color:var(--text);}
+.contact{padding:5rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;border-top:1px solid var(--rule);background:var(--bg2);}
+.contact-title{font-family:var(--serif);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:400;color:var(--green);line-height:1.2;margin-bottom:1rem;}
+.contact-title em{font-style:italic;}
+.contact-sub{font-size:0.95rem;color:var(--ink-soft);font-weight:300;line-height:1.8;}
+.contact-links{display:flex;flex-direction:column;gap:0;}
+.contact-link-row{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0;border-bottom:1px solid var(--rule);text-decoration:none;transition:padding-left 0.2s;}
+.contact-link-row:first-child{border-top:1px solid var(--rule);}
+.contact-link-row:hover{padding-left:0.5rem;}
+.contact-link-label{font-size:0.65rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);}
+.contact-link-value{font-size:0.9rem;color:var(--green);font-family:var(--serif);}
+.contact-link-arrow{font-size:0.85rem;color:var(--green-light);}
 
-footer{padding:1.5rem 4rem;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;}
-.footer-text{font-size:0.75rem;color:var(--text-muted);}
+footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;}
+.footer-text{font-size:0.72rem;color:var(--ink-muted);}
 
-.fade{opacity:0;transform:translateY(16px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.fade{opacity:0;transform:translateY(18px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .fade.in{opacity:1;transform:none;}
 
-@media(max-width:860px){
+@media(max-width:900px){
   nav{padding:1rem 1.5rem;}
-  .hero{padding:0 1.5rem;padding-top:80px;}
-  .hero-bottom{grid-template-columns:1fr;}
-  .hero-nav-card,.hero-nav-card:nth-child(2),.hero-nav-card:last-child{padding:1.25rem 0;border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-photo-col{height:65vw;}
+  .hero-text-col{padding:3rem 1.5rem;}
   .about{padding:4rem 1.5rem;grid-template-columns:1fr;gap:3rem;}
-  .contact-strip{margin:0 1.5rem 3rem;flex-direction:column;gap:1.5rem;text-align:center;}
-  .contact-links{flex-direction:column;gap:0.75rem;align-items:center;}
+  .facts-row{padding:2rem 1.5rem;grid-template-columns:1fr 1fr;gap:0;}
+  .fact{padding:1.25rem 1rem;border-bottom:1px solid var(--rule);}
+  .fact:nth-child(even){border-right:none;}
+  .chapters{padding:4rem 1.5rem;}
+  .chapters-grid{grid-template-columns:1fr;}
+  .contact{padding:4rem 1.5rem;grid-template-columns:1fr;gap:3rem;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
 }
 </style>
@@ -99,11 +159,20 @@ footer{padding:1.5rem 4rem;border-top:1px solid rgba(255,255,255,0.07);display:f
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-texture"></div>
-  <div class="hero-main">
+  <div class="hero-photo-col">
+    <!-- PHOTO SLOT 1: Replace this div with <img src="your-photo.jpg" class="hero-photo" alt="Seth Jarrett"> -->
+    <div class="hero-photo-placeholder">
+      <span class="placeholder-icon">&#128247;</span>
+      <span class="placeholder-text">Add your photo here</span>
+    </div>
+  </div>
+  <div class="hero-text-col">
     <p class="hero-eyebrow">Electrical Engineer &amp; Traveller</p>
-    <h1 class="hero-name">Seth<br><em>Jarrett</em></h1>
+    <h1 class="hero-name">Seth<em>Jarrett</em></h1>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">Graduate engineer working on large-scale power infrastructure in London. From the Cotswolds. Interested in renewable energy, the world, and how things connect.</p>
     <div class="hero-tags">
       <span class="hero-tag">Renewable energy</span>
       <span class="hero-tag">Cotswolds</span>
@@ -111,55 +180,134 @@ footer{padding:1.5rem 4rem;border-top:1px solid rgba(255,255,255,0.07);display:f
       <span class="hero-tag">2 years travelling</span>
       <span class="hero-tag">MEng First Class</span>
     </div>
-    <p class="hero-desc">Graduate engineer working on large-scale power infrastructure in London. From the Cotswolds. Interested in renewable energy, the world, and how things connect.</p>
-  </div>
-  <div class="hero-bottom">
-    <a href="travel.html" class="hero-nav-card">
-      <span class="hero-nav-num">01</span>
-      <span class="hero-nav-title">Travel</span>
-      <span class="hero-nav-sub">4 continents, 2 years</span>
-      <span class="hero-nav-arrow">&#8594;</span>
-    </a>
-    <a href="engineering.html" class="hero-nav-card">
-      <span class="hero-nav-num">02</span>
-      <span class="hero-nav-title">Engineering</span>
-      <span class="hero-nav-sub">MV/LV, solar, BESS</span>
-      <span class="hero-nav-arrow">&#8594;</span>
-    </a>
-    <a href="life.html" class="hero-nav-card">
-      <span class="hero-nav-num">03</span>
-      <span class="hero-nav-title">Life &amp; Projects</span>
-      <span class="hero-nav-sub">Hobbies, side projects</span>
-      <span class="hero-nav-arrow">&#8594;</span>
-    </a>
+    <div class="hero-scroll">
+      <span class="hero-scroll-line"></span>
+      Scroll
+    </div>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section class="about">
   <div class="fade">
+    <p class="about-eyebrow">About me</p>
     <h2 class="about-title">Engineer by training,<br><em>curious by nature</em></h2>
     <div class="about-body">
-      <p>I'm a graduate electrical engineer at RED Engineering Design in London, working on large-scale data centre and power infrastructure projects. I hold a First Class MEng from the University of Bristol.</p>
-      <p>At university I designed and helped build a solar DC microgrid for a remote community in the Brazilian Amazon, and independently completed a wind-solar mini-grid feasibility study awarded 83% and used as an exemplar paper.</p>
+      <p>I'm a graduate electrical engineer at RED Engineering Design in London, working on large-scale data centre and power infrastructure projects. I hold a First Class MEng from the University of Bristol, specialising in energy and renewables.</p>
+      <p>At university I designed and helped build a solar DC microgrid for a remote community in the Brazilian Amazon, and independently completed a wind-solar mini-grid feasibility study awarded 83% and used as a cohort exemplar.</p>
       <p>I grew up in the Cotswolds, spent two years travelling before starting work, and still think the best things come from getting outside and paying attention to the world around you.</p>
     </div>
   </div>
-  <div class="facts fade">
-    <div class="fact"><div class="fact-label">From</div><div class="fact-value">The Cotswolds, UK</div></div>
-    <div class="fact"><div class="fact-label">Based in</div><div class="fact-value">London, UK</div></div>
-    <div class="fact"><div class="fact-label">Currently</div><div class="fact-value">Graduate Electrical Engineer, RED Engineering Design</div></div>
-    <div class="fact"><div class="fact-label">Education</div><div class="fact-value">MEng Mechanical &amp; Electrical Engineering, First Class — University of Bristol</div></div>
-    <div class="fact"><div class="fact-label">Interests</div><div class="fact-value">Renewable energy, lead climbing, bouldering, martial arts, travel, reading</div></div>
+  <div class="about-photo-wrap fade">
+    <div class="about-photo-box">
+      <!-- PHOTO SLOT 2: Replace contents with <img src="photo2.jpg" style="width:100%;height:100%;object-fit:cover" alt="Seth"> -->
+      <span class="placeholder-icon">&#128247;</span>
+      <span class="placeholder-text">Add a photo here</span>
+    </div>
+    <p class="about-photo-caption">Somewhere worth being</p>
   </div>
 </section>
 
-<div class="contact-strip fade">
-  <p class="contact-strip-text">Get in touch</p>
-  <div class="contact-links">
-    <a href="mailto:sethjjarrett@gmail.com" class="contact-link">sethjjarrett@gmail.com</a>
-    <a href="https://linkedin.com/in/seth-jarrett" class="contact-link" target="_blank" rel="noopener">LinkedIn</a>
+<!-- FACTS -->
+<div class="facts-row">
+  <div class="fact fade">
+    <div class="fact-label">From</div>
+    <div class="fact-value">The Cotswolds, UK</div>
+  </div>
+  <div class="fact fade">
+    <div class="fact-label">Based in</div>
+    <div class="fact-value">London, UK</div>
+  </div>
+  <div class="fact fade">
+    <div class="fact-label">Currently</div>
+    <div class="fact-value">Graduate Electrical Engineer, RED Engineering Design</div>
+  </div>
+  <div class="fact fade">
+    <div class="fact-label">Education</div>
+    <div class="fact-value">MEng First Class, University of Bristol</div>
   </div>
 </div>
+
+<!-- CHAPTERS -->
+<section class="chapters">
+  <div class="chapters-header fade">
+    <p class="chapters-eyebrow">Explore</p>
+    <h2 class="chapters-title">There's more<br>to it than this</h2>
+  </div>
+  <div class="chapters-grid">
+
+    <a href="travel.html" class="chapter-card card-travel fade">
+      <div class="chapter-img">
+        <!-- PHOTO SLOT 3: Replace with <img src="travel-preview.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+        <span class="chapter-img-placeholder">&#127758;</span>
+      </div>
+      <div class="chapter-body">
+        <div class="chapter-num">01</div>
+        <div class="chapter-name">Travel</div>
+        <p class="chapter-desc">Two years across Asia, South America, Australia, Europe and North America. The places that changed how I see things.</p>
+        <span class="chapter-link">Read more &#8594;</span>
+      </div>
+    </a>
+
+    <a href="engineering.html" class="chapter-card card-engineering fade">
+      <div class="chapter-img">
+        <!-- PHOTO SLOT 4: Replace with <img src="engineering-preview.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+        <span class="chapter-img-placeholder">&#9889;</span>
+      </div>
+      <div class="chapter-body">
+        <div class="chapter-num">02</div>
+        <div class="chapter-name">Engineering</div>
+        <p class="chapter-desc">MV/LV power systems, solar PV, BESS, and data centre infrastructure. Projects from the UAE to the Netherlands.</p>
+        <span class="chapter-link">Read more &#8594;</span>
+      </div>
+    </a>
+
+    <a href="life.html" class="chapter-card card-life fade">
+      <div class="chapter-img">
+        <!-- PHOTO SLOT 5: Replace with <img src="life-preview.jpg" style="width:100%;height:100%;object-fit:cover"> -->
+        <span class="chapter-img-placeholder">&#129043;</span>
+      </div>
+      <div class="chapter-body">
+        <div class="chapter-num">03</div>
+        <div class="chapter-name">Life &amp; Projects</div>
+        <p class="chapter-desc">Climbing, martial arts, reading, side projects. The things that fill the time outside work and why they matter.</p>
+        <span class="chapter-link">Read more &#8594;</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="fade">
+    <h2 class="contact-title">Get in<br><em>touch</em></h2>
+    <p class="contact-sub">Whether it's about engineering, travel, or anything else — feel free to reach out.</p>
+  </div>
+  <div class="contact-links fade">
+    <a href="mailto:sethjjarrett@gmail.com" class="contact-link-row">
+      <div>
+        <div class="contact-link-label">Email</div>
+        <div class="contact-link-value">sethjjarrett@gmail.com</div>
+      </div>
+      <span class="contact-link-arrow">&#8594;</span>
+    </a>
+    <a href="https://linkedin.com/in/seth-jarrett" class="contact-link-row" target="_blank" rel="noopener">
+      <div>
+        <div class="contact-link-label">LinkedIn</div>
+        <div class="contact-link-value">linkedin.com/in/seth-jarrett</div>
+      </div>
+      <span class="contact-link-arrow">&#8594;</span>
+    </a>
+    <a href="tel:07961038821" class="contact-link-row">
+      <div>
+        <div class="contact-link-label">Phone</div>
+        <div class="contact-link-value">07961 038821</div>
+      </div>
+      <span class="contact-link-arrow">&#8594;</span>
+    </a>
+  </div>
+</section>
 
 <footer>
   <span class="footer-text">Seth Jarrett</span>
@@ -167,7 +315,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid rgba(255,255,255,0.07);display:f
 </footer>
 
 <script>
-const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*100);obs.unobserve(e.target);}}),{threshold:0.1});
+const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*90);obs.unobserve(e.target);}}),{threshold:0.1});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 </script>
 </body>
