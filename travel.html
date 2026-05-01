@@ -36,7 +36,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .stat-num{font-family:var(--serif);font-size:2.5rem;color:var(--accent);line-height:1;transition:color 0.9s;}
 .stat-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem;transition:color 0.9s;}
 
-/* REGION */
+/* MAP SECTION */
+.map-section{padding:5rem 4rem;border-top:1px solid var(--rule);background:var(--bg);}
+.map-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;transition:color 0.9s;}
+.map-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:400;color:var(--text);margin-bottom:0.5rem;transition:color 0.9s;}
+.map-hint{font-size:0.78rem;color:var(--text-muted);margin-bottom:2rem;font-style:italic;}
+.map-wrap{position:relative;width:100%;border:1px solid var(--rule);overflow:hidden;background:#D8E8F0;}
+.map-wrap svg{width:100%;height:auto;display:block;}
+.map-tooltip{position:absolute;background:var(--text);color:var(--bg);font-size:0.78rem;padding:0.4rem 0.9rem;pointer-events:none;opacity:0;transition:opacity 0.15s;white-space:nowrap;font-family:var(--serif);font-style:italic;z-index:10;border-radius:1px;}
+.map-region{cursor:pointer;transition:opacity 0.25s,filter 0.25s;}
+.map-region:hover{filter:brightness(1.15);}
+.map-legend{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1rem;}
+.map-legend-item{font-size:0.72rem;color:var(--text-muted);display:flex;align-items:center;gap:0.45rem;cursor:pointer;padding:0.28rem 0.7rem;border:1px solid var(--rule);background:transparent;transition:all 0.2s;}
+.map-legend-item:hover{color:var(--text);border-color:var(--accent);}
+.map-legend-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+
+/* REGION SECTIONS -- identical to uploaded HTML */
 .region-section{min-height:100vh;padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
 .region-content{}
 .region-chapter{font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1.25rem;transition:color 0.9s;}
@@ -44,7 +59,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .region-name em{font-style:italic;}
 .region-countries{font-size:0.78rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2rem;transition:color 0.9s;}
 .region-text{font-size:1.0rem;color:var(--text-soft);font-weight:300;line-height:1.9;margin-bottom:1.5rem;transition:color 0.9s;}
-.region-quote{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--text);border-left:3px solid var(--accent);padding-left:1.25rem;transition:color 0.9s,border-color 0.9s;}
+.region-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);text-decoration:none;padding:0.6rem 1.25rem;border:1px solid var(--accent);transition:all 0.2s;margin-top:0.5rem;}
+.region-link:hover{background:var(--accent);color:var(--bg);}
 .region-visual{display:flex;align-items:center;justify-content:center;}
 .region-visual svg{width:100%;max-width:420px;height:auto;}
 
@@ -65,7 +81,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}
-  .hero,.reflection{padding-left:1.5rem;padding-right:1.5rem;}
+  .hero,.map-section,.reflection{padding-left:1.5rem;padding-right:1.5rem;}
   .region-section{grid-template-columns:1fr;padding:5rem 1.5rem;gap:3rem;min-height:auto;}
   .region-visual{order:-1;}
   .region-indicator{display:none;}
@@ -87,135 +103,260 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 
 <div class="region-indicator">
   <div class="region-dot active" data-target="hero"></div>
-  <div class="region-dot" data-target="sea"></div>
-  <div class="region-dot" data-target="southam"></div>
+  <div class="region-dot" data-target="map"></div>
+  <div class="region-dot" data-target="namerica"></div>
+  <div class="region-dot" data-target="samerica"></div>
+  <div class="region-dot" data-target="asia"></div>
+  <div class="region-dot" data-target="japan"></div>
   <div class="region-dot" data-target="australia"></div>
+  <div class="region-dot" data-target="africa"></div>
   <div class="region-dot" data-target="europe"></div>
   <div class="region-dot" data-target="reflection"></div>
 </div>
 
 <!-- HERO -->
 <section class="hero" id="hero" data-theme="meadow">
-  <h1 class="hero-title">Two years,<br><em>a lot of ground</em></h1>
-  <p class="hero-sub">Asia, South America, Australia, Europe, North America. It changed how I see things — the contrasts in how people live, what communities face, and how much goes unseen from home.</p>
+  <h1 class="hero-title">Two years,<br><em>six continents</em></h1>
+  <p class="hero-sub">North America, South America, Asia, Japan, Australia, Africa, Europe. It changed how I see things -- the contrasts in how people live, what communities face, and how much goes unseen from home.</p>
   <div class="hero-stats">
     <div><div class="stat-num">2</div><div class="stat-label">Years</div></div>
-    <div><div class="stat-num">4</div><div class="stat-label">Continents</div></div>
+    <div><div class="stat-num">6</div><div class="stat-label">Continents</div></div>
     <div><div class="stat-num">20+</div><div class="stat-label">Countries</div></div>
   </div>
 </section>
 
-<!-- SE ASIA — deep jungle green -->
-<section class="region-section" id="sea" data-theme="jungle">
+<!-- MAP -->
+<section class="map-section" id="map" data-theme="meadow">
+  <p class="map-eyebrow">Where I went</p>
+  <h2 class="map-title">The map</h2>
+  <p class="map-hint">Hover to see the region, click to explore</p>
+  <div class="map-wrap" id="mapWrap">
+    <div class="map-tooltip" id="mapTip"></div>
+    <svg viewBox="0 0 1010 550" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ocean -->
+      <rect width="1010" height="550" fill="#C8DCE8"/>
+
+      <!-- Unvisited land base -->
+      <!-- Russia -->
+      <path fill="#C8C4B0" stroke="#B0AC9A" stroke-width="0.8"
+        d="M520,60 L600,48 L700,42 L800,45 L900,50 L970,65 L990,85 L980,105 L950,118 L900,122 L840,118 L780,120 L720,125 L670,130 L620,128 L570,120 L530,108 L515,88 Z"/>
+      <!-- Canada -->
+      <path fill="#C8C4B0" stroke="#B0AC9A" stroke-width="0.8"
+        d="M60,55 L180,42 L260,50 L310,65 L325,90 L315,115 L290,130 L250,138 L200,140 L150,135 L100,125 L65,105 L48,80 Z"/>
+      <!-- Greenland -->
+      <path fill="#D4D0BC" stroke="#B8B4A0" stroke-width="0.8"
+        d="M340,30 L410,22 L445,38 L448,62 L425,80 L390,85 L355,75 L335,55 Z"/>
+      <!-- Middle East / Central Asia -->
+      <path fill="#C8C4B0" stroke="#B0AC9A" stroke-width="0.8"
+        d="M560,130 L650,120 L720,128 L750,150 L745,180 L720,200 L680,210 L640,205 L600,190 L570,168 L555,148 Z"/>
+      <!-- India -->
+      <path fill="#C8C4B0" stroke="#B0AC9A" stroke-width="0.8"
+        d="M640,200 L700,190 L740,205 L755,235 L748,270 L720,300 L690,315 L660,308 L638,280 L628,248 L630,218 Z"/>
+      <!-- China -->
+      <path fill="#C8C4B0" stroke="#B0AC9A" stroke-width="0.8"
+        d="M700,120 L790,110 L850,118 L880,140 L878,170 L850,190 L810,200 L760,198 L718,185 L698,160 L695,138 Z"/>
+      <!-- NZ -->
+      <path fill="#C8C4B0" stroke="#B0AC9A" stroke-width="0.8"
+        d="M930,430 L950,418 L962,432 L958,455 L938,462 L922,448 Z"/>
+
+      <!-- VISITED REGIONS -->
+
+      <!-- North America (USA + Mexico) -->
+      <path id="map-namerica" class="map-region" data-name="North America" data-url="north-america.html"
+        fill="#C8A455" stroke="#A88435" stroke-width="1.2"
+        d="M65,115 L110,108 L165,112 L218,118 L268,125 L308,138 L320,162 L318,192 L305,222 L285,252 L260,278 L238,298 L215,308 L192,302 L170,285 L148,262 L128,238 L108,210 L88,185 L72,158 L60,132 Z
+        M210,310 L245,305 L268,318 L272,345 L258,368 L230,375 L205,360 L195,335 Z"/>
+
+      <!-- South America -->
+      <path id="map-samerica" class="map-region" data-name="South America" data-url="south-america.html"
+        fill="#D4853A" stroke="#B46520" stroke-width="1.2"
+        d="M220,385 L268,375 L315,382 L348,408 L362,442 L368,485 L360,528 L338,560 L305,578 L270,580 L238,562 L215,530 L200,490 L198,448 L205,412 Z"/>
+
+      <!-- Europe -->
+      <path id="map-europe" class="map-region" data-name="Europe" data-url="europe.html"
+        fill="#7888C0" stroke="#5868A0" stroke-width="1.2"
+        d="M455,82 L510,75 L548,85 L562,108 L558,135 L538,155 L510,165 L478,162 L452,148 L438,125 L440,100 Z
+        M438,150 L462,158 L465,180 L448,192 L428,182 L422,162 Z
+        M510,155 L530,152 L542,168 L535,185 L515,190 L500,178 L498,162 Z"/>
+
+      <!-- Africa -->
+      <path id="map-africa" class="map-region" data-name="Africa" data-url="africa.html"
+        fill="#D88025" stroke="#B86005" stroke-width="1.2"
+        d="M455,178 L512,168 L558,178 L590,205 L605,242 L608,288 L600,335 L578,380 L545,418 L505,438 L468,440 L432,420 L408,385 L395,340 L393,292 L402,245 L422,210 Z"/>
+
+      <!-- SE Asia (Thailand, Vietnam, Cambodia, Indonesia) -->
+      <path id="map-asia" class="map-region" data-name="Asia" data-url="asia.html"
+        fill="#38A862" stroke="#189842" stroke-width="1.2"
+        d="M755,195 L808,182 L848,192 L868,218 L862,250 L840,272 L808,280 L775,270 L752,245 L748,218 Z
+        M780,278 L815,270 L838,285 L840,312 L818,328 L790,322 L772,305 Z
+        M730,295 L768,285 L782,302 L778,328 L752,338 L728,320 Z
+        M840,308 L870,298 L892,315 L890,342 L865,352 L840,338 Z"/>
+
+      <!-- Japan -->
+      <path id="map-japan" class="map-region" data-name="Japan" data-url="japan.html"
+        fill="#D080A8" stroke="#B06088" stroke-width="1.2"
+        d="M868,118 L895,108 L912,120 L915,142 L900,158 L878,160 L862,145 L860,125 Z
+        M908,98 L928,88 L942,100 L940,120 L922,128 L905,115 Z"/>
+
+      <!-- Australia -->
+      <path id="map-australia" class="map-region" data-name="Australia" data-url="australia.html"
+        fill="#3888C8" stroke="#1868A8" stroke-width="1.2"
+        d="M778,350 L868,335 L930,348 L965,378 L975,418 L965,460 L935,492 L892,508 L845,510 L800,492 L768,458 L755,415 L758,372 Z"/>
+
+      <!-- City dots -->
+      <g id="cityDots">
+        <!-- NY -->
+        <circle cx="248" cy="168" r="5" fill="#fff" stroke="#C8A455" stroke-width="2"/>
+        <circle cx="248" cy="168" r="2.5" fill="#C8A455"/>
+        <!-- Washington -->
+        <circle cx="252" cy="182" r="4" fill="#fff" stroke="#C8A455" stroke-width="1.8"/>
+        <circle cx="252" cy="182" r="2" fill="#C8A455"/>
+        <!-- Miami -->
+        <circle cx="256" cy="210" r="4" fill="#fff" stroke="#C8A455" stroke-width="1.8"/>
+        <circle cx="256" cy="210" r="2" fill="#C8A455"/>
+        <!-- Medellin -->
+        <circle cx="248" cy="408" r="4" fill="#fff" stroke="#D4853A" stroke-width="1.8"/>
+        <circle cx="248" cy="408" r="2" fill="#D4853A"/>
+        <!-- Rio -->
+        <circle cx="298" cy="505" r="4" fill="#fff" stroke="#D4853A" stroke-width="1.8"/>
+        <circle cx="298" cy="505" r="2" fill="#D4853A"/>
+        <!-- London -->
+        <circle cx="472" cy="110" r="5" fill="#fff" stroke="#7888C0" stroke-width="2"/>
+        <circle cx="472" cy="110" r="2.5" fill="#7888C0"/>
+        <!-- Bangkok -->
+        <circle cx="790" cy="235" r="4" fill="#fff" stroke="#38A862" stroke-width="1.8"/>
+        <circle cx="790" cy="235" r="2" fill="#38A862"/>
+        <!-- Bali -->
+        <circle cx="848" cy="330" r="4" fill="#fff" stroke="#38A862" stroke-width="1.8"/>
+        <circle cx="848" cy="330" r="2" fill="#38A862"/>
+        <!-- Tokyo -->
+        <circle cx="905" cy="132" r="5" fill="#fff" stroke="#D080A8" stroke-width="2"/>
+        <circle cx="905" cy="132" r="2.5" fill="#D080A8"/>
+        <!-- Sydney -->
+        <circle cx="928" cy="470" r="5" fill="#fff" stroke="#3888C8" stroke-width="2"/>
+        <circle cx="928" cy="470" r="2.5" fill="#3888C8"/>
+        <!-- Melbourne -->
+        <circle cx="900" cy="488" r="4" fill="#fff" stroke="#3888C8" stroke-width="1.8"/>
+        <circle cx="900" cy="488" r="2" fill="#3888C8"/>
+        <!-- Nairobi -->
+        <circle cx="548" cy="348" r="4" fill="#fff" stroke="#D88025" stroke-width="1.8"/>
+        <circle cx="548" cy="348" r="2" fill="#D88025"/>
+      </g>
+
+      <!-- Ocean labels -->
+      <text x="155" y="420" font-size="11" fill="#8AA8B8" font-family="Georgia,serif" font-style="italic" opacity="0.7">Pacific Ocean</text>
+      <text x="370" y="310" font-size="10" fill="#8AA8B8" font-family="Georgia,serif" font-style="italic" opacity="0.7">Atlantic</text>
+      <text x="620" y="420" font-size="11" fill="#8AA8B8" font-family="Georgia,serif" font-style="italic" opacity="0.7">Indian Ocean</text>
+    </svg>
+  </div>
+  <div class="map-legend">
+    <div class="map-legend-item" data-id="map-namerica"><div class="map-legend-dot" style="background:#C8A455"></div>North America</div>
+    <div class="map-legend-item" data-id="map-samerica"><div class="map-legend-dot" style="background:#D4853A"></div>South America</div>
+    <div class="map-legend-item" data-id="map-europe"><div class="map-legend-dot" style="background:#7888C0"></div>Europe</div>
+    <div class="map-legend-item" data-id="map-africa"><div class="map-legend-dot" style="background:#D88025"></div>Africa</div>
+    <div class="map-legend-item" data-id="map-asia"><div class="map-legend-dot" style="background:#38A862"></div>Asia</div>
+    <div class="map-legend-item" data-id="map-japan"><div class="map-legend-dot" style="background:#D080A8"></div>Japan</div>
+    <div class="map-legend-item" data-id="map-australia"><div class="map-legend-dot" style="background:#3888C8"></div>Australia</div>
+  </div>
+</section>
+
+<!-- NORTH AMERICA -->
+<section class="region-section" id="namerica" data-theme="namerica">
   <div class="region-content">
     <p class="region-chapter fade">Region 01</p>
-    <h2 class="region-name fade">Southeast <em>Asia</em></h2>
-    <p class="region-countries fade">Vietnam &middot; Thailand &middot; Cambodia &middot; Indonesia &middot; and more</p>
-    <p class="region-text fade">The region that probably changes you most the first time. The density of life, the heat, the noise — and the contrast between the tourist trail and everything just off it. You realise quickly how much of the world runs on very little.</p>
-    <p class="region-quote fade">The contrast between the tourist trail and everything just off it.</p>
+    <h2 class="region-name fade">North <em>America</em></h2>
+    <p class="region-countries fade">USA &middot; New York &middot; Washington DC &middot; Miami</p>
+    <p class="region-text fade">First stop. New York is everything you expect and nothing like you imagined -- Times Square, the Empire State, a rally outside Trump Tower, Central Park, Brooklyn and the view back. Washington for the monuments and a cemetery that puts everything in scale. Miami for the beach, Wynwood, and the clothes.</p>
+    <a href="north-america.html" class="region-link fade">Explore North America &#8594;</a>
   </div>
   <div class="region-visual fade">
-    <!-- Temple / jungle SVG illustration -->
     <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
-      <!-- Sky -->
-      <rect width="400" height="340" fill="#1A3A1A"/>
-      <!-- Moon -->
-      <circle cx="340" cy="55" r="28" fill="#F5E890" opacity="0.9"/>
+      <!-- Warm dusk sky -->
+      <rect width="400" height="340" fill="#2A1A08"/>
+      <!-- City glow on horizon -->
+      <ellipse cx="200" cy="240" rx="220" ry="80" fill="#C87820" opacity="0.3"/>
       <!-- Stars -->
-      <circle cx="40" cy="30" r="2" fill="#F5E890" opacity="0.7"/>
-      <circle cx="80" cy="60" r="1.5" fill="#F5E890" opacity="0.6"/>
-      <circle cx="160" cy="20" r="2" fill="#F5E890" opacity="0.8"/>
-      <circle cx="260" cy="40" r="1.5" fill="#F5E890" opacity="0.5"/>
-      <!-- Jungle foliage background -->
-      <ellipse cx="20" cy="280" rx="70" ry="120" fill="#0E2A0E" opacity="0.9"/>
-      <ellipse cx="380" cy="290" rx="80" ry="110" fill="#0E2A0E" opacity="0.9"/>
-      <ellipse cx="60" cy="310" rx="60" ry="80" fill="#162A16"/>
-      <ellipse cx="340" cy="320" rx="70" ry="70" fill="#162A16"/>
-      <!-- Temple base -->
-      <rect x="120" y="200" width="160" height="120" fill="#8B6914"/>
-      <!-- Temple steps -->
-      <rect x="110" y="190" width="180" height="20" fill="#A07820"/>
-      <rect x="100" y="175" width="200" height="20" fill="#8B6914"/>
-      <rect x="90" y="162" width="220" height="18" fill="#A07820"/>
-      <!-- Temple spire tiers -->
-      <rect x="145" y="140" width="110" height="25" fill="#C89020"/>
-      <rect x="160" y="118" width="80" height="25" fill="#A07820"/>
-      <rect x="172" y="98" width="56" height="22" fill="#C89020"/>
-      <rect x="182" y="80" width="36" height="22" fill="#A07820"/>
-      <!-- Spire point -->
-      <polygon points="200,50 188,82 212,82" fill="#F5C842"/>
-      <!-- Temple door -->
-      <rect x="182" y="240" width="36" height="80" rx="18" fill="#1A0A00"/>
-      <!-- Temple windows -->
-      <rect x="138" y="215" width="22" height="30" rx="11" fill="#1A0A00"/>
-      <rect x="240" y="215" width="22" height="30" rx="11" fill="#1A0A00"/>
-      <!-- Lantern lights -->
-      <circle cx="140" cy="198" r="6" fill="#F5C842" opacity="0.9"/>
-      <circle cx="260" cy="198" r="6" fill="#F5C842" opacity="0.9"/>
-      <circle cx="200" cy="175" r="5" fill="#F5C842" opacity="0.8"/>
-      <!-- Ground -->
-      <rect x="0" y="310" width="400" height="30" fill="#0A1A0A"/>
-      <!-- Foreground palms -->
-      <rect x="30" y="160" width="8" height="150" fill="#2A1A0A"/>
-      <ellipse cx="34" cy="150" rx="35" ry="20" fill="#1A4A1A" transform="rotate(-20 34 150)"/>
-      <ellipse cx="34" cy="145" rx="30" ry="18" fill="#2A5A2A" transform="rotate(10 34 145)"/>
-      <rect x="362" y="170" width="8" height="140" fill="#2A1A0A"/>
-      <ellipse cx="366" cy="162" rx="35" ry="20" fill="#1A4A1A" transform="rotate(20 366 162)"/>
-      <ellipse cx="366" cy="158" rx="28" ry="16" fill="#2A5A2A" transform="rotate(-15 366 158)"/>
-      <!-- Reflection in water -->
-      <rect x="60" y="316" width="280" height="24" fill="#0A2A1A" opacity="0.6"/>
-      <rect x="185" y="317" width="8" height="20" fill="#F5C842" opacity="0.3"/>
+      <circle cx="50" cy="40" r="1.5" fill="#F0E0C0" opacity="0.8"/>
+      <circle cx="120" cy="25" r="1" fill="#F0E0C0" opacity="0.6"/>
+      <circle cx="300" cy="35" r="1.5" fill="#F0E0C0" opacity="0.7"/>
+      <circle cx="360" cy="55" r="1" fill="#F0E0C0" opacity="0.5"/>
+      <circle cx="180" cy="18" r="1.5" fill="#F0E0C0" opacity="0.9"/>
+      <!-- Moon -->
+      <circle cx="340" cy="60" r="22" fill="#F0E0C0" opacity="0.85"/>
+      <!-- Skyscraper silhouettes -->
+      <rect x="20" y="160" width="18" height="120" fill="#1A1008"/>
+      <rect x="15" y="140" width="12" height="140" fill="#1A1008"/>
+      <rect x="40" y="175" width="22" height="105" fill="#201408"/>
+      <rect x="60" y="150" width="15" height="130" fill="#1A1008"/>
+      <rect x="75" y="130" width="20" height="150" fill="#201408"/>
+      <rect x="92" y="145" width="14" height="135" fill="#1A1008"/>
+      <!-- Empire State style -->
+      <rect x="150" y="100" width="28" height="180" fill="#181008"/>
+      <rect x="158" y="80" width="14" height="22" fill="#181008"/>
+      <rect x="163" y="60" width="4" height="22" fill="#181008"/>
+      <!-- More skyline right -->
+      <rect x="220" y="140" width="25" height="140" fill="#201408"/>
+      <rect x="245" y="155" width="18" height="125" fill="#1A1008"/>
+      <rect x="262" y="130" width="22" height="150" fill="#201408"/>
+      <rect x="282" y="160" width="16" height="120" fill="#1A1008"/>
+      <rect x="296" y="145" width="20" height="135" fill="#201408"/>
+      <rect x="314" y="170" width="14" height="110" fill="#1A1008"/>
+      <rect x="326" y="140" width="22" height="140" fill="#201408"/>
+      <rect x="346" y="155" width="18" height="125" fill="#1A1008"/>
+      <rect x="362" y="165" width="24" height="115" fill="#201408"/>
+      <!-- Windows -->
+      <rect x="155" y="115" width="4" height="5" fill="#F0C840" opacity="0.9"/>
+      <rect x="164" y="115" width="4" height="5" fill="#F0C840" opacity="0.7"/>
+      <rect x="155" y="128" width="4" height="5" fill="#F0C840" opacity="0.8"/>
+      <rect x="222" y="155" width="4" height="5" fill="#F0C840" opacity="0.8"/>
+      <rect x="232" y="155" width="4" height="5" fill="#F0C840" opacity="0.6"/>
+      <rect x="265" y="148" width="4" height="5" fill="#F0C840" opacity="0.9"/>
+      <rect x="275" y="148" width="4" height="5" fill="#F0C840" opacity="0.7"/>
+      <rect x="328" y="158" width="4" height="5" fill="#F0C840" opacity="0.8"/>
+      <rect x="338" y="158" width="4" height="5" fill="#F0C840" opacity="0.6"/>
+      <!-- Water / Hudson reflection -->
+      <rect x="0" y="278" width="400" height="62" fill="#0A0800"/>
+      <line x1="152" y1="285" x2="180" y2="340" stroke="#C87820" stroke-width="2" opacity="0.3"/>
+      <line x1="200" y1="282" x2="200" y2="340" stroke="#F0C840" stroke-width="1.5" opacity="0.2"/>
     </svg>
   </div>
 </section>
 
-<!-- SOUTH AMERICA — warm terracotta -->
-<section class="region-section" id="southam" data-theme="andes">
+<!-- SOUTH AMERICA -->
+<section class="region-section" id="samerica" data-theme="andes">
   <div class="region-content">
     <p class="region-chapter fade">Region 02</p>
     <h2 class="region-name fade">South <em>America</em></h2>
     <p class="region-countries fade">Colombia &middot; Peru &middot; Bolivia &middot; Brazil &middot; and more</p>
-    <p class="region-text fade">Where the university microgrid project became real to me. Communities without reliable power aren't an abstraction when you've spent time in places like that — you've felt the heat, eaten the food, talked to the people.</p>
-    <p class="region-quote fade">Communities without reliable power aren't an abstraction when you've spent time there.</p>
+    <p class="region-text fade">Mountains, rainforest, colour and a pace of life that makes you question why you were ever in a rush. The continent where the university microgrid project stopped being abstract -- communities without reliable power are not a case study when you have spent time in them.</p>
+    <a href="south-america.html" class="region-link fade">Explore South America &#8594;</a>
   </div>
   <div class="region-visual fade">
-    <!-- Machu Picchu / Andes SVG -->
     <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
-      <!-- Sky gradient layers -->
-      <rect width="400" height="220" fill="#E87830"/>
-      <rect width="400" height="160" fill="#D05A18" opacity="0.5"/>
+      <!-- Sky -->
+      <rect width="400" height="340" fill="#E87830"/>
+      <rect width="400" height="200" fill="#D05A18" opacity="0.5"/>
       <rect width="400" height="100" fill="#A03010" opacity="0.4"/>
       <!-- Sun -->
       <circle cx="200" cy="70" r="45" fill="#F5C842" opacity="0.9"/>
       <circle cx="200" cy="70" r="38" fill="#FAE070"/>
-      <!-- Clouds -->
-      <ellipse cx="80" cy="55" rx="50" ry="18" fill="#FAEAC8" opacity="0.7"/>
-      <ellipse cx="320" cy="45" rx="45" ry="15" fill="#FAEAC8" opacity="0.6"/>
       <!-- Far mountains -->
       <polygon points="0,200 80,100 160,180 0,180" fill="#8A4A20" opacity="0.6"/>
       <polygon points="100,200 200,80 300,200" fill="#A05A28" opacity="0.7"/>
       <polygon points="240,200 340,90 400,170 400,200" fill="#8A4A20" opacity="0.6"/>
-      <!-- Mid mountains -->
-      <polygon points="0,240 120,140 240,240" fill="#6A3A18"/>
-      <polygon points="160,240 280,130 400,240" fill="#7A4420"/>
-      <!-- Ruins platform -->
+      <!-- Ruins -->
       <rect x="60" y="220" width="280" height="20" fill="#C89050"/>
       <rect x="80" y="200" width="240" height="22" fill="#D8A060"/>
-      <!-- Inca walls -->
       <rect x="100" y="170" width="50" height="32" fill="#C07830"/>
       <rect x="160" y="162" width="80" height="40" fill="#D08840"/>
       <rect x="250" y="170" width="50" height="32" fill="#C07830"/>
-      <!-- Wall details (stones) -->
       <line x1="110" y1="182" x2="140" y2="182" stroke="#A06020" stroke-width="1.5"/>
       <line x1="110" y1="192" x2="140" y2="192" stroke="#A06020" stroke-width="1.5"/>
-      <line x1="125" y1="170" x2="125" y2="202" stroke="#A06020" stroke-width="1.5"/>
       <line x1="170" y1="175" x2="230" y2="175" stroke="#A06020" stroke-width="1.5"/>
       <line x1="170" y1="185" x2="230" y2="185" stroke="#A06020" stroke-width="1.5"/>
       <line x1="170" y1="195" x2="230" y2="195" stroke="#A06020" stroke-width="1.5"/>
-      <line x1="200" y1="162" x2="200" y2="202" stroke="#A06020" stroke-width="1.5"/>
-      <!-- Doorways -->
       <polygon points="178,202 178,175 190,168 202,175 202,202" fill="#401800"/>
-      <!-- Llama! -->
+      <!-- Llama -->
       <ellipse cx="340" cy="225" rx="18" ry="12" fill="#E8D0A0"/>
       <rect x="330" y="215" width="8" height="20" fill="#E8D0A0"/>
       <rect x="346" y="215" width="8" height="20" fill="#E8D0A0"/>
@@ -223,68 +364,135 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
       <ellipse cx="358" cy="205" rx="5" ry="7" fill="#E8D0A0"/>
       <!-- Ground -->
       <rect x="0" y="238" width="400" height="102" fill="#4A7A28"/>
-      <!-- Grass tufts -->
-      <ellipse cx="50" cy="240" rx="25" ry="8" fill="#5A8A30"/>
-      <ellipse cx="150" cy="242" rx="30" ry="8" fill="#4A7A28"/>
-      <ellipse cx="300" cy="241" rx="28" ry="7" fill="#5A8A30"/>
     </svg>
   </div>
 </section>
 
-<!-- AUSTRALIA — bright open -->
-<section class="region-section" id="australia" data-theme="outback">
+<!-- ASIA -->
+<section class="region-section" id="asia" data-theme="jungle">
   <div class="region-content">
     <p class="region-chapter fade">Region 03</p>
-    <h2 class="region-name fade"><em>Australia</em></h2>
-    <p class="region-countries fade">Melbourne &middot; East Coast &middot; Worked in hospitality</p>
-    <p class="region-text fade">Spent real time here rather than passing through. Working in a Melbourne venue was its own education — in people, pressure, and integrating quickly into a team where you know nobody.</p>
-    <p class="region-quote fade">Eight hours on your feet teaches you more about communication than most things.</p>
+    <h2 class="region-name fade">Southeast <em>Asia</em></h2>
+    <p class="region-countries fade">Thailand &middot; Vietnam &middot; Cambodia &middot; Indonesia &middot; Bali</p>
+    <p class="region-text fade">The region that probably changes you most the first time. The density of life, the heat, the noise -- and the contrast between the tourist trail and everything just off it. You realise quickly how much of the world runs on very little, and how much that does not stop people.</p>
+    <a href="asia.html" class="region-link fade">Explore Asia &#8594;</a>
   </div>
   <div class="region-visual fade">
-    <!-- Outback / Sydney Opera House SVG -->
     <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
-      <!-- Sky -->
+      <rect width="400" height="340" fill="#1A3A1A"/>
+      <circle cx="340" cy="55" r="28" fill="#F5E890" opacity="0.9"/>
+      <circle cx="40" cy="30" r="2" fill="#F5E890" opacity="0.7"/>
+      <circle cx="80" cy="60" r="1.5" fill="#F5E890" opacity="0.6"/>
+      <circle cx="160" cy="20" r="2" fill="#F5E890" opacity="0.8"/>
+      <circle cx="260" cy="40" r="1.5" fill="#F5E890" opacity="0.5"/>
+      <ellipse cx="20" cy="280" rx="70" ry="120" fill="#0E2A0E" opacity="0.9"/>
+      <ellipse cx="380" cy="290" rx="80" ry="110" fill="#0E2A0E" opacity="0.9"/>
+      <ellipse cx="60" cy="310" rx="60" ry="80" fill="#162A16"/>
+      <ellipse cx="340" cy="320" rx="70" ry="70" fill="#162A16"/>
+      <rect x="120" y="200" width="160" height="120" fill="#8B6914"/>
+      <rect x="110" y="190" width="180" height="20" fill="#A07820"/>
+      <rect x="100" y="175" width="200" height="20" fill="#8B6914"/>
+      <rect x="90" y="162" width="220" height="18" fill="#A07820"/>
+      <rect x="145" y="140" width="110" height="25" fill="#C89020"/>
+      <rect x="160" y="118" width="80" height="25" fill="#A07820"/>
+      <rect x="172" y="98" width="56" height="22" fill="#C89020"/>
+      <rect x="182" y="80" width="36" height="22" fill="#A07820"/>
+      <polygon points="200,50 188,82 212,82" fill="#F5C842"/>
+      <rect x="182" y="240" width="36" height="80" rx="18" fill="#1A0A00"/>
+      <rect x="138" y="215" width="22" height="30" rx="11" fill="#1A0A00"/>
+      <rect x="240" y="215" width="22" height="30" rx="11" fill="#1A0A00"/>
+      <circle cx="140" cy="198" r="6" fill="#F5C842" opacity="0.9"/>
+      <circle cx="260" cy="198" r="6" fill="#F5C842" opacity="0.9"/>
+      <circle cx="200" cy="175" r="5" fill="#F5C842" opacity="0.8"/>
+      <rect x="0" y="310" width="400" height="30" fill="#0A1A0A"/>
+      <rect x="30" y="160" width="8" height="150" fill="#2A1A0A"/>
+      <ellipse cx="34" cy="150" rx="35" ry="20" fill="#1A4A1A" transform="rotate(-20 34 150)"/>
+      <ellipse cx="34" cy="145" rx="30" ry="18" fill="#2A5A2A" transform="rotate(10 34 145)"/>
+      <rect x="362" y="170" width="8" height="140" fill="#2A1A0A"/>
+      <ellipse cx="366" cy="162" rx="35" ry="20" fill="#1A4A1A" transform="rotate(20 366 162)"/>
+      <ellipse cx="366" cy="158" rx="28" ry="16" fill="#2A5A2A" transform="rotate(-15 366 158)"/>
+      <rect x="185" y="317" width="8" height="20" fill="#F5C842" opacity="0.3"/>
+    </svg>
+  </div>
+</section>
+
+<!-- JAPAN -->
+<section class="region-section" id="japan" data-theme="japan">
+  <div class="region-content">
+    <p class="region-chapter fade">Region 04</p>
+    <h2 class="region-name fade"><em>Japan</em></h2>
+    <p class="region-countries fade">Tokyo &middot; Kyoto &middot; Osaka &middot; and more</p>
+    <p class="region-text fade">Sleek and ancient at the same time. Tokyo moves faster than anywhere else on earth and Kyoto feels like it is from a different century entirely. A place that feels like two countries depending on where you are standing -- and one that rewards paying attention.</p>
+    <a href="japan.html" class="region-link fade">Explore Japan &#8594;</a>
+  </div>
+  <div class="region-visual fade">
+    <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
+      <!-- Soft white sky -->
+      <rect width="400" height="340" fill="#F8F0F4"/>
+      <!-- Mount Fuji -->
+      <polygon points="200,80 100,260 300,260" fill="#E8E0E8"/>
+      <polygon points="200,80 175,140 225,140" fill="#F8F4F8"/>
+      <!-- Snow cap -->
+      <polygon points="200,80 182,128 218,128" fill="#FFFFFF"/>
+      <!-- Cherry blossom trees -->
+      <rect x="55" y="210" width="6" height="55" fill="#8A6858"/>
+      <ellipse cx="58" cy="200" rx="32" ry="22" fill="#E8A0B8" opacity="0.85"/>
+      <ellipse cx="42" cy="208" rx="20" ry="15" fill="#F0B8C8" opacity="0.75"/>
+      <ellipse cx="74" cy="205" rx="22" ry="16" fill="#E898B0" opacity="0.8"/>
+      <rect x="332" y="215" width="6" height="50" fill="#8A6858"/>
+      <ellipse cx="335" cy="205" rx="30" ry="20" fill="#E8A0B8" opacity="0.85"/>
+      <ellipse cx="318" cy="212" rx="18" ry="14" fill="#F0B8C8" opacity="0.75"/>
+      <ellipse cx="352" cy="210" rx="20" ry="15" fill="#E898B0" opacity="0.8"/>
+      <!-- Torii gate -->
+      <rect x="176" y="218" width="8" height="62" fill="#C03820"/>
+      <rect x="216" y="218" width="8" height="62" fill="#C03820"/>
+      <rect x="168" y="218" width="64" height="8" fill="#C03820"/>
+      <rect x="172" y="230" width="56" height="6" fill="#C03820"/>
+      <!-- Petals falling -->
+      <ellipse cx="110" cy="160" rx="5" ry="3" fill="#F0B0C0" opacity="0.7" transform="rotate(-20 110 160)"/>
+      <ellipse cx="280" cy="140" rx="4" ry="2.5" fill="#E8A0B8" opacity="0.65" transform="rotate(15 280 140)"/>
+      <ellipse cx="150" cy="180" rx="4" ry="2.5" fill="#F0B8C8" opacity="0.6" transform="rotate(-35 150 180)"/>
+      <ellipse cx="320" cy="190" rx="5" ry="3" fill="#E898B0" opacity="0.7" transform="rotate(25 320 190)"/>
+      <!-- Ground -->
+      <rect x="0" y="278" width="400" height="62" fill="#E8D8E0"/>
+      <!-- Path -->
+      <rect x="188" y="278" width="24" height="62" fill="#D8C8D0" opacity="0.6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- AUSTRALIA -->
+<section class="region-section" id="australia" data-theme="outback">
+  <div class="region-content">
+    <p class="region-chapter fade">Region 05</p>
+    <h2 class="region-name fade"><em>Australia</em></h2>
+    <p class="region-countries fade">Sydney &middot; Melbourne &middot; East Coast &middot; Byron Bay</p>
+    <p class="region-text fade">Four months living and working here, including a multi-level Melbourne venue. Cool, sunny, and the place that taught me most about integrating quickly into a team where you know nobody. The east coast is beautiful in a way that takes you by surprise.</p>
+    <a href="australia.html" class="region-link fade">Explore Australia &#8594;</a>
+  </div>
+  <div class="region-visual fade">
+    <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
       <rect width="400" height="240" fill="#5AB8F0"/>
-      <!-- Sun -->
       <circle cx="320" cy="60" r="40" fill="#FAE030" opacity="0.95"/>
-      <!-- Clouds -->
       <ellipse cx="80" cy="70" rx="55" ry="22" fill="white" opacity="0.85"/>
       <ellipse cx="60" cy="75" rx="35" ry="18" fill="white" opacity="0.85"/>
       <ellipse cx="110" cy="75" rx="40" ry="18" fill="white" opacity="0.85"/>
       <ellipse cx="200" cy="50" rx="45" ry="18" fill="white" opacity="0.7"/>
-      <!-- Harbour water -->
       <rect x="0" y="240" width="400" height="100" fill="#2878B8"/>
-      <!-- Water shimmer -->
       <line x1="20" y1="260" x2="80" y2="260" stroke="#5AB8F0" stroke-width="2" opacity="0.5"/>
       <line x1="100" y1="270" x2="180" y2="270" stroke="#5AB8F0" stroke-width="2" opacity="0.4"/>
       <line x1="220" y1="258" x2="300" y2="258" stroke="#5AB8F0" stroke-width="2" opacity="0.5"/>
-      <line x1="320" y1="272" x2="390" y2="272" stroke="#5AB8F0" stroke-width="2" opacity="0.4"/>
-      <!-- Opera House base -->
       <rect x="110" y="210" width="180" height="35" fill="#F0EEE8"/>
-      <!-- Opera House shells -->
       <path d="M120,212 Q140,150 165,212 Z" fill="#F8F6F0"/>
       <path d="M145,212 Q168,140 195,212 Z" fill="#EEEAE4"/>
       <path d="M170,212 Q195,155 222,212 Z" fill="#F8F6F0"/>
       <path d="M200,212 Q220,160 245,212 Z" fill="#EEEAE4"/>
       <path d="M225,212 Q240,170 258,212 Z" fill="#F8F6F0"/>
-      <!-- Harbour bridge -->
       <rect x="0" y="185" width="400" height="8" fill="#404040"/>
       <path d="M60,193 Q200,120 340,193" fill="none" stroke="#606060" stroke-width="6"/>
       <path d="M60,193 Q200,120 340,193" fill="none" stroke="#808080" stroke-width="3"/>
-      <!-- Bridge supports -->
       <rect x="55" y="150" width="12" height="43" fill="#505050"/>
       <rect x="333" y="150" width="12" height="43" fill="#505050"/>
-      <!-- Bridge cables -->
-      <line x1="61" y1="150" x2="130" y2="193" stroke="#808080" stroke-width="1.5"/>
-      <line x1="61" y1="150" x2="160" y2="193" stroke="#808080" stroke-width="1.5"/>
-      <line x1="339" y1="150" x2="270" y2="193" stroke="#808080" stroke-width="1.5"/>
-      <line x1="339" y1="150" x2="240" y2="193" stroke="#808080" stroke-width="1.5"/>
-      <!-- City buildings -->
-      <rect x="10" y="155" width="30" height="38" fill="#8A9AAA"/>
-      <rect x="20" y="140" width="18" height="53" fill="#7A8A9A"/>
-      <rect x="355" y="160" width="30" height="33" fill="#8A9AAA"/>
-      <rect x="362" y="148" width="18" height="45" fill="#7A8A9A"/>
-      <!-- Seagulls -->
       <path d="M150,100 Q158,94 166,100" fill="none" stroke="white" stroke-width="2"/>
       <path d="M200,80 Q208,74 216,80" fill="none" stroke="white" stroke-width="2"/>
       <path d="M250,105 Q257,99 264,105" fill="none" stroke="white" stroke-width="2"/>
@@ -292,68 +500,103 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
   </div>
 </section>
 
-<!-- EUROPE — warm golden hour -->
-<section class="region-section" id="europe" data-theme="golden">
+<!-- AFRICA -->
+<section class="region-section" id="africa" data-theme="africa">
   <div class="region-content">
-    <p class="region-chapter fade">Region 04</p>
-    <h2 class="region-name fade">Europe &amp;<br><em>Americas</em></h2>
-    <p class="region-countries fade">Various countries across Europe and North America</p>
-    <p class="region-text fade">The familiar made unfamiliar. Easier to travel, harder to pay attention. But different cities have different pulses — and noticing that, the way a place moves and what people care about, is what keeps travel interesting.</p>
-    <p class="region-quote fade">Different cities have different pulses. Noticing that is what keeps it interesting.</p>
+    <p class="region-chapter fade">Region 06</p>
+    <h2 class="region-name fade"><em>Africa</em></h2>
+    <p class="region-countries fade">Kenya &middot; Tanzania &middot; and more</p>
+    <p class="region-text fade">Hot, vast, and humbling. The kind of place that makes you very aware of how little of the world you actually know. The scale of everything -- the landscape, the wildlife, the contrast between what people have and what they build with it -- stays with you.</p>
+    <a href="africa.html" class="region-link fade">Explore Africa &#8594;</a>
   </div>
   <div class="region-visual fade">
-    <!-- European cityscape SVG -->
     <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
-      <!-- Golden hour sky -->
+      <!-- Scorching sky -->
+      <rect width="400" height="340" fill="#F0A820"/>
+      <rect width="400" height="200" fill="#E07010" opacity="0.5"/>
+      <!-- Sun -->
+      <circle cx="200" cy="55" r="55" fill="#FFF0A0" opacity="0.6"/>
+      <circle cx="200" cy="55" r="40" fill="#FFE060" opacity="0.8"/>
+      <!-- Heat haze -->
+      <ellipse cx="200" cy="240" rx="250" ry="40" fill="#E08020" opacity="0.3"/>
+      <!-- Acacia tree left -->
+      <rect x="55" y="200" width="7" height="85" fill="#5A3010"/>
+      <rect x="48" y="170" width="8" height="40" fill="#5A3010" transform="rotate(-30 48 170)"/>
+      <rect x="62" y="168" width="8" height="40" fill="#5A3010" transform="rotate(25 62 168)"/>
+      <ellipse cx="42" cy="162" rx="28" ry="12" fill="#3A6818" opacity="0.9"/>
+      <ellipse cx="72" cy="160" rx="30" ry="11" fill="#3A6818" opacity="0.9"/>
+      <ellipse cx="58" cy="155" rx="24" ry="10" fill="#4A7820" opacity="0.9"/>
+      <!-- Acacia tree right -->
+      <rect x="330" y="205" width="7" height="80" fill="#5A3010"/>
+      <rect x="323" y="178" width="8" height="35" fill="#5A3010" transform="rotate(-28 323 178)"/>
+      <rect x="338" y="175" width="8" height="38" fill="#5A3010" transform="rotate(22 338 175)"/>
+      <ellipse cx="318" cy="168" rx="26" ry="11" fill="#3A6818" opacity="0.9"/>
+      <ellipse cx="346" cy="166" rx="28" ry="10" fill="#3A6818" opacity="0.9"/>
+      <ellipse cx="334" cy="160" rx="22" ry="9" fill="#4A7820" opacity="0.9"/>
+      <!-- Elephants -->
+      <ellipse cx="185" cy="255" rx="35" ry="22" fill="#7A6858"/>
+      <rect x="162" y="248" width="10" height="32" fill="#7A6858"/>
+      <rect x="178" y="248" width="10" height="32" fill="#7A6858"/>
+      <rect x="192" y="248" width="10" height="32" fill="#7A6858"/>
+      <rect x="206" y="248" width="10" height="32" fill="#7A6858"/>
+      <ellipse cx="212" cy="242" rx="18" ry="14" fill="#7A6858"/>
+      <path d="M225,248 Q240,265 230,278" fill="none" stroke="#7A6858" stroke-width="5" stroke-linecap="round"/>
+      <!-- Baby elephant -->
+      <ellipse cx="148" cy="268" rx="20" ry="13" fill="#8A7868"/>
+      <rect x="136" y="264" width="7" height="20" fill="#8A7868"/>
+      <rect x="146" y="264" width="7" height="20" fill="#8A7868"/>
+      <rect x="156" y="264" width="7" height="20" fill="#8A7868"/>
+      <ellipse cx="164" cy="258" rx="11" ry="9" fill="#8A7868"/>
+      <path d="M172,262 Q182,272 176,280" fill="none" stroke="#8A7868" stroke-width="4" stroke-linecap="round"/>
+      <!-- Ground / savannah -->
+      <rect x="0" y="282" width="400" height="58" fill="#C87820"/>
+      <ellipse cx="100" cy="284" rx="40" ry="8" fill="#B86810" opacity="0.5"/>
+      <ellipse cx="280" cy="285" rx="35" ry="7" fill="#B86810" opacity="0.4"/>
+      <!-- Dust -->
+      <ellipse cx="200" cy="285" rx="80" ry="10" fill="#D89030" opacity="0.3"/>
+    </svg>
+  </div>
+</section>
+
+<!-- EUROPE -->
+<section class="region-section" id="europe" data-theme="golden">
+  <div class="region-content">
+    <p class="region-chapter fade">Region 07</p>
+    <h2 class="region-name fade"><em>Europe</em></h2>
+    <p class="region-countries fade">UK &middot; France &middot; Spain &middot; Italy &middot; and more</p>
+    <p class="region-text fade">The familiar made unfamiliar. Easier to travel, harder to pay attention. But different cities have different pulses -- and noticing that, the way a place moves and what people care about, is what keeps travel interesting long after the novelty wears off.</p>
+    <a href="europe.html" class="region-link fade">Explore Europe &#8594;</a>
+  </div>
+  <div class="region-visual fade">
+    <svg viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg">
       <rect width="400" height="260" fill="#F5A830"/>
       <rect width="400" height="200" fill="#E87820" opacity="0.5"/>
       <rect width="400" height="120" fill="#C04010" opacity="0.3"/>
-      <!-- Sun low on horizon -->
       <circle cx="200" cy="220" r="60" fill="#F5C842" opacity="0.6"/>
       <circle cx="200" cy="220" r="40" fill="#FAD850" opacity="0.7"/>
-      <!-- Clouds warm tones -->
       <ellipse cx="80" cy="100" rx="60" ry="22" fill="#F5C070" opacity="0.7"/>
       <ellipse cx="320" cy="80" rx="55" ry="20" fill="#F5C070" opacity="0.6"/>
-      <ellipse cx="160" cy="60" rx="45" ry="16" fill="#FAEAA0" opacity="0.5"/>
-      <!-- Eiffel tower -->
       <polygon points="195,80 205,80 220,240 180,240" fill="#2A2A2A"/>
       <polygon points="197,120 203,120 213,180 187,180" fill="#333333"/>
       <rect x="182" y="175" width="36" height="5" fill="#222222"/>
       <rect x="186" y="145" width="28" height="4" fill="#222222"/>
       <rect x="189" y="120" width="22" height="3" fill="#222222"/>
       <line x1="200" y1="80" x2="200" y2="68" stroke="#333" stroke-width="2"/>
-      <!-- Buildings left -->
       <rect x="20" y="180" width="45" height="70" fill="#8A6020"/>
       <rect x="30" y="160" width="28" height="88" fill="#6A4818"/>
       <rect x="65" y="190" width="40" height="60" fill="#A07030"/>
-      <rect x="70" y="172" width="25" height="78" fill="#8A5A20"/>
-      <!-- Windows left buildings -->
       <rect x="35" y="170" width="8" height="10" fill="#F5C842" opacity="0.8"/>
       <rect x="35" y="188" width="8" height="10" fill="#F5C842" opacity="0.7"/>
-      <rect x="35" y="206" width="8" height="10" fill="#F5C842" opacity="0.8"/>
-      <rect x="22" y="188" width="8" height="10" fill="#F5C842" opacity="0.6"/>
-      <rect x="22" y="206" width="8" height="10" fill="#F5C842" opacity="0.7"/>
-      <!-- Buildings right -->
       <rect x="240" y="185" width="50" height="65" fill="#7A5818"/>
       <rect x="248" y="165" width="30" height="85" fill="#906828"/>
       <rect x="295" y="190" width="45" height="60" fill="#8A6020"/>
       <rect x="340" y="170" width="50" height="80" fill="#6A4818"/>
-      <!-- Windows right -->
       <rect x="252" y="175" width="8" height="10" fill="#F5C842" opacity="0.8"/>
       <rect x="252" y="193" width="8" height="10" fill="#F5C842" opacity="0.7"/>
-      <rect x="252" y="211" width="8" height="10" fill="#F5C842" opacity="0.8"/>
       <rect x="300" y="198" width="8" height="10" fill="#F5C842" opacity="0.6"/>
-      <rect x="300" y="214" width="8" height="10" fill="#F5C842" opacity="0.7"/>
       <rect x="348" y="182" width="8" height="10" fill="#F5C842" opacity="0.8"/>
-      <rect x="348" y="200" width="8" height="10" fill="#F5C842" opacity="0.7"/>
-      <!-- River -->
       <rect x="0" y="250" width="400" height="90" fill="#C07828" opacity="0.6"/>
-      <rect x="0" y="260" width="400" height="80" fill="#E09030" opacity="0.4"/>
-      <!-- Reflections in river -->
       <line x1="197" y1="262" x2="203" y2="320" stroke="#F5C842" stroke-width="3" opacity="0.4"/>
-      <line x1="180" y1="265" x2="185" y2="310" stroke="#F5C842" stroke-width="2" opacity="0.2"/>
-      <line x1="215" y1="265" x2="218" y2="310" stroke="#F5C842" stroke-width="2" opacity="0.2"/>
-      <!-- Ground / road -->
       <rect x="0" y="242" width="400" height="12" fill="#4A3818"/>
     </svg>
   </div>
@@ -362,26 +605,29 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 <!-- REFLECTION -->
 <section class="reflection" id="reflection" data-theme="meadow">
   <div class="reflection-inner">
-    <p class="reflection-eyebrow fade">What it did</p>
-    <h2 class="reflection-title fade">More than a gap year</h2>
+    <p class="reflection-eyebrow fade">More than a gap year</p>
+    <h2 class="reflection-title fade">What it actually did</h2>
     <div class="reflection-text fade">
-      <p>Two years travelling gave me a real appreciation for how differently people live — the varying standards of living, the cultural contrasts, and the challenges communities face that often go unseen from home.</p>
-      <p>It left me with a genuine drive to do work that has impact beyond a project deliverable, and pointed me towards international engineering as the direction I want my career to go.</p>
+      <p>Two years travelling gave me a real appreciation for how differently people live. The varying standards of living, the cultural contrasts, and the challenges communities face that often go unseen from home. I was also struck by how little people need to be genuinely content, and how quickly expectations rise with lifestyle.</p>
+      <p>Seeing the struggles of many communities, alongside the real beauty of the world, left me with a drive to do work that has impact beyond a project deliverable, and pointed me towards meaningful engineering as the direction I want my career to go.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-text">Seth Jarrett — Travel</span>
+  <span class="footer-text">Seth Jarrett -- Travel</span>
   <a href="engineering.html" class="footer-link">Engineering &#8594;</a>
 </footer>
 
 <script>
 const themes={
   meadow:{'--bg':'#F5F0E8','--text':'#2C2820','--text-soft':'#5C5448','--text-muted':'#9C9488','--accent':'#3A8C3A','--rule':'rgba(58,140,58,0.15)','--nav-bg':'rgba(245,240,232,0.96)'},
+  namerica:{'--bg':'#1A1008','--text':'#F0DCC0','--text-soft':'#C09860','--text-muted':'#806040','--accent':'#D4A040','--rule':'rgba(212,160,64,0.18)','--nav-bg':'rgba(26,16,8,0.96)'},
+  andes:{'--bg':'#2A1408','--text':'#F0D8A8','--text-soft':'#C09060','--text-muted':'#806040','--accent':'#E8A030','--rule':'rgba(232,160,48,0.18)','--nav-bg':'rgba(42,20,8,0.96)'},
   jungle:{'--bg':'#0E2010','--text':'#D0EAC0','--text-soft':'#70A860','--text-muted':'#3A6030','--accent':'#8CD858','--rule':'rgba(140,216,88,0.15)','--nav-bg':'rgba(14,32,16,0.96)'},
-  andes:{'--bg':'#2A1408','--text':'#F0D8A8','--text-soft':'#C09060','--text-muted':'#806040','--accent':'#F5C842','--rule':'rgba(245,200,66,0.18)','--nav-bg':'rgba(42,20,8,0.96)'},
+  japan:{'--bg':'#F8F0F4','--text':'#280818','--text-soft':'#582840','--text-muted':'#A08090','--accent':'#C03870','--rule':'rgba(192,56,112,0.15)','--nav-bg':'rgba(248,240,244,0.97)'},
   outback:{'--bg':'#E8F4FC','--text':'#182030','--text-soft':'#406080','--text-muted':'#8090A8','--accent':'#2878B8','--rule':'rgba(40,120,184,0.15)','--nav-bg':'rgba(232,244,252,0.97)'},
+  africa:{'--bg':'#2A1000','--text':'#F8E0B0','--text-soft':'#D0A040','--text-muted':'#906030','--accent':'#F0A020','--rule':'rgba(240,160,32,0.18)','--nav-bg':'rgba(42,16,0,0.96)'},
   golden:{'--bg':'#1A0E04','--text':'#F0D8A0','--text-soft':'#C09840','--text-muted':'#806030','--accent':'#F5A830','--rule':'rgba(245,168,48,0.18)','--nav-bg':'rgba(26,14,4,0.96)'}
 };
 
@@ -390,9 +636,9 @@ function applyTheme(name){
   Object.entries(t).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));
 }
 
-const sections=document.querySelectorAll('[data-theme]');
+const allSections=document.querySelectorAll('[data-theme]');
 const dots=document.querySelectorAll('.region-dot');
-const ids=['hero','sea','southam','australia','europe','reflection'];
+const ids=['hero','map','namerica','samerica','asia','japan','australia','africa','europe','reflection'];
 
 const themeObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -404,8 +650,50 @@ const themeObs=new IntersectionObserver(entries=>{
   });
 },{threshold:0.3});
 
-sections.forEach(s=>themeObs.observe(s));
+allSections.forEach(s=>themeObs.observe(s));
 dots.forEach((dot,i)=>dot.addEventListener('click',()=>document.getElementById(ids[i])?.scrollIntoView({behavior:'smooth'})));
+
+// Map interactivity
+const mapWrap=document.getElementById('mapWrap');
+const tip=document.getElementById('mapTip');
+const origOpacity={};
+
+document.querySelectorAll('.map-region').forEach(r=>{
+  origOpacity[r.id]=r.getAttribute('opacity')||'0.85';
+  r.addEventListener('mouseenter',e=>{
+    document.querySelectorAll('.map-region').forEach(o=>{
+      o.setAttribute('opacity', o.id===r.id ? '1' : '0.3');
+    });
+    tip.textContent=r.dataset.name;
+    tip.style.opacity='1';
+  });
+  r.addEventListener('mousemove',e=>{
+    const rect=mapWrap.getBoundingClientRect();
+    tip.style.left=(e.clientX-rect.left+14)+'px';
+    tip.style.top=(e.clientY-rect.top-10)+'px';
+  });
+  r.addEventListener('mouseleave',()=>{
+    document.querySelectorAll('.map-region').forEach(o=>o.setAttribute('opacity','0.85'));
+    tip.style.opacity='0';
+  });
+  r.addEventListener('click',()=>{ if(r.dataset.url) window.location.href=r.dataset.url; });
+});
+
+document.querySelectorAll('.map-legend-item').forEach(item=>{
+  item.addEventListener('mouseenter',()=>{
+    const id=item.dataset.id;
+    document.querySelectorAll('.map-region').forEach(o=>{
+      o.setAttribute('opacity', o.id===id ? '1' : '0.3');
+    });
+  });
+  item.addEventListener('mouseleave',()=>{
+    document.querySelectorAll('.map-region').forEach(o=>o.setAttribute('opacity','0.85'));
+  });
+  item.addEventListener('click',()=>{
+    const r=document.getElementById(item.dataset.id);
+    if(r&&r.dataset.url) window.location.href=r.dataset.url;
+  });
+});
 
 const fadeObs=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);fadeObs.unobserve(e.target);}});
