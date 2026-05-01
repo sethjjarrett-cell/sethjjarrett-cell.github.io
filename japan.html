@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Japan — Seth Jarrett</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#F8F0F4;--bg2:#F0E4EC;--bg3:#E4D0DC;
+  --text:#280818;--text-soft:#582840;--text-muted:#A08090;
+  --accent:#C03870;--rule:rgba(192,56,112,0.12);--nav-bg:rgba(248,240,244,0.97);
+  --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
+.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-back{font-size:0.75rem;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+.nav-back:hover{color:var(--accent);}
+.hero{min-height:85vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9rem 4rem 4rem;border-bottom:1px solid var(--rule);}
+.hero-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:0.95;color:var(--text);margin-bottom:1.5rem;}
+.hero-title em{font-style:italic;color:var(--accent);}
+.hero-sub{font-size:1rem;color:var(--text-soft);font-weight:300;line-height:1.85;max-width:560px;margin-bottom:2.5rem;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;padding-top:2rem;border-top:1px solid var(--rule);}
+.hero-tag{font-size:0.72rem;padding:0.3rem 0.8rem;border:1px solid var(--rule);color:var(--text-muted);}
+.cities-nav{padding:1.25rem 4rem;background:var(--bg2);display:flex;gap:0;border-bottom:1px solid var(--rule);}
+.city-tab{padding:0.7rem 1.25rem;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border-right:1px solid var(--rule);white-space:nowrap;transition:color 0.2s,background 0.2s;cursor:pointer;}
+.city-tab:hover,.city-tab.active{color:var(--accent);background:rgba(192,56,112,0.05);}
+.city-section{padding:5rem 4rem;border-bottom:1px solid var(--rule);}
+.city-section:nth-child(even){background:var(--bg2);}
+.city-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+.city-name{font-family:var(--serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:400;color:var(--text);margin-bottom:1.5rem;}
+.city-name em{font-style:italic;}
+.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.city-text{font-size:0.97rem;color:var(--text-soft);font-weight:300;line-height:1.9;}
+.city-text p{margin-bottom:1.1rem;}
+.stops{display:flex;flex-direction:column;}
+.stop{padding:1.1rem 0;border-bottom:1px solid var(--rule);display:flex;gap:1.25rem;align-items:start;}
+.stop:first-child{border-top:1px solid var(--rule);}
+.stop-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:0.6rem;}
+.stop-name{font-family:var(--serif);font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;}
+.stop-desc{font-size:0.82rem;color:var(--text-muted);font-weight:300;line-height:1.6;}
+.photo-grid{display:grid;gap:0.75rem;margin:2.5rem 0;}
+.photo-grid-2{grid-template-columns:1fr 1fr;}
+.photo-grid-3{grid-template-columns:2fr 1fr 1fr;}
+.photo-slot{background:var(--bg3);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;}
+.photo-slot-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);opacity:0.5;text-align:center;padding:0 1rem;}
+.next-section{padding:3.5rem 4rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-top:1px solid var(--rule);}
+.next-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
+.next-link{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.75rem;transition:gap 0.2s;}
+.next-link:hover{gap:1.2rem;}
+.next-link span{color:var(--accent);}
+footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;}
+.footer-text{font-size:0.72rem;color:var(--text-muted);}
+.footer-link{font-size:0.72rem;color:var(--accent);text-decoration:none;}
+.fade{opacity:0;transform:translateY(16px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.fade.in{opacity:1;transform:none;}
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  .hero,.city-section,.next-section{padding-left:1.5rem;padding-right:1.5rem;}
+  .city-grid{grid-template-columns:1fr;gap:2.5rem;}
+  footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="travel.html" class="nav-back">&#8592; Travel</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="engineering.html">Engineering</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <p class="hero-eyebrow">Region 04</p>
+  <h1 class="hero-title">Sleek and<br><em>ancient Japan</em></h1>
+  <p class="hero-sub">Tokyo, Fuji, Osaka, Kyoto. A country that feels like two entirely different places depending on where you are standing -- and one that rewards paying attention more than almost anywhere else.</p>
+  <div class="hero-tags">
+    <span class="hero-tag">Tokyo</span>
+    <span class="hero-tag">Mount Fuji</span>
+    <span class="hero-tag">Osaka</span>
+    <span class="hero-tag">Kyoto</span>
+  </div>
+</section>
+
+<div class="cities-nav">
+  <a href="#tokyo" class="city-tab active">Tokyo</a>
+  <a href="#fuji" class="city-tab">Mount Fuji</a>
+  <a href="#osaka" class="city-tab">Osaka</a>
+  <a href="#kyoto" class="city-tab">Kyoto</a>
+</div>
+
+<section class="city-section" id="tokyo">
+  <p class="city-eyebrow fade">Stop 01</p>
+  <h2 class="city-name fade"><em>Tokyo</em></h2>
+  <div class="photo-grid photo-grid-3 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Shibuya crossing -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Akihabara anime district</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">7/11 life</span></div>
+  </div>
+  <div class="city-grid">
+    <div class="city-text fade">
+      <p>Tokyo moves faster than anywhere else on earth. The Shibuya crossing in rush hour is one of those things that only makes sense when you are standing in the middle of it. The anime district in Akihabara is a world entirely unto itself.</p>
+      <p>Living out of 7/11 is not a hardship here -- the convenience stores in Japan are genuinely excellent and part of the culture rather than a last resort. The city is enormous and every neighbourhood feels like a different city.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Shibuya crossing</div><div class="stop-desc">The famous crossing in rush hour. One of those things that only makes sense when you are in it.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Akihabara</div><div class="stop-desc">The anime and electronics district. A completely self-contained world.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Living out of 7/11</div><div class="stop-desc">Japanese convenience stores are exceptional. Onigiri, ramen, hot food at 3am. Part of the experience.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">The neighbourhoods</div><div class="stop-desc">Shinjuku, Harajuku, Asakusa, Shimokitazawa. Each one a different city within the city.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="city-section" id="fuji">
+  <p class="city-eyebrow fade">Stop 02</p>
+  <h2 class="city-name fade">Mount <em>Fuji</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Fuji from the lake -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Day trip</span></div>
+  </div>
+  <div class="city-grid">
+    <div class="city-text fade">
+      <p>A day trip from Tokyo. Fuji from the Fuji Five Lakes is one of those views that looks exactly like the pictures and somehow still manages to be more impressive in person. The scale only makes sense when you are standing next to it.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Fuji Five Lakes</div><div class="stop-desc">The classic view. Reflections in the lake, the mountain behind. Earns every photograph.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Day trip from Tokyo</div><div class="stop-desc">Easy enough by train. Worth the early start.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="city-section" id="osaka">
+  <p class="city-eyebrow fade">Stop 03</p>
+  <h2 class="city-name fade"><em>Osaka</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Dotonbori -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Street food</span></div>
+  </div>
+  <div class="city-grid">
+    <div class="city-text fade">
+      <p>Osaka has a completely different energy from Tokyo. Louder, warmer, more chaotic, better food. The people in Osaka will tell you this themselves and they are not wrong. Dotonbori at night is one of the more overwhelming places in Japan in the best possible way.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Dotonbori</div><div class="stop-desc">Neon, street food, crowds. The centre of Osaka's particular energy.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">The food</div><div class="stop-desc">Takoyaki, okonomiyaki, ramen. Osaka takes its food more seriously than anywhere else in Japan.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="city-section" id="kyoto">
+  <p class="city-eyebrow fade">Stop 04</p>
+  <h2 class="city-name fade"><em>Kyoto</em></h2>
+  <div class="photo-grid photo-grid-3 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Fushimi Inari -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Bamboo grove</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Gion district</span></div>
+  </div>
+  <div class="city-grid">
+    <div class="city-text fade">
+      <p>Kyoto feels like it belongs to a different century. Where Tokyo is relentlessly forward-looking, Kyoto is anchored -- temples, gardens, wooden districts that have been standing for hundreds of years. The Fushimi Inari shrine at dawn before the crowds arrive is one of the better decisions you can make in Japan.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Fushimi Inari</div><div class="stop-desc">Thousands of torii gates up the mountain. Go at dawn -- the difference is significant.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Arashiyama bamboo grove</div><div class="stop-desc">The bamboo forest. Small, worth it, see it early.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Gion</div><div class="stop-desc">The geisha district. Old Kyoto preserved. Walk it in the evening.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">The temples</div><div class="stop-desc">Kinkaku-ji, Ryoan-ji, Nijo Castle. There are too many to see everything. Pick a few and spend real time.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="next-section">
+  <div><div class="next-label">Next region</div></div>
+  <a href="africa.html" class="next-link">Africa <span>&#8594;</span></a>
+</div>
+
+<footer>
+  <span class="footer-text">Seth Jarrett -- Japan</span>
+  <a href="travel.html" class="footer-link">&#8592; All regions</a>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);obs.unobserve(e.target);}}),{threshold:0.08});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
