@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asia — Seth Jarrett</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0E2010;--bg2:#142818;--bg3:#1A3020;
+  --text:#D0EAC0;--text-soft:#80B870;--text-muted:#3A6030;
+  --accent:#8CD858;--rule:rgba(140,216,88,0.15);--nav-bg:rgba(14,32,16,0.96);
+  --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
+.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
+.nav-links a:hover{color:var(--accent);}
+.nav-back{font-size:0.75rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+.nav-back:hover{color:var(--accent);}
+
+.hero{min-height:88vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9rem 4rem 4rem;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 80% 20%,rgba(140,216,88,0.06) 0%,transparent 60%),radial-gradient(ellipse 60% 80% at 10% 80%,rgba(140,216,88,0.04) 0%,transparent 60%);pointer-events:none;}
+.hero-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;opacity:0.8;}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:0.95;color:var(--text);margin-bottom:1.5rem;}
+.hero-title em{font-style:italic;color:var(--accent);}
+.hero-sub{font-size:1rem;color:var(--text-soft);font-weight:300;line-height:1.85;max-width:560px;margin-bottom:2.5rem;}
+.hero-countries{display:flex;flex-wrap:wrap;gap:0.5rem;padding-top:2rem;border-top:1px solid var(--rule);}
+.country-tag{font-size:0.72rem;padding:0.3rem 0.8rem;border:1px solid var(--rule);color:var(--text-muted);letter-spacing:0.05em;}
+
+.countries-nav{padding:1.25rem 4rem;background:var(--bg2);display:flex;gap:0;border-bottom:1px solid var(--rule);overflow-x:auto;}
+.country-tab{padding:0.7rem 1.25rem;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border-right:1px solid var(--rule);white-space:nowrap;transition:color 0.2s,background 0.2s;cursor:pointer;flex-shrink:0;}
+.country-tab:hover,.country-tab.active{color:var(--accent);background:rgba(140,216,88,0.06);}
+
+.country-section{padding:5rem 4rem;border-bottom:1px solid var(--rule);}
+.country-section:nth-child(even){background:var(--bg2);}
+.country-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;opacity:0.8;}
+.country-name{font-family:var(--serif);font-size:clamp(2rem,5vw,3.5rem);font-weight:400;line-height:1.0;color:var(--text);margin-bottom:1.5rem;}
+.country-name em{font-style:italic;}
+.country-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.country-text{font-size:0.97rem;color:var(--text-soft);font-weight:300;line-height:1.9;}
+.country-text p{margin-bottom:1.1rem;}
+.country-text p:last-child{margin-bottom:0;}
+.stops{display:flex;flex-direction:column;gap:0;}
+.stop{padding:1.1rem 0;border-bottom:1px solid var(--rule);display:flex;gap:1.25rem;align-items:start;}
+.stop:first-child{border-top:1px solid var(--rule);}
+.stop-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:0.6rem;opacity:0.8;}
+.stop-content{}
+.stop-name{font-family:var(--serif);font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;}
+.stop-desc{font-size:0.82rem;color:var(--text-muted);font-weight:300;line-height:1.6;}
+
+.photo-grid{display:grid;gap:0.75rem;margin:2.5rem 0;}
+.photo-grid-2{grid-template-columns:1fr 1fr;}
+.photo-grid-3{grid-template-columns:2fr 1fr 1fr;}
+.photo-slot{background:var(--bg3);aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;}
+.photo-slot.tall{aspect-ratio:3/4;}
+.photo-slot-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);opacity:0.5;text-align:center;padding:0 1rem;}
+
+.next-section{padding:3.5rem 4rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-top:1px solid var(--rule);}
+.next-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
+.next-link{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.75rem;transition:gap 0.2s;}
+.next-link:hover{gap:1.2rem;}
+.next-link span{color:var(--accent);}
+
+footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;}
+.footer-text{font-size:0.72rem;color:var(--text-muted);}
+.footer-link{font-size:0.72rem;color:var(--accent);text-decoration:none;}
+
+.fade{opacity:0;transform:translateY(16px);transition:opacity 0.65s ease,transform 0.65s ease;}
+.fade.in{opacity:1;transform:none;}
+
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  .hero,.country-section,.next-section{padding-left:1.5rem;padding-right:1.5rem;}
+  .country-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .photo-grid-3{grid-template-columns:1fr 1fr;}
+  footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="travel.html" class="nav-back">&#8592; Travel</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="travel.html">Travel</a></li>
+    <li><a href="engineering.html">Engineering</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <p class="hero-eyebrow">Region 02</p>
+  <h1 class="hero-title">South &amp; Southeast<br><em>Asia</em></h1>
+  <p class="hero-sub">Nepal, Cambodia, Thailand, Laos, Vietnam, Malaysia, Singapore, Philippines, Indonesia. The region that probably changes you most the first time -- the density of life, the heat, the contrast between the tourist trail and everything just off it.</p>
+  <div class="hero-countries">
+    <span class="country-tag">Nepal</span>
+    <span class="country-tag">Cambodia</span>
+    <span class="country-tag">Thailand</span>
+    <span class="country-tag">Laos</span>
+    <span class="country-tag">Vietnam</span>
+    <span class="country-tag">Malaysia</span>
+    <span class="country-tag">Singapore</span>
+    <span class="country-tag">Philippines</span>
+    <span class="country-tag">Indonesia</span>
+  </div>
+</section>
+
+<div class="countries-nav">
+  <a href="#nepal" class="country-tab active">Nepal</a>
+  <a href="#cambodia" class="country-tab">Cambodia</a>
+  <a href="#thailand" class="country-tab">Thailand</a>
+  <a href="#laos" class="country-tab">Laos</a>
+  <a href="#vietnam" class="country-tab">Vietnam</a>
+  <a href="#malaysia" class="country-tab">Malaysia</a>
+  <a href="#singapore" class="country-tab">Singapore</a>
+  <a href="#philippines" class="country-tab">Philippines</a>
+  <a href="#indonesia" class="country-tab">Indonesia</a>
+</div>
+
+<!-- NEPAL -->
+<section class="country-section" id="nepal">
+  <p class="country-eyebrow fade">Stop 01</p>
+  <h2 class="country-name fade"><em>Nepal</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Kathmandu -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Annapurna trek</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>Kathmandu is chaotic in the best way -- a city that layers centuries on top of each other without apology. Then Pokhara, and the Annapurna circuit beyond it. The mountains at that scale do something to your sense of proportion.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Kathmandu</div><div class="stop-desc">Temples, dust, colour and chaos. A city that has been building for a thousand years and shows it.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Pokhara</div><div class="stop-desc">Gateway to the Himalayas. Calmer than Kathmandu, spectacular in a completely different way.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Annapurna</div><div class="stop-desc">The circuit. Mountains at a scale that makes everything else feel manageable by comparison.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CAMBODIA -->
+<section class="country-section" id="cambodia">
+  <p class="country-eyebrow fade">Stop 02</p>
+  <h2 class="country-name fade"><em>Cambodia</em></h2>
+  <div class="photo-grid photo-grid-3 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Angkor Wat -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Koh Rong islands</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Kep</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>A country that wears its history visibly -- the war left marks that you see in Phnom Penh and feel in the south around Kep. Strange, abandoned places in the jungle that make more sense once you understand what happened there.</p>
+      <p>Then the islands, which are a completely different story. Koh Rong is all white sand, clear water and nights that go on too long.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Phnom Penh</div><div class="stop-desc">The capital. The history is heavy and worth sitting with rather than moving through quickly.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Kep</div><div class="stop-desc">Southern coast, natural park, abandoned buildings from the Khmer Rouge era half-swallowed by jungle.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Koh Rong</div><div class="stop-desc">Islands off the coast. Sunny, remote, and the kind of place that makes it hard to leave.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Siem Reap</div><div class="stop-desc">Angkor Wat. Gets up before sunrise and go -- it earns the reputation.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- THAILAND -->
+<section class="country-section" id="thailand">
+  <p class="country-eyebrow fade">Stop 03</p>
+  <h2 class="country-name fade"><em>Thailand</em></h2>
+  <div class="photo-grid photo-grid-3 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Muay Thai camp -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Full moon party</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Phi Phi / The Beach</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>Thailand in both directions. The north is temples, mountains and Pai, which is one of those places that people end up staying in far longer than planned. Chiang Mai is a proper city with depth beyond the tourist circuit.</p>
+      <p>The south is a different world. Christmas on Koh Tao, new year at the full moon party, a Muay Thai camp, boxing a friend at a bar on Phi Phi that turned out to be a boxing ring, and finding the beach from The Beach.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Bangkok</div><div class="stop-desc">Enormous, chaotic, endlessly interesting. Worth more time than most people give it.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Chiang Mai &amp; Pai</div><div class="stop-desc">Northern Thailand at its best. Temples in the city, mountains beyond it, Pai for slowing down.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Koh Tao</div><div class="stop-desc">Christmas here. Diving, calm water, the kind of quiet that the islands do well.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Full Moon Party</div><div class="stop-desc">New Year. Koh Phangan at its most unhinged. Worth doing once.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Muay Thai camp</div><div class="stop-desc">Trained for a week. One of the better decisions of the trip.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Phuket, Phi Phi &amp; The Beach</div><div class="stop-desc">Phi Phi included a boxing match against a friend at a reggae bar that turned out to have a ring. Found Maya Bay -- the beach from the film -- on a long-tail at dawn.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LAOS -->
+<section class="country-section" id="laos">
+  <p class="country-eyebrow fade">Stop 04</p>
+  <h2 class="country-name fade"><em>Laos</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Luang Prabang -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Nong Khiaw karst mountains</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>The quietest country in the region and one of the most beautiful. Luang Prabang has a particular stillness, especially early morning when the monks walk for alms. Nong Khiaw sits between karst mountains and feels completely removed from the world. Vang Vieng is the party town -- a different kind of experience entirely.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Luang Prabang</div><div class="stop-desc">Temples, the Mekong, monks at sunrise. A town that rewards moving slowly.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Nong Khiaw</div><div class="stop-desc">Karst limestone mountains, river, almost no one. One of the most beautiful places on the trip.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Vang Vieng</div><div class="stop-desc">Tubing, bars, backpackers. A completely different energy -- but part of the story.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIETNAM -->
+<section class="country-section" id="vietnam">
+  <p class="country-eyebrow fade">Stop 05</p>
+  <h2 class="country-name fade"><em>Vietnam</em></h2>
+  <div class="photo-grid photo-grid-3 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Ha Giang Loop -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Ha Long Bay</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Hai Van Pass</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>Vietnam on a motorbike from north to south is one of the better ways to see a country. The Ha Giang Loop is a highlight of the whole trip -- mountain roads in the far north that almost nobody is on, through villages and rice terraces and landscapes that look like paintings.</p>
+      <p>Ha Long Bay lives up to it, Hue has the best food, and the Hai Van Pass between Hue and Da Nang is the kind of road that makes you understand why people love motorbikes.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Hanoi</div><div class="stop-desc">The north. Busy, layered, excellent food. A proper city rather than just a starting point.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Ha Giang Loop</div><div class="stop-desc">Far north Vietnam on a motorbike. Arguably the best thing on the whole trip -- mountain roads, rice terraces, almost no tourists.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Ha Long Bay</div><div class="stop-desc">Limestone karsts rising from the water. Earned its reputation.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Hue, Hai Van Pass &amp; Da Nang</div><div class="stop-desc">The pass is the ride. Hue has the best food in Vietnam, which is saying something.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Ho Chi Minh City</div><div class="stop-desc">The south. Faster, louder, more modern. The war museums are not comfortable -- which is the point.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MALAYSIA -->
+<section class="country-section" id="malaysia">
+  <p class="country-eyebrow fade">Stop 06</p>
+  <h2 class="country-name fade"><em>Malaysia</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Georgetown street art -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Langkawi</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>Three very different places. Langkawi for the islands and the quiet. Georgetown on Penang for the food, the street art, and one of the most interesting cities in the region. Kuala Lumpur as a proper metropolis that often gets skipped over on the way somewhere else.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Langkawi</div><div class="stop-desc">Islands, mangroves, duty-free. A good place to slow down after Vietnam.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Georgetown, Penang</div><div class="stop-desc">The food capital of Southeast Asia. The street art is worth the trip alone.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Kuala Lumpur</div><div class="stop-desc">A proper modern city that most people fly through. Worth more than a night.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SINGAPORE -->
+<section class="country-section" id="singapore">
+  <p class="country-eyebrow fade">Stop 07</p>
+  <h2 class="country-name fade"><em>Singapore</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Singapore -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Gardens by the Bay</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>The cleanest city in Asia and one of the most efficiently run places on earth. The contrast with everywhere else in the region is stark -- it is both part of Southeast Asia and completely separate from it. Worth a few days to understand how it works and why it feels the way it does.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Singapore</div><div class="stop-desc">Spotless, expensive, fascinating. A city-state that has engineered itself into something singular.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILIPPINES -->
+<section class="country-section" id="philippines">
+  <p class="country-eyebrow fade">Stop 08</p>
+  <h2 class="country-name fade"><em>Philippines</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Palawan -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">El Nido</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>Manila is chaotic and worth spending time in rather than rushing through on the way to the islands. Palawan is the reason most people come -- limestone cliffs, clear water, island hopping between places that look like they were designed to be photographed.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Manila</div><div class="stop-desc">Chaotic, layered, often skipped. Worth a day or two of actual attention.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Palawan</div><div class="stop-desc">El Nido, island hopping, lagoons. Some of the best water in the region.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INDONESIA -->
+<section class="country-section" id="indonesia">
+  <p class="country-eyebrow fade">Stop 09</p>
+  <h2 class="country-name fade"><em>Indonesia</em></h2>
+  <div class="photo-grid photo-grid-2 fade">
+    <div class="photo-slot"><span class="photo-slot-label">Bali -- add photo</span></div>
+    <div class="photo-slot"><span class="photo-slot-label">Gili T</span></div>
+  </div>
+  <div class="country-grid">
+    <div class="country-text fade">
+      <p>Bali is more than it gets credit for beyond the Instagram version of it. The temples, the rice terraces, the culture underneath the tourism are worth finding. Gili T is a small island with no motorised vehicles, excellent diving, and the kind of pace that makes everything slow down.</p>
+    </div>
+    <div class="stops fade">
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Bali</div><div class="stop-desc">More than the cliches. The cultural layer underneath the tourist surface is genuinely interesting.</div></div></div>
+      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Gili Trawangan</div><div class="stop-desc">No cars, no motorbikes, good diving, great sunsets. A proper island escape.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="next-section">
+  <div><div class="next-label">Next region</div></div>
+  <a href="australia.html" class="next-link">Australia <span>&#8594;</span></a>
+</div>
+
+<footer>
+  <span class="footer-text">Seth Jarrett -- Asia</span>
+  <a href="travel.html" class="footer-link">&#8592; All regions</a>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);obs.unobserve(e.target);}}),{threshold:0.08});
+document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+const sections=document.querySelectorAll('.country-section');
+const tabs=document.querySelectorAll('.country-tab');
+tabs.forEach(t=>t.addEventListener('click',e=>{e.preventDefault();tabs.forEach(x=>x.classList.remove('active'));t.classList.add('active');document.querySelector(t.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});}));
+new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){tabs.forEach(t=>t.classList.remove('active'));const a=document.querySelector(`.country-tab[href="#${e.target.id}"]`);if(a)a.classList.add('active');}}),{threshold:0.4}).observe.apply(null,[...sections].map(s=>(new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){tabs.forEach(t=>t.classList.remove('active'));const a=document.querySelector(`.country-tab[href="#${e.target.id}"]`);if(a)a.classList.add('active');}}),{threshold:0.4})).observe(s)||s));
+</script>
+</body>
+</html>
