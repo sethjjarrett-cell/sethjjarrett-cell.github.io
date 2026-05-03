@@ -208,4 +208,168 @@
   --nam-miami-rule:    rgba(224,96,192,0.18);
   --nam-miami-nav:     rgba(26,8,40,0.96);
 
+  /* -------------------------------------------------- */
+  /* ASIA -- per country themes                          */
+  /* -------------------------------------------------- */
+
+  /* Nepal -- mountain blue-grey */
+  --asia-nepal-bg:     #E8EEF4; --asia-nepal-bg2:  #DCE4EE; --asia-nepal-bg3:  #C8D4E4;
+  --asia-nepal-text:   #101828; --asia-nepal-soft:  #384860; --asia-nepal-muted: #7888A0;
+  --asia-nepal-accent: #3860A0; --asia-nepal-rule:  rgba(56,96,160,0.15); --asia-nepal-nav: rgba(232,238,244,0.97);
+
+  /* Cambodia -- warm jungle rust */
+  --asia-camb-bg:      #2A1008; --asia-camb-bg2:   #361408; --asia-camb-bg3:   #421A0A;
+  --asia-camb-text:    #F0D8B8; --asia-camb-soft:   #C09060; --asia-camb-muted:  #806040;
+  --asia-camb-accent:  #E08030; --asia-camb-rule:   rgba(224,128,48,0.18); --asia-camb-nav: rgba(42,16,8,0.96);
+
+  /* Thailand -- tropical teal */
+  --asia-thai-bg:      #0A2420; --asia-thai-bg2:   #0E2C28; --asia-thai-bg3:   #123430;
+  --asia-thai-text:    #C0F0E0; --asia-thai-soft:   #60C0A0; --asia-thai-muted:  #308060;
+  --asia-thai-accent:  #40E0B0; --asia-thai-rule:   rgba(64,224,176,0.15); --asia-thai-nav: rgba(10,36,32,0.96);
+
+  /* Laos -- misty sage */
+  --asia-laos-bg:      #EAF0E4; --asia-laos-bg2:   #DDE8D6; --asia-laos-bg3:   #CCDCC4;
+  --asia-laos-text:    #182010; --asia-laos-soft:   #405830; --asia-laos-muted:  #809070;
+  --asia-laos-accent:  #507840; --asia-laos-rule:   rgba(80,120,64,0.15); --asia-laos-nav: rgba(234,240,228,0.97);
+
+  /* Vietnam -- deep emerald */
+  --asia-viet-bg:      #082018; --asia-viet-bg2:   #0C2820; --asia-viet-bg3:   #103028;
+  --asia-viet-text:    #B0E8D0; --asia-viet-soft:   #50A880; --asia-viet-muted:  #286848;
+  --asia-viet-accent:  #30D890; --asia-viet-rule:   rgba(48,216,144,0.15); --asia-viet-nav: rgba(8,32,24,0.96);
+
+  /* Malaysia -- warm ochre */
+  --asia-malay-bg:     #F5EED8; --asia-malay-bg2:  #EDE4C8; --asia-malay-bg3:  #E0D4B0;
+  --asia-malay-text:   #1E1808; --asia-malay-soft:  #504010; --asia-malay-muted: #A09060;
+  --asia-malay-accent: #B88020; --asia-malay-rule:  rgba(184,128,32,0.15); --asia-malay-nav: rgba(245,238,216,0.97);
+
+  /* Singapore -- clean slate */
+  --asia-sing-bg:      #F0F2F5; --asia-sing-bg2:   #E4E8EE; --asia-sing-bg3:   #D4DAE4;
+  --asia-sing-text:    #101418; --asia-sing-soft:   #384050; --asia-sing-muted:  #7880A0;
+  --asia-sing-accent:  #2840A0; --asia-sing-rule:   rgba(40,64,160,0.12); --asia-sing-nav: rgba(240,242,245,0.97);
+
+  /* Philippines -- ocean blue */
+  --asia-phil-bg:      #082840; --asia-phil-bg2:   #0A3050; --asia-phil-bg3:   #0E3860;
+  --asia-phil-text:    #B0D8F8; --asia-phil-soft:   #5098D8; --asia-phil-muted:  #285888;
+  --asia-phil-accent:  #40B8F8; --asia-phil-rule:   rgba(64,184,248,0.15); --asia-phil-nav: rgba(8,40,64,0.96);
+
+  /* Indonesia -- volcanic warm */
+  --asia-indo-bg:      #200808; --asia-indo-bg2:   #280A08; --asia-indo-bg3:   #340E08;
+  --asia-indo-text:    #F8D8B0; --asia-indo-soft:   #D08050; --asia-indo-muted:  #885030;
+  --asia-indo-accent:  #F06020; --asia-indo-rule:   rgba(240,96,32,0.18); --asia-indo-nav: rgba(32,8,8,0.96);
+
+  /* -------------------------------------------------- */
+  /* AUSTRALIA -- per city themes                        */
+  /* -------------------------------------------------- */
+
+  /* Melbourne -- cool urban grey */
+  --aus-melb-bg:       #EAEEF2; --aus-melb-bg2:    #DDE3EB; --aus-melb-bg3:    #CDD5DF;
+  --aus-melb-text:     #101620; --aus-melb-soft:    #384258; --aus-melb-muted:   #788098;
+  --aus-melb-accent:   #3858A8; --aus-melb-rule:    rgba(56,88,168,0.14); --aus-melb-nav: rgba(234,238,242,0.97);
+
+  /* East Coast -- bright sand and sky */
+  --aus-east-bg:       #FDF8EC; --aus-east-bg2:    #F8F0D8; --aus-east-bg3:    #F0E4C0;
+  --aus-east-text:     #201808; --aus-east-soft:    #605030; --aus-east-muted:   #A89060;
+  --aus-east-accent:   #D08820; --aus-east-rule:    rgba(208,136,32,0.15); --aus-east-nav: rgba(253,248,236,0.97);
+
+  /* Sydney -- harbour blue */
+  --aus-syd-bg:        #082840; --aus-syd-bg2:     #0A3250; --aus-syd-bg3:     #0E3C60;
+  --aus-syd-text:      #C0E0F8; --aus-syd-soft:     #60A8E0; --aus-syd-muted:    #306890;
+  --aus-syd-accent:    #50C0F8; --aus-syd-rule:     rgba(80,192,248,0.15); --aus-syd-nav: rgba(8,40,64,0.96);
+
+  /* -------------------------------------------------- */
+  /* JAPAN -- per city themes                            */
+  /* -------------------------------------------------- */
+
+  /* Tokyo -- neon dark */
+  --jpn-tokyo-bg:      #080818; --jpn-tokyo-bg2:   #0C0C22; --jpn-tokyo-bg3:   #10103A;
+  --jpn-tokyo-text:    #E0D8F8; --jpn-tokyo-soft:   #9088D0; --jpn-tokyo-muted:  #504870;
+  --jpn-tokyo-accent:  #B040F8; --jpn-tokyo-rule:   rgba(176,64,248,0.18); --jpn-tokyo-nav: rgba(8,8,24,0.96);
+
+  /* Fuji -- crisp white/ice */
+  --jpn-fuji-bg:       #F4F6F8; --jpn-fuji-bg2:    #E8EDF2; --jpn-fuji-bg3:    #D8E0EA;
+  --jpn-fuji-text:     #101418; --jpn-fuji-soft:    #384858; --jpn-fuji-muted:   #7888A0;
+  --jpn-fuji-accent:   #285888; --jpn-fuji-rule:    rgba(40,88,136,0.12); --jpn-fuji-nav: rgba(244,246,248,0.97);
+
+  /* Osaka -- warm amber night */
+  --jpn-osaka-bg:      #1A1008; --jpn-osaka-bg2:   #221408; --jpn-osaka-bg3:   #2A1A08;
+  --jpn-osaka-text:    #F8E0B8; --jpn-osaka-soft:   #D0A060; --jpn-osaka-muted:  #806030;
+  --jpn-osaka-accent:  #F0A020; --jpn-osaka-rule:   rgba(240,160,32,0.18); --jpn-osaka-nav: rgba(26,16,8,0.96);
+
+  /* Kyoto -- cherry blossom */
+  --jpn-kyoto-bg:      #FDF0F5; --jpn-kyoto-bg2:   #F8E4EE; --jpn-kyoto-bg3:   #F0D0E4;
+  --jpn-kyoto-text:    #280818; --jpn-kyoto-soft:   #602840; --jpn-kyoto-muted:  #B08898;
+  --jpn-kyoto-accent:  #D03868; --jpn-kyoto-rule:   rgba(208,56,104,0.12); --jpn-kyoto-nav: rgba(253,240,245,0.97);
+
+  /* -------------------------------------------------- */
+  /* AFRICA -- per city themes                           */
+  /* -------------------------------------------------- */
+
+  /* Casablanca -- white and silver */
+  --afr-casa-bg:       #F8F8F4; --afr-casa-bg2:    #F0F0EC; --afr-casa-bg3:    #E4E4DC;
+  --afr-casa-text:     #181818; --afr-casa-soft:    #484840; --afr-casa-muted:   #909088;
+  --afr-casa-accent:   #385878; --afr-casa-rule:    rgba(56,88,120,0.12); --afr-casa-nav: rgba(248,248,244,0.97);
+
+  /* Marrakech -- deep terracotta */
+  --afr-marra-bg:      #200808; --afr-marra-bg2:   #2C0C08; --afr-marra-bg3:   #380E08;
+  --afr-marra-text:    #F8D8A8; --afr-marra-soft:   #D09060; --afr-marra-muted:  #886040;
+  --afr-marra-accent:  #E05818; --afr-marra-rule:   rgba(224,88,24,0.18); --afr-marra-nav: rgba(32,8,8,0.96);
+
+  /* -------------------------------------------------- */
+  /* EUROPE -- per city themes                           */
+  /* -------------------------------------------------- */
+
+  /* Paris -- warm golden */
+  --eur-paris-bg:      #1C1408; --eur-paris-bg2:   #241808; --eur-paris-bg3:   #2C1E08;
+  --eur-paris-text:    #F8E8B8; --eur-paris-soft:   #D0A848; --eur-paris-muted:  #806830;
+  --eur-paris-accent:  #F0C020; --eur-paris-rule:   rgba(240,192,32,0.18); --eur-paris-nav: rgba(28,20,8,0.96);
+
+  /* Bosnia -- earthy grey-green */
+  --eur-bosnia-bg:     #D8DDD0; --eur-bosnia-bg2:  #CDD4C4; --eur-bosnia-bg3:  #BEC7B4;
+  --eur-bosnia-text:   #141810; --eur-bosnia-soft:  #384030; --eur-bosnia-muted: #788068;
+  --eur-bosnia-accent: #485838; --eur-bosnia-rule:  rgba(72,88,56,0.15); --eur-bosnia-nav: rgba(216,221,208,0.97);
+
+  /* Prague -- stone blue */
+  --eur-prague-bg:     #E8EDF5; --eur-prague-bg2:  #DCE4F0; --eur-prague-bg3:  #CCD6E8;
+  --eur-prague-text:   #101420; --eur-prague-soft:  #384060; --eur-prague-muted: #788098;
+  --eur-prague-accent: #3050A0; --eur-prague-rule:  rgba(48,80,160,0.14); --eur-prague-nav: rgba(232,237,245,0.97);
+
+  /* Hamburg -- port slate */
+  --eur-hamb-bg:       #1A202A; --eur-hamb-bg2:    #202830; --eur-hamb-bg3:    #28303A;
+  --eur-hamb-text:     #C8D8E8; --eur-hamb-soft:    #7898B8; --eur-hamb-muted:  #485868;
+  --eur-hamb-accent:   #50A0D8; --eur-hamb-rule:    rgba(80,160,216,0.15); --eur-hamb-nav: rgba(26,32,42,0.96);
+
+  /* Amsterdam -- canal teal */
+  --eur-amst-bg:       #082820; --eur-amst-bg2:    #0C3028; --eur-amst-bg3:    #103830;
+  --eur-amst-text:     #B8EEE0; --eur-amst-soft:    #58C0A0; --eur-amst-muted:  #308068;
+  --eur-amst-accent:   #38D8B0; --eur-amst-rule:    rgba(56,216,176,0.15); --eur-amst-nav: rgba(8,40,32,0.96);
+
+  /* Italy -- terracotta ochre */
+  --eur-italy-bg:      #F8EED8; --eur-italy-bg2:   #F0E4C4; --eur-italy-bg3:   #E4D4A8;
+  --eur-italy-text:    #201008; --eur-italy-soft:   #604020; --eur-italy-muted:  #A08060;
+  --eur-italy-accent:  #C05818; --eur-italy-rule:   rgba(192,88,24,0.15); --eur-italy-nav: rgba(248,238,216,0.97);
+
+  /* Athens -- white limestone */
+  --eur-athens-bg:     #F8F6F0; --eur-athens-bg2:  #F0EDE4; --eur-athens-bg3:  #E4DFD0;
+  --eur-athens-text:   #181410; --eur-athens-soft:  #504840; --eur-athens-muted: #A09888;
+  --eur-athens-accent: #8860A0; --eur-athens-rule:  rgba(136,96,160,0.14); --eur-athens-nav: rgba(248,246,240,0.97);
+
+  /* -------------------------------------------------- */
+  /* SOUTH AMERICA -- per country themes                 */
+  /* -------------------------------------------------- */
+
+  /* Colombia -- vibrant tropical green */
+  --sam-col-bg:        #0A2010; --sam-col-bg2:     #0E2818; --sam-col-bg3:     #123020;
+  --sam-col-text:      #C0F0C8; --sam-col-soft:     #60C878; --sam-col-muted:   #308848;
+  --sam-col-accent:    #38F068; --sam-col-rule:     rgba(56,240,104,0.15); --sam-col-nav: rgba(10,32,16,0.96);
+
+  /* Peru -- desert gold */
+  --sam-peru-bg:       #F5EDD8; --sam-peru-bg2:    #EDE0C0; --sam-peru-bg3:    #E0D0A0;
+  --sam-peru-text:     #1E1408; --sam-peru-soft:    #605028; --sam-peru-muted:   #A89060;
+  --sam-peru-accent:   #C89020; --sam-peru-rule:    rgba(200,144,32,0.15); --sam-peru-nav: rgba(245,237,216,0.97);
+
+  /* Bolivia -- high altitude purple */
+  --sam-bol-bg:        #180828; --sam-bol-bg2:     #200A34; --sam-bol-bg3:     #280C40;
+  --sam-bol-text:      #E8D0F8; --sam-bol-soft:     #A878D8; --sam-bol-muted:   #684888;
+  --sam-bol-accent:    #C060F0; --sam-bol-rule:     rgba(192,96,240,0.18); --sam-bol-nav: rgba(24,8,40,0.96);
+
 }

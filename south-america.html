@@ -9,69 +9,65 @@
 <link rel="stylesheet" href="style.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --bg:#D8F0C8;--bg2:#CCE8BA;--bg3:#B8D8A4;
-  --text:#0A2008;--text-soft:#286820;--text-muted:#5A9848;
-  --accent:#1A6810;--rule:rgba(26,104,16,0.15);--nav-bg:rgba(216,240,200,0.97);
-  --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
-}
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;}
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
-.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;}
+body{font-family:var(--sans);background:var(--sam-col-bg);color:var(--sam-col-text);line-height:1.7;font-size:16px;transition:background 1.1s ease,color 0.7s ease;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--sam-col-nav);backdrop-filter:blur(12px);border-bottom:1px solid var(--sam-col-rule);transition:background 1.1s ease,border-color 0.7s ease;}
+.nav-back{font-family:var(--serif);font-size:1.05rem;color:var(--sam-col-accent);text-decoration:none;transition:color 0.7s;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{font-size:0.75rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
-.nav-links a:hover{color:var(--accent);}
-.nav-back{font-size:0.75rem;color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
-.nav-back:hover{color:var(--accent);}
-.hero{min-height:85vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9rem 4rem 4rem;border-bottom:1px solid var(--rule);}
-.hero-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
-.hero-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:0.95;color:var(--text);margin-bottom:1.5rem;}
-.hero-title em{font-style:italic;color:var(--accent);}
-.hero-sub{font-size:1rem;color:var(--text-soft);font-weight:300;line-height:1.85;max-width:560px;margin-bottom:2.5rem;}
-.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;padding-top:2rem;border-top:1px solid var(--rule);}
-.hero-tag{font-size:0.72rem;padding:0.3rem 0.8rem;border:1px solid var(--rule);color:var(--text-muted);}
-.cities-nav{padding:1.25rem 4rem;background:var(--bg2);display:flex;gap:0;border-bottom:1px solid var(--rule);overflow-x:auto;}
-.city-tab{padding:0.7rem 1.25rem;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border-right:1px solid var(--rule);white-space:nowrap;transition:color 0.2s,background 0.2s;cursor:pointer;flex-shrink:0;}
-.city-tab:hover,.city-tab.active{color:var(--accent);background:rgba(26,104,16,0.06);}
-.country-header{padding:4rem 4rem 0;border-bottom:none;}
-.country-label{font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
-.country-title{font-family:var(--serif);font-size:clamp(1.75rem,4vw,3rem);font-weight:400;color:var(--text);margin-bottom:0;padding-bottom:2rem;border-bottom:2px solid var(--rule);}
-.city-section{padding:4rem 4rem;border-bottom:1px solid var(--rule);}
-.city-section:nth-child(even){background:var(--bg2);}
-.city-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;}
-.city-name{font-family:var(--serif);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:400;color:var(--text);margin-bottom:1.25rem;}
-.city-name em{font-style:italic;}
-.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
-.city-text{font-size:0.97rem;color:var(--text-soft);font-weight:300;line-height:1.9;}
-.city-text p{margin-bottom:1.1rem;}
-.stops{display:flex;flex-direction:column;}
-.stop{padding:1.1rem 0;border-bottom:1px solid var(--rule);display:flex;gap:1.25rem;align-items:start;}
-.stop:first-child{border-top:1px solid var(--rule);}
-.stop-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:0.6rem;}
-.stop-name{font-family:var(--serif);font-size:0.95rem;color:var(--text);margin-bottom:0.2rem;}
-.stop-desc{font-size:0.82rem;color:var(--text-muted);font-weight:300;line-height:1.6;}
+.nav-links a{font-size:0.75rem;color:var(--sam-col-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
+.nav-links a:hover{color:var(--sam-col-accent);}
+
+.hero{min-height:80vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9rem 4rem 4rem;border-bottom:1px solid var(--sam-col-rule);transition:border-color 0.7s;}
+.hero-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--sam-col-accent);margin-bottom:1rem;transition:color 0.7s;}
+.hero-title{font-family:var(--serif);font-size:clamp(3rem,7vw,5.5rem);font-weight:400;line-height:0.95;color:var(--sam-col-text);margin-bottom:1.5rem;transition:color 0.7s;}
+.hero-title em{font-style:italic;color:var(--sam-col-accent);transition:color 0.7s;}
+.hero-sub{font-size:1rem;color:var(--sam-col-soft);font-weight:300;line-height:1.85;max-width:560px;margin-bottom:2.5rem;transition:color 0.7s;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;padding-top:2rem;border-top:1px solid var(--sam-col-rule);transition:border-color 0.7s;}
+.hero-tag{font-size:0.72rem;padding:0.3rem 0.85rem;border:1px solid var(--sam-col-rule);color:var(--sam-col-muted);transition:color 0.7s,border-color 0.7s;}
+
+.stop-nav{padding:0 4rem;background:var(--sam-col-text);display:flex;border-bottom:1px solid rgba(128,128,128,0.12);overflow-x:auto;transition:background 1.1s ease;}
+.stop-tab{padding:1rem 1.5rem;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(128,128,128,0.5);text-decoration:none;border-right:1px solid rgba(128,128,128,0.1);white-space:nowrap;transition:color 0.2s,background 0.2s;cursor:pointer;display:flex;align-items:center;gap:0.55rem;flex-shrink:0;}
+.stop-dot{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:0.3;transition:opacity 0.2s;}
+.stop-tab:hover,.stop-tab.active{color:rgba(220,220,220,0.9);}
+.stop-tab.active .stop-dot{opacity:1;}
+
+.stop-section{min-height:90vh;padding:5rem 4rem;border-bottom:1px solid rgba(0,0,0,0.06);}
+.stop-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;}
+.stop-name{font-family:var(--serif);font-size:clamp(2rem,5vw,3.25rem);font-weight:400;line-height:1.0;margin-bottom:0.75rem;}
+.stop-name em{font-style:italic;}
+.stop-intro{font-size:0.97rem;font-weight:300;line-height:1.9;max-width:620px;margin-bottom:2.5rem;}
+.stop-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.stop-text{font-size:0.95rem;font-weight:300;line-height:1.9;}
+.stop-text p{margin-bottom:1rem;}
+.stops-list{display:flex;flex-direction:column;}
+.stop-item{padding:1rem 0;display:flex;gap:1.25rem;align-items:start;}
+.stop-bullet{width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:0.65rem;}
+.stop-item-name{font-family:var(--serif);font-size:0.95rem;margin-bottom:0.2rem;}
+.stop-item-desc{font-size:0.82rem;font-weight:300;line-height:1.6;}
+
 .photo-grid{display:grid;gap:0.75rem;margin:2rem 0;}
-.photo-grid-2{grid-template-columns:1fr 1fr;}
-.photo-grid-3{grid-template-columns:2fr 1fr 1fr;}
-.photo-slot{background:var(--bg3);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;}
-.photo-slot-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);opacity:0.5;text-align:center;padding:0 1rem;}
-.next-section{padding:3.5rem 4rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-top:1px solid var(--rule);}
-.next-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);}
-.next-link{font-family:var(--serif);font-size:1.2rem;font-style:italic;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:0.75rem;transition:gap 0.2s;}
-.next-link:hover{gap:1.2rem;}
-.next-link span{color:var(--accent);}
-footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;}
-.footer-text{font-size:0.72rem;color:var(--text-muted);}
-.footer-link{font-size:0.72rem;color:var(--accent);text-decoration:none;}
+.pg-2{grid-template-columns:1fr 1fr;}
+.pg-3{grid-template-columns:2fr 1fr 1fr;}
+.photo-slot{aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;}
+.photo-slot-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;opacity:0.35;text-align:center;padding:0 1rem;}
+
+.next-bar{padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;}
+.next-label{font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;}
+.next-link{font-family:var(--serif);font-size:1.2rem;font-style:italic;text-decoration:none;display:flex;align-items:center;gap:0.75rem;transition:gap 0.2s;}
+.next-link:hover{gap:1.25rem;}
+
+footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
+.footer-text{font-size:0.72rem;}
+.footer-link{font-size:0.72rem;text-decoration:none;}
+
 .fade{opacity:0;transform:translateY(16px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .fade.in{opacity:1;transform:none;}
+
 @media(max-width:860px){
-  nav{padding:1rem 1.5rem;}
-  .hero,.city-section,.country-header,.next-section{padding-left:1.5rem;padding-right:1.5rem;}
-  .city-grid{grid-template-columns:1fr;gap:2.5rem;}
-  .photo-grid-3{grid-template-columns:1fr 1fr;}
-  footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
+  nav,.hero,.stop-nav,.stop-section,.next-bar,footer{padding-left:1.5rem;padding-right:1.5rem;}
+  .stop-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .pg-3{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
@@ -84,118 +80,212 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <li><a href="engineering.html">Engineering</a></li>
   </ul>
 </nav>
-
 <section class="hero">
   <p class="hero-eyebrow">Region 07</p>
   <h1 class="hero-title">South <em>America</em></h1>
-  <p class="hero-sub">Colombia, Peru, Bolivia. Mountains, rainforest, salt flats, ayahuasca, and the continent where the engineering work stopped being abstract. Communities without reliable power are not a case study when you have spent time in them.</p>
-  <div class="hero-tags">
-    <span class="hero-tag">Colombia</span>
-    <span class="hero-tag">Peru</span>
-    <span class="hero-tag">Bolivia</span>
-  </div>
+  <p class="hero-sub">Colombia, Peru, Bolivia. Mountains, rainforest, salt flats, ayahuasca -- and the continent where the engineering work stopped being abstract.</p>
+  <div class="hero-tags"><span class="hero-tag">Colombia</span><span class="hero-tag">Peru</span><span class="hero-tag">Bolivia</span></div>
 </section>
-
-<div class="cities-nav">
-  <a href="#colombia" class="city-tab active">Colombia</a>
-  <a href="#peru" class="city-tab">Peru</a>
-  <a href="#bolivia" class="city-tab">Bolivia</a>
-</div>
-
-<!-- COLOMBIA -->
-<div class="country-header fade">
-  <p class="country-label">Country 01</p>
-  <h2 class="country-title">Colombia</h2>
-</div>
-
-<section class="city-section" id="colombia">
-  <div class="photo-grid photo-grid-3 fade">
-    <div class="photo-slot"><span class="photo-slot-label">Medellin -- add photo</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Salento coffee region</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">North Colombia</span></div>
+<div class="stop-nav">
+  <a href="#colombia" class="stop-tab"><span class="stop-dot" style="color:#38F068"></span>Colombia</a>
+  <a href="#peru" class="stop-tab"><span class="stop-dot" style="color:#C89020"></span>Peru</a>
+  <a href="#bolivia" class="stop-tab"><span class="stop-dot" style="color:#C060F0"></span>Bolivia</a>
   </div>
-  <div class="city-grid">
-    <div class="city-text fade">
-      <p>Colombia surprised me more than almost anywhere on the trip. Bogota is a proper metropolis with a cultural life that most people in Europe do not know exists. Medellin went from one of the most dangerous cities in the world to one of the most innovative in South America in the space of twenty years -- the story of how is worth understanding.</p>
-      <p>Salento and the coffee region in the Eje Cafetero is some of the most beautiful landscape on the continent. The Valle de Cocora -- a valley of giant wax palms -- is one of those places that does not look real.</p>
+<section class="stop-section" id="colombia" style="background:var(--sam-col-bg)">
+  <p class="stop-eyebrow fade" style="color:var(--sam-col-accent)">Stop 01</p>
+  <h2 class="stop-name fade" style="color:var(--sam-col-text)"><em>Colombia</em></h2>
+  <p class="stop-intro fade" style="color:var(--sam-col-soft)">Colombia surprised me more than almost anywhere on the trip. Bogota is a proper metropolis with a cultural life most people in Europe do not know exists.</p>
+  <div class="photo-grid pg-3 fade">
+    <div class="photo-slot" style="background:var(--sam-col-bg3)"><span class="photo-slot-label" style="color:var(--sam-col-muted)">Medellin</span></div>
+    <div class="photo-slot" style="background:var(--sam-col-bg3)"><span class="photo-slot-label" style="color:var(--sam-col-muted)">Salento</span></div>
+    <div class="photo-slot" style="background:var(--sam-col-bg3)"><span class="photo-slot-label" style="color:var(--sam-col-muted)">North Colombia</span></div>
     </div>
-    <div class="stops fade">
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Bogota</div><div class="stop-desc">A real city with real culture. La Candelaria, the Gold Museum, the food scene. Underrated.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">North Colombia</div><div class="stop-desc">The Caribbean coast, Cartagena, Tayrona. A completely different climate and pace from the interior.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Medellin</div><div class="stop-desc">The transformation is worth reading about before you arrive. The city is extraordinary for what it has done with a recent history that could have gone differently.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Salento</div><div class="stop-desc">Coffee farms, wax palms, mountains. The Valle de Cocora does not look like a real place.</div></div></div>
+  <div class="stop-grid">
+    <div class="stop-text fade" style="color:var(--sam-col-soft)"><p>Medellin went from one of the most dangerous cities in the world to one of the most innovative in South America in twenty years -- the story of how is worth understanding.</p><p>Salento and the coffee region are some of the most beautiful landscape on the continent. The Valle de Cocora does not look like a real place.</p></div>
+    <div class="stops-list fade"><div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-col-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-col-text)">Bogota</div>
+        <div class="stop-item-desc" style="color:var(--sam-col-muted)">La Candelaria, the Gold Museum, the food scene. A real city. Underrated.</div>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- PERU -->
-<div class="country-header fade">
-  <p class="country-label">Country 02</p>
-  <h2 class="country-title">Peru</h2>
-</div>
-
-<section class="city-section" id="peru">
-  <div class="photo-grid photo-grid-3 fade">
-    <div class="photo-slot"><span class="photo-slot-label">Huacachina oasis -- add photo</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Sacred Valley</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Machu Picchu / Cusco</span></div>
-  </div>
-  <div class="city-grid">
-    <div class="city-text fade">
-      <p>Peru is one of the most varied countries on the continent. Lima has a serious food scene that most people do not expect. Huacachina is a genuine oasis in the middle of sand dunes -- sandboarding down them at sunset is one of those things that sounds ridiculous and turns out to be excellent.</p>
-      <p>Cusco and the Sacred Valley deserve more time than most people give them. Machu Picchu earns its place as one of the great sites in the world. And the dog shelter in the Sacred Valley was an unexpected afternoon that turned into something more.</p>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-col-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-col-text)">North Colombia</div>
+        <div class="stop-item-desc" style="color:var(--sam-col-muted)">The Caribbean coast, Cartagena, Tayrona. A completely different climate from the interior.</div>
+      </div>
     </div>
-    <div class="stops fade">
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Lima</div><div class="stop-desc">One of the best food cities in South America. Ceviche, pisco sours, Miraflores. Do not skip it.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Huacachina</div><div class="stop-desc">A natural oasis surrounded by giant sand dunes. Sandboarding at sunset. One of the stranger and better afternoons of the trip.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Cusco</div><div class="stop-desc">The old Inca capital, now a colonial city built on Inca foundations. The altitude hits immediately -- give yourself a day.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">The Sacred Valley &amp; dog shelter</div><div class="stop-desc">The valley between Cusco and Machu Picchu. We ended up at a dog rescue shelter for an afternoon -- one of the better unplanned stops of the whole trip.</div></div></div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-col-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-col-text)">Medellin</div>
+        <div class="stop-item-desc" style="color:var(--sam-col-muted)">The transformation is worth reading about before you arrive. One of the most interesting cities in South America.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-col-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-col-text)">Salento</div>
+        <div class="stop-item-desc" style="color:var(--sam-col-muted)">Coffee farms, wax palms, mountains. The Valle de Cocora does not look like a real place.</div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
-
-<!-- BOLIVIA -->
-<div class="country-header fade">
-  <p class="country-label">Country 03</p>
-  <h2 class="country-title">Bolivia</h2>
-</div>
-
-<section class="city-section" id="bolivia">
-  <div class="photo-grid photo-grid-3 fade">
-    <div class="photo-slot"><span class="photo-slot-label">Salt flats -- add photo</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Huayna Potosi</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">The Amazon</span></div>
-  </div>
-  <div class="city-grid">
-    <div class="city-text fade">
-      <p>Bolivia is the hardest and most rewarding country in South America. La Paz sits at over 3,600 metres and the altitude is not a joke -- the city is extraordinary in its setting, built into a canyon, the cable cars linking the wealthier districts on the rim to the city below.</p>
-      <p>Huayna Potosi is a 6,088 metre peak outside La Paz -- one of the more accessible high-altitude climbs in the world, though that is relative. The Amazonas was something else entirely. And then ayahuasca, which is its own chapter. The salt flats at Salar de Uyuni are one of the great landscapes on earth -- completely flat, completely white, and enormous beyond what a photograph can convey.</p>
+<section class="stop-section" id="peru" style="background:var(--sam-peru-bg)">
+  <p class="stop-eyebrow fade" style="color:var(--sam-peru-accent)">Stop 02</p>
+  <h2 class="stop-name fade" style="color:var(--sam-peru-text)"><em>Peru</em></h2>
+  <p class="stop-intro fade" style="color:var(--sam-peru-soft)">One of the most varied countries on the continent. Lima has a serious food scene that most people do not expect.</p>
+  <div class="photo-grid pg-3 fade">
+    <div class="photo-slot" style="background:var(--sam-peru-bg3)"><span class="photo-slot-label" style="color:var(--sam-peru-muted)">Huacachina oasis</span></div>
+    <div class="photo-slot" style="background:var(--sam-peru-bg3)"><span class="photo-slot-label" style="color:var(--sam-peru-muted)">Sacred Valley</span></div>
+    <div class="photo-slot" style="background:var(--sam-peru-bg3)"><span class="photo-slot-label" style="color:var(--sam-peru-muted)">Cusco</span></div>
     </div>
-    <div class="stops fade">
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">La Paz</div><div class="stop-desc">The world's highest capital city. Built into a canyon. Cable cars, witches market, the Death Road. One of the most unusual cities in South America.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Huayna Potosi</div><div class="stop-desc">6,088 metres. Two days of climbing, crampons, the summit at 3am. Physically the hardest thing on the trip.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">The Amazonas</div><div class="stop-desc">The jungle. Nothing else to say about it -- you have to go in.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Ayahuasca</div><div class="stop-desc">A ceremony in the jungle. Not a tourist activity -- treat it with the seriousness it deserves. A significant experience.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Sucre</div><div class="stop-desc">Bolivia's constitutional capital, white colonial city, much warmer and calmer than La Paz.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Mount Potosi</div><div class="stop-desc">The silver mountain that funded the Spanish empire for three centuries. The mines are still operating and the history is brutal and worth knowing.</div></div></div>
-      <div class="stop"><div class="stop-dot"></div><div class="stop-content"><div class="stop-name">Salar de Uyuni</div><div class="stop-desc">The salt flats. The largest in the world. White to every horizon. One of the great landscapes on earth and impossible to photograph in a way that does it justice.</div></div></div>
+  <div class="stop-grid">
+    <div class="stop-text fade" style="color:var(--sam-peru-soft)"><p>Huacachina is a genuine oasis in the middle of sand dunes -- sandboarding at sunset is one of those things that sounds ridiculous and turns out to be excellent.</p><p>Cusco and the Sacred Valley deserve more time than most people give them. The dog shelter in the Sacred Valley was an unexpected afternoon that turned into something more.</p></div>
+    <div class="stops-list fade"><div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-peru-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-peru-text)">Lima</div>
+        <div class="stop-item-desc" style="color:var(--sam-peru-muted)">One of the best food cities in South America. Ceviche, pisco sours, Miraflores.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-peru-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-peru-text)">Huacachina</div>
+        <div class="stop-item-desc" style="color:var(--sam-peru-muted)">A natural oasis surrounded by giant sand dunes. Sandboarding at sunset. One of the stranger and better afternoons of the trip.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-peru-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-peru-text)">Cusco</div>
+        <div class="stop-item-desc" style="color:var(--sam-peru-muted)">The old Inca capital. The altitude hits immediately -- give yourself a day.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-peru-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-peru-text)">Sacred Valley & dog shelter</div>
+        <div class="stop-item-desc" style="color:var(--sam-peru-muted)">The valley between Cusco and Machu Picchu, and an unplanned afternoon at a dog rescue that became one of the better stops of the trip.</div>
+      </div>
+    </div>
     </div>
   </div>
 </section>
-
-<div class="next-section">
-  <div><div class="next-label">Back to the start</div></div>
-  <a href="travel.html" class="next-link">All regions <span>&#8594;</span></a>
+<section class="stop-section" id="bolivia" style="background:var(--sam-bol-bg)">
+  <p class="stop-eyebrow fade" style="color:var(--sam-bol-accent)">Stop 03</p>
+  <h2 class="stop-name fade" style="color:var(--sam-bol-text)"><em>Bolivia</em></h2>
+  <p class="stop-intro fade" style="color:var(--sam-bol-soft)">The hardest and most rewarding country in South America. La Paz sits at over 3,600 metres and the altitude is not a joke.</p>
+  <div class="photo-grid pg-3 fade">
+    <div class="photo-slot" style="background:var(--sam-bol-bg3)"><span class="photo-slot-label" style="color:var(--sam-bol-muted)">Salt flats</span></div>
+    <div class="photo-slot" style="background:var(--sam-bol-bg3)"><span class="photo-slot-label" style="color:var(--sam-bol-muted)">Huayna Potosi</span></div>
+    <div class="photo-slot" style="background:var(--sam-bol-bg3)"><span class="photo-slot-label" style="color:var(--sam-bol-muted)">La Paz</span></div>
+    </div>
+  <div class="stop-grid">
+    <div class="stop-text fade" style="color:var(--sam-bol-soft)"><p>Huayna Potosi is a 6,088 metre peak outside La Paz -- one of the more accessible high-altitude climbs in the world, though that is relative.</p><p>The salt flats at Salar de Uyuni are one of the great landscapes on earth -- completely flat, completely white, and enormous beyond what a photograph can convey.</p></div>
+    <div class="stops-list fade"><div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-bol-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-bol-text)">La Paz</div>
+        <div class="stop-item-desc" style="color:var(--sam-bol-muted)">The world's highest capital. Built into a canyon. Cable cars, witches market, the Death Road.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-bol-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-bol-text)">Huayna Potosi</div>
+        <div class="stop-item-desc" style="color:var(--sam-bol-muted)">6,088 metres. Two days, crampons, summit at 3am. Physically the hardest thing on the trip.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-bol-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-bol-text)">The Amazonas</div>
+        <div class="stop-item-desc" style="color:var(--sam-bol-muted)">The jungle. Nothing else to say -- you have to go in.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-bol-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-bol-text)">Ayahuasca</div>
+        <div class="stop-item-desc" style="color:var(--sam-bol-muted)">A ceremony in the jungle. Treat it with seriousness. A significant experience.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-bol-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-bol-text)">Sucre</div>
+        <div class="stop-item-desc" style="color:var(--sam-bol-muted)">Bolivia's constitutional capital. White colonial city, much warmer than La Paz.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-bol-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-bol-text)">Mount Potosi</div>
+        <div class="stop-item-desc" style="color:var(--sam-bol-muted)">The silver mountain that funded the Spanish empire for three centuries. The mines are still operating.</div>
+      </div>
+    </div>
+    <div class="stop-item">
+      <div class="stop-bullet" style="background:var(--sam-bol-accent)"></div>
+      <div>
+        <div class="stop-item-name" style="color:var(--sam-bol-text)">Salar de Uyuni</div>
+        <div class="stop-item-desc" style="color:var(--sam-bol-muted)">The salt flats. White to every horizon. One of the great landscapes on earth.</div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+<div class="next-bar" style="background:var(--sam-bol-bg2);border-top:1px solid var(--sam-bol-rule)">
+  <span class="next-label" style="color:var(--sam-bol-muted)">Next region</span>
+  <a href="travel.html" class="next-link" style="color:var(--sam-bol-text)">
+    Back to all regions <span style="color:var(--sam-bol-accent)">&#8594;</span>
+  </a>
 </div>
-
-<footer>
-  <span class="footer-text">Seth Jarrett -- South America</span>
-  <a href="travel.html" class="footer-link">&#8592; All regions</a>
+<footer style="background:var(--sam-bol-bg2);border-top:1px solid var(--sam-bol-rule)">
+  <span class="footer-text" style="color:var(--sam-bol-muted)">Seth Jarrett -- South America</span>
+  <a href="travel.html" class="footer-link" style="color:var(--sam-bol-accent)">&#8592; All regions</a>
 </footer>
-
 <script>
 const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);obs.unobserve(e.target);}}),{threshold:0.08});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+function applyTheme(p){
+  const el=document.documentElement;
+  ['bg','bg2','bg3','text','soft','muted','accent','rule','nav'].forEach(k=>{
+    el.style.setProperty(`--current-${k}`,`var(--${p}-${k})`);
+  });
+  document.body.style.background=`var(--${p}-bg)`;
+  document.body.style.color=`var(--${p}-text)`;
+  document.querySelector('nav').style.background=`var(--${p}-nav)`;
+  document.querySelector('nav').style.borderBottomColor=`var(--${p}-rule)`;
+}
+
+const tabs=document.querySelectorAll('.stop-tab');
+tabs.forEach(t=>t.addEventListener('click',e=>{
+  e.preventDefault();
+  tabs.forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelector(t.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+}));
+
+const sectionObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      tabs.forEach(t=>t.classList.remove('active'));
+      const a=document.querySelector(`.stop-tab[href="#${e.target.id}"]`);
+      if(a) a.classList.add('active');
+      switch(e.target.id){
+        case 'colombia': applyTheme('sam-col'); break;
+    case 'peru': applyTheme('sam-peru'); break;
+    case 'bolivia': applyTheme('sam-bol'); break;
+      }
+    }
+  });
+},{threshold:0.4});
+document.querySelectorAll('.stop-section').forEach(s=>sectionObs.observe(s));
 </script>
 </body>
 </html>
