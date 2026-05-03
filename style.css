@@ -1,0 +1,190 @@
+/* ============================================================
+   SETH JARRETT -- SITE THEME
+   Edit colours here and they update across the whole site.
+   ============================================================ */
+
+:root {
+
+  /* --- FONTS --- */
+  --serif: 'Lora', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+
+  /* --- CORE PALETTE (home, life, engineering) --- */
+  --green:        #2A4A28;
+  --green-mid:    #3E6A3C;
+  --green-light:  #6A9A68;
+  --green-pale:   #C4D8C0;
+  --green-dim:    rgba(106,154,104,0.10);
+
+  --stone:        #F4F0E8;
+  --stone2:       #EDE7DA;
+  --stone3:       #E4DDD0;
+
+  --ink:          #1E2E1C;
+  --ink-soft:     #3A4E38;
+  --ink-muted:    #7A8E78;
+
+  --warm:         #C8A87A;
+  --warm-pale:    #EEE4D4;
+
+  --rule:         rgba(42,74,40,0.12);
+
+  /* --- ENGINEERING PAGE --- */
+  --eng-bg:       #F7F5F0;
+  --eng-bg2:      #EEEAE0;
+  --eng-bg3:      #E4DFD2;
+  --eng-ink:      #1A1E2A;
+  --eng-ink-soft: #3A4050;
+  --eng-ink-muted:#7A8090;
+  --eng-blue:     #2A4A8A;
+  --eng-blue-light:#4A6AAA;
+  --eng-blue-pale: #D8E0F0;
+  --eng-rule:     rgba(42,74,138,0.14);
+
+  /* --- TRAVEL PAGE THEMES (scroll-driven colour shifts) --- */
+
+  /* Hero / reflection -- meadow green */
+  --t-meadow-bg:       #F5F0E8;
+  --t-meadow-text:     #2C2820;
+  --t-meadow-soft:     #5C5448;
+  --t-meadow-muted:    #9C9488;
+  --t-meadow-accent:   #3A8C3A;
+  --t-meadow-rule:     rgba(58,140,58,0.15);
+  --t-meadow-nav:      rgba(245,240,232,0.96);
+
+  /* North America -- city grey */
+  --t-namerica-bg:     #C8CDD8;
+  --t-namerica-text:   #141820;
+  --t-namerica-soft:   #343840;
+  --t-namerica-muted:  #787D88;
+  --t-namerica-accent: #404858;
+  --t-namerica-rule:   rgba(64,72,88,0.20);
+  --t-namerica-nav:    rgba(200,205,216,0.96);
+
+  /* Asia -- deep jungle */
+  --t-jungle-bg:       #0E2010;
+  --t-jungle-text:     #D0EAC0;
+  --t-jungle-soft:     #70A860;
+  --t-jungle-muted:    #3A6030;
+  --t-jungle-accent:   #8CD858;
+  --t-jungle-rule:     rgba(140,216,88,0.15);
+  --t-jungle-nav:      rgba(14,32,16,0.96);
+
+  /* Australia -- open sky */
+  --t-outback-bg:      #E8F4FC;
+  --t-outback-text:    #182030;
+  --t-outback-soft:    #406080;
+  --t-outback-muted:   #8090A8;
+  --t-outback-accent:  #2878B8;
+  --t-outback-rule:    rgba(40,120,184,0.15);
+  --t-outback-nav:     rgba(232,244,252,0.97);
+
+  /* Japan -- cherry blossom */
+  --t-japan-bg:        #F8F0F4;
+  --t-japan-text:      #280818;
+  --t-japan-soft:      #582840;
+  --t-japan-muted:     #A08090;
+  --t-japan-accent:    #C03870;
+  --t-japan-rule:      rgba(192,56,112,0.15);
+  --t-japan-nav:       rgba(248,240,244,0.97);
+
+  /* Africa -- dry heat */
+  --t-africa-bg:       #F8F0D8;
+  --t-africa-text:     #2A1400;
+  --t-africa-soft:     #6A4010;
+  --t-africa-muted:    #A08050;
+  --t-africa-accent:   #C87010;
+  --t-africa-rule:     rgba(200,112,16,0.18);
+  --t-africa-nav:      rgba(248,240,216,0.97);
+
+  /* Europe -- metropolitan indigo */
+  --t-europe-bg:       #181428;
+  --t-europe-text:     #D8D0F0;
+  --t-europe-soft:     #9088C0;
+  --t-europe-muted:    #605880;
+  --t-europe-accent:   #9888E0;
+  --t-europe-rule:     rgba(152,136,224,0.18);
+  --t-europe-nav:      rgba(24,20,40,0.96);
+
+  /* South America -- tropical green */
+  --t-andes-bg:        #D8F0C8;
+  --t-andes-text:      #0A2008;
+  --t-andes-soft:      #286820;
+  --t-andes-muted:     #5A9848;
+  --t-andes-accent:    #1A6810;
+  --t-andes-rule:      rgba(26,104,16,0.15);
+  --t-andes-nav:       rgba(216,240,200,0.97);
+
+  /* --- REGION SUBPAGE PALETTES --- */
+
+  /* Asia subpage */
+  --r-asia-bg:         #0E2010;
+  --r-asia-bg2:        #142818;
+  --r-asia-bg3:        #1A3020;
+  --r-asia-text:       #D0EAC0;
+  --r-asia-soft:       #80B870;
+  --r-asia-muted:      #3A6030;
+  --r-asia-accent:     #8CD858;
+  --r-asia-rule:       rgba(140,216,88,0.15);
+
+  /* Australia subpage */
+  --r-aus-bg:          #E8F4FC;
+  --r-aus-bg2:         #DCF0FA;
+  --r-aus-bg3:         #C8E4F4;
+  --r-aus-text:        #182030;
+  --r-aus-soft:        #406080;
+  --r-aus-muted:       #8090A8;
+  --r-aus-accent:      #2878B8;
+  --r-aus-rule:        rgba(40,120,184,0.15);
+
+  /* Japan subpage */
+  --r-jpn-bg:          #F8F0F4;
+  --r-jpn-bg2:         #F0E4EC;
+  --r-jpn-bg3:         #E4D0DC;
+  --r-jpn-text:        #280818;
+  --r-jpn-soft:        #582840;
+  --r-jpn-muted:       #A08090;
+  --r-jpn-accent:      #C03870;
+  --r-jpn-rule:        rgba(192,56,112,0.12);
+
+  /* Africa subpage */
+  --r-afr-bg:          #FAF6F0;
+  --r-afr-bg2:         #F5EEE4;
+  --r-afr-bg3:         #EDE0CC;
+  --r-afr-text:        #1E1008;
+  --r-afr-soft:        #5A3C18;
+  --r-afr-muted:       #A88060;
+  --r-afr-accent:      #C87010;
+  --r-afr-rule:        rgba(200,112,16,0.15);
+
+  /* Europe subpage */
+  --r-eur-bg:          #181428;
+  --r-eur-bg2:         #201A34;
+  --r-eur-bg3:         #282040;
+  --r-eur-text:        #D8D0F0;
+  --r-eur-soft:        #9088C0;
+  --r-eur-muted:       #605880;
+  --r-eur-accent:      #9888E0;
+  --r-eur-rule:        rgba(152,136,224,0.15);
+
+  /* South America subpage */
+  --r-sam-bg:          #D8F0C8;
+  --r-sam-bg2:         #CCE8BA;
+  --r-sam-bg3:         #B8D8A4;
+  --r-sam-text:        #0A2008;
+  --r-sam-soft:        #286820;
+  --r-sam-muted:       #5A9848;
+  --r-sam-accent:      #1A6810;
+  --r-sam-rule:        rgba(26,104,16,0.15);
+
+  /* North America subpage */
+  --r-nam-bg:          #F2EBE0;
+  --r-nam-bg2:         #E8DDD0;
+  --r-nam-bg3:         #DDD0C0;
+  --r-nam-text:        #1A140A;
+  --r-nam-soft:        #3A2E1E;
+  --r-nam-muted:       #8A7A60;
+  --r-nam-accent:      #C0861A;
+  --r-nam-rule:        rgba(192,134,26,0.15);
+
+}

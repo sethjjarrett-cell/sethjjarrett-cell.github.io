@@ -6,6 +6,7 @@
 <title>Travel — Seth Jarrett</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -698,14 +699,14 @@ document.querySelectorAll('.map-legend-item').forEach(item => {
 
 // Themes
 const themes={
-  meadow:{'--bg':'#F5F0E8','--text':'#2C2820','--text-soft':'#5C5448','--text-muted':'#9C9488','--accent':'#3A8C3A','--rule':'rgba(58,140,58,0.15)','--nav-bg':'rgba(245,240,232,0.96)'},
-  namerica:{'--bg':'#C8CDD8','--text':'#141820','--text-soft':'#343840','--text-muted':'#787D88','--accent':'#404858','--rule':'rgba(64,72,88,0.2)','--nav-bg':'rgba(200,205,216,0.96)'},
-  jungle:{'--bg':'#0E2010','--text':'#D0EAC0','--text-soft':'#70A860','--text-muted':'#3A6030','--accent':'#8CD858','--rule':'rgba(140,216,88,0.15)','--nav-bg':'rgba(14,32,16,0.96)'},
-  outback:{'--bg':'#E8F4FC','--text':'#182030','--text-soft':'#406080','--text-muted':'#8090A8','--accent':'#2878B8','--rule':'rgba(40,120,184,0.15)','--nav-bg':'rgba(232,244,252,0.97)'},
-  japan:{'--bg':'#F8F0F4','--text':'#280818','--text-soft':'#582840','--text-muted':'#A08090','--accent':'#C03870','--rule':'rgba(192,56,112,0.15)','--nav-bg':'rgba(248,240,244,0.97)'},
-  africa:{'--bg':'#F8F0D8','--text':'#2A1400','--text-soft':'#6A4010','--text-muted':'#A08050','--accent':'#C87010','--rule':'rgba(200,112,16,0.18)','--nav-bg':'rgba(248,240,216,0.97)'},
-  golden:{'--bg':'#181428','--text':'#D8D0F0','--text-soft':'#9088C0','--text-muted':'#605880','--accent':'#9888E0','--rule':'rgba(152,136,224,0.18)','--nav-bg':'rgba(24,20,40,0.96)'},
-  andes:{'--bg':'#D8F0C8','--text':'#0A2008','--text-soft':'#286820','--text-muted':'#5A9848','--accent':'#1A6810','--rule':'rgba(26,104,16,0.15)','--nav-bg':'rgba(216,240,200,0.97)'}
+  meadow:{'--bg':'var(--t-meadow-bg)','--text':'var(--t-meadow-text)','--text-soft':'var(--t-meadow-soft)','--text-muted':'var(--t-meadow-muted)','--accent':'var(--t-meadow-accent)','--rule':'var(--t-meadow-rule)','--nav-bg':'var(--t-meadow-nav)'},
+  namerica:{'--bg':'var(--t-namerica-bg)','--text':'var(--t-namerica-text)','--text-soft':'var(--t-namerica-soft)','--text-muted':'var(--t-namerica-muted)','--accent':'var(--t-namerica-accent)','--rule':'var(--t-namerica-rule)','--nav-bg':'var(--t-namerica-nav)'},
+  jungle:{'--bg':'var(--t-jungle-bg)','--text':'var(--t-jungle-text)','--text-soft':'var(--t-jungle-soft)','--text-muted':'var(--t-jungle-muted)','--accent':'var(--t-jungle-accent)','--rule':'var(--t-jungle-rule)','--nav-bg':'var(--t-jungle-nav)'},
+  outback:{'--bg':'var(--t-outback-bg)','--text':'var(--t-outback-text)','--text-soft':'var(--t-outback-soft)','--text-muted':'var(--t-outback-muted)','--accent':'var(--t-outback-accent)','--rule':'var(--t-outback-rule)','--nav-bg':'var(--t-outback-nav)'},
+  japan:{'--bg':'var(--t-japan-bg)','--text':'var(--t-japan-text)','--text-soft':'var(--t-japan-soft)','--text-muted':'var(--t-japan-muted)','--accent':'var(--t-japan-accent)','--rule':'var(--t-japan-rule)','--nav-bg':'var(--t-japan-nav)'},
+  africa:{'--bg':'var(--t-africa-bg)','--text':'var(--t-africa-text)','--text-soft':'var(--t-africa-soft)','--text-muted':'var(--t-africa-muted)','--accent':'var(--t-africa-accent)','--rule':'var(--t-africa-rule)','--nav-bg':'var(--t-africa-nav)'},
+  golden:{'--bg':'var(--t-europe-bg)','--text':'var(--t-europe-text)','--text-soft':'var(--t-europe-soft)','--text-muted':'var(--t-europe-muted)','--accent':'var(--t-europe-accent)','--rule':'var(--t-europe-rule)','--nav-bg':'var(--t-europe-nav)'},
+  andes:{'--bg':'var(--t-andes-bg)','--text':'var(--t-andes-text)','--text-soft':'var(--t-andes-soft)','--text-muted':'var(--t-andes-muted)','--accent':'var(--t-andes-accent)','--rule':'var(--t-andes-rule)','--nav-bg':'var(--t-andes-nav)'}
 };
 
 function applyTheme(name){
