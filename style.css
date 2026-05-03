@@ -177,14 +177,35 @@
   --r-sam-accent:      #1A6810;
   --r-sam-rule:        rgba(26,104,16,0.15);
 
-  /* North America subpage */
-  --r-nam-bg:          #F2EBE0;
-  --r-nam-bg2:         #E8DDD0;
-  --r-nam-bg3:         #DDD0C0;
-  --r-nam-text:        #1A140A;
-  --r-nam-soft:        #3A2E1E;
-  --r-nam-muted:       #8A7A60;
-  --r-nam-accent:      #C0861A;
-  --r-nam-rule:        rgba(192,134,26,0.15);
+  /* North America subpage -- city themes */
+  --nam-nyc-bg:        #F2EBE0;
+  --nam-nyc-bg2:       #E8DDD0;
+  --nam-nyc-bg3:       #DDD0C0;
+  --nam-nyc-text:      #1A140A;
+  --nam-nyc-soft:      #3A2E1E;
+  --nam-nyc-muted:     #8A7A60;
+  --nam-nyc-accent:    #C0861A;
+  --nam-nyc-rule:      rgba(192,134,26,0.15);
+  --nam-nyc-nav:       rgba(242,235,224,0.96);
+
+  --nam-dc-bg:         #E8EAEE;
+  --nam-dc-bg2:        #DDE0E6;
+  --nam-dc-bg3:        #CED2DA;
+  --nam-dc-text:       #12161E;
+  --nam-dc-soft:       #38404E;
+  --nam-dc-muted:      #7A8090;
+  --nam-dc-accent:     #485878;
+  --nam-dc-rule:       rgba(72,88,120,0.15);
+  --nam-dc-nav:        rgba(232,234,238,0.97);
+
+  --nam-miami-bg:      #1A0828;
+  --nam-miami-bg2:     #220A34;
+  --nam-miami-bg3:     #2E1040;
+  --nam-miami-text:    #F0D8F8;
+  --nam-miami-soft:    #C090E0;
+  --nam-miami-muted:   #805898;
+  --nam-miami-accent:  #E060C0;
+  --nam-miami-rule:    rgba(224,96,192,0.18);
+  --nam-miami-nav:     rgba(26,8,40,0.96);
 
 }
