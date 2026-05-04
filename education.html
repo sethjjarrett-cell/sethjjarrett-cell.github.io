@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Education — Seth Jarrett</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--eng-bg);color:var(--eng-ink);line-height:1.7;font-size:16px;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--eng-rule) 1px,transparent 1px),linear-gradient(90deg,var(--eng-rule) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;opacity:0.5;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(247,245,240,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--eng-rule);}
+.nav-back{font-family:var(--serif);font-size:1.05rem;color:var(--eng-blue);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-size:0.75rem;color:var(--eng-ink-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
+.nav-links a:hover{color:var(--eng-blue);}
+
+/* HEADER */
+.page-header{padding:9rem 4rem 4rem;border-bottom:2px solid var(--eng-ink);position:relative;z-index:1;}
+.header-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;}
+.page-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.75rem;}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;line-height:1.05;color:var(--eng-ink);}
+.page-title em{font-style:italic;color:var(--eng-blue);}
+.header-right{padding-bottom:0.5rem;}
+.header-summary{font-size:0.97rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.85;margin-bottom:1.5rem;}
+.header-stats{display:flex;gap:2.5rem;}
+.stat{border-left:2px solid var(--eng-blue-pale);padding-left:1rem;}
+.stat-num{font-family:var(--serif);font-size:1.5rem;color:var(--eng-blue);line-height:1;}
+.stat-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-top:0.25rem;}
+
+/* YEAR TABS */
+.year-tabs{padding:1.5rem 4rem;background:var(--eng-bg2);display:flex;gap:0.75rem;align-items:center;position:sticky;top:72px;z-index:90;border-bottom:2px solid var(--eng-rule);flex-wrap:wrap;}
+.year-tab{padding:0.7rem 1.75rem;font-size:0.8rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--eng-ink-muted);background:var(--eng-bg);border:1.5px solid var(--eng-rule);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.6rem;user-select:none;}
+.year-tab:hover{border-color:var(--eng-blue-light);color:var(--eng-ink);}
+.year-tab-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:background 0.2s;}
+.year-tab[data-year="1"] .year-tab-dot{background:#C8A040;}
+.year-tab[data-year="2"] .year-tab-dot{background:#50A8D8;}
+.year-tab[data-year="3"] .year-tab-dot{background:#6CBE5A;}
+.year-tab[data-year="4"] .year-tab-dot{background:#C060C0;}
+.year-tab.active{color:var(--eng-ink);background:var(--eng-bg3);border-color:var(--eng-blue);font-weight:500;}
+.year-tab[data-year="1"].active{border-color:#C8A040;background:#FBF5E4;}
+.year-tab[data-year="2"].active{border-color:#50A8D8;background:#EAF3FA;}
+.year-tab[data-year="3"].active{border-color:#6CBE5A;background:#EEF7EB;}
+.year-tab[data-year="4"].active{border-color:#C060C0;background:#F8EEF8;}
+.uob-link{margin-left:auto;font-size:0.72rem;letter-spacing:0.06em;color:var(--eng-blue-light);text-decoration:none;display:flex;align-items:center;gap:0.35rem;transition:color 0.2s;flex-shrink:0;}
+.uob-link:hover{color:var(--eng-blue);}
+.year-tab-label{display:flex;flex-direction:column;gap:0.1rem;}
+.year-tab-sub{font-size:0.62rem;font-weight:300;letter-spacing:0.04em;text-transform:none;opacity:0.7;}
+.year-section{padding:5rem 4rem;position:relative;z-index:1;display:none;}
+.year-section.visible{display:block;}
+#year1{background:var(--eng-bg);}
+#year2{background:var(--eng-bg2);}
+#year3{background:var(--eng-bg);}
+#year4{background:var(--eng-bg2);}
+
+.year-header{display:flex;align-items:baseline;gap:2rem;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--eng-rule);}
+.year-label{font-family:var(--serif);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:400;color:var(--eng-ink);}
+.year-label em{font-style:italic;}
+.year-badge{font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid var(--eng-rule);color:var(--eng-ink-muted);}
+#year1 .year-label em{color:#C8A040;}
+#year2 .year-label em{color:#50A8D8;}
+#year3 .year-label em{color:#6CBE5A;}
+#year4 .year-label em{color:#C060C0;}
+
+.year-intro{font-size:0.95rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.85;max-width:640px;margin-bottom:3rem;}
+
+/* MODULE GRID */
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--eng-rule);}
+.module-card{background:var(--eng-bg);padding:1.75rem;transition:background 0.2s;}
+.module-card:hover{background:var(--eng-bg2);}
+.module-code{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.4rem;}
+.module-name{font-family:var(--serif);font-size:0.98rem;color:var(--eng-ink);line-height:1.35;margin-bottom:0.5rem;}
+.module-credits{font-size:0.72rem;color:var(--eng-ink-muted);}
+.module-tag{display:inline-block;font-size:0.62rem;padding:0.18rem 0.55rem;border:1px solid var(--eng-rule);color:var(--eng-ink-muted);margin-top:0.6rem;}
+/* colour accent per year */
+#year1 .module-card{border-left:2px solid transparent;}
+#year1 .module-card:hover{border-left-color:#C8A040;}
+#year2 .module-card:hover{border-left-color:#50A8D8;}
+#year2 .module-card{border-left:2px solid transparent;}
+#year3 .module-card{border-left:2px solid transparent;}
+#year3 .module-card:hover{border-left-color:#6CBE5A;}
+#year4 .module-card{border-left:2px solid transparent;}
+#year4 .module-card:hover{border-left-color:#C060C0;}
+
+/* KEY PROJECT highlight */
+.module-card.highlight{background:var(--eng-bg2);}
+#year3 .module-card.highlight{border-left:2px solid #6CBE5A;}
+#year4 .module-card.highlight{border-left:2px solid #C060C0;}
+.module-highlight-label{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
+#year3 .module-highlight-label{color:#6CBE5A;}
+#year4 .module-highlight-label{color:#C060C0;}
+
+footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;justify-content:space-between;position:relative;z-index:1;background:var(--eng-bg);}
+.footer-text{font-size:0.72rem;color:var(--eng-ink-muted);}
+.footer-link{font-size:0.72rem;color:var(--eng-blue);text-decoration:none;}
+
+.fade{opacity:0;transform:translateY(14px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade.in{opacity:1;transform:none;}
+
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  .page-header{padding:8rem 1.5rem 3rem;}
+  .header-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .year-tabs{padding:0 1.5rem;top:68px;}
+  .year-section{padding:4rem 1.5rem;}
+  .module-grid{grid-template-columns:1fr 1fr;}
+  footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="engineering.html" class="nav-back">&#8592; Engineering</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="engineering.html">Engineering</a></li>
+    <li><a href="travel.html">Travel</a></li>
+  </ul>
+</nav>
+
+<header class="page-header">
+  <div class="header-grid">
+    <div>
+      <p class="page-eyebrow">University of Bristol</p>
+      <h1 class="page-title">MEng Mechanical &amp;<br><em>Electrical Engineering</em></h1>
+    </div>
+    <div class="header-right">
+      <p class="header-summary">Four years across mechanical and electrical fundamentals, specialising in energy and renewables in Years 3 and 4. First Class Honours, 73% average.</p>
+      <div class="header-stats">
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Years</div></div>
+        <div class="stat"><div class="stat-num">1st</div><div class="stat-label">Classification</div></div>
+        <div class="stat"><div class="stat-num">73%</div><div class="stat-label">Average</div></div>
+        <div class="stat"><div class="stat-num">2019&ndash;23</div><div class="stat-label">Dates</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="year-tabs">
+  <a class="year-tab active" data-year="1"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 1</span><span class="year-tab-sub">Foundations</span></span></a>
+  <a class="year-tab" data-year="2"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 2</span><span class="year-tab-sub">Core Engineering</span></span></a>
+  <a class="year-tab" data-year="3"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 3</span><span class="year-tab-sub">Specialisation</span></span></a>
+  <a class="year-tab" data-year="4"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 4</span><span class="year-tab-sub">Energy &amp; Renewables</span></span></a>
+  <a href="https://www.bris.ac.uk/unit-programme-catalogue/RouteStructureCohort.jsa?ayrCode=19%2F20&byCohort=Y&programmeCode=4EENG013U" target="_blank" rel="noopener" class="uob-link">University of Bristol catalogue &#8599;</a>
+</div>
+
+<!-- YEAR 1 -->
+<section class="year-section fade" id="year1">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 1</em> &mdash; Foundations</h2>
+    <span class="year-badge">9 modules &middot; 120 credits</span>
+  </div>
+  <p class="year-intro">Core engineering foundations across mechanical and electrical disciplines. Mathematics, circuits, dynamics, thermodynamics and an introduction to programming and design.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Electro-Mechanical Design Project</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Project</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Linear Circuits</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Digital Circuits and Systems</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Electrical Systems Engineering</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Engineering Mathematics</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mathematics</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Introduction to Computer Programming</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Computing</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Dynamics of Rigid Bodies</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Thermodynamics</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Design &amp; Manufacturing Principles</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Design</span>
+    </div>
+  </div>
+</section>
+
+<!-- YEAR 2 -->
+<section class="year-section fade" id="year2">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 2</em> &mdash; Core Engineering</h2>
+    <span class="year-badge">8 modules &middot; 120 credits</span>
+  </div>
+  <p class="year-intro">Deeper technical grounding across electro-mechanical systems, signals and control, engineering mathematics, and thermofluids. Building the analytical toolkit for specialisation.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Electro-Mechanical Energy Conversion</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Electro-Mechanical System Design</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Systems</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Signals and Systems</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Electronics 2</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Engineering Mathematics 2</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mathematics</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Dynamics and Control</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Control</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Principles of Professional Practice</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Professional</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Thermofluids 2</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+  </div>
+</section>
+
+<!-- YEAR 3 -->
+<section class="year-section fade" id="year3">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 3</em> &mdash; Specialisation</h2>
+    <span class="year-badge">7 modules &middot; 120 credits</span>
+  </div>
+  <p class="year-intro">Specialising in energy systems, power electronics, and advanced dynamics. Includes a substantial 40-credit individual research project -- a wind-solar mini-grid feasibility study awarded 83% and used as a cohort exemplar.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Sensors, Signals and Control</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Control</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Power Electronics, Machines &amp; Drive Technologies</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Power</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Behaviour of Dynamic Systems</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Dynamics</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Fluid Mechanics and Heat Transfer</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Transport and Mobility Modelling</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Systems</span>
+    </div>
+    <div class="module-card highlight">
+      <div class="module-highlight-label">Key project</div>
+      <div class="module-name">Individual Research Project</div>
+      <div class="module-credits">40 credits</div>
+      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Wind-solar mini-grid feasibility study. Awarded 83%, used as a cohort exemplar paper.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Group Industrial Project</div>
+      <div class="module-credits">40 credits</div>
+      <span class="module-tag">Project</span>
+    </div>
+  </div>
+</section>
+
+<!-- YEAR 4 -->
+<section class="year-section fade" id="year4">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 4</em> &mdash; Energy &amp; Renewables</h2>
+    <span class="year-badge">6 modules &middot; 120 credits</span>
+  </div>
+  <p class="year-intro">Final year focused on energy systems, sustainability and enterprise. Includes the 40-credit group key project -- co-designing and building a solar DC microgrid for a remote community in the Brazilian Amazon.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Innovation, Entrepreneurship and Enterprise</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Business</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Infrastructure Systems Management</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Systems</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Low Carbon Energy Systems</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Energy</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Energy Management</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Energy</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Bio-Inspired AI</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Computing</span>
+    </div>
+    <div class="module-card highlight">
+      <div class="module-highlight-label">Key project</div>
+      <div class="module-name">Group Key Project &mdash; Solar DC Microgrid</div>
+      <div class="module-credits">40 credits</div>
+      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Co-designed and physically built a solar DC microgrid for a remote community in the Brazilian Amazon. Full lifecycle from concept to validated hardware.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-text">Seth Jarrett &mdash; Education</span>
+  <a href="engineering.html" class="footer-link">&#8592; Engineering</a>
+</footer>
+
+<script>
+// Show/hide year panels on tab click
+const tabs = document.querySelectorAll('.year-tab');
+const panels = document.querySelectorAll('.year-section');
+
+function showYear(yr) {
+  panels.forEach(p => p.classList.remove('visible'));
+  tabs.forEach(t => t.classList.remove('active'));
+  const panel = document.getElementById('year' + yr);
+  const tab = document.querySelector(`.year-tab[data-year="${yr}"]`);
+  if (panel) panel.classList.add('visible');
+  if (tab) tab.classList.add('active');
+  // scroll to just below the tab bar
+  window.scrollTo({ top: document.querySelector('.year-tabs').offsetTop - 72, behavior: 'smooth' });
+}
+
+tabs.forEach(t => t.addEventListener('click', () => showYear(t.dataset.year)));
+
+// Show year 1 by default
+showYear(1);
+
+// Fade in visible modules
+const obs = new IntersectionObserver(entries => entries.forEach((e, i) => {
+  if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 60); obs.unobserve(e.target); }
+}), { threshold: 0.06 });
+function observeFades() {
+  document.querySelectorAll('.fade:not(.in)').forEach(el => obs.observe(el));
+}
+observeFades();
+// Re-observe when switching panels
+tabs.forEach(t => t.addEventListener('click', () => setTimeout(observeFades, 50)));
+</script>
+</body>
+</html>
