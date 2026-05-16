@@ -112,7 +112,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 
 <section class="hero" id="hero" data-theme="meadow">
   <h1 class="hero-title">Two years,<br><em>six continents</em></h1>
-  <p class="hero-sub">North America, Asia, Australia, Japan, Africa, Europe, South America. It changed how I see things -- the contrasts in how people live, what communities face, and how much goes unseen from home.</p>
+  <p class="hero-sub" id="travel-hero-sub">North America, Asia, Australia, Japan, Africa, Europe, South America. It changed how I see things -- the contrasts in how people live, what communities face, and how much goes unseen from home.</p>
   <div class="hero-stats">
     <div><div class="stat-num">2</div><div class="stat-label">Years</div></div>
     <div><div class="stat-num">6</div><div class="stat-label">Continents</div></div>
@@ -145,7 +145,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="region-chapter fade">Region 01</p>
     <h2 class="region-name fade">North <em>America</em></h2>
     <p class="region-countries fade">USA &middot; New York &middot; Washington DC &middot; Miami</p>
-    <p class="region-text fade">First stop. New York is everything you expect and nothing like you imagined -- Times Square, the Empire State, a rally outside Trump Tower, Central Park, Brooklyn and the view back. Washington for the monuments and Arlington Cemetery. Miami for the beach, Wynwood, and the clothes.</p>
+    <p class="region-text fade" id="travel-namerica">First stop. New York is everything you expect and nothing like you imagined -- Times Square, the Empire State, a rally outside Trump Tower, Central Park, Brooklyn and the view back. Washington for the monuments and Arlington Cemetery. Miami for the beach, Wynwood, and the clothes.</p>
     <a href="north-america.html" class="region-link fade">Explore North America &#8594;</a>
   </div>
   <div class="region-visual fade">
@@ -263,7 +263,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="region-chapter fade">Region 02</p>
     <h2 class="region-name fade">Southeast <em>Asia</em></h2>
     <p class="region-countries fade">Thailand &middot; Vietnam &middot; Cambodia &middot; Indonesia &middot; Bali</p>
-    <p class="region-text fade">The region that probably changes you most the first time. The density of life, the heat, the noise -- and the contrast between the tourist trail and everything just off it. You realise quickly how much of the world runs on very little, and how much that does not stop people.</p>
+    <p class="region-text fade" id="travel-asia">The region that probably changes you most the first time. The density of life, the heat, the noise -- and the contrast between the tourist trail and everything just off it. You realise quickly how much of the world runs on very little, and how much that does not stop people.</p>
     <a href="asia.html" class="region-link fade">Explore Asia &#8594;</a>
   </div>
   <div class="region-visual fade">
@@ -311,7 +311,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="region-chapter fade">Region 03</p>
     <h2 class="region-name fade"><em>Australia</em></h2>
     <p class="region-countries fade">Sydney &middot; Melbourne &middot; East Coast</p>
-    <p class="region-text fade">Four months living and working here, including a multi-level Melbourne venue. Cool, sunny, and the place that taught me most about integrating quickly into a team where you know nobody. The east coast is beautiful in a way that takes you by surprise.</p>
+    <p class="region-text fade" id="travel-australia">Four months living and working here, including a multi-level Melbourne venue. Cool, sunny, and the place that taught me most about integrating quickly into a team where you know nobody. The east coast is beautiful in a way that takes you by surprise.</p>
     <a href="australia.html" class="region-link fade">Explore Australia &#8594;</a>
   </div>
   <div class="region-visual fade">
@@ -350,7 +350,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="region-chapter fade">Region 04</p>
     <h2 class="region-name fade"><em>Japan</em></h2>
     <p class="region-countries fade">Tokyo &middot; Kyoto &middot; Osaka</p>
-    <p class="region-text fade">Sleek and ancient at the same time. Tokyo moves faster than anywhere else on earth and Kyoto feels like it is from a different century entirely. A place that rewards paying attention -- and one that feels like two completely different countries depending on where you are standing.</p>
+    <p class="region-text fade" id="travel-japan">Sleek and ancient at the same time. Tokyo moves faster than anywhere else on earth and Kyoto feels like it is from a different century entirely. A place that rewards paying attention -- and one that feels like two completely different countries depending on where you are standing.</p>
     <a href="japan.html" class="region-link fade">Explore Japan &#8594;</a>
   </div>
   <div class="region-visual fade">
@@ -387,7 +387,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="region-chapter fade">Region 05</p>
     <h2 class="region-name fade"><em>Africa</em></h2>
     <p class="region-countries fade">Morocco &middot; Marrakech &middot; the Atlas Mountains</p>
-    <p class="region-text fade">Hot, vast, and humbling. The kind of place that makes you very aware of how little of the world you actually know. The scale of everything -- the landscape, the wildlife, the contrast between what people have and what they build with it -- stays with you.</p>
+    <p class="region-text fade" id="travel-africa">Hot, vast, and humbling. The kind of place that makes you very aware of how little of the world you actually know. The scale of everything -- the landscape, the wildlife, the contrast between what people have and what they build with it -- stays with you.</p>
     <a href="africa.html" class="region-link fade">Explore Africa &#8594;</a>
   </div>
   <div class="region-visual fade">
@@ -434,7 +434,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="region-chapter fade">Region 06</p>
     <h2 class="region-name fade"><em>Europe</em></h2>
     <p class="region-countries fade">UK &middot; France &middot; Spain &middot; Italy &middot; and more</p>
-    <p class="region-text fade">The familiar made unfamiliar. Easier to travel, harder to pay attention. But different cities have different pulses -- and noticing that, the way a place moves and what people care about, is what keeps travel interesting long after the novelty wears off.</p>
+    <p class="region-text fade" id="travel-europe">The familiar made unfamiliar. Easier to travel, harder to pay attention. But different cities have different pulses -- and noticing that, the way a place moves and what people care about, is what keeps travel interesting long after the novelty wears off.</p>
     <a href="europe.html" class="region-link fade">Explore Europe &#8594;</a>
   </div>
   <div class="region-visual fade">
@@ -478,7 +478,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="region-chapter fade">Region 07</p>
     <h2 class="region-name fade">South <em>America</em></h2>
     <p class="region-countries fade">Colombia &middot; Peru &middot; Bolivia &middot; Argentina &middot; Chile</p>
-    <p class="region-text fade">Mountains, rainforest, colour and a pace of life that makes you question why you were ever in a rush. The continent where the university microgrid project stopped being abstract -- communities without reliable power are not a case study when you have spent time in them.</p>
+    <p class="region-text fade" id="travel-samerica">Mountains, rainforest, colour and a pace of life that makes you question why you were ever in a rush. The continent where the university microgrid project stopped being abstract -- communities without reliable power are not a case study when you have spent time in them.</p>
     <a href="south-america.html" class="region-link fade">Explore South America &#8594;</a>
   </div>
   <div class="region-visual fade">
@@ -515,8 +515,8 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <p class="reflection-eyebrow fade">More than a gap year</p>
     <h2 class="reflection-title fade">What it actually did</h2>
     <div class="reflection-text fade">
-      <p>Two years travelling gave me a real appreciation for how differently people live -- the varying standards of living, the cultural contrasts, and the challenges communities face. I was also struck by how little people, me included, need to be content as long as their needs are met; that standards always rise with lifestyle. It started to make me wonder whether all of this, the extravagance we come to expect in the west, is really necessary.</p>
-      <p>Seeing the struggles of many communities, and the beauty of the world, also left me with a genuine drive to do work that has impact beyond a project deliverable, and pointed me towards meaningful engineering as the direction I want my career to go.</p>
+      <p id="travel-reflection-1">Two years travelling gave me a real appreciation for how differently people live -- the varying standards of living, the cultural contrasts, and the challenges communities face. I was also struck by how little people, me included, need to be content as long as their needs are met; that standards always rise with lifestyle. It started to make me wonder whether all of this, the extravagance we come to expect in the west, is really necessary.</p>
+      <p id="travel-reflection-2">Seeing the struggles of many communities, and the beauty of the world, also left me with a genuine drive to do work that has impact beyond a project deliverable, and pointed me towards meaningful engineering as the direction I want my career to go.</p>
     </div>
   </div>
 </section>
@@ -730,6 +730,24 @@ const themeObs=new IntersectionObserver(entries=>{
 
 allSections.forEach(s=>themeObs.observe(s));
 dots.forEach((dot,i)=>dot.addEventListener('click',()=>document.getElementById(ids[i])?.scrollIntoView({behavior:'smooth'})));
+
+// Load content from content.json (managed via admin.html)
+fetch('content.json')
+  .then(r => r.json())
+  .then(data => {
+    const t = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+    t('travel-hero-sub', data.travel.hero_sub);
+    t('travel-namerica', data.travel.namerica_text);
+    t('travel-asia', data.travel.asia_text);
+    t('travel-australia', data.travel.australia_text);
+    t('travel-japan', data.travel.japan_text);
+    t('travel-africa', data.travel.africa_text);
+    t('travel-europe', data.travel.europe_text);
+    t('travel-samerica', data.travel.samerica_text);
+    t('travel-reflection-1', data.travel.reflection_text_1);
+    t('travel-reflection-2', data.travel.reflection_text_2);
+  })
+  .catch(() => { /* content.json not found — hardcoded content displays instead */ });
 
 const fadeObs=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);fadeObs.unobserve(e.target);}});

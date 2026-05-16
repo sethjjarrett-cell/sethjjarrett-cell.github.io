@@ -95,8 +95,8 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <h2 class="stop-name fade" style="color:var(--afr-casa-text)"><em>Casablanca</em></h2>
   <p class="stop-intro fade" style="color:var(--afr-casa-soft)">Sleek and white in a way that feels deliberate. Morocco's modern face -- the financial capital, the biggest city, the one that looks outward.</p>
   <div class="photo-grid pg-2 fade">
-    <div class="photo-slot" style="background:var(--afr-casa-bg3)"><span class="photo-slot-label" style="color:var(--afr-casa-muted)">Hassan II Mosque</span></div>
-    <div class="photo-slot" style="background:var(--afr-casa-bg3)"><span class="photo-slot-label" style="color:var(--afr-casa-muted)">The white city</span></div>
+    <div class="photo-slot" id="photo-casa-1" style="background:var(--afr-casa-bg3)"><span class="photo-slot-label" style="color:var(--afr-casa-muted)">Hassan II Mosque</span></div>
+    <div class="photo-slot" id="photo-casa-2" style="background:var(--afr-casa-bg3)"><span class="photo-slot-label" style="color:var(--afr-casa-muted)">The white city</span></div>
     </div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--afr-casa-soft)"><p>The Hassan II Mosque is one of the largest in the world and sits over the Atlantic in a way that stops you. It is worth spending time in Casablanca to understand the country before heading inland.</p></div>
@@ -129,9 +129,9 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <h2 class="stop-name fade" style="color:var(--afr-marra-text)"><em>Marrakech</em></h2>
   <p class="stop-intro fade" style="color:var(--afr-marra-soft)">Overwhelming in the way that only a few cities manage. The medina is a labyrinth that takes days to start making sense of.</p>
   <div class="photo-grid pg-3 fade">
-    <div class="photo-slot" style="background:var(--afr-marra-bg3)"><span class="photo-slot-label" style="color:var(--afr-marra-muted)">Jemaa el-Fna</span></div>
-    <div class="photo-slot" style="background:var(--afr-marra-bg3)"><span class="photo-slot-label" style="color:var(--afr-marra-muted)">The souks</span></div>
-    <div class="photo-slot" style="background:var(--afr-marra-bg3)"><span class="photo-slot-label" style="color:var(--afr-marra-muted)">Medina</span></div>
+    <div class="photo-slot" id="photo-marra-1" style="background:var(--afr-marra-bg3)"><span class="photo-slot-label" style="color:var(--afr-marra-muted)">Jemaa el-Fna</span></div>
+    <div class="photo-slot" id="photo-marra-2" style="background:var(--afr-marra-bg3)"><span class="photo-slot-label" style="color:var(--afr-marra-muted)">The souks</span></div>
+    <div class="photo-slot" id="photo-marra-3" style="background:var(--afr-marra-bg3)"><span class="photo-slot-label" style="color:var(--afr-marra-muted)">Medina</span></div>
     </div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--afr-marra-soft)"><p>Jemaa el-Fna at night is one of the great squares in the world -- storytellers, snake charmers, food stalls, and the particular energy of a place that has been doing this for centuries.</p><p>The heat makes everything more intense. The colours -- terracotta, saffron, deep blue -- are exactly as vivid as they look in photographs and somehow still surprising in person.</p></div>
@@ -179,6 +179,29 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
 <script>
 const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*70);obs.unobserve(e.target);}}),{threshold:0.08});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+// Load content from content.json (managed via admin.html)
+fetch('content.json')
+  .then(r => r.json())
+  .then(data => {
+    const bg = (id, url) => {
+      const el = document.getElementById(id);
+      if (el && url) {
+        el.style.backgroundImage = `url(${url})`;
+        el.style.backgroundSize = 'cover';
+        el.style.backgroundPosition = 'center';
+        // Hide the label text once a real photo loads
+        const label = el.querySelector('.photo-slot-label');
+        if (label) label.style.display = 'none';
+      }
+    };
+    bg('photo-casa-1', data.photos.africa_casablanca_1);
+    bg('photo-casa-2', data.photos.africa_casablanca_2);
+    bg('photo-marra-1', data.photos.africa_marrakech_1);
+    bg('photo-marra-2', data.photos.africa_marrakech_2);
+    bg('photo-marra-3', data.photos.africa_marrakech_3);
+  })
+  .catch(() => { /* content.json not found — placeholder slots show instead */ });
 
 function applyTheme(p){
   const el=document.documentElement;

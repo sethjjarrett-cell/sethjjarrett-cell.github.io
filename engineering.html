@@ -169,7 +169,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
   <div class="header-meta">
     <div class="meta-item">
       <div class="meta-label">Current role</div>
-      <div class="meta-value">Graduate Electrical Engineer, RED Engineering Design</div>
+      <div class="meta-value" id="eng-current-role">Graduate Electrical Engineer, RED Engineering Design</div>
     </div>
     <div class="meta-item">
       <div class="meta-label">Sectors</div>
@@ -177,7 +177,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     </div>
     <div class="meta-item">
       <div class="meta-label">Education</div>
-      <div class="meta-value">MEng First Class, University of Bristol</div>
+      <div class="meta-value" id="eng-education">MEng First Class, University of Bristol</div>
     </div>
   </div>
 </header>
@@ -431,6 +431,16 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 <script>
 const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*60);obs.unobserve(e.target);}}),{threshold:0.06});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+// Load content from content.json (managed via admin.html)
+fetch('content.json')
+  .then(r => r.json())
+  .then(data => {
+    const t = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+    t('eng-current-role', data.home.fact_currently);
+    t('eng-education', data.home.fact_education);
+  })
+  .catch(() => { /* content.json not found — hardcoded content displays instead */ });
 
 let currentProject = '';
 
