@@ -458,7 +458,7 @@ fetch('content.json')
 </div>
 
 <script>
-const ADMIN_PASSWORD = "StupidMaisyDog"; // change this
+const ADMIN_PASSWORD = "change-me"; // change this
 
 let GH_TOKEN = '', GH_REPO = '', GH_BRANCH = 'main';
 let CLOUDINARY_NAME = '', CLOUDINARY_PRESET = '';
@@ -642,14 +642,14 @@ async function uploadPhoto(inputEl, photoKey) {
   if (!CLOUDINARY_NAME || !CLOUDINARY_PRESET) {
     showStatus('Set your Cloudinary details in the Setup tab first.', 'error'); return;
   }
-  showStatus('Uploading to Cloudinary...', 'info');
+  showStatus(`Uploading to Cloudinary (cloud: ${CLOUDINARY_NAME}, preset: ${CLOUDINARY_PRESET})...`, 'info');
   try {
     const form = new FormData();
     form.append('file', file);
     form.append('upload_preset', CLOUDINARY_PRESET);
     const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/image/upload`, { method: 'POST', body: form });
-    if (!res.ok) throw new Error(`Cloudinary ${res.status}`);
     const data = await res.json();
+    if (!res.ok) throw new Error(data?.error?.message || `Cloudinary ${res.status}`);
     const url = data.secure_url;
     content.photos = content.photos || {};
     content.photos[photoKey] = url;
