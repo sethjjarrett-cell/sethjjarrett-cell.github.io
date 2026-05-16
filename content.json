@@ -6,14 +6,14 @@
     "fact_from": "The West Country",
     "fact_based": "London, UK",
     "fact_currently": "Graduate Electrical Engineer, RED Engineering Design",
-    "fact_education": "MEng Mechanical & Electrical Engineering, First Class — University of Bristol",
+    "fact_education": "MEng Mechanical & Electrical Engineering, First Class â University of Bristol",
     "fact_interests": "Renewable energy, lead climbing, bouldering, martial arts, travel, reading"
   },
   "life": {
-    "hobby_climbing_desc": "Outdoor and indoor. The problem-solving side keeps me coming back — route reading, body position, committing to moves you're not sure about.",
+    "hobby_climbing_desc": "Outdoor and indoor. The problem-solving side keeps me coming back â route reading, body position, committing to moves you're not sure about.",
     "hobby_bouldering_desc": "Short, hard problems with no rope. Good for when you want to train without the faff. The London wall scene is solid.",
-    "hobby_martial_desc": "The discipline matters as much as the physical — showing up consistently, being comfortable being a beginner again.",
-    "hobby_reading_desc": "Broadly across science, technology, and fiction. More interested in ideas than genres — anything that makes me think differently.",
+    "hobby_martial_desc": "The discipline matters as much as the physical â showing up consistently, being comfortable being a beginner again.",
+    "hobby_reading_desc": "Broadly across science, technology, and fiction. More interested in ideas than genres â anything that makes me think differently.",
     "hobby_travel_desc": "Two years of it before starting work. Still the thing I think about most when planning what comes next.",
     "hobby_energy_desc": "Professionally and personally. The intersection of engineering, economics, and politics around energy transition is endlessly interesting.",
     "book_1_title": "",
@@ -22,10 +22,10 @@
     "book_2_author": "",
     "book_3_title": "",
     "book_3_author": "",
-    "project_grad_desc": "An idea for helping engineering graduates navigate job applications — CV tailoring, curated job lists, interview prep. The market for new graduates is messier than it should be and most advice is generic."
+    "project_grad_desc": "An idea for helping engineering graduates navigate job applications â CV tailoring, curated job lists, interview prep. The market for new graduates is messier than it should be and most advice is generic."
   },
   "travel": {
-    "hero_sub": "North America, Asia, Australia, Japan, Africa, Europe, South America. It changed how I see things — the contrasts in how people live, what communities face, and how much goes unseen from home.",
+    "hero_sub": "North America, Asia, Australia, Japan, Africa, Europe, South America. It changed my perspective; the contrasts in how people live, what communities really face, and how different much of the world is to back home.",
     "namerica_text": "",
     "asia_text": "",
     "australia_text": "",
@@ -37,7 +37,7 @@
     "reflection_text_2": ""
   },
   "photos": {
-    "home_portrait": "",
+    "home_portrait": "photos/index/me.jpeg",
     "africa_casablanca_1": "",
     "africa_casablanca_2": "",
     "africa_marrakech_1": "",
