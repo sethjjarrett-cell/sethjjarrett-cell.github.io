@@ -119,32 +119,32 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--warm3);display:flex;justif
     <div class="hobby-card fade">
       <span class="hobby-icon">&#129043;</span>
       <div class="hobby-name">Lead climbing</div>
-      <div class="hobby-desc">Outdoor and indoor. The problem-solving side keeps me coming back — route reading, body position, committing to moves you're not sure about.</div>
+      <div class="hobby-desc" id="hobby-climbing">Outdoor and indoor. The problem-solving side keeps me coming back — route reading, body position, committing to moves you're not sure about.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#129042;</span>
       <div class="hobby-name">Bouldering</div>
-      <div class="hobby-desc">Short, hard problems with no rope. Good for when you want to train without the faff. The London wall scene is solid.</div>
+      <div class="hobby-desc" id="hobby-bouldering">Short, hard problems with no rope. Good for when you want to train without the faff. The London wall scene is solid.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#129354;</span>
       <div class="hobby-name">Martial arts</div>
-      <div class="hobby-desc">The discipline matters as much as the physical — showing up consistently, being comfortable being a beginner again.</div>
+      <div class="hobby-desc" id="hobby-martial">The discipline matters as much as the physical — showing up consistently, being comfortable being a beginner again.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#128214;</span>
       <div class="hobby-name">Reading</div>
-      <div class="hobby-desc">Broadly across science, technology, and fiction. More interested in ideas than genres — anything that makes me think differently.</div>
+      <div class="hobby-desc" id="hobby-reading">Broadly across science, technology, and fiction. More interested in ideas than genres — anything that makes me think differently.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#127758;</span>
       <div class="hobby-name">Travel</div>
-      <div class="hobby-desc">Two years of it before starting work. Still the thing I think about most when planning what comes next.</div>
+      <div class="hobby-desc" id="hobby-travel">Two years of it before starting work. Still the thing I think about most when planning what comes next.</div>
     </div>
     <div class="hobby-card fade">
       <span class="hobby-icon">&#9889;</span>
       <div class="hobby-name">Renewable energy</div>
-      <div class="hobby-desc">Professionally and personally. The intersection of engineering, economics, and politics around energy transition is endlessly interesting.</div>
+      <div class="hobby-desc" id="hobby-energy">Professionally and personally. The intersection of engineering, economics, and politics around energy transition is endlessly interesting.</div>
     </div>
   </div>
 </section>
@@ -159,7 +159,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--warm3);display:flex;justif
       <div class="sp-category">Engineering careers</div>
     </div>
     <div>
-      <p class="sp-desc">An idea for helping engineering graduates navigate job applications — CV tailoring, curated job lists, interview prep. The market for new graduates is messier than it should be and most advice is generic. Starting with friends to test whether it's actually useful before building anything formal.</p>
+      <p class="sp-desc" id="project-grad-desc">An idea for helping engineering graduates navigate job applications — CV tailoring, curated job lists, interview prep. The market for new graduates is messier than it should be and most advice is generic. Starting with friends to test whether it's actually useful before building anything formal.</p>
       <div class="sp-tags"><span class="sp-tag">Early stage</span><span class="sp-tag">Engineering careers</span><span class="sp-tag">Education</span></div>
     </div>
   </div>
@@ -184,9 +184,9 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--warm3);display:flex;justif
       <p class="reading-intro">A mix of fiction, science, and things that don't fit neatly anywhere. Update this with what you're actually reading.</p>
     </div>
     <div class="book-list fade">
-      <div class="book-item"><span class="book-num">01</span><div><div class="book-title">Add what you're reading here</div><div class="book-author">Author</div></div></div>
-      <div class="book-item"><span class="book-num">02</span><div><div class="book-title">Add something you've read recently</div><div class="book-author">Author</div></div></div>
-      <div class="book-item"><span class="book-num">03</span><div><div class="book-title">Add a recommendation</div><div class="book-author">Author</div></div></div>
+      <div class="book-item"><span class="book-num">01</span><div><div class="book-title" id="book-1-title">Add what you're reading here</div><div class="book-author" id="book-1-author">Author</div></div></div>
+      <div class="book-item"><span class="book-num">02</span><div><div class="book-title" id="book-2-title">Add something you've read recently</div><div class="book-author" id="book-2-author">Author</div></div></div>
+      <div class="book-item"><span class="book-num">03</span><div><div class="book-title" id="book-3-title">Add a recommendation</div><div class="book-author" id="book-3-author">Author</div></div></div>
     </div>
   </div>
 </section>
@@ -208,6 +208,27 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--warm3);display:flex;justif
 <script>
 const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);obs.unobserve(e.target);}}),{threshold:0.1});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+
+// Load content from content.json (managed via admin.html)
+fetch('content.json')
+  .then(r => r.json())
+  .then(data => {
+    const t = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+    t('hobby-climbing', data.life.hobby_climbing_desc);
+    t('hobby-bouldering', data.life.hobby_bouldering_desc);
+    t('hobby-martial', data.life.hobby_martial_desc);
+    t('hobby-reading', data.life.hobby_reading_desc);
+    t('hobby-travel', data.life.hobby_travel_desc);
+    t('hobby-energy', data.life.hobby_energy_desc);
+    t('book-1-title', data.life.book_1_title);
+    t('book-1-author', data.life.book_1_author);
+    t('book-2-title', data.life.book_2_title);
+    t('book-2-author', data.life.book_2_author);
+    t('book-3-title', data.life.book_3_title);
+    t('book-3-author', data.life.book_3_author);
+    t('project-grad-desc', data.life.project_grad_desc);
+  })
+  .catch(() => { /* content.json not found — hardcoded content displays instead */ });
 </script>
 </body>
 </html>

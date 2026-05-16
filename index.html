@@ -205,17 +205,17 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
   <div class="fade">
     <h2 class="about-title">Engineer by training,<br><em>curious by nature</em></h2>
     <div class="about-body">
-      <p>I'm a graduate electrical engineer at RED Engineering Design in London, working on large-scale data centre and power infrastructure projects. I hold a First Class MEng from the University of Bristol, specialising in energy and renewables.</p>
-      <p>At university I designed and helped build a solar DC microgrid for a remote community in the Brazilian Amazon, and independently completed a wind-solar mini-grid feasibility study awarded 83% and used as a cohort exemplar.</p>
-      <p>I grew up in the West Country, spent two years travelling before starting work, picking up many experiences along the way. Notably; working at dog shelter in The Sacred Valley in Peru, a multi-levelled bar/pub in Melbourne, sporting events across the UK, horse races, festivals, including helping with the build and break for Glastonbury Festival. I came to believe the best things come from getting outside, doing things that scare you a bit, and paying attention to the world around you.</p>
+      <p id="bio-p1">I'm a graduate electrical engineer at RED Engineering Design in London, working on large-scale data centre and power infrastructure projects. I hold a First Class MEng from the University of Bristol, specialising in energy and renewables.</p>
+      <p id="bio-p2">At university I designed and helped build a solar DC microgrid for a remote community in the Brazilian Amazon, and independently completed a wind-solar mini-grid feasibility study awarded 83% and used as a cohort exemplar.</p>
+      <p id="bio-p3">I grew up in the West Country, spent two years travelling before starting work, picking up many experiences along the way. Notably; working at dog shelter in The Sacred Valley in Peru, a multi-levelled bar/pub in Melbourne, sporting events across the UK, horse races, festivals, including helping with the build and break for Glastonbury Festival. I came to believe the best things come from getting outside, doing things that scare you a bit, and paying attention to the world around you.</p>
     </div>
   </div>
   <div class="facts fade">
-    <div class="fact"><div class="fact-label">From</div><div class="fact-value">The West Country</div></div>
-    <div class="fact"><div class="fact-label">Based in</div><div class="fact-value">London, UK</div></div>
-    <div class="fact"><div class="fact-label">Currently</div><div class="fact-value">Graduate Electrical Engineer, RED Engineering Design</div></div>
-    <div class="fact"><div class="fact-label">Education</div><div class="fact-value">MEng Mechanical &amp; Electrical Engineering, First Class -- University of Bristol</div></div>
-    <div class="fact"><div class="fact-label">Interests</div><div class="fact-value">Renewable energy, lead climbing, bouldering, martial arts, travel, reading</div></div>
+    <div class="fact"><div class="fact-label">From</div><div class="fact-value" id="fact-from">The West Country</div></div>
+    <div class="fact"><div class="fact-label">Based in</div><div class="fact-value" id="fact-based">London, UK</div></div>
+    <div class="fact"><div class="fact-label">Currently</div><div class="fact-value" id="fact-currently">Graduate Electrical Engineer, RED Engineering Design</div></div>
+    <div class="fact"><div class="fact-label">Education</div><div class="fact-value" id="fact-education">MEng Mechanical &amp; Electrical Engineering, First Class -- University of Bristol</div></div>
+    <div class="fact"><div class="fact-label">Interests</div><div class="fact-value" id="fact-interests">Renewable energy, lead climbing, bouldering, martial arts, travel, reading</div></div>
   </div>
 </section>
 
@@ -309,6 +309,24 @@ const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isInter
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('cvOverlay').classList.remove('open');});
+
+// Load content from content.json (managed via admin.html)
+fetch('content.json')
+  .then(r => r.json())
+  .then(data => {
+    const t = (id, val) => { const el = document.getElementById(id); if (el && val) el.textContent = val; };
+    const img = (id, url) => { const el = document.getElementById(id); if (el && url) el.src = url; };
+    t('bio-p1', data.home.bio_p1);
+    t('bio-p2', data.home.bio_p2);
+    t('bio-p3', data.home.bio_p3);
+    t('fact-from', data.home.fact_from);
+    t('fact-based', data.home.fact_based);
+    t('fact-currently', data.home.fact_currently);
+    t('fact-education', data.home.fact_education);
+    t('fact-interests', data.home.fact_interests);
+    img('photo-portrait', data.photos.home_portrait);
+  })
+  .catch(() => { /* content.json not found — hardcoded content displays instead */ });
 
 function submitCV(){
   const name=document.getElementById('cvName').value.trim();
