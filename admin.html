@@ -458,10 +458,10 @@ fetch('content.json')
 </div>
 
 <script>
-const ADMIN_PASSWORD = "StupidMaisyDog"; // change this
+const ADMIN_PASSWORD = "change-me"; // change this
 
-let GH_TOKEN = '', GH_REPO = '', GH_BRANCH = 'main';
-let CLOUDINARY_NAME = '', CLOUDINARY_PRESET = '';
+let GH_TOKEN = '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', GH_REPO = 'sethjjarrett-cell/sethjjarrett-cell.github.io', GH_BRANCH = 'main';
+let CLOUDINARY_NAME = 'dojvhulug', CLOUDINARY_PRESET = 'Website';
 let content = {}, contentSha = '';
 
 const DEFAULTS = {
@@ -522,11 +522,6 @@ function handleLogin() {
 
   if (pw !== ADMIN_PASSWORD) { errEl.textContent = 'Incorrect password.'; errEl.style.display = 'block'; return; }
   if (!token || !repo) { errEl.textContent = 'GitHub token and repo are required.'; errEl.style.display = 'block'; return; }
-
-  GH_TOKEN = token; GH_REPO = repo; GH_BRANCH = branch;
-  localStorage.setItem('sj_gh_token', token);
-  localStorage.setItem('sj_gh_repo', repo);
-  localStorage.setItem('sj_gh_branch', branch);
 
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-ui').style.display = 'block';
