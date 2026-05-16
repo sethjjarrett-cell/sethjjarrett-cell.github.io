@@ -276,76 +276,42 @@ body { font-family: var(--sans); background: var(--stone); color: var(--ink); li
     <div class="info-card">
       <div class="info-title">How photos work</div>
       <div class="info-steps">
-        <div class="info-step">1. Upload a photo below. It goes to <strong>Cloudinary</strong> (free, no billing needed).</div>
-        <div class="info-step">2. The URL gets written into <code>content.json</code> in your GitHub repo automatically.</div>
-        <div class="info-step">3. Your pages read that URL from <code>content.json</code> and display the image.</div>
-        <div class="info-step">Set your Cloudinary Cloud Name and Upload Preset in the <strong>Setup</strong> tab first.</div>
+        <div class="info-step">1. Put your photo files in a <code>photos/</code> folder in your repo.</div>
+        <div class="info-step">2. Type the filename into the field below, e.g. <code>photos/casablanca.jpg</code></div>
+        <div class="info-step">3. Hit Save — the path gets written into <code>content.json</code> and your site picks it up.</div>
       </div>
     </div>
 
     <div class="edit-section">
-      <div class="edit-section-header"><span class="edit-section-title">Home — portrait</span></div>
+      <div class="edit-section-header">
+        <span class="edit-section-title">Home</span>
+        <button class="save-btn" onclick="savePhotoSection()">Save</button>
+      </div>
       <div class="edit-body">
-        <div class="photo-field">
-          <div class="photo-preview" id="preview-home_portrait"><span class="photo-preview-label">Portrait</span></div>
-          <div class="photo-controls">
-            <div class="photo-name">home_portrait</div>
-            <label class="upload-label">↑ Upload photo<input class="upload-input" type="file" accept="image/*" onchange="uploadPhoto(this,'home_portrait')"></label>
-            <div class="photo-url-display" id="url-home_portrait">No photo yet</div>
-          </div>
-        </div>
+        <div class="field"><label>Portrait photo</label><input type="text" data-key="photos.home_portrait" placeholder="photos/me.jpg"></div>
       </div>
     </div>
 
     <div class="edit-section">
-      <div class="edit-section-header"><span class="edit-section-title">Africa — Casablanca</span></div>
+      <div class="edit-section-header">
+        <span class="edit-section-title">Africa — Casablanca</span>
+        <button class="save-btn" onclick="savePhotoSection()">Save</button>
+      </div>
       <div class="edit-body">
-        <div class="photo-field">
-          <div class="photo-preview" id="preview-africa_casablanca_1"><span class="photo-preview-label">Hassan II</span></div>
-          <div class="photo-controls">
-            <div class="photo-name">africa_casablanca_1</div>
-            <label class="upload-label">↑ Upload<input class="upload-input" type="file" accept="image/*" onchange="uploadPhoto(this,'africa_casablanca_1')"></label>
-            <div class="photo-url-display" id="url-africa_casablanca_1">No photo yet</div>
-          </div>
-        </div>
-        <div class="photo-field">
-          <div class="photo-preview" id="preview-africa_casablanca_2"><span class="photo-preview-label">White city</span></div>
-          <div class="photo-controls">
-            <div class="photo-name">africa_casablanca_2</div>
-            <label class="upload-label">↑ Upload<input class="upload-input" type="file" accept="image/*" onchange="uploadPhoto(this,'africa_casablanca_2')"></label>
-            <div class="photo-url-display" id="url-africa_casablanca_2">No photo yet</div>
-          </div>
-        </div>
+        <div class="field"><label>Hassan II Mosque</label><input type="text" data-key="photos.africa_casablanca_1" placeholder="photos/casablanca-mosque.jpg"></div>
+        <div class="field"><label>The white city</label><input type="text" data-key="photos.africa_casablanca_2" placeholder="photos/casablanca-city.jpg"></div>
       </div>
     </div>
 
     <div class="edit-section">
-      <div class="edit-section-header"><span class="edit-section-title">Africa — Marrakech</span></div>
+      <div class="edit-section-header">
+        <span class="edit-section-title">Africa — Marrakech</span>
+        <button class="save-btn" onclick="savePhotoSection()">Save</button>
+      </div>
       <div class="edit-body">
-        <div class="photo-field">
-          <div class="photo-preview" id="preview-africa_marrakech_1"><span class="photo-preview-label">Jemaa el-Fna</span></div>
-          <div class="photo-controls">
-            <div class="photo-name">africa_marrakech_1</div>
-            <label class="upload-label">↑ Upload<input class="upload-input" type="file" accept="image/*" onchange="uploadPhoto(this,'africa_marrakech_1')"></label>
-            <div class="photo-url-display" id="url-africa_marrakech_1">No photo yet</div>
-          </div>
-        </div>
-        <div class="photo-field">
-          <div class="photo-preview" id="preview-africa_marrakech_2"><span class="photo-preview-label">Souks</span></div>
-          <div class="photo-controls">
-            <div class="photo-name">africa_marrakech_2</div>
-            <label class="upload-label">↑ Upload<input class="upload-input" type="file" accept="image/*" onchange="uploadPhoto(this,'africa_marrakech_2')"></label>
-            <div class="photo-url-display" id="url-africa_marrakech_2">No photo yet</div>
-          </div>
-        </div>
-        <div class="photo-field">
-          <div class="photo-preview" id="preview-africa_marrakech_3"><span class="photo-preview-label">Medina</span></div>
-          <div class="photo-controls">
-            <div class="photo-name">africa_marrakech_3</div>
-            <label class="upload-label">↑ Upload<input class="upload-input" type="file" accept="image/*" onchange="uploadPhoto(this,'africa_marrakech_3')"></label>
-            <div class="photo-url-display" id="url-africa_marrakech_3">No photo yet</div>
-          </div>
-        </div>
+        <div class="field"><label>Jemaa el-Fna</label><input type="text" data-key="photos.africa_marrakech_1" placeholder="photos/marrakech-square.jpg"></div>
+        <div class="field"><label>The souks</label><input type="text" data-key="photos.africa_marrakech_2" placeholder="photos/marrakech-souks.jpg"></div>
+        <div class="field"><label>Medina</label><input type="text" data-key="photos.africa_marrakech_3" placeholder="photos/marrakech-medina.jpg"></div>
       </div>
     </div>
   </div>
@@ -458,9 +424,9 @@ fetch('content.json')
 </div>
 
 <script>
-const ADMIN_PASSWORD = "change-me"; // change this
+const ADMIN_PASSWORD = "StupidMaisyDog"; // change this
 
-let GH_TOKEN = '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', GH_REPO = 'sethjjarrett-cell/sethjjarrett-cell.github.io', GH_BRANCH = 'main';
+let GH_TOKEN = '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', GH_REPO = 'sethjjarrett-cell/sethjjarrett-cell.github.io', GH_BRANCH = 'main';
 let CLOUDINARY_NAME = 'dojvhulug', CLOUDINARY_PRESET = 'Website';
 let content = {}, contentSha = '';
 
@@ -515,14 +481,8 @@ document.addEventListener('keydown', e => {
 
 function handleLogin() {
   const pw = document.getElementById('pw-input').value;
-  const token = document.getElementById('gh-token-input').value.trim();
-  const repo = document.getElementById('gh-repo-input').value.trim();
-  const branch = document.getElementById('gh-branch-input').value.trim() || 'main';
   const errEl = document.getElementById('login-error');
-
   if (pw !== ADMIN_PASSWORD) { errEl.textContent = 'Incorrect password.'; errEl.style.display = 'block'; return; }
-  if (!token || !repo) { errEl.textContent = 'GitHub token and repo are required.'; errEl.style.display = 'block'; return; }
-
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-ui').style.display = 'block';
   loadCloudinaryConfig();
@@ -628,34 +588,19 @@ async function saveAll() {
   } catch(e) { showStatus(`Save failed: ${e.message}`, 'error'); }
 }
 
-// ---- Cloudinary upload ----
-async function uploadPhoto(inputEl, photoKey) {
-  const file = inputEl.files[0];
-  if (!file) return;
-  CLOUDINARY_NAME = document.getElementById('cloudinary-name').value.trim() || CLOUDINARY_NAME;
-  CLOUDINARY_PRESET = document.getElementById('cloudinary-preset').value.trim() || CLOUDINARY_PRESET;
-  if (!CLOUDINARY_NAME || !CLOUDINARY_PRESET) {
-    showStatus('Set your Cloudinary details in the Setup tab first.', 'error'); return;
-  }
-  showStatus(`Uploading to Cloudinary (cloud: ${CLOUDINARY_NAME}, preset: ${CLOUDINARY_PRESET})...`, 'info');
+// ---- Photo filename save ----
+async function savePhotoSection() {
+  const updated = { ...(content.photos || {}) };
+  document.querySelectorAll('[data-key^="photos."]').forEach(el => {
+    const key = el.dataset.key.split('.')[1];
+    updated[key] = el.value.trim();
+  });
+  content.photos = updated;
   try {
-    const form = new FormData();
-    form.append('file', file);
-    form.append('upload_preset', CLOUDINARY_PRESET);
-    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/image/upload`, { method: 'POST', body: form });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data?.error?.message || `Cloudinary ${res.status}`);
-    const url = data.secure_url;
-    content.photos = content.photos || {};
-    content.photos[photoKey] = url;
-    const p = document.getElementById(`preview-${photoKey}`);
-    const d = document.getElementById(`url-${photoKey}`);
-    if (p) p.style.backgroundImage = `url(${url})`;
-    if (d) d.textContent = url;
-    showStatus('Photo uploaded — saving to GitHub...', 'info');
-    await commitContent(`Add photo: ${photoKey}`);
-    showStatus('Photo saved.', 'ok');
-  } catch(e) { showStatus(`Upload failed: ${e.message}`, 'error'); }
+    showStatus('Saving photos...', 'info');
+    await commitContent('Update photo references');
+    showStatus('Photos saved.', 'ok');
+  } catch(e) { showStatus(`Save failed: ${e.message}`, 'error'); }
 }
 
 // ---- UI helpers ----
