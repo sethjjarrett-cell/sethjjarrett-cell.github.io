@@ -69,6 +69,22 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   .stop-grid{grid-template-columns:1fr;gap:2.5rem;}
   .pg-3{grid-template-columns:1fr 1fr;}
 }
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin:2rem 0;}
+.gallery-grid:empty{display:none;}
+.gallery-thumb{aspect-ratio:4/3;border:none;padding:0;cursor:pointer;background-size:cover;background-position:center;background-color:rgba(128,128,128,0.12);transition:opacity 0.2s,transform 0.2s;display:block;width:100%;}
+.gallery-thumb:hover{opacity:0.9;transform:scale(0.99);}
+@media(max-width:860px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(15,15,18,0.94);display:none;align-items:center;justify-content:center;flex-direction:column;}
+.lightbox.open{display:flex;}
+.lightbox-img{max-width:90vw;max-height:80vh;object-fit:contain;user-select:none;}
+.lightbox-caption{color:rgba(235,235,235,0.85);font-size:0.85rem;margin-top:1rem;text-align:center;max-width:80vw;min-height:1.2rem;}
+.lightbox-count{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(235,235,235,0.6);font-size:0.75rem;letter-spacing:0.1em;}
+.lightbox-btn{position:absolute;background:none;border:none;color:rgba(235,235,235,0.8);cursor:pointer;font-size:2.5rem;line-height:1;padding:1rem;transition:color 0.2s;user-select:none;}
+.lightbox-btn:hover{color:#fff;}
+.lightbox-prev{left:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-next{right:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-close{top:0.5rem;right:0.75rem;font-size:2rem;}
+@media(max-width:860px){.lightbox-prev,.lightbox-next{font-size:1.8rem;}}
 </style>
 </head>
 <body>
@@ -95,11 +111,7 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <p class="stop-eyebrow fade" style="color:var(--sam-col-accent)">Stop 01</p>
   <h2 class="stop-name fade" style="color:var(--sam-col-text)"><em>Colombia</em></h2>
   <p class="stop-intro fade" style="color:var(--sam-col-soft)">My favourite country on the continent. The north -- the Sierra Nevada, the hostels, the biodiversity, the people -- was probably the best period of the whole two years. I look back and it was just unbelievable.</p>
-  <div class="photo-grid pg-3 fade">
-    <div class="photo-slot" style="background:var(--sam-col-bg3)"><span class="photo-slot-label" style="color:var(--sam-col-muted)">Sierra Nevada</span></div>
-    <div class="photo-slot" style="background:var(--sam-col-bg3)"><span class="photo-slot-label" style="color:var(--sam-col-muted)">Tayrona</span></div>
-    <div class="photo-slot" style="background:var(--sam-col-bg3)"><span class="photo-slot-label" style="color:var(--sam-col-muted)">Valle de Cocora</span></div>
-    </div>
+  <div class="gallery-grid fade" data-gallery="colombia"></div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--sam-col-soft)"><p>I started in Bogota -- free walking tours, the graffiti, the clubs. There is a techno club, and a venue that claims to be the biggest gay club in Latin America. It is enormous. Then Medellin, which I found slightly overrun with travellers by the end -- the Thursday comunita was the highlight there. I went out to Valle de Cocora from Medellin, a coffee plantation area with wax palm trees and mountain hikes. I needed the break from the city by that point.</p><p>Then north, which was a different world. The Sierra Nevada de Santa Marta is the second largest coastal mountain range in the world and one of the most biodiverse places on earth. The climate shifts completely as you climb. The hostels up there -- Minka, Castilloma, Puerto Alto, Journey -- were the best I came across in all my travels. Minka had a DJ set at sunset over the mountains that was one of the finest things I saw anywhere. I had a rough time personally during that period, but looking back it was the best of it. Tayrona National Park, Palomino, then Cartagena to finish -- colonial architecture, good nights out, reggaeton bars.</p></div>
     <div class="stops-list fade">
@@ -159,11 +171,7 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <p class="stop-eyebrow fade" style="color:var(--sam-peru-accent)">Stop 02</p>
   <h2 class="stop-name fade" style="color:var(--sam-peru-text)"><em>Peru</em></h2>
   <p class="stop-intro fade" style="color:var(--sam-peru-soft)">Peru has more range than I expected. The Sacred Valley was the heart of it -- the dog retreat centre, Pisac, the people I met there. I ended up staying longer than planned, which was the right call.</p>
-  <div class="photo-grid pg-3 fade">
-    <div class="photo-slot" style="background:var(--sam-peru-bg3)"><span class="photo-slot-label" style="color:var(--sam-peru-muted)">Huacachina</span></div>
-    <div class="photo-slot" style="background:var(--sam-peru-bg3)"><span class="photo-slot-label" style="color:var(--sam-peru-muted)">Sacred Valley</span></div>
-    <div class="photo-slot" style="background:var(--sam-peru-bg3)"><span class="photo-slot-label" style="color:var(--sam-peru-muted)">Pisac ruins</span></div>
-    </div>
+  <div class="gallery-grid fade" data-gallery="peru"></div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--sam-peru-soft)">
       <p>I came in through Lima -- good food, not much else -- then got the bus down to Huacachina, which is a genuine oasis in the middle of the desert. Sandboarding for about twenty quid, a surprisingly good party scene. Strange and unexpectedly fun.</p>
@@ -219,11 +227,7 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <p class="stop-eyebrow fade" style="color:var(--sam-bol-accent)">Stop 03</p>
   <h2 class="stop-name fade" style="color:var(--sam-bol-text)"><em>Bolivia</em></h2>
   <p class="stop-intro fade" style="color:var(--sam-bol-soft)">The best value country I have ever been to, and probably the most varied three weeks of the whole trip. Huayna Potosi was the standout -- possibly the best thing I did in two years of travelling.</p>
-  <div class="photo-grid pg-3 fade">
-    <div class="photo-slot" style="background:var(--sam-bol-bg3)"><span class="photo-slot-label" style="color:var(--sam-bol-muted)">Huayna Potosi</span></div>
-    <div class="photo-slot" style="background:var(--sam-bol-bg3)"><span class="photo-slot-label" style="color:var(--sam-bol-muted)">Salt flats</span></div>
-    <div class="photo-slot" style="background:var(--sam-bol-bg3)"><span class="photo-slot-label" style="color:var(--sam-bol-muted)">La Paz</span></div>
-    </div>
+  <div class="gallery-grid fade" data-gallery="bolivia"></div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--sam-bol-soft)">
       <p>I started in La Paz -- built into a canyon at over 3,600 metres, with cable cars running across it and views that stop you. I went to one of the coca bars, which was interesting in the sense that nothing enjoyable happened and I did not sleep. Then Huayna Potosi: three days, crampons, a 3am summit push at 6,088 metres. Under a hundred pounds all-in including food, accommodation, and all gear. The hardest thing I did on the trip, and probably the most worthwhile.</p>
@@ -323,6 +327,56 @@ const sectionObs=new IntersectionObserver(entries=>{
   });
 },{threshold:0.4});
 document.querySelectorAll('.stop-section').forEach(s=>sectionObs.observe(s));
+</script>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-count" id="lb-count"></span>
+  <button class="lightbox-btn lightbox-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lightbox-btn lightbox-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <img class="lightbox-img" id="lb-img" alt="">
+  <button class="lightbox-btn lightbox-next" id="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
+<script>
+function cloudTransform(url,t){if(!url||!url.includes('/upload/'))return url;return url.replace('/upload/','/upload/'+t+'/');}
+let lbItems=[],lbIndex=0;
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lb-img');
+const lbCap=document.getElementById('lb-caption');
+const lbCount=document.getElementById('lb-count');
+function openLightbox(items,i){lbItems=items;lbIndex=i;showLightbox();lb.classList.add('open');document.body.style.overflow='hidden';}
+function showLightbox(){const it=lbItems[lbIndex];lbImg.src=cloudTransform(it.url,'f_auto,q_auto,w_1600,c_limit,h_1600');lbCap.textContent=it.caption||'';lbCount.textContent=(lbIndex+1)+' / '+lbItems.length;}
+function lbNext(){lbIndex=(lbIndex+1)%lbItems.length;showLightbox();}
+function lbPrev(){lbIndex=(lbIndex-1+lbItems.length)%lbItems.length;showLightbox();}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('lb-next').onclick=lbNext;
+document.getElementById('lb-prev').onclick=lbPrev;
+document.getElementById('lb-close').onclick=closeLightbox;
+lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox();});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();else if(e.key==='ArrowRight')lbNext();else if(e.key==='ArrowLeft')lbPrev();});
+let touchX=null;
+lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?lbNext():lbPrev();}touchX=null;},{passive:true});
+function renderGalleries(galleries){
+  document.querySelectorAll('[data-gallery]').forEach(container=>{
+    const slug=container.dataset.gallery;
+    const items=(galleries&&galleries[slug])||[];
+    container.innerHTML='';
+    if(!items.length)return;
+    items.forEach((item,i)=>{
+      const b=document.createElement('button');
+      b.className='gallery-thumb';
+      b.style.backgroundImage='url('+cloudTransform(item.url,'c_fill,f_auto,q_auto,w_700,h_525')+')';
+      b.setAttribute('aria-label',item.caption||'Photo '+(i+1));
+      b.onclick=()=>openLightbox(items,i);
+      container.appendChild(b);
+    });
+  });
+}
+fetch('content.json')
+  .then(r=>r.json())
+  .then(data=>{renderGalleries(data.galleries||{});})
+  .catch(()=>{});
 </script>
 </body>
 </html>

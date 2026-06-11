@@ -91,6 +91,21 @@ body { font-family: var(--sans); background: var(--stone); color: var(--ink); li
 .upload-input { display: none; }
 .photo-url-display { font-size: 0.7rem; color: var(--ink-muted); word-break: break-all; line-height: 1.4; background: var(--stone); border: 1px solid var(--stone3); padding: 0.35rem 0.6rem; }
 
+/* Gallery manager */
+.gallery-select { width: 100%; font-family: var(--sans); font-size: 0.87rem; color: var(--ink); background: var(--stone); border: 1px solid var(--stone3); padding: 0.58rem 0.82rem; outline: none; }
+.gallery-select:focus { border-color: var(--green-light); }
+.gallery-upload-status { font-size: 0.74rem; color: var(--ink-muted); min-height: 1.1rem; }
+.gallery-row { display: flex; gap: 0.85rem; align-items: center; padding: 0.6rem 0; border-bottom: 1px solid var(--stone3); }
+.gallery-row:last-child { border-bottom: none; }
+.gallery-thumb-admin { width: 64px; height: 64px; border-radius: 4px; background-size: cover; background-position: center; background-color: var(--stone2); flex-shrink: 0; }
+.gallery-row-ctrl { flex: 1; display: flex; gap: 0.6rem; align-items: center; min-width: 0; }
+.gallery-row-ctrl input { flex: 1; min-width: 0; font-family: var(--sans); font-size: 0.82rem; color: var(--ink); background: var(--stone); border: 1px solid var(--stone3); padding: 0.45rem 0.7rem; outline: none; }
+.gallery-row-ctrl input:focus { border-color: var(--green-light); background: white; }
+.gallery-btns { display: flex; gap: 0.3rem; flex-shrink: 0; }
+.gallery-mini-btn { width: 30px; height: 30px; border: 1px solid var(--stone3); background: white; cursor: pointer; font-size: 0.95rem; line-height: 1; border-radius: 4px; color: var(--ink-soft); }
+.gallery-mini-btn:hover { background: var(--stone2); }
+.gallery-empty { font-size: 0.78rem; color: var(--ink-muted); padding: 0.6rem 0; }
+
 /* Info / code cards */
 .info-card { background: #F0F4FF; border: 1px solid #C0CCEE; padding: 1.25rem 1.4rem; margin-bottom: 1.25rem; }
 .info-title { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #2A3A8A; margin-bottom: 0.75rem; }
@@ -274,11 +289,39 @@ body { font-family: var(--sans); background: var(--stone); color: var(--ink); li
   <!-- PHOTOS -->
   <div class="tab-panel" id="panel-photos">
     <div class="info-card">
-      <div class="info-title">How photos work</div>
+      <div class="info-title">Travel galleries — how it works</div>
       <div class="info-steps">
-        <div class="info-step">1. Put your photo files in a <code>photos/</code> folder in your repo.</div>
-        <div class="info-step">2. Type the filename into the field below, e.g. <code>photos/casablanca.jpg</code></div>
-        <div class="info-step">3. Hit Save — the path gets written into <code>content.json</code> and your site picks it up.</div>
+        <div class="info-step">1. Pick a place from the dropdown (e.g. Colombia).</div>
+        <div class="info-step">2. Hit <code>+ Add photos</code> and select as many as you like. They upload straight to Cloudinary — optimised automatically and kept out of your repo.</div>
+        <div class="info-step">3. Reorder with the arrows, add an optional caption, remove with <code>×</code>.</div>
+        <div class="info-step">4. Hit <code>Save galleries</code> — the list is written to <code>content.json</code> and your travel pages pick it up.</div>
+        <div class="info-step">Cloudinary cloud name and preset are set in the <strong>Setup</strong> tab. Yours are already filled in.</div>
+      </div>
+    </div>
+
+    <div class="edit-section">
+      <div class="edit-section-header">
+        <span class="edit-section-title">Travel galleries</span>
+        <button class="save-btn" onclick="saveGalleries()">Save galleries</button>
+      </div>
+      <div class="edit-body">
+        <div class="field">
+          <label>Place</label>
+          <select class="gallery-select" id="gallery-place" onchange="renderGalleryEditor()"></select>
+        </div>
+        <label class="upload-label">
+          <input type="file" class="upload-input" id="gallery-files" accept="image/*" multiple onchange="handleGalleryUpload(event)">
+          + Add photos
+        </label>
+        <div class="gallery-upload-status" id="gallery-upload-status"></div>
+        <div id="gallery-items"></div>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-title">Single photos (portrait &amp; Africa slots)</div>
+      <div class="info-steps">
+        <div class="info-step">These older slots take a direct image path or URL. The portrait can be a <code>photos/...</code> path in your repo or a Cloudinary URL.</div>
       </div>
     </div>
 
@@ -460,7 +503,8 @@ const DEFAULTS = {
     home_portrait: "",
     africa_casablanca_1: "", africa_casablanca_2: "",
     africa_marrakech_1: "", africa_marrakech_2: "", africa_marrakech_3: "",
-  }
+  },
+  galleries: {}
 };
 
 document.getElementById('default-json-display').textContent = JSON.stringify(DEFAULTS, null, 2);
@@ -470,8 +514,8 @@ window.addEventListener('DOMContentLoaded', () => {
   const r = localStorage.getItem('sj_gh_repo');
   const b = localStorage.getItem('sj_gh_branch');
   const t = localStorage.getItem('sj_gh_token');
-  if (r) document.getElementById('gh-repo-input').value = r;
-  if (b) document.getElementById('gh-branch-input').value = b;
+  document.getElementById('gh-repo-input').value = r || GH_REPO;
+  document.getElementById('gh-branch-input').value = b || 'main';
   if (t) document.getElementById('gh-token-input').value = t;
 });
 
@@ -483,9 +527,20 @@ function handleLogin() {
   const pw = document.getElementById('pw-input').value;
   const errEl = document.getElementById('login-error');
   if (pw !== ADMIN_PASSWORD) { errEl.textContent = 'Incorrect password.'; errEl.style.display = 'block'; return; }
+
+  const token = document.getElementById('gh-token-input').value.trim();
+  const repo = document.getElementById('gh-repo-input').value.trim() || GH_REPO;
+  const branch = document.getElementById('gh-branch-input').value.trim() || 'main';
+  if (!token) { errEl.textContent = 'Enter your GitHub token.'; errEl.style.display = 'block'; return; }
+  GH_TOKEN = token; GH_REPO = repo; GH_BRANCH = branch;
+  localStorage.setItem('sj_gh_token', token);
+  localStorage.setItem('sj_gh_repo', repo);
+  localStorage.setItem('sj_gh_branch', branch);
+
   document.getElementById('login-screen').style.display = 'none';
   document.getElementById('admin-ui').style.display = 'block';
   loadCloudinaryConfig();
+  initGalleryDropdown();
   loadContent();
 }
 
@@ -560,6 +615,8 @@ function populateForm() {
     if (p) p.style.backgroundImage = `url(${url})`;
     if (d) d.textContent = url;
   });
+  if (!content.galleries) content.galleries = {};
+  renderGalleryEditor();
 }
 
 function collectSection(section) {
@@ -601,6 +658,107 @@ async function savePhotoSection() {
     await commitContent('Update photo references');
     showStatus('Photos saved.', 'ok');
   } catch(e) { showStatus(`Save failed: ${e.message}`, 'error'); }
+}
+
+// ---- Galleries ----
+const PLACES = {
+  'South America': ['colombia','peru','bolivia'],
+  'Asia': ['nepal','cambodia','thailand','laos','vietnam','malaysia','singapore','philippines','indonesia'],
+  'Australia': ['melbourne','great-ocean-road','sydney','cairns'],
+  'Japan': ['tokyo','fuji','osaka','kyoto'],
+  'Africa': ['casablanca','marrakech'],
+  'Europe': ['paris','bosnia','hamburg','amsterdam','prague','italy','greece','portugal'],
+  'North America': ['new-york','washington','miami'],
+};
+
+function labelFor(slug) {
+  return slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+function initGalleryDropdown() {
+  const sel = document.getElementById('gallery-place');
+  if (!sel || sel.options.length) return;
+  Object.entries(PLACES).forEach(([region, slugs]) => {
+    const og = document.createElement('optgroup'); og.label = region;
+    slugs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = labelFor(s); og.appendChild(o); });
+    sel.appendChild(og);
+  });
+}
+
+function cloudTransform(url, t) {
+  if (!url || !url.includes('/upload/')) return url;
+  return url.replace('/upload/', `/upload/${t}/`);
+}
+
+function currentGallery() {
+  if (!content.galleries) content.galleries = {};
+  const slug = document.getElementById('gallery-place').value;
+  if (!content.galleries[slug]) content.galleries[slug] = [];
+  return content.galleries[slug];
+}
+
+function renderGalleryEditor() {
+  const wrap = document.getElementById('gallery-items');
+  if (!wrap) return;
+  const items = currentGallery();
+  wrap.innerHTML = '';
+  if (!items.length) { wrap.innerHTML = '<div class="gallery-empty">No photos yet for this place. Hit + Add photos.</div>'; return; }
+  items.forEach((it, i) => {
+    const row = document.createElement('div'); row.className = 'gallery-row';
+    const thumb = document.createElement('div'); thumb.className = 'gallery-thumb-admin';
+    thumb.style.backgroundImage = `url(${cloudTransform(it.url, 'c_fill,f_auto,q_auto,w_140,h_140')})`;
+    const ctrl = document.createElement('div'); ctrl.className = 'gallery-row-ctrl';
+    const cap = document.createElement('input'); cap.type = 'text'; cap.placeholder = 'Caption (optional)';
+    cap.value = it.caption || ''; cap.oninput = () => { it.caption = cap.value; };
+    const btns = document.createElement('div'); btns.className = 'gallery-btns';
+    const up = miniBtn('\u2191', () => { if (i > 0) { [items[i-1], items[i]] = [items[i], items[i-1]]; renderGalleryEditor(); } });
+    const down = miniBtn('\u2193', () => { if (i < items.length - 1) { [items[i+1], items[i]] = [items[i], items[i+1]]; renderGalleryEditor(); } });
+    const del = miniBtn('\u00D7', () => { if (confirm('Remove this photo from the gallery?')) { items.splice(i, 1); renderGalleryEditor(); } });
+    del.style.color = 'var(--err)';
+    btns.append(up, down, del);
+    ctrl.append(cap, btns);
+    row.append(thumb, ctrl);
+    wrap.appendChild(row);
+  });
+}
+
+function miniBtn(txt, fn) {
+  const b = document.createElement('button'); b.type = 'button'; b.className = 'gallery-mini-btn';
+  b.textContent = txt; b.onclick = fn; return b;
+}
+
+async function uploadToCloudinary(file) {
+  const fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', CLOUDINARY_PRESET);
+  const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_NAME}/image/upload`, { method: 'POST', body: fd });
+  if (!res.ok) { let m = `Cloudinary ${res.status}`; try { const e = await res.json(); if (e.error?.message) m = e.error.message; } catch {} throw new Error(m); }
+  const data = await res.json();
+  return data.secure_url;
+}
+
+async function handleGalleryUpload(e) {
+  const files = [...e.target.files];
+  if (!files.length) return;
+  if (!CLOUDINARY_NAME || !CLOUDINARY_PRESET) { showStatus('Set your Cloudinary cloud name and preset in the Setup tab first.', 'error'); e.target.value = ''; return; }
+  const items = currentGallery();
+  const status = document.getElementById('gallery-upload-status');
+  let done = 0;
+  for (const file of files) {
+    status.textContent = `Uploading ${done + 1} of ${files.length}\u2026`;
+    try { const url = await uploadToCloudinary(file); items.push({ url, caption: '' }); done++; renderGalleryEditor(); }
+    catch (err) { showStatus(`Upload failed: ${err.message}`, 'error'); }
+  }
+  status.textContent = `${done} of ${files.length} uploaded. Remember to hit Save galleries.`;
+  e.target.value = '';
+}
+
+async function saveGalleries() {
+  try {
+    showStatus('Saving galleries\u2026', 'info');
+    await commitContent('Update travel galleries');
+    showStatus('Galleries saved.', 'ok');
+  } catch (e) { showStatus(`Save failed: ${e.message}`, 'error'); }
 }
 
 // ---- UI helpers ----
