@@ -5,130 +5,250 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Engineering &mdash; Seth Jarrett</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
+/* ============================================================
+   ENGINEERING — three chapters, three visual languages
+   Ch.01 University  — textbook (cream paper, serif, figures)
+   Ch.02 RED         — CAD drawing office (sheets, mono, stamps)
+   Ch.03 Soventix    — sun & sand (warm, clean, field log)
+   ============================================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --bg:#F7F5F0;--bg2:#EEEAE0;--bg3:#E4DFD2;
-  --ink:#1A1E2A;--ink-soft:#3A4050;--ink-muted:#7A8090;
-  --blue:#2A4A8A;--blue-light:#4A6AAA;--blue-pale:#D8E0F0;--blue-dim:rgba(42,74,138,0.08);
-  --rule:rgba(42,74,138,0.14);--rule-light:rgba(42,74,138,0.07);
-  --warm:#8A7A5A;
-  --serif:'Lora',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  /* CAD section */
+  --cad-bg:#DCE1E8;--cad-sheet:#FDFDFB;--cad-line:#2A4A8A;--cad-line-soft:rgba(42,74,138,0.35);
+  --cad-rule:rgba(42,74,138,0.18);--cad-ink:#1A2436;--cad-muted:#66708A;--cad-stamp:#A83434;
+  /* Soventix section */
+  --sx-bg:#F8F0D8;--sx-bg2:#F3E8C8;--sx-ink:#2A1400;--sx-soft:#6A4010;--sx-muted:#A08050;
+  --sx-orange:#C87010;--sx-sun:#E8A020;--sx-rule:rgba(200,112,16,0.22);
 }
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;font-size:16px;}
+body{font-family:var(--sans);background:var(--eng-bg);color:var(--eng-ink);line-height:1.7;font-size:16px;}
 
-body::before{content:'';position:fixed;inset:0;
-  background-image:linear-gradient(var(--rule-light) 1px,transparent 1px),linear-gradient(90deg,var(--rule-light) 1px,transparent 1px);
-  background-size:32px 32px;pointer-events:none;z-index:0;}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(247,245,240,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
-.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--blue);text-decoration:none;}
+/* ---------- shared shell ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(247,245,240,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--eng-rule);}
+.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--eng-blue);text-decoration:none;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{font-size:0.75rem;color:var(--ink-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}
-.nav-links a:hover,.nav-links a.active{color:var(--blue);}
+.nav-links a{font-size:0.75rem;color:var(--eng-ink-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--eng-blue);}
 
-.page-header{min-height:52vh;display:flex;flex-direction:column;justify-content:flex-end;padding:10rem 4rem 4rem;position:relative;overflow:hidden;border-bottom:2px solid var(--ink);}
-.title-block{position:absolute;top:88px;right:4rem;border:1px solid var(--rule);background:var(--bg);padding:1rem 1.5rem;display:flex;flex-direction:column;gap:0.5rem;min-width:220px;}
-.title-block-row{display:flex;justify-content:space-between;gap:2rem;padding-bottom:0.4rem;border-bottom:1px solid var(--rule-light);}
-.title-block-row:last-child{border-bottom:none;padding-bottom:0;}
-.title-block-label{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);}
-.title-block-value{font-size:0.72rem;color:var(--ink-soft);}
-.page-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-light);margin-bottom:1rem;}
-.page-title{font-family:var(--serif);font-size:clamp(2.5rem,6vw,5rem);font-weight:400;line-height:1.0;color:var(--ink);margin-bottom:1.75rem;}
-.page-title em{font-style:italic;color:var(--blue);}
+.page-header{min-height:48vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9.5rem 4rem 3.5rem;position:relative;border-bottom:2px solid var(--eng-ink);background-image:linear-gradient(rgba(42,74,138,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.07) 1px,transparent 1px);background-size:32px 32px;}
+.page-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:1rem;}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.75rem);font-weight:400;line-height:1.0;color:var(--eng-ink);margin-bottom:1.75rem;}
+.page-title em{font-style:italic;color:var(--eng-blue);}
 .header-meta{display:flex;gap:3rem;flex-wrap:wrap;}
-.meta-item{border-left:2px solid var(--blue-pale);padding-left:1rem;}
-.meta-label{font-size:0.63rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.2rem;}
-.meta-value{font-size:0.88rem;color:var(--ink-soft);}
+.meta-item{border-left:2px solid var(--eng-blue-pale);padding-left:1rem;max-width:300px;}
+.meta-label{font-size:0.63rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.2rem;}
+.meta-value{font-size:0.88rem;color:var(--eng-ink-soft);}
 
-.skills-bar{padding:1.25rem 4rem;border-bottom:1px solid var(--rule);display:flex;gap:0.6rem;flex-wrap:wrap;background:var(--bg2);position:relative;z-index:1;}
-.skills-label{font-size:0.65rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);margin-right:0.5rem;align-self:center;}
-.skill-chip{font-size:0.72rem;padding:0.3rem 0.85rem;border:1px solid var(--rule);color:var(--ink-soft);background:var(--bg);transition:all 0.2s;}
-.skill-chip.on{border-color:var(--blue);color:var(--blue);background:var(--blue-dim);}
-
-.projects{padding:0;position:relative;z-index:1;}
-.project-block{display:grid;grid-template-columns:240px 1fr;border-bottom:1px solid var(--rule);background:var(--bg);transition:background 0.2s;}
-.project-block:hover{background:#F2EEE8;}
-.project-sidebar{padding:2.5rem 2rem 2.5rem 4rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;gap:1.25rem;}
-.project-num{font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-muted);}
-.project-type-tag{font-size:0.7rem;color:var(--blue-light);font-style:italic;font-family:var(--serif);}
-.project-scale{font-size:0.78rem;color:var(--ink-soft);line-height:1.6;margin-top:auto;padding-top:1rem;border-top:1px solid var(--rule-light);}
-.project-scale strong{display:block;color:var(--ink);font-weight:500;font-family:var(--serif);margin-bottom:0.15rem;}
-.project-body{padding:2.5rem 4rem 2.5rem 2.5rem;}
-.project-name{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--ink);margin-bottom:0.75rem;padding-bottom:0.75rem;border-bottom:1px solid var(--rule-light);}
-.project-desc{font-size:0.92rem;color:var(--ink-soft);font-weight:300;line-height:1.85;margin-bottom:1.1rem;}
-.project-points{display:flex;flex-direction:column;gap:0.5rem;}
-.project-point{font-size:0.85rem;color:var(--ink-soft);display:flex;gap:0.75rem;line-height:1.6;font-weight:300;}
-.project-point::before{content:'—';color:var(--blue-light);flex-shrink:0;}
-
-/* NDA note */
-.nda-note{font-size:0.72rem;color:var(--ink-muted);font-style:italic;margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--rule-light);}
-
-/* University project request link */
-.proj-actions{margin-top:1.25rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
-.proj-link{font-size:0.75rem;font-weight:500;letter-spacing:0.06em;color:var(--blue);text-decoration:none;border:1px solid var(--blue-pale);padding:0.35rem 0.9rem;transition:all 0.2s;}
-.proj-link:hover{background:var(--blue-dim);border-color:var(--blue);}
-.proj-link.secondary{color:var(--ink-muted);border-color:var(--rule);}
-.proj-link.secondary:hover{color:var(--blue);border-color:var(--blue-pale);background:var(--blue-dim);}
-
-/* Education */
-.education{padding:5rem 4rem;background:var(--bg2);border-top:2px solid var(--ink);position:relative;z-index:1;}
-.edu-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--blue-light);margin-bottom:0.75rem;}
-.edu-section-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:400;color:var(--ink);margin-bottom:3rem;}
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
-.edu-title{font-family:var(--serif);font-size:1.25rem;color:var(--ink);margin-bottom:1.75rem;font-weight:400;line-height:1.3;}
-.edu-row{display:grid;grid-template-columns:120px 1fr;padding:0.85rem 0;border-bottom:1px solid var(--rule);}
-.edu-row-label{font-size:0.72rem;font-weight:500;color:var(--ink-muted);letter-spacing:0.04em;}
-.edu-row-value{font-size:0.85rem;color:var(--ink-soft);}
-.edu-row-value a{color:var(--blue);text-decoration:none;}
-.edu-row-value a:hover{text-decoration:underline;}
-.edu-projects-label{font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--blue-light);margin:2rem 0 1.25rem;}
-.edu-proj{padding:1.1rem 0;border-bottom:1px solid var(--rule);}
-.edu-proj-name{font-family:var(--serif);font-size:1rem;color:var(--ink);margin-bottom:0.3rem;}
-.edu-proj-desc{font-size:0.82rem;color:var(--ink-muted);font-weight:300;line-height:1.65;margin-bottom:0.75rem;}
-
-footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify-content:space-between;position:relative;z-index:1;background:var(--bg);}
-.footer-text{font-size:0.72rem;color:var(--ink-muted);}
-.footer-link{font-size:0.72rem;color:var(--blue);text-decoration:none;}
-.footer-link:hover{text-decoration:underline;}
+/* chapter nav — sticky, scrollspy */
+.chapter-nav{position:sticky;top:69px;z-index:90;display:flex;gap:0.75rem;align-items:center;padding:1rem 4rem;background:rgba(247,245,240,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--eng-rule);flex-wrap:wrap;}
+.ch-tab{display:flex;align-items:center;gap:0.6rem;padding:0.65rem 1.5rem;border:1.5px solid var(--eng-rule);background:var(--eng-bg);text-decoration:none;transition:all 0.2s;}
+.ch-tab-num{font-family:var(--mono);font-size:0.65rem;color:var(--eng-ink-muted);}
+.ch-tab-label{display:flex;flex-direction:column;line-height:1.25;}
+.ch-tab-label strong{font-size:0.78rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--eng-ink-soft);}
+.ch-tab-label span{font-size:0.62rem;color:var(--eng-ink-muted);font-weight:300;}
+.ch-tab:hover{border-color:var(--eng-blue-light);}
+.ch-tab[data-ch="uni"].current{border-color:var(--eng-blue);background:#EAF0FA;}
+.ch-tab[data-ch="red"].current{border-color:#66708A;background:#E8ECF2;}
+.ch-tab[data-ch="sx"].current{border-color:var(--sx-orange);background:#FBF2DC;}
 
 .fade{opacity:0;transform:translateY(14px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade.in{opacity:1;transform:none;}
 
-/* Modal */
+/* ============================================================
+   CH.01 — UNIVERSITY · textbook
+   ============================================================ */
+.tb{padding:5.5rem 4rem 6rem;background:var(--eng-bg);position:relative;}
+.tb-head{max-width:860px;margin:0 auto 3.5rem;text-align:left;border-bottom:3px double var(--eng-ink);padding-bottom:2rem;}
+.tb-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.9rem;}
+.tb-title{font-family:var(--serif);font-size:clamp(1.9rem,4vw,3rem);font-weight:400;color:var(--eng-ink);line-height:1.1;}
+.tb-title em{font-style:italic;color:var(--eng-blue);}
+.tb-lede{max-width:860px;margin:0 auto 1rem;font-size:0.95rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.9;}
+.tb-lede:first-letter{font-family:var(--serif);font-size:3.2rem;float:left;line-height:0.82;padding-right:0.55rem;padding-top:0.3rem;color:var(--eng-blue);}
+.tb-stats{max-width:860px;margin:2.25rem auto 0;display:flex;gap:0;border:1px solid var(--eng-rule);}
+.tb-stat{flex:1;padding:0.9rem 1.25rem;border-right:1px solid var(--eng-rule);}
+.tb-stat:last-child{border-right:none;}
+.tb-stat-num{font-family:var(--serif);font-size:1.3rem;color:var(--eng-blue);line-height:1.15;}
+.tb-stat-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-top:0.2rem;}
+
+.tb-proj{max-width:860px;margin:3.5rem auto 0;position:relative;}
+.tb-proj-rule{display:flex;align-items:baseline;gap:1.25rem;border-bottom:1px solid var(--eng-ink);padding-bottom:0.6rem;margin-bottom:1.4rem;}
+.tb-sec-num{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--eng-blue);}
+.tb-proj-title{font-family:var(--serif);font-size:1.45rem;font-weight:400;color:var(--eng-ink);}
+.tb-proj-meta{margin-left:auto;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--eng-ink-muted);white-space:nowrap;}
+.tb-abstract{font-size:0.93rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.9;margin-bottom:1.4rem;}
+.tb-abstract strong{font-weight:500;color:var(--eng-ink);}
+.tb-points{margin:0 0 1.5rem;padding-left:0;list-style:none;}
+.tb-points li{font-size:0.87rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.7;padding:0.45rem 0 0.45rem 1.6rem;position:relative;border-bottom:1px solid rgba(42,74,138,0.08);}
+.tb-points li::before{content:'\25B8';position:absolute;left:0.2rem;color:var(--eng-blue-light);font-size:0.7rem;top:0.65rem;}
+
+/* worked-example style expandable case study */
+.tb-case{border:1px solid var(--eng-rule);background:var(--eng-bg2);margin-bottom:1.4rem;}
+.tb-case summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.8rem;padding:0.9rem 1.4rem;user-select:none;}
+.tb-case summary::-webkit-details-marker{display:none;}
+.tb-case-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--eng-blue);border:1px solid var(--eng-blue-pale);padding:0.2rem 0.6rem;background:var(--eng-bg);}
+.tb-case-title{font-family:var(--serif);font-size:0.95rem;color:var(--eng-ink);}
+.tb-case-arrow{margin-left:auto;color:var(--eng-blue-light);transition:transform 0.25s;font-size:0.8rem;}
+.tb-case[open] .tb-case-arrow{transform:rotate(90deg);}
+.tb-case-body{padding:0.4rem 1.4rem 1.5rem;border-top:1px solid var(--eng-rule);}
+.tb-case-body p{font-size:0.87rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.85;margin-top:1rem;}
+.tb-fig{margin:1.4rem 0 0.4rem;border:1px solid var(--eng-rule);background:repeating-linear-gradient(45deg,var(--eng-bg),var(--eng-bg) 10px,var(--eng-bg2) 10px,var(--eng-bg2) 11px);padding:2.2rem 1.5rem;text-align:center;}
+.tb-fig-cap{font-family:var(--serif);font-style:italic;font-size:0.8rem;color:var(--eng-ink-muted);}
+.tb-actions{display:flex;gap:1rem;flex-wrap:wrap;}
+.tb-btn{font-size:0.75rem;font-weight:500;letter-spacing:0.06em;color:var(--eng-blue);text-decoration:none;border:1px solid var(--eng-blue-pale);padding:0.45rem 1.05rem;background:none;cursor:pointer;font-family:var(--sans);transition:all 0.2s;}
+.tb-btn:hover{background:rgba(42,74,138,0.08);border-color:var(--eng-blue);}
+.tb-btn.ghost{color:var(--eng-ink-muted);border-color:var(--eng-rule);}
+.tb-btn.ghost:hover{color:var(--eng-blue);}
+.tb-footnote{max-width:860px;margin:3rem auto 0;padding-top:1rem;border-top:1px solid var(--eng-rule);font-size:0.78rem;color:var(--eng-ink-muted);font-weight:300;}
+.tb-footnote a{color:var(--eng-blue);text-decoration:none;}
+.tb-footnote a:hover{text-decoration:underline;}
+
+/* ============================================================
+   CH.02 — RED · CAD drawing office
+   ============================================================ */
+.cad{padding:5.5rem 4rem 6rem;background:var(--cad-bg);background-image:linear-gradient(rgba(42,74,138,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.08) 1px,transparent 1px);background-size:24px 24px;}
+.cad-head{max-width:1060px;margin:0 auto 2.5rem;display:flex;flex-wrap:wrap;align-items:flex-end;gap:2rem;border-bottom:2px solid var(--cad-line);padding-bottom:1.5rem;}
+.cad-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--cad-muted);margin-bottom:0.9rem;}
+.cad-title{font-family:var(--mono);font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:500;color:var(--cad-ink);letter-spacing:-0.01em;line-height:1.15;text-transform:uppercase;}
+.cad-title span{color:var(--cad-line);}
+.cad-intro{max-width:520px;font-size:0.9rem;color:var(--cad-ink);opacity:0.78;font-weight:300;line-height:1.8;margin-left:auto;}
+
+/* working filter */
+.cad-filter{max-width:1060px;margin:0 auto 2.5rem;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;}
+.cad-filter-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cad-muted);margin-right:0.4rem;}
+.cad-chip{font-family:var(--mono);font-size:0.68rem;padding:0.35rem 0.9rem;border:1px solid var(--cad-line-soft);color:var(--cad-ink);background:var(--cad-sheet);cursor:pointer;transition:all 0.2s;}
+.cad-chip:hover{border-color:var(--cad-line);}
+.cad-chip.on{background:var(--cad-line);color:#fff;border-color:var(--cad-line);}
+
+/* drawing sheet */
+.cad-sheets{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:2.25rem;}
+.sheet{background:var(--cad-sheet);border:1.5px solid var(--cad-line);position:relative;padding:2.4rem 2.6rem 0;box-shadow:0 2px 14px rgba(26,36,54,0.10);transition:opacity 0.3s,transform 0.3s;}
+.sheet::after{content:'';position:absolute;inset:9px;border:0.5px solid var(--cad-line-soft);pointer-events:none;}
+.sheet.dim{opacity:0.22;}
+/* corner ticks */
+.tick{position:absolute;font-family:var(--mono);font-size:0.58rem;color:var(--cad-muted);}
+.tick.tl{top:-1.15rem;left:0;}
+.tick.tr{top:-1.15rem;right:0;}
+.sheet-grid-letters{position:absolute;left:-1.4rem;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-around;}
+.sheet-grid-letters span{font-family:var(--mono);font-size:0.58rem;color:var(--cad-muted);}
+.sheet-inner{display:grid;grid-template-columns:1fr 250px;gap:2.4rem;position:relative;z-index:1;}
+.sheet-name{font-family:var(--mono);font-size:1.02rem;font-weight:500;color:var(--cad-ink);text-transform:uppercase;letter-spacing:0.02em;padding-bottom:0.8rem;margin-bottom:1rem;border-bottom:1px dashed var(--cad-line-soft);}
+.sheet-desc{font-size:0.89rem;color:var(--cad-ink);opacity:0.78;font-weight:300;line-height:1.8;margin-bottom:1.1rem;}
+.sheet-notes{list-style:none;margin-bottom:2rem;}
+.sheet-notes li{font-size:0.83rem;color:var(--cad-ink);opacity:0.82;font-weight:300;line-height:1.65;padding:0.4rem 0 0.4rem 2.1rem;position:relative;}
+.sheet-notes li::before{content:attr(data-n);position:absolute;left:0;top:0.45rem;font-family:var(--mono);font-size:0.62rem;color:var(--cad-line);border:1px solid var(--cad-line-soft);width:1.35rem;height:1.35rem;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+/* title block */
+.titleblock{border:1px solid var(--cad-line);align-self:start;background:var(--cad-sheet);}
+.tb-row{display:grid;grid-template-columns:84px 1fr;border-bottom:1px solid var(--cad-line-soft);}
+.tb-row:last-child{border-bottom:none;}
+.tb-row dt{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cad-muted);padding:0.5rem 0.6rem;border-right:1px solid var(--cad-line-soft);}
+.tb-row dd{font-family:var(--mono);font-size:0.66rem;color:var(--cad-ink);padding:0.5rem 0.6rem;line-height:1.45;}
+/* NDA stamp */
+.stamp{position:absolute;right:2.2rem;bottom:4.6rem;font-family:var(--mono);font-size:0.64rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cad-stamp);border:2px solid var(--cad-stamp);padding:0.45rem 0.9rem;transform:rotate(-7deg);opacity:0.78;background:rgba(253,253,251,0.85);pointer-events:none;}
+.sheet-strip{margin:0 -2.6rem;padding:0.55rem 2.6rem;border-top:1px solid var(--cad-line);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cad-muted);}
+.cad-note{max-width:1060px;margin:2.25rem auto 0;font-family:var(--mono);font-size:0.68rem;color:var(--cad-muted);line-height:1.8;}
+
+/* ============================================================
+   CH.03 — SOVENTIX · sun & sand
+   ============================================================ */
+.sx{background:var(--sx-bg);position:relative;overflow:hidden;padding:6rem 4rem 6.5rem;}
+/* sun on the horizon — section signature */
+.sx-sun{position:absolute;top:-160px;right:8%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,0.55) 0%,rgba(232,160,32,0.18) 42%,transparent 70%);pointer-events:none;}
+.sx-sun::after{content:'';position:absolute;inset:-60px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(200,112,16,0.10) 0deg 4deg,transparent 4deg 14deg);-webkit-mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);}
+.sx-horizon{position:absolute;left:0;right:0;top:300px;height:1px;background:linear-gradient(90deg,transparent,var(--sx-rule) 18%,var(--sx-rule) 82%,transparent);}
+.sx-head{max-width:980px;margin:0 auto 3rem;position:relative;z-index:1;}
+.sx-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--sx-orange);margin-bottom:1rem;}
+.sx-title{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;color:var(--sx-ink);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;max-width:640px;}
+.sx-title em{font-style:normal;color:var(--sx-orange);}
+.sx-lede{max-width:560px;font-size:0.97rem;color:var(--sx-soft);font-weight:300;line-height:1.9;}
+.sx-meta{display:flex;gap:2.75rem;flex-wrap:wrap;margin-top:2.25rem;}
+.sx-meta-item{border-top:2px solid var(--sx-orange);padding-top:0.6rem;min-width:130px;}
+.sx-meta-label{font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--sx-muted);}
+.sx-meta-value{font-size:0.9rem;color:var(--sx-ink);margin-top:0.2rem;}
+
+/* field log */
+.sx-log{max-width:980px;margin:0 auto;position:relative;z-index:1;}
+.sx-log-title{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;border-bottom:1px solid var(--sx-rule);padding-bottom:0.9rem;}
+.sx-log-title h3{font-size:1.05rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sx-ink);}
+.sx-log-title span{font-size:0.78rem;color:var(--sx-muted);font-weight:300;font-style:italic;}
+.sx-entry{display:grid;grid-template-columns:150px 1fr;gap:2rem;padding:1.6rem 0;border-bottom:1px solid var(--sx-rule);}
+.sx-date{font-family:var(--mono);font-size:0.72rem;color:var(--sx-orange);letter-spacing:0.06em;padding-top:0.25rem;}
+.sx-date small{display:block;font-family:var(--sans);font-size:0.66rem;color:var(--sx-muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.3rem;}
+.sx-entry-title{font-size:1.05rem;font-weight:500;color:var(--sx-ink);margin-bottom:0.4rem;}
+.sx-entry-body{font-size:0.88rem;color:var(--sx-soft);font-weight:300;line-height:1.8;}
+.sx-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem;}
+.sx-tag{font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--sx-orange);border:1px solid var(--sx-rule);padding:0.22rem 0.65rem;border-radius:999px;background:rgba(248,240,216,0.6);}
+/* empty / upcoming state */
+.sx-entry.upcoming{opacity:0.75;}
+.sx-entry.upcoming .sx-entry-title{color:var(--sx-soft);}
+.sx-entry.upcoming .sx-date{color:var(--sx-muted);}
+.sx-coming{max-width:980px;margin:2.5rem auto 0;position:relative;z-index:1;border:1.5px dashed var(--sx-rule);padding:1.5rem 1.8rem;display:flex;align-items:center;gap:1.25rem;background:rgba(243,232,200,0.45);}
+.sx-coming-dot{width:10px;height:10px;border-radius:50%;background:var(--sx-sun);flex-shrink:0;animation:sxpulse 2.4s ease-in-out infinite;}
+@keyframes sxpulse{0%,100%{box-shadow:0 0 0 0 rgba(232,160,32,0.45);}50%{box-shadow:0 0 0 9px rgba(232,160,32,0);}}
+.sx-coming p{font-size:0.85rem;color:var(--sx-soft);font-weight:300;line-height:1.7;}
+
+/* ---------- footer ---------- */
+footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;justify-content:space-between;background:var(--eng-bg);}
+.footer-text{font-size:0.72rem;color:var(--eng-ink-muted);}
+.footer-link{font-size:0.72rem;color:var(--eng-blue);text-decoration:none;}
+.footer-link:hover{text-decoration:underline;}
+
+/* ---------- modal ---------- */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,30,42,0.55);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
 .modal-overlay.open{display:flex;}
-.modal{background:var(--bg);border:1px solid var(--rule);padding:2.5rem;max-width:480px;width:90%;position:relative;}
-.modal-title{font-family:var(--serif);font-size:1.15rem;color:var(--ink);margin-bottom:0.5rem;}
-.modal-sub{font-size:0.82rem;color:var(--ink-muted);line-height:1.65;margin-bottom:1.75rem;}
+.modal{background:var(--eng-bg);border:1px solid var(--eng-rule);padding:2.5rem;max-width:480px;width:90%;position:relative;}
+.modal-title{font-family:var(--serif);font-size:1.15rem;color:var(--eng-ink);margin-bottom:0.5rem;}
+.modal-sub{font-size:0.82rem;color:var(--eng-ink-muted);line-height:1.65;margin-bottom:1.75rem;}
 .modal-field{margin-bottom:1rem;}
-.modal-field label{display:block;font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.4rem;}
-.modal-field input,.modal-field textarea,.modal-field select{width:100%;font-family:var(--sans);font-size:0.85rem;color:var(--ink);background:var(--bg2);border:1px solid var(--rule);padding:0.6rem 0.85rem;outline:none;transition:border-color 0.2s;}
-.modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{border-color:var(--blue);}
+.modal-field label{display:block;font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.4rem;}
+.modal-field input,.modal-field textarea,.modal-field select{width:100%;font-family:var(--sans);font-size:0.85rem;color:var(--eng-ink);background:var(--eng-bg2);border:1px solid var(--eng-rule);padding:0.6rem 0.85rem;outline:none;transition:border-color 0.2s;}
+.modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{border-color:var(--eng-blue);}
 .modal-field textarea{resize:vertical;min-height:80px;}
 .modal-actions{display:flex;gap:0.75rem;margin-top:1.5rem;}
-.btn-primary{font-size:0.78rem;font-weight:500;letter-spacing:0.06em;color:#fff;background:var(--blue);border:none;padding:0.6rem 1.4rem;cursor:pointer;transition:background 0.2s;}
-.btn-primary:hover{background:var(--blue-light);}
-.btn-ghost{font-size:0.78rem;color:var(--ink-muted);background:none;border:1px solid var(--rule);padding:0.6rem 1.1rem;cursor:pointer;transition:all 0.2s;}
-.btn-ghost:hover{border-color:var(--ink-muted);color:var(--ink);}
-.modal-close{position:absolute;top:1rem;right:1.25rem;font-size:1.1rem;color:var(--ink-muted);background:none;border:none;cursor:pointer;line-height:1;}
-.modal-close:hover{color:var(--ink);}
+.btn-primary{font-size:0.78rem;font-weight:500;letter-spacing:0.06em;color:#fff;background:var(--eng-blue);border:none;padding:0.6rem 1.4rem;cursor:pointer;transition:background 0.2s;font-family:var(--sans);}
+.btn-primary:hover{background:var(--eng-blue-light);}
+.btn-primary:disabled{opacity:0.55;cursor:wait;}
+.btn-ghost{font-size:0.78rem;color:var(--eng-ink-muted);background:none;border:1px solid var(--eng-rule);padding:0.6rem 1.1rem;cursor:pointer;transition:all 0.2s;font-family:var(--sans);}
+.btn-ghost:hover{border-color:var(--eng-ink-muted);color:var(--eng-ink);}
+.modal-close{position:absolute;top:1rem;right:1.25rem;font-size:1.1rem;color:var(--eng-ink-muted);background:none;border:none;cursor:pointer;line-height:1;}
+.modal-close:hover{color:var(--eng-ink);}
 .modal-success{display:none;text-align:center;padding:1rem 0;}
 .modal-success.show{display:block;}
-.modal-success-icon{font-size:2rem;margin-bottom:0.75rem;}
-.modal-success p{font-size:0.88rem;color:var(--ink-soft);}
+.modal-success-icon{font-size:2rem;margin-bottom:0.75rem;color:var(--eng-blue);}
+.modal-success p{font-size:0.88rem;color:var(--eng-ink-soft);}
+.modal-error{display:none;font-size:0.78rem;color:#A83434;margin-top:0.9rem;line-height:1.6;}
+.modal-error.show{display:block;}
 
-@media(max-width:860px){
+/* ---------- a11y & motion ---------- */
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--eng-blue);outline-offset:2px;}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .fade{opacity:1;transform:none;transition:none;}
+  .sx-coming-dot{animation:none;}
+}
+
+/* ---------- responsive ---------- */
+@media(max-width:920px){
   nav{padding:1rem 1.5rem;}
-  .page-header,.skills-bar,.education{padding-left:1.5rem;padding-right:1.5rem;}
-  .title-block{display:none;}
-  .project-block{grid-template-columns:1fr;}
-  .project-sidebar{padding:2rem 1.5rem 1rem;border-right:none;border-bottom:1px solid var(--rule);}
-  .project-body{padding:1.5rem;}
-  .edu-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .page-header{padding:8rem 1.5rem 3rem;}
+  .chapter-nav{padding:0.85rem 1.5rem;top:65px;}
+  .ch-tab{padding:0.5rem 0.9rem;}
+  .ch-tab-label span{display:none;}
+  .tb,.cad,.sx{padding-left:1.5rem;padding-right:1.5rem;}
+  .tb-stats{flex-wrap:wrap;}
+  .tb-stat{min-width:46%;border-bottom:1px solid var(--eng-rule);}
+  .tb-proj-rule{flex-wrap:wrap;gap:0.5rem 1rem;}
+  .tb-proj-meta{margin-left:0;width:100%;}
+  .sheet{padding:1.8rem 1.4rem 0;}
+  .sheet-inner{grid-template-columns:1fr;gap:1.6rem;}
+  .sheet-strip{margin:0 -1.4rem;padding:0.55rem 1.4rem;flex-wrap:wrap;gap:0.3rem;}
+  .sheet-grid-letters{display:none;}
+  .stamp{position:static;display:inline-block;margin-bottom:1.4rem;transform:rotate(-3deg);}
+  .sx-sun{width:280px;height:280px;top:-110px;right:-60px;}
+  .sx-entry{grid-template-columns:1fr;gap:0.5rem;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
 }
 </style>
@@ -146,260 +266,344 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </nav>
 
 <header class="page-header">
-  <div class="title-block">
-    <div class="title-block-row">
-      <span class="title-block-label">Author</span>
-      <span class="title-block-value">S. Jarrett</span>
-    </div>
-    <div class="title-block-row">
-      <span class="title-block-label">Organisation</span>
-      <span class="title-block-value">RED Engineering Design</span>
-    </div>
-    <div class="title-block-row">
-      <span class="title-block-label">Discipline</span>
-      <span class="title-block-value">Electrical</span>
-    </div>
-    <div class="title-block-row">
-      <span class="title-block-label">Date</span>
-      <span class="title-block-value">2026</span>
-    </div>
-  </div>
-  <p class="page-eyebrow">Chapter 02</p>
+  <p class="page-eyebrow">Chapter 02 &mdash; Three chapters, one thread: getting power where it&rsquo;s needed</p>
   <h1 class="page-title">Electrical<br><em>Engineering</em></h1>
   <div class="header-meta">
     <div class="meta-item">
-      <div class="meta-label">Current role</div>
-      <div class="meta-value">Graduate Electrical Engineer, RED Engineering Design</div>
+      <div class="meta-label">Currently</div>
+      <!-- EDIT: confirm exact job title with Soventix -->
+      <div class="meta-value">PV Design Engineer, Soventix &mdash; solar projects across Africa</div>
     </div>
     <div class="meta-item">
-      <div class="meta-label">Sectors</div>
-      <div class="meta-value">Data centres, MV/LV, Renewables</div>
+      <div class="meta-label">Previously</div>
+      <div class="meta-value">Graduate Electrical Engineer, RED Engineering Design &mdash; data centres</div>
     </div>
     <div class="meta-item">
       <div class="meta-label">Education</div>
-      <div class="meta-value">MEng First Class, University of Bristol</div>
+      <div class="meta-value">MEng First Class, University of Bristol &mdash; Energy &amp; Renewables</div>
     </div>
   </div>
 </header>
 
-<div class="skills-bar">
-  <span class="skills-label">Skills</span>
-  <span class="skill-chip on">MV/LV Design</span>
-  <span class="skill-chip on">Solar PV</span>
-  <span class="skill-chip on">BESS</span>
-  <span class="skill-chip on">AutoCAD</span>
-  <span class="skill-chip on">MATLAB-Simulink</span>
-  <span class="skill-chip">DIALux</span>
-  <span class="skill-chip">Excel Modelling</span>
-  <span class="skill-chip">Amtech</span>
-  <span class="skill-chip">Revit</span>
-  <span class="skill-chip">Python</span>
+<!-- sticky chapter navigation -->
+<div class="chapter-nav" id="chapterNav">
+  <a class="ch-tab" data-ch="uni" href="#university">
+    <span class="ch-tab-num">01</span>
+    <span class="ch-tab-label"><strong>University</strong><span>Renewables research &amp; builds</span></span>
+  </a>
+  <a class="ch-tab" data-ch="red" href="#datacentres">
+    <span class="ch-tab-num">02</span>
+    <span class="ch-tab-label"><strong>Data Centres</strong><span>MV/LV design at RED</span></span>
+  </a>
+  <a class="ch-tab" data-ch="sx" href="#soventix">
+    <span class="ch-tab-num">03</span>
+    <span class="ch-tab-label"><strong>Soventix</strong><span>Solar design, Africa</span></span>
+  </a>
 </div>
 
-<section class="projects">
-
-  <div class="project-block fade">
-    <div class="project-sidebar">
-      <div class="project-num">Project 01</div>
-      <div class="project-type-tag">MV/LV Design, AutoCAD</div>
-      <div class="project-scale">
-        <strong>Hyperscale<br><span style="font-weight:300;font-family:var(--sans);font-size:0.75rem;color:var(--ink-muted)">Middle East</span></strong>
-        RIBA Stage 2
-      </div>
-    </div>
-    <div class="project-body">
-      <div class="project-name">Data Centre Campus &mdash; MV Distribution Architecture</div>
-      <p class="project-desc">Proposed MV-LV schematic architectures with 2:1 redundancy for a large-scale data centre campus, presenting the design strategy to senior engineers and building analytical tools to validate routing options.</p>
-      <div class="project-points">
-        <div class="project-point">Designed 2:1 redundant cable configurations to minimise crossover and maximise resilience</div>
-        <div class="project-point">Produced AutoCAD schematics and presented findings to senior engineers</div>
-        <div class="project-point">Excel models to analyse distributed redundancy and evaluate alternative routing strategies</div>
-      </div>
-      <p class="nda-note">Project details withheld under NDA.</p>
-    </div>
+<!-- ============================================================
+     CH.01 — UNIVERSITY · textbook
+     ============================================================ -->
+<section class="tb" id="university">
+  <div class="tb-head fade">
+    <p class="tb-chapter">Chapter 01 &middot; 2019&ndash;2023 &middot; University of Bristol</p>
+    <h2 class="tb-title">Foundations in <em>Energy &amp; Renewables</em></h2>
+  </div>
+  <p class="tb-lede fade">Four years of mechanical and electrical engineering, specialising in energy systems in the final two. The degree closed with two substantial pieces of work: an individual feasibility study of a wind&ndash;solar mini-grid, and a group project that designed and physically built a solar DC microgrid for an off-grid community in the Brazilian Amazon. Both are available in full on request.</p>
+  <div class="tb-stats fade">
+    <div class="tb-stat"><div class="tb-stat-num">First</div><div class="tb-stat-label">Classification</div></div>
+    <div class="tb-stat"><div class="tb-stat-num">73%</div><div class="tb-stat-label">Average</div></div>
+    <div class="tb-stat"><div class="tb-stat-num">84%</div><div class="tb-stat-label">Research project</div></div>
+    <div class="tb-stat"><div class="tb-stat-num">Exemplar</div><div class="tb-stat-label">Cohort paper</div></div>
   </div>
 
-  <div class="project-block fade">
-    <div class="project-sidebar">
-      <div class="project-num">Project 02</div>
-      <div class="project-type-tag">Power Systems, Load Modelling</div>
-      <div class="project-scale">
-        <strong>Large-Scale Colocation<br><span style="font-weight:300;font-family:var(--sans);font-size:0.75rem;color:var(--ink-muted)">Central Europe</span></strong>
-        RIBA Stage 3
-      </div>
+  <!-- §1.1 -->
+  <article class="tb-proj fade">
+    <div class="tb-proj-rule">
+      <span class="tb-sec-num">&sect;1.1</span>
+      <h3 class="tb-proj-title">Wind&ndash;Solar Mini-Grid &mdash; Feasibility Study</h3>
+      <span class="tb-proj-meta">Individual &middot; 84% &middot; Cohort exemplar</span>
     </div>
-    <div class="project-body">
-      <div class="project-name">Data Centre &mdash; Power System Design</div>
-      <p class="project-desc">Maximum demand calculations, string-level load modelling, SLD and earthing GA reviews, and coordination across mechanical, BIM, security, and controls teams at RIBA Stage 3.</p>
-      <div class="project-points">
-        <div class="project-point">Floor-function load analysis for maximum demand calculations across a high-load facility</div>
-        <div class="project-point">Excel tools to validate transformer, UPS, and DB sizing following client-driven design changes</div>
-        <div class="project-point">Organised and ran coordination call with mechanical team to resolve design clashes</div>
+    <p class="tb-abstract"><strong>Abstract.</strong> An independent, end-to-end feasibility study of a hybrid wind&ndash;solar mini-grid, assessed across four load scenarios. The work covers resource modelling, storage optimisation, and full lifetime cost analysis, and was later used as an exemplar paper for the following cohort.</p>
+    <ul class="tb-points">
+      <li>Wind resource modelled with Weibull distributions to estimate generation across the candidate site</li>
+      <li>Battery depth-of-discharge and lifecycle optimisation evaluated across all four load scenarios</li>
+      <li>Full cost analysis: capital expenditure, operation &amp; maintenance, and payback period per scenario</li>
+    </ul>
+    <details class="tb-case">
+      <summary>
+        <span class="tb-case-label">Worked example</span>
+        <span class="tb-case-title">Method in brief &mdash; from wind data to payback period</span>
+        <span class="tb-case-arrow">&#9656;</span>
+      </summary>
+      <div class="tb-case-body">
+        <p>The study works forward from resource to economics. Site wind speeds are fitted to Weibull distributions, which feed expected turbine output; solar generation is sized against the same demand profiles. The storage question is treated as an optimisation: deeper battery discharge means fewer cells but shorter life, so depth-of-discharge is traded against replacement cost across the battery&rsquo;s cycle curve.</p>
+        <p>Each of the four load scenarios is then carried through to a full costing &mdash; capex, O&amp;M, and payback &mdash; so the comparison at the end is economic, not just technical. The result is a recommendation grounded in which configuration actually pays for itself, and when.</p>
+        <div class="tb-fig"><span class="tb-fig-cap">Fig. 1.1 &mdash; Scenario comparison and DOD optimisation curves. Included in the full report, available on request.</span></div>
       </div>
-      <p class="nda-note">Project details withheld under NDA.</p>
+    </details>
+    <div class="tb-actions">
+      <button class="tb-btn" onclick="openModal('Wind-Solar Mini-Grid Feasibility Study')">Request the full report</button>
     </div>
-  </div>
+  </article>
 
-  <div class="project-block fade">
-    <div class="project-sidebar">
-      <div class="project-num">Project 03</div>
-      <div class="project-type-tag">Busbar Routing, MV Schematics</div>
-      <div class="project-scale">
-        <strong>Large-Scale Colocation<br><span style="font-weight:300;font-family:var(--sans);font-size:0.75rem;color:var(--ink-muted)">South Europe</span></strong>
-        RIBA Stage 1 &amp; 2
-      </div>
+  <!-- §1.2 -->
+  <article class="tb-proj fade">
+    <div class="tb-proj-rule">
+      <span class="tb-sec-num">&sect;1.2</span>
+      <h3 class="tb-proj-title">Solar DC Microgrid &mdash; Design &amp; Build</h3>
+      <span class="tb-proj-meta">Group industrial project &middot; First Class</span>
     </div>
-    <div class="project-body">
-      <div class="project-name">Data Centre &mdash; MV Distribution &amp; Busbar Routing</div>
-      <p class="project-desc">Built an algorithm to calculate unique busbar string combinations across a data hall. Validated a N+1 redundancy topology across a range of rack power ratings. Produced comparative technical notes on switchgear selection.</p>
-      <div class="project-points">
-        <div class="project-point">Excel redundancy model validating N+1 topology across a range of rack power ratings</div>
-        <div class="project-point">MV substation schematics produced in AutoCAD</div>
-        <div class="project-point">Technical notes comparing AIS vs GIS switchgear and block vs distributed redundancy approaches</div>
+    <p class="tb-abstract"><strong>Abstract.</strong> Co-designed and helped build a solar DC microgrid for a remote off-grid community in the Brazilian Amazon &mdash; the full lifecycle from concept through simulation to validated hardware.</p>
+    <ul class="tb-points">
+      <li>Led PV sizing, battery selection, wire sizing, and the complete system specification</li>
+      <li>MATLAB algorithms sized battery banks and arrays using five years of real irradiance data</li>
+      <li>Simulink model of MPPT, droop control, and a bidirectional BMS &mdash; validated against a physical PCB prototype</li>
+    </ul>
+    <details class="tb-case">
+      <summary>
+        <span class="tb-case-label">Worked example</span>
+        <span class="tb-case-title">Method in brief &mdash; from irradiance data to working hardware</span>
+        <span class="tb-case-arrow">&#9656;</span>
+      </summary>
+      <div class="tb-case-body">
+        <p>Sizing was driven by data rather than rules of thumb: five years of measured irradiance fed MATLAB routines that sized the array and battery bank against the community&rsquo;s demand profile, including the bad weeks, not just the average ones.</p>
+        <p>The control system &mdash; maximum power point tracking, droop control for load sharing, and a bidirectional battery management system &mdash; was modelled in Simulink and then tested for real against a PCB prototype the team built. Closing that loop between simulation and physical hardware was the point of the project: the model had to survive contact with a soldering iron.</p>
+        <div class="tb-fig"><span class="tb-fig-cap">Fig. 1.2 &mdash; Simulink control architecture and PCB validation results. Included in the full report, available on request.</span></div>
       </div>
-      <p class="nda-note">Project details withheld under NDA.</p>
+    </details>
+    <div class="tb-actions">
+      <button class="tb-btn" onclick="openModal('Solar DC Microgrid &mdash; Remote Community')">Request the full report</button>
     </div>
-  </div>
+  </article>
 
-  <div class="project-block fade">
-    <div class="project-sidebar">
-      <div class="project-num">Project 04</div>
-      <div class="project-type-tag">Lighting, Planning</div>
-      <div class="project-scale">
-        <strong>Medium-Scale Colocation<br><span style="font-weight:300;font-family:var(--sans);font-size:0.75rem;color:var(--ink-muted)">England</span></strong>
-        RIBA Stage 3
-      </div>
-    </div>
-    <div class="project-body">
-      <div class="project-name"> Data Centre &mdash; Exterior Lighting &amp; Environmental Assessment </div>
-      <p class="project-desc">Recreated existing site lighting from as-built drawings in DIALux, redesigned around a new gantry structure, and produced an obtrusive lighting report for a council planning submission.</p>
-      <div class="project-points">
-        <div class="project-point">Extrusive lighting analysis for planning permission: compliance verified against planning threshold</div>
-        <div class="project-point">Ecology report analysis and local authority constraint assessment</div>
-        <div class="project-point">Extrusive lighting report submitted to local authorities includng proposal for updated external lighting scheme</div>
-      </div>
-      <p class="nda-note">Project details withheld under NDA.</p>
-    </div>
-  </div>
-
-  <div class="project-block fade">
-    <div class="project-sidebar">
-      <div class="project-num">Project 05</div>
-      <div class="project-type-tag">LV Design, Schematics, Load Assessment</div>
-      <div class="project-scale">
-        <strong>Large-Scale Data Centre<br><span style="font-weight:300;font-family:var(--sans);font-size:0.75rem;color:var(--ink-muted)">Confidential</span></strong>
-        RIBA Stage 1 &amp; 2
-      </div>
-    </div>
-    <div class="project-body">
-      <div class="project-name">Data Centre &mdash; Office LV Design &amp; Masterplan Power Zoning</div>
-      <p class="project-desc">Full electrical design for an office fit-out within a live data centre environment, alongside masterplan-level LV distribution and power zoning work. Scope spans from generator through transformers and switchboards to end loads, with UPS-backed critical circuits and life safety systems throughout.</p>
-      <div class="project-points">
-        <div class="project-point">Office layout design including LV schematics, distribution boards, fire alarm zoning, and lighting zone layouts</div>
-        <div class="project-point">Load assessment and LV schematic development from generator through transformers and switchboards to end loads, with UPS backing for critical equipment</div>
-        <div class="project-point">Life safety board design requiring multi-discipline coordination across electrical, IT, and mechanical teams</div>
-        <div class="project-point">Masterplan LV distribution layout and power zoning: mapping which data halls power which external areas across the wider campus</div>
-      </div>
-      <p class="nda-note">Project details withheld under NDA.</p>
-    </div>
-  </div>
-
-  <div class="project-block fade">
-    <div class="project-sidebar">
-      <div class="project-num">Project 06</div>
-      <div class="project-type-tag">Solar PV, BESS, Simulink</div>
-      <div class="project-scale">
-        <strong>University</strong>
-        Group Industrial Project, First Class
-      </div>
-    </div>
-    <div class="project-body">
-      <div class="project-name">Solar DC Microgrid &mdash; Remote Community</div>
-      <p class="project-desc">Co-designed and helped build a solar DC microgrid for an off-grid community. Full lifecycle from concept through to validated hardware, including Simulink modelling and physical PCB prototype.</p>
-      <div class="project-points">
-        <div class="project-point">Led PV sizing, battery selection, wire sizing, and complete system specification</div>
-        <div class="project-point">MATLAB algorithms to size battery banks and arrays using five years of real irradiance data</div>
-        <div class="project-point">Simulink model: MPPT, droop control, bidirectional BMS &mdash; validated against physical PCB prototype</div>
-      </div>
-      <div class="proj-actions">
-        <button class="proj-link" onclick="openModal('Solar DC Microgrid &mdash; Remote Community')">Request project download</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="project-block fade">
-    <div class="project-sidebar">
-      <div class="project-num">Project 07</div>
-      <div class="project-type-tag">Feasibility, Cost Modelling</div>
-      <div class="project-scale">
-        <strong>University</strong>
-        Individual Research Project &mdash; 84% &mdash; Cohort Exemplar
-      </div>
-    </div>
-    <div class="project-body">
-      <div class="project-name">Wind-Solar Mini-Grid &mdash; Feasibility Study</div>
-      <p class="project-desc">Independent end-to-end feasibility study across four load scenarios covering battery DOD optimisation, Weibull wind modelling, and full capital and O&amp;M cost analysis. Awarded 84% and used as a cohort exemplar.</p>
-      <div class="project-points">
-        <div class="project-point">Battery DOD and lifecycle optimisation across four load scenarios</div>
-        <div class="project-point">Wind power modelling using Weibull distributions</div>
-        <div class="project-point">Full cost analysis: capex, O&amp;M, payback period</div>
-      </div>
-      <div class="proj-actions">
-        <button class="proj-link" onclick="openModal('Wind-Solar Mini-Grid Feasibility Study')">Request project download</button>
-      </div>
-    </div>
-  </div>
-
+  <p class="tb-footnote fade">Full module list and year-by-year breakdown: <a href="education.html">see the education appendix &rarr;</a> &nbsp;&middot;&nbsp; A-Levels: Maths A* &middot; Physics A* &middot; Chemistry A</p>
 </section>
 
-<section class="education fade">
-  <p class="edu-eyebrow">Education</p>
-  <h2 class="edu-section-title">Academic background</h2>
-  <div class="edu-grid">
+<!-- ============================================================
+     CH.02 — RED · CAD drawing office
+     ============================================================ -->
+<section class="cad" id="datacentres">
+  <div class="cad-head fade">
     <div>
-      <h3 class="edu-title">MEng Mechanical &amp; Electrical Engineering</h3>
-      <div class="edu-row">
-        <span class="edu-row-label">University</span>
-        <span class="edu-row-value"><a href="https://www.bristol.ac.uk/" target="_blank" rel="noopener">University of Bristol</a></span>
+      <p class="cad-chapter">Chapter 02 &middot; 2024&ndash;2026 &middot; RED Engineering Design</p>
+      <h2 class="cad-title">Data Centre <span>Electrical Design</span></h2>
+    </div>
+    <p class="cad-intro">Graduate electrical engineer across hyperscale and colocation data centre projects in EMEA, from RIBA Stage 1 concept through Stage 3 coordination. Client and site details are withheld under NDA &mdash; each sheet below shows the scope and what I delivered, not whose campus it is.</p>
+  </div>
+
+  <div class="cad-filter fade" id="cadFilter">
+    <span class="cad-filter-label">Filter / discipline</span>
+    <button class="cad-chip on" data-f="all">All</button>
+    <button class="cad-chip" data-f="mv">MV design</button>
+    <button class="cad-chip" data-f="lv">LV design</button>
+    <button class="cad-chip" data-f="power">Power systems</button>
+    <button class="cad-chip" data-f="model">Modelling</button>
+    <button class="cad-chip" data-f="light">Lighting</button>
+  </div>
+
+  <div class="cad-sheets">
+
+    <!-- DRG-001 -->
+    <article class="sheet fade" data-tags="mv model">
+      <span class="tick tl">DRG-001</span><span class="tick tr">SHT 1 OF 5</span>
+      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
+      <div class="sheet-inner">
+        <div>
+          <h3 class="sheet-name">MV Distribution Architecture &mdash; Campus</h3>
+          <p class="sheet-desc">Proposed MV&ndash;LV schematic architectures with 2:1 redundancy for a large-scale campus, presenting the design strategy to senior engineers and building analytical tools to validate routing options.</p>
+          <ul class="sheet-notes">
+            <li data-n="1">Designed 2:1 redundant cable configurations to minimise crossover and maximise resilience</li>
+            <li data-n="2">Produced AutoCAD schematics and presented findings to senior engineers</li>
+            <li data-n="3">Excel models to analyse distributed redundancy and evaluate alternative routing strategies</li>
+          </ul>
+        </div>
+        <dl class="titleblock">
+          <div class="tb-row"><dt>Project</dt><dd>Hyperscale campus</dd></div>
+          <div class="tb-row"><dt>Region</dt><dd>EMEA</dd></div>
+          <div class="tb-row"><dt>Stage</dt><dd>RIBA 2</dd></div>
+          <div class="tb-row"><dt>Discipline</dt><dd>MV design &middot; AutoCAD</dd></div>
+          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
+          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
+        </dl>
       </div>
-      <div class="edu-row">
-        <span class="edu-row-label">Classification</span>
-        <span class="edu-row-value">First Class Honours &mdash; 73%</span>
+      <span class="stamp">Details withheld &mdash; NDA</span>
+      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
+    </article>
+
+    <!-- DRG-002 -->
+    <article class="sheet fade" data-tags="power model">
+      <span class="tick tl">DRG-002</span><span class="tick tr">SHT 2 OF 5</span>
+      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
+      <div class="sheet-inner">
+        <div>
+          <h3 class="sheet-name">Power System Design &mdash; Colocation Facility</h3>
+          <p class="sheet-desc">Maximum demand calculations, string-level load modelling, SLD and earthing GA reviews, and coordination across mechanical, BIM, security, and controls teams at RIBA Stage 3.</p>
+          <ul class="sheet-notes">
+            <li data-n="1">Floor-function load analysis for maximum demand calculations across a high-load facility</li>
+            <li data-n="2">Excel tools to validate transformer, UPS, and DB sizing following client-driven design changes</li>
+            <li data-n="3">Organised and ran coordination call with mechanical team to resolve design clashes</li>
+          </ul>
+        </div>
+        <dl class="titleblock">
+          <div class="tb-row"><dt>Project</dt><dd>Large colocation</dd></div>
+          <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
+          <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
+          <div class="tb-row"><dt>Discipline</dt><dd>Power systems &middot; load modelling</dd></div>
+          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
+          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
+        </dl>
       </div>
-      <div class="edu-row">
-        <span class="edu-row-label">Years</span>
-        <span class="edu-row-value">2019 &mdash; 2023</span>
+      <span class="stamp">Details withheld &mdash; NDA</span>
+      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
+    </article>
+
+    <!-- DRG-003 -->
+    <article class="sheet fade" data-tags="mv model">
+      <span class="tick tl">DRG-003</span><span class="tick tr">SHT 3 OF 5</span>
+      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
+      <div class="sheet-inner">
+        <div>
+          <h3 class="sheet-name">MV Distribution &amp; Busbar Routing</h3>
+          <p class="sheet-desc">Built an algorithm to calculate unique busbar string combinations across a data hall. Validated an N+1 redundancy topology across a range of rack power ratings, and produced comparative technical notes on switchgear selection.</p>
+          <ul class="sheet-notes">
+            <li data-n="1">Excel redundancy model validating N+1 topology across a range of rack power ratings</li>
+            <li data-n="2">MV substation schematics produced in AutoCAD</li>
+            <li data-n="3">Technical notes comparing AIS vs GIS switchgear and block vs distributed redundancy approaches</li>
+          </ul>
+        </div>
+        <dl class="titleblock">
+          <div class="tb-row"><dt>Project</dt><dd>Large colocation</dd></div>
+          <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
+          <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
+          <div class="tb-row"><dt>Discipline</dt><dd>Busbar routing &middot; MV schematics</dd></div>
+          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
+          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
+        </dl>
       </div>
-      <div class="edu-row">
-        <span class="edu-row-label">Specialisation</span>
-        <span class="edu-row-value">Energy &amp; Renewables</span>
+      <span class="stamp">Details withheld &mdash; NDA</span>
+      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
+    </article>
+
+    <!-- DRG-004 -->
+    <article class="sheet fade" data-tags="light">
+      <span class="tick tl">DRG-004</span><span class="tick tr">SHT 4 OF 5</span>
+      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
+      <div class="sheet-inner">
+        <div>
+          <h3 class="sheet-name">Exterior Lighting &amp; Environmental Assessment</h3>
+          <p class="sheet-desc">Recreated existing site lighting from as-built drawings in DIALux, redesigned around a new gantry structure, and produced an obtrusive lighting report for a council planning submission.</p>
+          <ul class="sheet-notes">
+            <li data-n="1">Obtrusive lighting analysis for planning permission &mdash; compliance verified against planning thresholds</li>
+            <li data-n="2">Ecology report analysis and local authority constraint assessment</li>
+            <li data-n="3">Obtrusive lighting report submitted to the local authority, including a proposed updated external lighting scheme</li>
+          </ul>
+        </div>
+        <dl class="titleblock">
+          <div class="tb-row"><dt>Project</dt><dd>Medium colocation</dd></div>
+          <div class="tb-row"><dt>Region</dt><dd>England</dd></div>
+          <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
+          <div class="tb-row"><dt>Discipline</dt><dd>Lighting &middot; planning</dd></div>
+          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
+          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
+        </dl>
       </div>
-      <div class="edu-row">
-        <span class="edu-row-label">Modules</span>
-        <span class="edu-row-value"><a href="education.html">View full module list &rarr;</a></span>
+      <span class="stamp">Details withheld &mdash; NDA</span>
+      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
+    </article>
+
+    <!-- DRG-005 -->
+    <article class="sheet fade" data-tags="lv power">
+      <span class="tick tl">DRG-005</span><span class="tick tr">SHT 5 OF 5</span>
+      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
+      <div class="sheet-inner">
+        <div>
+          <h3 class="sheet-name">Office LV Design &amp; Masterplan Power Zoning</h3>
+          <p class="sheet-desc">Full electrical design for an office fit-out within a live data centre environment, alongside masterplan-level LV distribution and power zoning. Scope spans from generator through transformers and switchboards to end loads, with UPS-backed critical circuits and life safety systems throughout.</p>
+          <ul class="sheet-notes">
+            <li data-n="1">Office layout design: LV schematics, distribution boards, fire alarm zoning, and lighting zone layouts</li>
+            <li data-n="2">Load assessment and LV schematic development from generator through transformers and switchboards to end loads, with UPS backing for critical equipment</li>
+            <li data-n="3">Life safety board design requiring multi-discipline coordination across electrical, IT, and mechanical teams</li>
+            <li data-n="4">Masterplan LV distribution layout and power zoning &mdash; mapping which data halls power which external areas across the wider campus</li>
+          </ul>
+        </div>
+        <dl class="titleblock">
+          <div class="tb-row"><dt>Project</dt><dd>Large data centre</dd></div>
+          <div class="tb-row"><dt>Region</dt><dd>Confidential</dd></div>
+          <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
+          <div class="tb-row"><dt>Discipline</dt><dd>LV design &middot; load assessment</dd></div>
+          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
+          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
+        </dl>
       </div>
-      <div class="edu-row">
-        <span class="edu-row-label">A-Levels</span>
-        <span class="edu-row-value">Maths A* &middot; Physics A* &middot; Chemistry A</span>
+      <span class="stamp">Details withheld &mdash; NDA</span>
+      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
+    </article>
+
+  </div>
+
+  <p class="cad-note fade">GENERAL NOTES &mdash; 1. All project work shown is described at the level approved for public reference; client names, locations, capacities and drawings are withheld under NDA. 2. Illustrative recreations of representative schematics and tools, built with fictional data, are available on request. 3. Tools used across these projects: AutoCAD &middot; Excel modelling &middot; DIALux &middot; Amtech &middot; Revit.</p>
+</section>
+
+<!-- ============================================================
+     CH.03 — SOVENTIX · sun & sand
+     ============================================================ -->
+<section class="sx" id="soventix">
+  <div class="sx-sun" aria-hidden="true"></div>
+  <div class="sx-horizon" aria-hidden="true"></div>
+
+  <div class="sx-head fade">
+    <p class="sx-chapter">Chapter 03 &middot; 2026&ndash; &middot; Soventix</p>
+    <h2 class="sx-title">Solar design, <em>built for Africa</em></h2>
+    <p class="sx-lede">The chapter the first two were building towards: designing solar PV systems for projects across Africa with Soventix &mdash; renewables training, data centre discipline, applied where the energy transition matters most. This section is a working log: entries are added as projects progress, within what each client allows.</p>
+    <div class="sx-meta">
+      <div class="sx-meta-item">
+        <div class="sx-meta-label">Role</div>
+        <!-- EDIT: confirm exact title -->
+        <div class="sx-meta-value">PV Design Engineer</div>
+      </div>
+      <div class="sx-meta-item">
+        <div class="sx-meta-label">Focus</div>
+        <div class="sx-meta-value">Solar PV &middot; system design</div>
+      </div>
+      <div class="sx-meta-item">
+        <div class="sx-meta-label">Region</div>
+        <div class="sx-meta-value">Africa</div>
       </div>
     </div>
-    <div>
-      <p class="edu-projects-label">Key projects</p>
-      <div class="edu-proj">
-        <div class="edu-proj-name">Solar DC Microgrid Design &amp; Build</div>
-        <div class="edu-proj-desc">Group project. Full lifecycle design and physical build for a remote off-grid community. PV sizing, MATLAB-Simulink modelling, PCB validation.</div>
-        <div class="proj-actions">
-          <button class="proj-link" onclick="openModal('Solar DC Microgrid &mdash; Remote Community')">Request project</button>
-        </div>
-      </div>
-      <div class="edu-proj">
-        <div class="edu-proj-name">Wind-Solar Mini-Grid Feasibility Study</div>
-        <div class="edu-proj-desc">Individual research. 84%, cohort exemplar. End-to-end feasibility study &mdash; Weibull modelling, DOD optimisation, cost analysis across four scenarios.</div>
-        <div class="proj-actions">
-          <button class="proj-link" onclick="openModal('Wind-Solar Mini-Grid Feasibility Study')">Request project</button>
-        </div>
-      </div>
+  </div>
+
+  <div class="sx-log fade">
+    <div class="sx-log-title">
+      <h3>Field log</h3>
+      <span>most recent first</span>
     </div>
+
+    <!-- TEMPLATE — copy this block to add a new entry:
+    <article class="sx-entry">
+      <div class="sx-date">MMM YYYY<small>Country / project type</small></div>
+      <div>
+        <h4 class="sx-entry-title">Entry title</h4>
+        <p class="sx-entry-body">What happened, what you designed, what you learned. Keep client specifics within what's been approved.</p>
+        <div class="sx-tags"><span class="sx-tag">PV design</span><span class="sx-tag">Tag two</span></div>
+      </div>
+    </article>
+    -->
+
+    <article class="sx-entry">
+      <div class="sx-date">Jun 2026<small>The beginning</small></div>
+      <div>
+        <h4 class="sx-entry-title">Joined Soventix</h4>
+        <p class="sx-entry-body">Starting as a solar PV design engineer working on projects across Africa. First assignments to follow &mdash; design work, site context, and lessons learned will be logged here as each project allows.</p>
+        <div class="sx-tags"><span class="sx-tag">Solar PV</span><span class="sx-tag">New chapter</span></div>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="sx-coming fade">
+    <span class="sx-coming-dot" aria-hidden="true"></span>
+    <p>First project entries are on their way. In the meantime, the university reports above show the design approach this work builds on.</p>
   </div>
 </section>
 
@@ -410,10 +614,10 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 
 <!-- Request modal -->
 <div class="modal-overlay" id="requestModal" onclick="handleOverlayClick(event)">
-  <div class="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
     <div id="modalForm">
-      <div class="modal-title">Request project download</div>
+      <div class="modal-title" id="modalTitle">Request project download</div>
       <p class="modal-sub" id="modalSubtext">Fill in your details below. I review all requests manually and will get back to you within a couple of days.</p>
       <div class="modal-field">
         <label for="req-name">Name</label>
@@ -438,9 +642,10 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
         <textarea id="req-note" placeholder="Anything else useful for context"></textarea>
       </div>
       <div class="modal-actions">
-        <button class="btn-primary" onclick="submitRequest()">Send request</button>
+        <button class="btn-primary" id="sendBtn" onclick="submitRequest()">Send request</button>
         <button class="btn-ghost" onclick="closeModal()">Cancel</button>
       </div>
+      <p class="modal-error" id="modalError"></p>
     </div>
     <div class="modal-success" id="modalSuccess">
       <div class="modal-success-icon">&#10003;</div>
@@ -450,32 +655,70 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </div>
 
 <script>
-const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*60);obs.unobserve(e.target);}}),{threshold:0.06});
-document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+/* ---------- scroll fades ---------- */
+const obs = new IntersectionObserver(entries => entries.forEach((e, i) => {
+  if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 60); obs.unobserve(e.target); }
+}), { threshold: 0.06 });
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+/* ---------- chapter scrollspy ---------- */
+const chTabs = { uni: document.querySelector('[data-ch="uni"]'), red: document.querySelector('[data-ch="red"]'), sx: document.querySelector('[data-ch="sx"]') };
+const sections = [['uni', document.getElementById('university')], ['red', document.getElementById('datacentres')], ['sx', document.getElementById('soventix')]];
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const key = sections.find(([, el]) => el === e.target)[0];
+      Object.values(chTabs).forEach(t => t.classList.remove('current'));
+      chTabs[key].classList.add('current');
+    }
+  });
+}, { rootMargin: '-35% 0px -55% 0px' });
+sections.forEach(([, el]) => spy.observe(el));
+
+/* ---------- CAD discipline filter ---------- */
+const chips = document.querySelectorAll('.cad-chip');
+const sheets = document.querySelectorAll('.sheet');
+chips.forEach(chip => chip.addEventListener('click', () => {
+  chips.forEach(c => c.classList.remove('on'));
+  chip.classList.add('on');
+  const f = chip.dataset.f;
+  sheets.forEach(s => {
+    const match = f === 'all' || s.dataset.tags.split(' ').includes(f);
+    s.classList.toggle('dim', !match);
+  });
+}));
+
+/* ---------- request modal ----------
+   SETUP (two minutes):
+   1. Create a free form at https://formspree.io and paste its endpoint
+      into FORM_ENDPOINT below (looks like https://formspree.io/f/abcdwxyz).
+   2. Put your email in FALLBACK_EMAIL. If FORM_ENDPOINT is left as-is,
+      the form falls back to opening the visitor's mail client instead.   */
+const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FALLBACK_EMAIL = 'you@example.com';
 
 let currentProject = '';
 
 function openModal(projectName) {
   currentProject = projectName;
   document.getElementById('modalSubtext').textContent =
-    'Requesting: ' + projectName + '. Fill in your details below and I\'ll review and respond within a couple of days.';
+    'Requesting: ' + projectName.replace(/&mdash;|—/g, '-') + '. Fill in your details below and I\'ll review and respond within a couple of days.';
   document.getElementById('modalForm').style.display = 'block';
   document.getElementById('modalSuccess').classList.remove('show');
+  document.getElementById('modalError').classList.remove('show');
   document.getElementById('requestModal').classList.add('open');
   document.body.style.overflow = 'hidden';
+  document.getElementById('req-name').focus();
 }
 
 function closeModal() {
   document.getElementById('requestModal').classList.remove('open');
   document.body.style.overflow = '';
-  // Reset form
   setTimeout(() => {
-    document.getElementById('req-name').value = '';
-    document.getElementById('req-email').value = '';
-    document.getElementById('req-reason').value = '';
-    document.getElementById('req-note').value = '';
+    ['req-name', 'req-email', 'req-reason', 'req-note'].forEach(id => document.getElementById(id).value = '');
     document.getElementById('modalForm').style.display = 'block';
     document.getElementById('modalSuccess').classList.remove('show');
+    document.getElementById('modalError').classList.remove('show');
   }, 300);
 }
 
@@ -483,29 +726,50 @@ function handleOverlayClick(e) {
   if (e.target === document.getElementById('requestModal')) closeModal();
 }
 
-function submitRequest() {
+async function submitRequest() {
   const name = document.getElementById('req-name').value.trim();
   const email = document.getElementById('req-email').value.trim();
   const reason = document.getElementById('req-reason').value;
+  const note = document.getElementById('req-note').value.trim();
+  const errEl = document.getElementById('modalError');
+  errEl.classList.remove('show');
 
   if (!name || !email || !reason) {
-    alert('Please fill in your name, email, and reason for the request.');
+    errEl.textContent = 'Please fill in your name, email, and reason for the request.';
+    errEl.classList.add('show');
     return;
   }
 
-  // Build mailto &mdash; sends to your address, pre-filled with the request details
-  const note = document.getElementById('req-note').value.trim();
-  const subject = encodeURIComponent('Project download request: ' + currentProject);
-  const body = encodeURIComponent(
-    'Name: ' + name + '\n' +
-    'Email: ' + email + '\n' +
-    'Project: ' + currentProject + '\n' +
-    'Reason: ' + reason + '\n' +
-    (note ? 'Notes: ' + note : '')
-  );
+  const payload = { name, email, reason, project: currentProject, notes: note };
 
-  window.location.href = 'mailto:YOUR_EMAIL@example.com?subject=' + subject + '&body=' + body;
+  // Fallback to mailto if Formspree hasn't been configured yet
+  if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) {
+    const subject = encodeURIComponent('Project download request: ' + currentProject);
+    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nProject: ' + currentProject + '\nReason: ' + reason + (note ? '\nNotes: ' + note : ''));
+    window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject=' + subject + '&body=' + body;
+    showSuccess();
+    return;
+  }
 
+  const btn = document.getElementById('sendBtn');
+  btn.disabled = true;
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error('Request failed');
+    showSuccess();
+  } catch (err) {
+    errEl.textContent = 'The request could not be sent. Email me directly at ' + FALLBACK_EMAIL + ' instead.';
+    errEl.classList.add('show');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function showSuccess() {
   document.getElementById('modalForm').style.display = 'none';
   document.getElementById('modalSuccess').classList.add('show');
 }
