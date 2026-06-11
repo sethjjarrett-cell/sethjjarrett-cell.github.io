@@ -17,7 +17,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-back{font-family:var(--serif);font-size:1.05rem;color:var(--eng-blue);text-decoration:none;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-size:0.75rem;color:var(--eng-ink-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
-.nav-links a:hover{color:var(--eng-blue);}
+.nav-links a:hover,.nav-links a.active{color:var(--eng-blue);}
 
 /* HEADER */
 .page-header{padding:9rem 4rem 4rem;border-bottom:2px solid var(--eng-ink);position:relative;z-index:1;}
@@ -94,6 +94,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 #year3 .module-highlight-label{color:#6CBE5A;}
 #year4 .module-highlight-label{color:#C060C0;}
 
+.next-chapter{padding:4.5rem 4rem;border-top:2px solid var(--eng-ink);background:var(--eng-bg2);text-align:center;position:relative;z-index:1;}
+.next-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.9rem;}
+.next-title{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.3rem);font-weight:400;color:var(--eng-ink);margin-bottom:1.75rem;}
+.next-title em{font-style:italic;color:var(--eng-blue);}
+.next-btn{display:inline-block;font-size:0.9rem;font-weight:500;letter-spacing:0.05em;color:#fff;background:var(--eng-blue);text-decoration:none;padding:0.95rem 2.4rem;transition:background 0.2s;}
+.next-btn:hover{background:var(--eng-blue-light);}
 footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;justify-content:space-between;position:relative;z-index:1;background:var(--eng-bg);}
 .footer-text{font-size:0.72rem;color:var(--eng-ink-muted);}
 .footer-link{font-size:0.72rem;color:var(--eng-blue);text-decoration:none;}
@@ -115,18 +121,19 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
 <body>
 
 <nav>
-  <a href="engineering.html" class="nav-back">&#8592; Engineering</a>
+  <a href="index.html" class="nav-back">Seth Jarrett</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
-    <li><a href="engineering.html">Engineering</a></li>
     <li><a href="travel.html">Travel</a></li>
+    <li><a href="engineering.html" class="active">Engineering</a></li>
+    <li><a href="life.html">Life</a></li>
   </ul>
 </nav>
 
 <header class="page-header">
   <div class="header-grid">
     <div>
-      <p class="page-eyebrow">University of Bristol</p>
+      <p class="page-eyebrow">Appendix A &middot; Chapter 01 &mdash; University of Bristol</p>
       <h1 class="page-title">MEng Mechanical &amp;<br><em>Electrical Engineering</em></h1>
     </div>
     <div class="header-right">
@@ -153,7 +160,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
 <section class="year-section fade" id="year1">
   <div class="year-header">
     <h2 class="year-label"><em>Year 1</em> &mdash; Foundations</h2>
-    <span class="year-badge">9 modules &middot; 120 credits</span>
+    <span class="year-badge">10 modules &middot; 120 credits &middot; not weighted</span>
   </div>
   <p class="year-intro">Core engineering foundations across mechanical and electrical disciplines. Mathematics, circuits, dynamics, thermodynamics and an introduction to programming and design.</p>
   <div class="module-grid">
@@ -161,6 +168,11 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
       <div class="module-name">Electro-Mechanical Design Project</div>
       <div class="module-credits">10 credits</div>
       <span class="module-tag">Project</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Fluids</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Mechanical</span>
     </div>
     <div class="module-card">
       <div class="module-name">Linear Circuits</div>
@@ -209,7 +221,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
 <section class="year-section fade" id="year2">
   <div class="year-header">
     <h2 class="year-label"><em>Year 2</em> &mdash; Core Engineering</h2>
-    <span class="year-badge">8 modules &middot; 120 credits</span>
+    <span class="year-badge">8 modules &middot; 120 credits &middot; 10% of degree</span>
   </div>
   <p class="year-intro">Deeper technical grounding across electro-mechanical systems, signals and control, engineering mathematics, and thermofluids. Building the analytical toolkit for specialisation.</p>
   <div class="module-grid">
@@ -260,9 +272,9 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
 <section class="year-section fade" id="year3">
   <div class="year-header">
     <h2 class="year-label"><em>Year 3</em> &mdash; Specialisation</h2>
-    <span class="year-badge">7 modules &middot; 120 credits</span>
+    <span class="year-badge">5 modules &middot; 120 credits &middot; 40% of degree</span>
   </div>
-  <p class="year-intro">Specialising in energy systems, power electronics, and advanced dynamics. Includes a substantial 40-credit individual research project -- a wind-solar mini-grid feasibility study awarded 84% and used as a cohort exemplar.</p>
+  <p class="year-intro">Specialising in energy systems, power electronics, and advanced dynamics. Includes a substantial 40-credit individual research project -- a wind-solar mini-grid feasibility study awarded 83% and used as a cohort exemplar.</p>
   <div class="module-grid">
     <div class="module-card">
       <div class="module-name">Sensors, Signals and Control</div>
@@ -284,21 +296,11 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
       <div class="module-credits">20 credits</div>
       <span class="module-tag">Mechanical</span>
     </div>
-    <div class="module-card">
-      <div class="module-name">Transport and Mobility Modelling</div>
-      <div class="module-credits">10 credits</div>
-      <span class="module-tag">Systems</span>
-    </div>
     <div class="module-card highlight">
       <div class="module-highlight-label">Key project</div>
       <div class="module-name">Individual Research Project</div>
       <div class="module-credits">40 credits</div>
-      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Wind-solar mini-grid feasibility study. Awarded 84%, used as a cohort exemplar paper.</p>
-    </div>
-    <div class="module-card">
-      <div class="module-name">Group Industrial Project</div>
-      <div class="module-credits">40 credits</div>
-      <span class="module-tag">Project</span>
+      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Wind-solar mini-grid feasibility study. Awarded 83%, used as a cohort exemplar paper.</p>
     </div>
   </div>
 </section>
@@ -307,9 +309,9 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
 <section class="year-section fade" id="year4">
   <div class="year-header">
     <h2 class="year-label"><em>Year 4</em> &mdash; Energy &amp; Renewables</h2>
-    <span class="year-badge">6 modules &middot; 120 credits</span>
+    <span class="year-badge">7 modules &middot; 120 credits &middot; 50% of degree</span>
   </div>
-  <p class="year-intro">Final year focused on energy systems, sustainability and enterprise. Includes the 40-credit group key project -- co-designing and building a solar DC microgrid for a remote community in the Brazilian Amazon.</p>
+  <p class="year-intro">Final year focused on energy systems, sustainability and enterprise. Includes the 40-credit Group Industrial Project -- co-designing and building a solar DC microgrid for a remote community in the Brazilian Amazon.</p>
   <div class="module-grid">
     <div class="module-card">
       <div class="module-name">Innovation, Entrepreneurship and Enterprise</div>
@@ -336,13 +338,24 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
       <div class="module-credits">10 credits</div>
       <span class="module-tag">Computing</span>
     </div>
+    <div class="module-card">
+      <div class="module-name">Transport and Mobility Modelling</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Systems</span>
+    </div>
     <div class="module-card highlight">
       <div class="module-highlight-label">Key project</div>
-      <div class="module-name">Group Key Project &mdash; Solar DC Microgrid</div>
+      <div class="module-name">Group Industrial Project &mdash; Solar DC Microgrid</div>
       <div class="module-credits">40 credits</div>
       <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Co-designed and physically built a solar DC microgrid for a remote community in the Brazilian Amazon. Full lifecycle from concept to validated hardware.</p>
     </div>
   </div>
+</section>
+
+<section class="next-chapter fade">
+  <p class="next-eyebrow">End of appendix</p>
+  <h2 class="next-title">Continue to <em>Chapter 02</em> &mdash; Data Centre Design</h2>
+  <a href="engineering.html#datacentres" class="next-btn">Back to the engineering page &rarr;</a>
 </section>
 
 <footer>

@@ -11,7 +11,7 @@
 /* ============================================================
    ENGINEERING — three chapters, three visual languages
    Ch.01 University  — textbook (cream paper, serif, figures)
-   Ch.02 RED         — CAD drawing office (sheets, mono, stamps)
+   Ch.02 RED         — CAD drawing office (sheets, mono)
    Ch.03 Soventix    — sun & sand (warm, clean, field log)
    ============================================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -19,7 +19,7 @@
   --mono:'IBM Plex Mono',ui-monospace,monospace;
   /* CAD section */
   --cad-bg:#DCE1E8;--cad-sheet:#FDFDFB;--cad-line:#2A4A8A;--cad-line-soft:rgba(42,74,138,0.35);
-  --cad-rule:rgba(42,74,138,0.18);--cad-ink:#1A2436;--cad-muted:#66708A;--cad-stamp:#A83434;
+  --cad-rule:rgba(42,74,138,0.18);--cad-ink:#1A2436;--cad-muted:#66708A;
   /* Soventix section */
   --sx-bg:#F8F0D8;--sx-bg2:#F3E8C8;--sx-ink:#2A1400;--sx-soft:#6A4010;--sx-muted:#A08050;
   --sx-orange:#C87010;--sx-sun:#E8A020;--sx-rule:rgba(200,112,16,0.22);
@@ -102,9 +102,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .tb-btn:hover{background:rgba(42,74,138,0.08);border-color:var(--eng-blue);}
 .tb-btn.ghost{color:var(--eng-ink-muted);border-color:var(--eng-rule);}
 .tb-btn.ghost:hover{color:var(--eng-blue);}
-.tb-footnote{max-width:860px;margin:3rem auto 0;padding-top:1rem;border-top:1px solid var(--eng-rule);font-size:0.78rem;color:var(--eng-ink-muted);font-weight:300;}
-.tb-footnote a{color:var(--eng-blue);text-decoration:none;}
-.tb-footnote a:hover{text-decoration:underline;}
+.tb-appendix{max-width:860px;margin:3.5rem auto 0;border:1px solid var(--eng-ink);border-top:3px double var(--eng-ink);background:var(--eng-bg2);padding:1.9rem 2.1rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
+.tb-appendix-eyebrow{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.4rem;}
+.tb-appendix-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--eng-ink);margin-bottom:0.4rem;}
+.tb-appendix-sub{font-size:0.82rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.7;max-width:440px;}
+.tb-appendix-btn{display:inline-block;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;color:#fff;background:var(--eng-blue);text-decoration:none;padding:0.9rem 1.9rem;transition:background 0.2s;white-space:nowrap;}
+.tb-appendix-btn:hover{background:var(--eng-blue-light);}
 
 /* ============================================================
    CH.02 — RED · CAD drawing office
@@ -146,8 +149,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .tb-row:last-child{border-bottom:none;}
 .tb-row dt{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cad-muted);padding:0.5rem 0.6rem;border-right:1px solid var(--cad-line-soft);}
 .tb-row dd{font-family:var(--mono);font-size:0.66rem;color:var(--cad-ink);padding:0.5rem 0.6rem;line-height:1.45;}
-/* NDA stamp */
-.stamp{position:absolute;right:2.2rem;bottom:4.6rem;font-family:var(--mono);font-size:0.64rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cad-stamp);border:2px solid var(--cad-stamp);padding:0.45rem 0.9rem;transform:rotate(-7deg);opacity:0.78;background:rgba(253,253,251,0.85);pointer-events:none;}
 .sheet-strip{margin:0 -2.6rem;padding:0.55rem 2.6rem;border-top:1px solid var(--cad-line);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cad-muted);}
 .cad-note{max-width:1060px;margin:2.25rem auto 0;font-family:var(--mono);font-size:0.68rem;color:var(--cad-muted);line-height:1.8;}
 
@@ -246,7 +247,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   .sheet-inner{grid-template-columns:1fr;gap:1.6rem;}
   .sheet-strip{margin:0 -1.4rem;padding:0.55rem 1.4rem;flex-wrap:wrap;gap:0.3rem;}
   .sheet-grid-letters{display:none;}
-  .stamp{position:static;display:inline-block;margin-bottom:1.4rem;transform:rotate(-3deg);}
   .sx-sun{width:280px;height:280px;top:-110px;right:-60px;}
   .sx-entry{grid-template-columns:1fr;gap:0.5rem;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
@@ -313,7 +313,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   <div class="tb-stats fade">
     <div class="tb-stat"><div class="tb-stat-num">First</div><div class="tb-stat-label">Classification</div></div>
     <div class="tb-stat"><div class="tb-stat-num">73%</div><div class="tb-stat-label">Average</div></div>
-    <div class="tb-stat"><div class="tb-stat-num">84%</div><div class="tb-stat-label">Research project</div></div>
+    <div class="tb-stat"><div class="tb-stat-num">83%</div><div class="tb-stat-label">Research project</div></div>
     <div class="tb-stat"><div class="tb-stat-num">Exemplar</div><div class="tb-stat-label">Cohort paper</div></div>
   </div>
 
@@ -322,7 +322,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <div class="tb-proj-rule">
       <span class="tb-sec-num">&sect;1.1</span>
       <h3 class="tb-proj-title">Wind&ndash;Solar Mini-Grid &mdash; Feasibility Study</h3>
-      <span class="tb-proj-meta">Individual &middot; 84% &middot; Cohort exemplar</span>
+      <span class="tb-proj-meta">Individual &middot; 83% &middot; Cohort exemplar</span>
     </div>
     <p class="tb-abstract"><strong>Abstract.</strong> An independent, end-to-end feasibility study of a hybrid wind&ndash;solar mini-grid, assessed across four load scenarios. The work covers resource modelling, storage optimisation, and full lifetime cost analysis, and was later used as an exemplar paper for the following cohort.</p>
     <ul class="tb-points">
@@ -352,7 +352,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <div class="tb-proj-rule">
       <span class="tb-sec-num">&sect;1.2</span>
       <h3 class="tb-proj-title">Solar DC Microgrid &mdash; Design &amp; Build</h3>
-      <span class="tb-proj-meta">Group industrial project &middot; First Class</span>
+      <span class="tb-proj-meta">Group industrial project &middot; 40 credits</span>
     </div>
     <p class="tb-abstract"><strong>Abstract.</strong> Co-designed and helped build a solar DC microgrid for a remote off-grid community in the Brazilian Amazon &mdash; the full lifecycle from concept through simulation to validated hardware.</p>
     <ul class="tb-points">
@@ -377,7 +377,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     </div>
   </article>
 
-  <p class="tb-footnote fade">Full module list and year-by-year breakdown: <a href="education.html">see the education appendix &rarr;</a> &nbsp;&middot;&nbsp; A-Levels: Maths A* &middot; Physics A* &middot; Chemistry A</p>
+  <aside class="tb-appendix fade">
+    <div>
+      <p class="tb-appendix-eyebrow">Appendix A</p>
+      <h3 class="tb-appendix-title">Module-by-module breakdown</h3>
+      <p class="tb-appendix-sub">All four years &mdash; every module, credit weighting, and how each year counts towards the degree. A-Levels: Maths A* &middot; Physics A* &middot; Chemistry A.</p>
+    </div>
+    <a href="education.html" class="tb-appendix-btn">Open the education appendix &rarr;</a>
+  </aside>
 </section>
 
 <!-- ============================================================
@@ -427,7 +434,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
-      <span class="stamp">Details withheld &mdash; NDA</span>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
     </article>
 
@@ -454,7 +460,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
-      <span class="stamp">Details withheld &mdash; NDA</span>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
     </article>
 
@@ -481,7 +486,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
-      <span class="stamp">Details withheld &mdash; NDA</span>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
     </article>
 
@@ -508,7 +512,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
-      <span class="stamp">Details withheld &mdash; NDA</span>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
     </article>
 
@@ -536,7 +539,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
-      <span class="stamp">Details withheld &mdash; NDA</span>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
     </article>
 
