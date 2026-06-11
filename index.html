@@ -138,6 +138,34 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
 .fade{opacity:0;transform:translateY(16px);transition:opacity 0.65s ease,transform 0.65s ease;}
 .fade.in{opacity:1;transform:none;}
 
+
+/* THE PATH — interactive career timeline */
+.path-section{padding:6rem 4rem 5rem;border-top:1px solid var(--stone3);background:var(--stone2);}
+.path-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--green-light);margin-bottom:0.75rem;}
+.path-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:400;color:var(--ink);margin-bottom:3.5rem;}
+.path-title em{font-style:italic;color:var(--green-light);}
+.path-track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;}
+.path-track::before{content:'';position:absolute;top:7px;left:2%;right:2%;height:2px;background:var(--stone3);transform-origin:left;transform:scaleX(0);transition:transform 1.6s cubic-bezier(0.4,0,0.2,1) 0.2s;}
+.path-track.in::before{transform:scaleX(1);}
+.path-node{text-decoration:none;position:relative;padding-top:1.9rem;transition:transform 0.25s ease;}
+.path-node:hover{transform:translateY(-4px);}
+.path-dot{position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;border:2.5px solid;background:var(--stone2);transition:background 0.25s;}
+.path-node:hover .path-dot{background:currentColor;}
+.path-years{font-size:0.68rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:0.35rem;}
+.path-name{font-family:var(--serif);font-size:1.15rem;color:var(--ink);margin-bottom:0.35rem;}
+.path-sub{font-size:0.8rem;color:var(--ink-muted);font-weight:300;line-height:1.65;margin-bottom:0.6rem;}
+.path-go{font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0;transform:translateX(-4px);transition:opacity 0.25s,transform 0.25s;}
+.path-node:hover .path-go{opacity:1;transform:none;}
+.path-node[data-c="uni"]{color:#2A4A8A;}
+.path-node[data-c="travel"]{color:#C8953A;}
+.path-node[data-c="red"]{color:#485878;}
+.path-node[data-c="sx"]{color:#C87010;}
+.path-dot{color:inherit;border-color:currentColor;}
+.path-go{color:inherit;}
+@media(prefers-reduced-motion:reduce){
+  .path-track::before{transition:none;transform:scaleX(1);}
+  .fade{opacity:1;transform:none;transition:none;}
+}
 @media(max-width:860px){
   nav{padding:1rem 1.5rem;}
   .hero{padding:0 1.5rem;padding-top:80px;}
@@ -147,6 +175,11 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
   .facts-row{padding:2rem 1.5rem;grid-template-columns:1fr 1fr;}
   .chapters{padding:4rem 1.5rem;}
   .chapters-grid{grid-template-columns:1fr;}
+  .path-section{padding:4rem 1.5rem;}
+  .path-track{grid-template-columns:1fr;gap:2.25rem;}
+  .path-track::before{top:2%;bottom:2%;left:7px;right:auto;width:2px;height:auto;transform:scaleY(0);transform-origin:top;}
+  .path-track.in::before{transform:scaleY(1);}
+  .path-node{padding-top:0;padding-left:2.1rem;}
   .contact-strip{margin:0 1.5rem 3rem;flex-direction:column;gap:1.5rem;text-align:center;}
   .contact-links{flex-direction:column;gap:0.75rem;align-items:center;}
   .contact-section{padding:4rem 1.5rem;grid-template-columns:1fr;gap:3rem;}
@@ -177,7 +210,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
       <span class="hero-tag">Martial Arts</span>
       <span class="hero-tag">The World</span>
     </div>
-    <p class="hero-desc">Graduate engineer working on large-scale power infrastructure in London. From the West Country. Interested in the world, its complexities, and how to shape a better one.</p>
+    <p class="hero-desc">Engineer designing solar PV for projects across Africa, after two years on London data centre infrastructure. From the West Country. Interested in the world, its complexities, and how to shape a better one.</p>
   </div>
   <div class="hero-bottom">
     <a href="travel.html" class="hero-nav-card">
@@ -205,9 +238,9 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
   <div class="fade">
     <h2 class="about-title">Engineer by training,<br><em>curious by nature</em></h2>
     <div class="about-body">
-      <p id="bio-p1">I'm a graduate electrical engineer at RED Engineering Design in London, working on large-scale data centre and power infrastructure projects. I hold a First Class MEng from the University of Bristol, specialising in energy and renewables.</p>
+      <p id="bio-p1">I'm a solar PV design engineer at Soventix, working on projects across Africa. Before that I spent two years at RED Engineering Design in London on large-scale data centre and power infrastructure. I hold a First Class MEng from the University of Bristol, specialising in energy and renewables.</p>
       <p id="bio-p2">At university I designed and helped build a solar DC microgrid for a remote community in the Brazilian Amazon, and independently completed a wind-solar mini-grid feasibility study awarded 83% and used as a cohort exemplar.</p>
-      <p id="bio-p3">I grew up in the West Country, spent two years travelling before starting work, picking up many experiences along the way. Notably; working at dog shelter in The Sacred Valley in Peru, a multi-levelled bar/pub in Melbourne, sporting events across the UK, horse races, festivals, including helping with the build and break for Glastonbury Festival. I came to believe the best things come from getting outside, doing things that scare you a bit, and paying attention to the world around you.</p>
+      <p id="bio-p3">I grew up in the West Country, spent two years travelling before starting work, picking up many experiences along the way. Notably: working at a dog shelter in the Sacred Valley in Peru, a multi-levelled bar/pub in Melbourne, sporting events across the UK, horse races, festivals, including helping with the build and break for Glastonbury Festival. I came to believe the best things come from getting outside, doing things that scare you a bit, and paying attention to the world around you.</p>
     </div>
   </div>
   <div class="facts fade">
@@ -216,9 +249,45 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
     </div>
     <div class="fact"><div class="fact-label">From</div><div class="fact-value" id="fact-from">The West Country</div></div>
     <div class="fact"><div class="fact-label">Based in</div><div class="fact-value" id="fact-based">London, UK</div></div>
-    <div class="fact"><div class="fact-label">Currently</div><div class="fact-value" id="fact-currently">Graduate Electrical Engineer, RED Engineering Design</div></div>
+    <div class="fact"><div class="fact-label">Currently</div><div class="fact-value" id="fact-currently">PV Design Engineer, Soventix</div></div>
     <div class="fact"><div class="fact-label">Education</div><div class="fact-value" id="fact-education">MEng Mechanical &amp; Electrical Engineering, First Class -- University of Bristol</div></div>
     <div class="fact"><div class="fact-label">Interests</div><div class="fact-value" id="fact-interests">Renewable energy, lead climbing, bouldering, martial arts, travel, reading</div></div>
+  </div>
+</section>
+
+
+<section class="path-section">
+  <p class="path-eyebrow fade">The story so far</p>
+  <h2 class="path-title fade">One thread: <em>getting power where it's needed</em></h2>
+  <div class="path-track" id="pathTrack">
+    <a class="path-node fade" data-c="uni" href="engineering.html#university">
+      <span class="path-dot"></span>
+      <span class="path-years">2019&ndash;2023</span>
+      <span class="path-name" style="display:block">University of Bristol</span>
+      <span class="path-sub" style="display:block">MEng, First Class. Renewables research and a microgrid built for the Amazon.</span>
+      <span class="path-go">Chapter 01 &#8594;</span>
+    </a>
+    <a class="path-node fade" data-c="travel" href="travel.html">
+      <span class="path-dot"></span>
+      <span class="path-years">2023&ndash;2024</span>
+      <span class="path-name" style="display:block">Two years travelling</span>
+      <span class="path-sub" style="display:block">Six continents. The reason the work matters became obvious.</span>
+      <span class="path-go">The route &#8594;</span>
+    </a>
+    <a class="path-node fade" data-c="red" href="engineering.html#datacentres">
+      <span class="path-dot"></span>
+      <span class="path-years">2024&ndash;2026</span>
+      <span class="path-name" style="display:block">RED Engineering Design</span>
+      <span class="path-sub" style="display:block">MV/LV design on hyperscale and colocation data centres across EMEA.</span>
+      <span class="path-go">Chapter 02 &#8594;</span>
+    </a>
+    <a class="path-node fade" data-c="sx" href="engineering.html#soventix">
+      <span class="path-dot"></span>
+      <span class="path-years">2026&ndash;</span>
+      <span class="path-name" style="display:block">Soventix</span>
+      <span class="path-sub" style="display:block">Solar PV design for projects across Africa. The current chapter.</span>
+      <span class="path-go">Chapter 03 &#8594;</span>
+    </a>
   </div>
 </section>
 
@@ -312,6 +381,11 @@ const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isInter
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('cvOverlay').classList.remove('open');});
+
+const track=document.getElementById('pathTrack');
+if(track){
+  new IntersectionObserver((es,o)=>{es.forEach(e=>{if(e.isIntersecting){track.classList.add('in');o.disconnect();}});},{threshold:0.3}).observe(track);
+}
 
 // Load content from content.json (managed via admin.html)
 fetch('content.json')

@@ -16,9 +16,9 @@
   --accent:#3A8C3A;--rule:rgba(58,140,58,0.15);--nav-bg:rgba(245,240,232,0.96);
 }
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;transition:background 1.4s ease,color 0.9s ease;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;transition:background 0.9s ease,color 0.9s ease;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);transition:background 1.4s ease,border-color 0.9s ease;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);transition:background 0.9s ease,border-color 0.9s ease;}
 .nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;transition:color 0.9s;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-size:0.78rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.3s;}
@@ -72,9 +72,15 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 .footer-text{font-size:0.75rem;color:var(--text-muted);}
 .footer-link{font-size:0.75rem;color:var(--accent);text-decoration:none;}
 
-.fade{opacity:0;transform:translateY(20px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.map-count{font-size:0.72rem;color:var(--text-muted);margin-top:0.6rem;font-style:italic;}
+.fade{opacity:0;transform:translateY(16px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .fade.in{opacity:1;transform:none;}
 
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+  .fade{opacity:1;transform:none;transition:none;}
+  body,nav{transition:none;}
+}
 @media(max-width:900px){
   nav{padding:1rem 1.5rem;}
   .hero,.map-section,.reflection{padding-left:1.5rem;padding-right:1.5rem;}
@@ -123,8 +129,8 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 <!-- MAP — rendered by D3 with real TopoJSON world data -->
 <section class="map-section" id="map" data-theme="meadow">
   <p class="map-eyebrow">Where I went</p>
-  <h2 class="map-title">The map</h2>
-  <p class="map-hint">Hover a region to highlight it, click to explore</p>
+  <h2 class="map-title">The route</h2>
+  <p class="map-hint">Hover a country to see it, click to read that part of the journey</p>
   <div id="mapContainer">
     <div class="map-tooltip" id="mapTip"></div>
   </div>
@@ -137,6 +143,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <div class="map-legend-item" data-region="europe" data-url="europe.html"><div class="map-legend-dot" style="background:#7878C8"></div>Europe</div>
     <div class="map-legend-item" data-region="samerica" data-url="south-america.html"><div class="map-legend-dot" style="background:#48B828"></div>South America</div>
   </div>
+  <p class="map-count" id="mapCount"></p>
 </section>
 
 <!-- 1. NORTH AMERICA -->
@@ -530,43 +537,49 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
-// Region definitions -- which country ISO codes belong to each visited region
+// ============================================================
+// VISITED COUNTRIES — edit these lists to add or remove places.
+// Only countries listed here are coloured and clickable.
+// Numbers are ISO 3166-1 numeric codes (search "ISO numeric" + country).
+// ============================================================
 const regionMap = {
   namerica: {
     name:'North America', url:'north-america.html', color:'#C8953A',
-    codes: new Set([840,484,124,630,214,332,388,320,340,222,558,591,192,192])
-    // USA, Mexico, Canada + Caribbean/Central America
+    codes: new Set([840]) // USA
   },
   asia: {
-    name:'Asia', url:'asia.html', color:'#2E9E58',
-    codes: new Set([764,704,116,360,418,458,702,608,50,356,144,524])
-    // Thailand, Vietnam, Cambodia, Indonesia, Laos, Malaysia, Singapore, Philippines
+    name:'Southeast Asia', url:'asia.html', color:'#2E9E58',
+    codes: new Set([764,704,116,418,360,458,702,608,524])
+    // Thailand, Vietnam, Cambodia, Laos, Indonesia, Malaysia, Singapore, Philippines, Nepal
   },
   australia: {
     name:'Australia', url:'australia.html', color:'#3878C0',
-    codes: new Set([36,554,598,242,548,90])
-    // Australia, NZ, PNG, Fiji, Vanuatu, Solomon Islands
+    codes: new Set([36]) // Australia
   },
   japan: {
     name:'Japan', url:'japan.html', color:'#C848A0',
-    codes: new Set([392])
+    codes: new Set([392]) // Japan
   },
   africa: {
     name:'Africa', url:'africa.html', color:'#C87818',
-    codes: new Set([504])
-    // Morocco only
+    codes: new Set([504]) // Morocco
   },
   europe: {
     name:'Europe', url:'europe.html', color:'#7878C8',
-    codes: new Set([826,250,380,276,620,528,56,756,40,348,203,703,705,300,246,208,578,752,372,233,428,440,616,112,804,643,498,688,191,807,70,499,8])
-    // UK, France, Italy, Germany, Portugal, Netherlands, Belgium, Switzerland, Austria, Hungary, Czech, Slovakia, Slovenia, Greece, Finland, Denmark, Norway, Sweden, Ireland, Estonia, Latvia, Lithuania, Poland, Belarus, Ukraine, Russia, Moldova, Serbia, Croatia, Bosnia, Montenegro, Albania
+    codes: new Set([826,250,724,380,70,203,276,528,300,620])
+    // UK, France, Spain, Italy, Bosnia, Czechia, Germany, Netherlands, Greece, Portugal
   },
   samerica: {
     name:'South America', url:'south-america.html', color:'#48B828',
-    codes: new Set([170,604,68,862,858,600,32,152,218,328,740])
-    // Colombia, Peru, Bolivia, Venezuela, Uruguay, Paraguay, Argentina, Chile, Ecuador, Guyana, Suriname
+    codes: new Set([170,604,68,32,152])
+    // Colombia, Peru, Bolivia, Argentina, Chile
   }
 };
+
+// Show a true country count under the legend
+const totalVisited = Object.values(regionMap).reduce((n, r) => n + r.codes.size, 0);
+document.getElementById('mapCount').textContent =
+  totalVisited + ' countries \u00b7 only the places I\u2019ve actually been are coloured \u00b7 pins mark longer stays';
 
 const tip = document.getElementById('mapTip');
 const container = document.getElementById('mapContainer');
@@ -623,7 +636,7 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(w
         const cr = getRegion(+c.id);
         return cr && cr.key === r.key ? 1 : 0.3;
       });
-      tip.textContent = r.name;
+      tip.textContent = (d.properties && d.properties.name ? d.properties.name + ' \u2014 ' : '') + r.name;
       tip.style.opacity = '1';
     })
     .on('mousemove', function(event) {
@@ -649,21 +662,55 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(w
     .attr('stroke', 'rgba(255,255,255,0.12)')
     .attr('stroke-width', 0.4);
 
-  // City dots
+  // ============================================================
+  // THE ROUTE — city pins in journey order. Edit freely:
+  // add/remove stops or reorder to match the actual trip.
+  // ============================================================
   const cities = [
-    {name:'New York',    coords:[-74.0,40.7],  region:'namerica'},
-    {name:'Miami',       coords:[-80.2,25.8],  region:'namerica'},
-    {name:'Washington',  coords:[-77.0,38.9],  region:'namerica'},
-    {name:'London',      coords:[-0.1,51.5],   region:'europe'},
-    {name:'Bangkok',     coords:[100.5,13.75], region:'asia'},
-    {name:'Bali',        coords:[115.2,-8.4],  region:'asia'},
-    {name:'Tokyo',       coords:[139.7,35.7],  region:'japan'},
-    {name:'Sydney',      coords:[151.2,-33.9], region:'australia'},
-    {name:'Melbourne',   coords:[144.9,-37.8], region:'australia'},
-    {name:'Buenos Aires',coords:[-58.4,-34.6], region:'samerica'},
-    {name:'Marrakech',   coords:[-7.99,31.63], region:'africa'},
+    {name:'New York',     coords:[-74.0,40.7],   region:'namerica'},
+    {name:'Washington',   coords:[-77.0,38.9],   region:'namerica'},
+    {name:'Miami',        coords:[-80.2,25.8],   region:'namerica'},
+    {name:'Bangkok',      coords:[100.5,13.75],  region:'asia'},
+    {name:'Bali',         coords:[115.2,-8.4],   region:'asia'},
+    {name:'Sydney',       coords:[151.2,-33.9],  region:'australia'},
+    {name:'Melbourne',    coords:[144.9,-37.8],  region:'australia'},
+    {name:'Tokyo',        coords:[139.7,35.7],   region:'japan'},
+    {name:'Marrakech',    coords:[-7.99,31.63],  region:'africa'},
+    {name:'London',       coords:[-0.1,51.5],    region:'europe'},
+    {name:'Cusco',        coords:[-71.97,-13.53],region:'samerica'},
+    {name:'Buenos Aires', coords:[-58.4,-34.6],  region:'samerica'},
   ];
 
+  // Dashed route drawn between consecutive stops
+  const routeLine = {type:'LineString', coordinates: cities.map(c => c.coords)};
+  const routePath = svg.append('path')
+    .datum(routeLine)
+    .attr('d', path)
+    .attr('fill', 'none')
+    .attr('stroke', '#3A3026')
+    .attr('stroke-width', 1.6)
+    .attr('stroke-dasharray', '6 5')
+    .attr('stroke-linecap', 'round')
+    .attr('opacity', 0.55)
+    .attr('pointer-events', 'none');
+
+  // Draw the route on when the map scrolls into view
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduceMotion) {
+    const L = routePath.node().getTotalLength();
+    routePath.attr('stroke-dashoffset', L);
+    const mapObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          routePath.transition().duration(3200).ease(d3.easeCubicInOut).attr('stroke-dashoffset', 0);
+          mapObs.disconnect();
+        }
+      });
+    }, {threshold: 0.35});
+    mapObs.observe(container);
+  }
+
+  // City pins on top of the route
   cities.forEach(c => {
     const [x, y] = projection(c.coords);
     const col = regionMap[c.region]?.color || '#fff';
@@ -718,15 +765,17 @@ const allSections=document.querySelectorAll('[data-theme]');
 const dots=document.querySelectorAll('.region-dot');
 const ids=['hero','map','namerica','asia','australia','japan','africa','europe','samerica','reflection'];
 
+// A section owns the theme while it occupies the middle band of the
+// viewport — exactly one winner at a time, so colours never fight.
 const themeObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-    if(entry.isIntersecting&&entry.intersectionRatio>0.3){
+    if(entry.isIntersecting){
       applyTheme(entry.target.dataset.theme);
       const idx=ids.indexOf(entry.target.id);
       dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
     }
   });
-},{threshold:0.3});
+},{rootMargin:'-40% 0px -40% 0px',threshold:0});
 
 allSections.forEach(s=>themeObs.observe(s));
 dots.forEach((dot,i)=>dot.addEventListener('click',()=>document.getElementById(ids[i])?.scrollIntoView({behavior:'smooth'})));
