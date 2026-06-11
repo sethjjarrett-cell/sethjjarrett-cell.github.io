@@ -121,6 +121,23 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
   .photo-grid-2{grid-template-columns:1fr;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
 }
+
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin:2rem 0;}
+.gallery-grid:empty{display:none;}
+.gallery-thumb{aspect-ratio:4/3;border:none;padding:0;cursor:pointer;background-size:cover;background-position:center;background-color:rgba(128,128,128,0.12);transition:opacity 0.2s,transform 0.2s;display:block;width:100%;}
+.gallery-thumb:hover{opacity:0.9;transform:scale(0.99);}
+@media(max-width:860px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(15,15,18,0.94);display:none;align-items:center;justify-content:center;flex-direction:column;}
+.lightbox.open{display:flex;}
+.lightbox-img{max-width:90vw;max-height:80vh;object-fit:contain;user-select:none;}
+.lightbox-caption{color:rgba(235,235,235,0.85);font-size:0.85rem;margin-top:1rem;text-align:center;max-width:80vw;min-height:1.2rem;}
+.lightbox-count{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(235,235,235,0.6);font-size:0.75rem;letter-spacing:0.1em;}
+.lightbox-btn{position:absolute;background:none;border:none;color:rgba(235,235,235,0.8);cursor:pointer;font-size:2.5rem;line-height:1;padding:1rem;transition:color 0.2s;user-select:none;}
+.lightbox-btn:hover{color:#fff;}
+.lightbox-prev{left:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-next{right:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-close{top:0.5rem;right:0.75rem;font-size:2rem;}
+@media(max-width:860px){.lightbox-prev,.lightbox-next{font-size:1.8rem;}}
 </style>
 </head>
 <body>
@@ -162,17 +179,8 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
     <h2 class="city-name">New <em>York</em></h2>
     <p class="city-intro">First stop, family trip. New York is enormous and grand in a way that photographs do not quite convey. What struck me most was the disparity -- serious wealth and serious poverty side by side, people shooting up on the street in a way you just do not see in London. A different level of it.</p>
   </div>
-  <div class="photo-grid photo-grid-3 fade">
-    <div class="photo-slot wide"><span class="photo-slot-label">Times Square -- add photo</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Empire State</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Central Park</span></div>
-  </div>
-  <div class="photo-grid photo-grid-4 fade">
-    <div class="photo-slot"><span class="photo-slot-label">Brooklyn</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">City view</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Natural History Museum</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Trump Tower rally</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="new-york"></div>
+  <div class="gallery-grid fade" data-gallery="washington"></div>
   <div class="highlights fade">
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The Empire State Building</strong> -- one of the biggest buildings in the world. Went up for the view. The city from above changes how you understand it at street level.</div></div>
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Central Park</strong> -- enormous. Spent a good stretch of a day in it. The Natural History Museum alongside it was genuinely good.</div></div>
@@ -189,10 +197,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
     <h2 class="city-name"><em>Washington</em> DC</h2>
     <p class="city-intro">After New York. Visited Arlington Cemetery, the monuments, the tourist circuit. A very considered, grand city. Also where I lost my bank card -- someone found it and spent about two thousand pounds in Target within the hour. A mistake you only make once.</p>
   </div>
-  <div class="photo-grid photo-grid-2 fade">
-    <div class="photo-slot" style="aspect-ratio:3/2;"><span class="photo-slot-label">Arlington Cemetery -- add photo</span></div>
-    <div class="photo-slot" style="aspect-ratio:3/2;"><span class="photo-slot-label">The Monument</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="miami"></div>
   <div class="highlights fade">
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Arlington Cemetery</strong> -- rows of identical white headstones as far as you can see. Genuinely moving in a way that is hard to explain until you are standing in it.</div></div>
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The monuments and the Mall</strong> -- the Lincoln Memorial, the Washington Monument, the grand civic scale of it. Saw the churches and sights. A city that takes its own importance seriously.</div></div>
@@ -207,10 +212,8 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
     <h2 class="city-name"><em>Miami</em></h2>
     <p class="city-intro">Very hot, very multicultural, a particular energy to it -- chains, Spanish music, Cuban influence all over the place. Miami Beach was a bit oversaturated and expensive. Wynwood was much better: cool clothes stores, murals, more of a real neighbourhood.</p>
   </div>
-  <div class="photo-grid photo-grid-3 fade">
-    <div class="photo-slot"><span class="photo-slot-label">Miami Beach -- add photo</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">Wynwood Walls</span></div>
-    <div class="photo-slot"><span class="photo-slot-label">The clothes</span></div>
+  <div class="photo-grid photo-grid-3 fade" style="display:none">
+    <div class="photo-slot"></div>
   </div>
   <div class="highlights fade">
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Miami Beach</strong> -- very hot, very expensive, slightly oversaturated. The Cuban and Latin influence gives it a specific energy that is unlike anywhere else in America.</div></div>
@@ -251,6 +254,57 @@ const cityObs=new IntersectionObserver(entries=>{
   });
 },{threshold:0.45});
 document.querySelectorAll('.city-section').forEach(s=>cityObs.observe(s));
+</script>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-count" id="lb-count"></span>
+  <button class="lightbox-btn lightbox-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lightbox-btn lightbox-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <img class="lightbox-img" id="lb-img" alt="">
+  <button class="lightbox-btn lightbox-next" id="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
+
+<script>
+function cloudTransform(url,t){if(!url||!url.includes('/upload/'))return url;return url.replace('/upload/','/upload/'+t+'/');}
+let lbItems=[],lbIndex=0;
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lb-img');
+const lbCap=document.getElementById('lb-caption');
+const lbCount=document.getElementById('lb-count');
+function openLightbox(items,i){lbItems=items;lbIndex=i;showLightbox();lb.classList.add('open');document.body.style.overflow='hidden';}
+function showLightbox(){const it=lbItems[lbIndex];lbImg.src=cloudTransform(it.url,'f_auto,q_auto,w_1600,c_limit,h_1600');lbCap.textContent=it.caption||'';lbCount.textContent=(lbIndex+1)+' / '+lbItems.length;}
+function lbNext(){lbIndex=(lbIndex+1)%lbItems.length;showLightbox();}
+function lbPrev(){lbIndex=(lbIndex-1+lbItems.length)%lbItems.length;showLightbox();}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('lb-next').onclick=lbNext;
+document.getElementById('lb-prev').onclick=lbPrev;
+document.getElementById('lb-close').onclick=closeLightbox;
+lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox();});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();else if(e.key==='ArrowRight')lbNext();else if(e.key==='ArrowLeft')lbPrev();});
+let touchX=null;
+lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?lbNext():lbPrev();}touchX=null;},{passive:true});
+function renderGalleries(galleries){
+  document.querySelectorAll('[data-gallery]').forEach(container=>{
+    const slug=container.dataset.gallery;
+    const items=(galleries&&galleries[slug])||[];
+    container.innerHTML='';
+    if(!items.length)return;
+    items.forEach((item,i)=>{
+      const b=document.createElement('button');
+      b.className='gallery-thumb';
+      b.style.backgroundImage='url('+cloudTransform(item.url,'c_fill,f_auto,q_auto,w_700,h_525')+')';
+      b.setAttribute('aria-label',item.caption||'Photo '+(i+1));
+      b.onclick=()=>openLightbox(items,i);
+      container.appendChild(b);
+    });
+  });
+}
+fetch('content.json')
+  .then(r=>r.json())
+  .then(data=>{renderGalleries(data.galleries||{});})
+  .catch(()=>{});
 </script>
 </body>
 </html>

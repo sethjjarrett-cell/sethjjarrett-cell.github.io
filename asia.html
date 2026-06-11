@@ -53,6 +53,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   .country-grid{grid-template-columns:1fr;gap:2.5rem;}
   .pg-3{grid-template-columns:1fr 1fr;}
 }
+
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin:2rem 0;}
+.gallery-grid:empty{display:none;}
+.gallery-thumb{aspect-ratio:4/3;border:none;padding:0;cursor:pointer;background-size:cover;background-position:center;background-color:rgba(128,128,128,0.12);transition:opacity 0.2s,transform 0.2s;display:block;width:100%;}
+.gallery-thumb:hover{opacity:0.9;transform:scale(0.99);}
+@media(max-width:860px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(15,15,18,0.94);display:none;align-items:center;justify-content:center;flex-direction:column;}
+.lightbox.open{display:flex;}
+.lightbox-img{max-width:90vw;max-height:80vh;object-fit:contain;user-select:none;}
+.lightbox-caption{color:rgba(235,235,235,0.85);font-size:0.85rem;margin-top:1rem;text-align:center;max-width:80vw;min-height:1.2rem;}
+.lightbox-count{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(235,235,235,0.6);font-size:0.75rem;letter-spacing:0.1em;}
+.lightbox-btn{position:absolute;background:none;border:none;color:rgba(235,235,235,0.8);cursor:pointer;font-size:2.5rem;line-height:1;padding:1rem;transition:color 0.2s;user-select:none;}
+.lightbox-btn:hover{color:#fff;}
+.lightbox-prev{left:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-next{right:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-close{top:0.5rem;right:0.75rem;font-size:2rem;}
+@media(max-width:860px){.lightbox-prev,.lightbox-next{font-size:1.8rem;}}
 </style>
 </head>
 <body>
@@ -89,10 +106,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-nepal-accent)">Stop 01</p>
   <h2 class="country-name fade" style="color:var(--asia-nepal-text)"><em>Nepal</em></h2>
   <p class="country-intro fade" style="color:var(--asia-nepal-soft)">The first stop coming out of the west. A proper culture shock -- arriving in Kathmandu and getting in a taxi while the driver swerved through traffic on the phone sets the tone immediately. Then Pokhara, the lake, and the Himalayas at a scale that nothing really prepares you for.</p>
-  <div class="photo-grid pg-2 fade">
-  <div class="photo-slot" style="background:var(--asia-nepal-bg3)"><span class="photo-slot-label" style="color:var(--asia-nepal-muted)">Kathmandu</span></div>
-  <div class="photo-slot" style="background:var(--asia-nepal-bg3)"><span class="photo-slot-label" style="color:var(--asia-nepal-muted)">Pokhara</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="nepal"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-nepal-soft)"><p>Kathmandu is chaotic and layered -- temples, dust, and a city that has been building for centuries. Climbed up to the Monkey Temple (Swayambhunath). Then the coach to Pokhara, which is a completely different pace. The lake, the stupa above it at sunrise, Fishtail Mountain across the water. The Himalayas are incomprehensibly large.</p></div>
     <div class="stops fade">
@@ -105,11 +119,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-camb-accent)">Stop 02</p>
   <h2 class="country-name fade" style="color:var(--asia-camb-text)"><em>Cambodia</em></h2>
   <p class="country-intro fade" style="color:var(--asia-camb-soft)">A country that wears its history visibly. The genocide museum and the killing fields in Phnom Penh are genuinely harrowing -- the kind of place that stays with you. Then the coast, the islands, and Angkor Wat, which earns every bit of its reputation.</p>
-  <div class="photo-grid pg-3 fade">
-  <div class="photo-slot" style="background:var(--asia-camb-bg3)"><span class="photo-slot-label" style="color:var(--asia-camb-muted)">Angkor Wat</span></div>
-  <div class="photo-slot" style="background:var(--asia-camb-bg3)"><span class="photo-slot-label" style="color:var(--asia-camb-muted)">Koh Rong</span></div>
-  <div class="photo-slot" style="background:var(--asia-camb-bg3)"><span class="photo-slot-label" style="color:var(--asia-camb-muted)">Kampot</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="cambodia"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-camb-soft)">
       <p>Kampot and Kep on the southern coast are sleepy and strange in a good way. The national park near Kep has abandoned buildings half-swallowed by jungle -- half-finished, unsettling, and tied to the Khmer Rouge years in ways that make it feel genuinely uneasy rather than just picturesque.</p>
@@ -127,11 +137,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-thai-accent)">Stop 03</p>
   <h2 class="country-name fade" style="color:var(--asia-thai-text)"><em>Thailand</em></h2>
   <p class="country-intro fade" style="color:var(--asia-thai-soft)">Visited twice -- north first with Pai and Chiang Mai, then the islands on the way back through. Christmas on Koh Tao (lost a phone and a chunk of ear, sorted eventually), New Year at the Full Moon Party on Koh Phangan, a Muay Thai camp on Koh Yao Yai, and a boxing match at a reggae bar on Koh Phi Phi. Ko Lipe was the best island of the whole trip.</p>
-  <div class="photo-grid pg-3 fade">
-  <div class="photo-slot" style="background:var(--asia-thai-bg3)"><span class="photo-slot-label" style="color:var(--asia-thai-muted)">Muay Thai</span></div>
-  <div class="photo-slot" style="background:var(--asia-thai-bg3)"><span class="photo-slot-label" style="color:var(--asia-thai-muted)">Full Moon Party</span></div>
-  <div class="photo-slot" style="background:var(--asia-thai-bg3)"><span class="photo-slot-label" style="color:var(--asia-thai-muted)">Ko Lipe</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="thailand"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-thai-soft)">
       <p>Pai is a small hippie town in the mountains north of Chiang Mai -- worth stopping at. The canyon nearby is good, and Muay Thai training in Chiang Mai is worthwhile even if you come out of it having been beaten up consistently.</p>
@@ -152,10 +158,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-laos-accent)">Stop 04</p>
   <h2 class="country-name fade" style="color:var(--asia-laos-text)"><em>Laos</em></h2>
   <p class="country-intro fade" style="color:var(--asia-laos-soft)">A small, quiet country that got bombed harder than anywhere in history -- more ordnance dropped on Laos than in the entirety of World War I and II combined, targeting the Ho Chi Minh Trail. That context matters when you're there. Nong Khiaw down the river, Vang Vieng for the chaos, Luang Prabang, and a capital that is famously the most boring in the world.</p>
-  <div class="photo-grid pg-2 fade">
-  <div class="photo-slot" style="background:var(--asia-laos-bg3)"><span class="photo-slot-label" style="color:var(--asia-laos-muted)">Nong Khiaw</span></div>
-  <div class="photo-slot" style="background:var(--asia-laos-bg3)"><span class="photo-slot-label" style="color:var(--asia-laos-muted)">Vang Vieng</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="laos"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-laos-soft)">
       <p>Nong Khiaw sits between karst mountains on the Nam Ou river -- got there by boat, met locals, genuinely beautiful and almost entirely untouristy. Vang Vieng is the opposite: motorbiking, caving, and a party scene that is properly hectic. Nearly collided on the bikes at speed, which was one of the more frightening moments of the whole trip.</p>
@@ -173,11 +176,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-viet-accent)">Stop 05</p>
   <h2 class="country-name fade" style="color:var(--asia-viet-text)"><em>Vietnam</em></h2>
   <p class="country-intro fade" style="color:var(--asia-viet-soft)">Hanoi was a favourite city in all of Asia -- a proper jungle-city hybrid with the communist presence still tangible in the museums and the way history is framed. The Ha Giang Loop in the far north is the standout experience: four days on motorbikes through mountain roads, rice terraces, and mist, narrowly avoiding disaster, five crashes in the group, mine included. Worth every bit of it.</p>
-  <div class="photo-grid pg-3 fade">
-  <div class="photo-slot" style="background:var(--asia-viet-bg3)"><span class="photo-slot-label" style="color:var(--asia-viet-muted)">Ha Giang Loop</span></div>
-  <div class="photo-slot" style="background:var(--asia-viet-bg3)"><span class="photo-slot-label" style="color:var(--asia-viet-muted)">Ha Long Bay</span></div>
-  <div class="photo-slot" style="background:var(--asia-viet-bg3)"><span class="photo-slot-label" style="color:var(--asia-viet-muted)">Hoi An</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="vietnam"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-viet-soft)">
       <p>The Ha Giang Loop is four days on a semi-automatic in the mountains near the Chinese border -- no driving licences, police checkpoints navigated by walking the bike through and remounting the other side, nights drinking in remote villages, cloud and mist for most of it. Five people in the group crashed. Wing mirrors lost. Nobody found. That is partly the appeal.</p>
@@ -197,10 +196,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-malay-accent)">Stop 06</p>
   <h2 class="country-name fade" style="color:var(--asia-malay-text)"><em>Malaysia</em></h2>
   <p class="country-intro fade" style="color:var(--asia-malay-soft)">Hot, with exceptional food. Langkawi for the islands, Georgetown for the heritage streets, Kuala Lumpur as a genuinely huge city that feels faintly cyberpunk and slightly grimy in parts. Not the most exciting country on the route but the food is some of the best in the region.</p>
-  <div class="photo-grid pg-2 fade">
-  <div class="photo-slot" style="background:var(--asia-malay-bg3)"><span class="photo-slot-label" style="color:var(--asia-malay-muted)">Kuala Lumpur</span></div>
-  <div class="photo-slot" style="background:var(--asia-malay-bg3)"><span class="photo-slot-label" style="color:var(--asia-malay-muted)">Georgetown</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="malaysia"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-malay-soft)"><p>Langkawi is very hot and very good for food -- good place to slow down coming off Vietnam. Georgetown has beautiful heritage streets but the city around it is not particularly appealing. Kuala Lumpur is enormous -- genuinely massive, a bit dirty in places. I spent a night or two there.</p></div>
     <div class="stops fade">
@@ -214,10 +210,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-sing-accent)">Stop 07</p>
   <h2 class="country-name fade" style="color:var(--asia-sing-text)"><em>Singapore</em></h2>
   <p class="country-intro fade" style="color:var(--asia-sing-soft)">The cleanest, most expensive city in the region. Completely unlike anywhere else in Southeast Asia -- a city-state that has engineered itself into something singular. The drink at Marina Bay Sands with a friend, looking out over the skyline, was one of those evenings that is difficult to top.</p>
-  <div class="photo-grid pg-2 fade">
-  <div class="photo-slot" style="background:var(--asia-sing-bg3)"><span class="photo-slot-label" style="color:var(--asia-sing-muted)">Marina Bay Sands</span></div>
-  <div class="photo-slot" style="background:var(--asia-sing-bg3)"><span class="photo-slot-label" style="color:var(--asia-sing-muted)">Singapore skyline</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="singapore"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-sing-soft)"><p>Spent a couple of days between Malaysia and Indonesia. Expensive, spotlessly clean, fascinating in the way that very deliberate cities are. The view from the Marina Bay Sands rooftop was as good as advertised.</p></div>
     <div class="stops fade">
@@ -230,10 +223,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-phil-accent)">Stop 08</p>
   <h2 class="country-name fade" style="color:var(--asia-phil-text)"><em>Philippines</em></h2>
   <p class="country-intro fade" style="color:var(--asia-phil-soft)">Visited on the way back from Australia. Some of the best beaches anywhere -- warm, clear, genuinely beautiful. The culture felt more authentic and warm than much of Southeast Asia. Manila is heaving and dirty and worth seeing for exactly that reason.</p>
-  <div class="photo-grid pg-2 fade">
-  <div class="photo-slot" style="background:var(--asia-phil-bg3)"><span class="photo-slot-label" style="color:var(--asia-phil-muted)">Philippines beaches</span></div>
-  <div class="photo-slot" style="background:var(--asia-phil-bg3)"><span class="photo-slot-label" style="color:var(--asia-phil-muted)">Manila</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="philippines"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-phil-soft)"><p>The beaches are among the best in the world -- the water is the right colour and the culture around them feels genuine rather than performed for tourists. Manila is one of the most chaotic cities in the region, a proper megacity that is not trying to be anything else. Worth a day.</p></div>
     <div class="stops fade">
@@ -246,10 +236,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
   <p class="country-eyebrow fade" style="color:var(--asia-indo-accent)">Stop 09</p>
   <h2 class="country-name fade" style="color:var(--asia-indo-text)"><em>Indonesia</em></h2>
   <p class="country-intro fade" style="color:var(--asia-indo-soft)">Bali with a now-ex -- explored the island properly on motorbikes, rode down into the Kintamani caldera and saw the volcanic landscape from inside the basin. Jakarta is the least favourite city of the whole trip: dangerous roads, nothing particularly appealing, not recommended.</p>
-  <div class="photo-grid pg-2 fade">
-  <div class="photo-slot" style="background:var(--asia-indo-bg3)"><span class="photo-slot-label" style="color:var(--asia-indo-muted)">Bali</span></div>
-  <div class="photo-slot" style="background:var(--asia-indo-bg3)"><span class="photo-slot-label" style="color:var(--asia-indo-muted)">Kintamani caldera</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="indonesia"></div>
   <div class="country-grid">
     <div class="country-text fade" style="color:var(--asia-indo-soft)"><p>Explored Bali on a motorbike -- rode out to Kintamani, dropped into the volcanic caldera and looked back up at the rim. The geological scale is impressive. Jakarta I would not go back to.</p></div>
     <div class="stops fade">
@@ -299,4 +286,55 @@ const sectionObs=new IntersectionObserver(entries=>{
   });
 },{threshold:0.4});
 document.querySelectorAll('.country-section').forEach(s=>sectionObs.observe(s));
-</script></body></html>
+</script>
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-count" id="lb-count"></span>
+  <button class="lightbox-btn lightbox-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lightbox-btn lightbox-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <img class="lightbox-img" id="lb-img" alt="">
+  <button class="lightbox-btn lightbox-next" id="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
+
+<script>
+function cloudTransform(url,t){if(!url||!url.includes('/upload/'))return url;return url.replace('/upload/','/upload/'+t+'/');}
+let lbItems=[],lbIndex=0;
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lb-img');
+const lbCap=document.getElementById('lb-caption');
+const lbCount=document.getElementById('lb-count');
+function openLightbox(items,i){lbItems=items;lbIndex=i;showLightbox();lb.classList.add('open');document.body.style.overflow='hidden';}
+function showLightbox(){const it=lbItems[lbIndex];lbImg.src=cloudTransform(it.url,'f_auto,q_auto,w_1600,c_limit,h_1600');lbCap.textContent=it.caption||'';lbCount.textContent=(lbIndex+1)+' / '+lbItems.length;}
+function lbNext(){lbIndex=(lbIndex+1)%lbItems.length;showLightbox();}
+function lbPrev(){lbIndex=(lbIndex-1+lbItems.length)%lbItems.length;showLightbox();}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('lb-next').onclick=lbNext;
+document.getElementById('lb-prev').onclick=lbPrev;
+document.getElementById('lb-close').onclick=closeLightbox;
+lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox();});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();else if(e.key==='ArrowRight')lbNext();else if(e.key==='ArrowLeft')lbPrev();});
+let touchX=null;
+lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?lbNext():lbPrev();}touchX=null;},{passive:true});
+function renderGalleries(galleries){
+  document.querySelectorAll('[data-gallery]').forEach(container=>{
+    const slug=container.dataset.gallery;
+    const items=(galleries&&galleries[slug])||[];
+    container.innerHTML='';
+    if(!items.length)return;
+    items.forEach((item,i)=>{
+      const b=document.createElement('button');
+      b.className='gallery-thumb';
+      b.style.backgroundImage='url('+cloudTransform(item.url,'c_fill,f_auto,q_auto,w_700,h_525')+')';
+      b.setAttribute('aria-label',item.caption||'Photo '+(i+1));
+      b.onclick=()=>openLightbox(items,i);
+      container.appendChild(b);
+    });
+  });
+}
+fetch('content.json')
+  .then(r=>r.json())
+  .then(data=>{renderGalleries(data.galleries||{});})
+  .catch(()=>{});
+</script>
+</body></html>

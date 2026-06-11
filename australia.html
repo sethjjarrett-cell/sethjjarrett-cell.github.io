@@ -69,6 +69,23 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   .stop-grid{grid-template-columns:1fr;gap:2.5rem;}
   .pg-3{grid-template-columns:1fr 1fr;}
 }
+
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin:2rem 0;}
+.gallery-grid:empty{display:none;}
+.gallery-thumb{aspect-ratio:4/3;border:none;padding:0;cursor:pointer;background-size:cover;background-position:center;background-color:rgba(128,128,128,0.12);transition:opacity 0.2s,transform 0.2s;display:block;width:100%;}
+.gallery-thumb:hover{opacity:0.9;transform:scale(0.99);}
+@media(max-width:860px){.gallery-grid{grid-template-columns:1fr 1fr;}}
+.lightbox{position:fixed;inset:0;z-index:1000;background:rgba(15,15,18,0.94);display:none;align-items:center;justify-content:center;flex-direction:column;}
+.lightbox.open{display:flex;}
+.lightbox-img{max-width:90vw;max-height:80vh;object-fit:contain;user-select:none;}
+.lightbox-caption{color:rgba(235,235,235,0.85);font-size:0.85rem;margin-top:1rem;text-align:center;max-width:80vw;min-height:1.2rem;}
+.lightbox-count{position:absolute;top:1.5rem;left:50%;transform:translateX(-50%);color:rgba(235,235,235,0.6);font-size:0.75rem;letter-spacing:0.1em;}
+.lightbox-btn{position:absolute;background:none;border:none;color:rgba(235,235,235,0.8);cursor:pointer;font-size:2.5rem;line-height:1;padding:1rem;transition:color 0.2s;user-select:none;}
+.lightbox-btn:hover{color:#fff;}
+.lightbox-prev{left:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-next{right:0.5rem;top:50%;transform:translateY(-50%);}
+.lightbox-close{top:0.5rem;right:0.75rem;font-size:2rem;}
+@media(max-width:860px){.lightbox-prev,.lightbox-next{font-size:1.8rem;}}
 </style>
 </head>
 <body>
@@ -96,11 +113,7 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <p class="stop-eyebrow fade" style="color:var(--aus-melb-accent)">Stop 01</p>
   <h2 class="stop-name fade" style="color:var(--aus-melb-text)"><em>Melbourne</em></h2>
   <p class="stop-intro fade" style="color:var(--aus-melb-soft)">Spent most of the four months here. Getting a job was harder than expected -- handed CVs into bar after bar, eventually emailed one on a whim because I could not face walking in. They gave me a trial shift and I got it. Work was inconsistent but Melbourne itself was very good.</p>
-  <div class="photo-grid pg-3 fade">
-    <div class="photo-slot" style="background:var(--aus-melb-bg3)"><span class="photo-slot-label" style="color:var(--aus-melb-muted)">Melbourne skyline</span></div>
-    <div class="photo-slot" style="background:var(--aus-melb-bg3)"><span class="photo-slot-label" style="color:var(--aus-melb-muted)">The venue</span></div>
-    <div class="photo-slot" style="background:var(--aus-melb-bg3)"><span class="photo-slot-label" style="color:var(--aus-melb-muted)">Laneways</span></div>
-    </div>
+  <div class="gallery-grid fade" data-gallery="melbourne"></div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--aus-melb-soft)"><p>Melbourne rewards actually living in it rather than passing through -- the coffee is cheap and excellent, the food is a proper melting pot, and the nightlife has real range. There is a bar that runs twenty-four hours on weekends, which is an experience. The laneways are the best part of the city: street art, hidden bars, the kind of place that takes a few weeks to find.</p></div>
     <div class="stops-list fade"><div class="stop-item">
@@ -131,10 +144,7 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <p class="stop-eyebrow fade" style="color:var(--aus-east-accent)">Stop 02</p>
   <h2 class="stop-name fade" style="color:var(--aus-east-text)">The <em>East Coast</em></h2>
   <p class="stop-intro fade" style="color:var(--aus-east-soft)">Drove the Great Ocean Road south of Melbourne -- cliffs, dramatic coast, the Twelve Apostles. One of the better drives I have done. Then later up to Sydney, which is a different thing entirely.</p>
-  <div class="photo-grid pg-2 fade">
-    <div class="photo-slot" style="background:var(--aus-east-bg3)"><span class="photo-slot-label" style="color:var(--aus-east-muted)">Great Ocean Road</span></div>
-    <div class="photo-slot" style="background:var(--aus-east-bg3)"><span class="photo-slot-label" style="color:var(--aus-east-muted)">East coast</span></div>
-    </div>
+  <div class="gallery-grid fade" data-gallery="great-ocean-road"></div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--aus-east-soft)"><p>The Great Ocean Road runs southwest along the coast from Melbourne. Cliffs dropping into the Southern Ocean, the Twelve Apostles stacks, small towns. Genuinely one of the better drives I have done anywhere.</p></div>
     <div class="stops-list fade"><div class="stop-item">
@@ -165,10 +175,7 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <p class="stop-eyebrow fade" style="color:var(--aus-syd-accent)">Stop 03</p>
   <h2 class="stop-name fade" style="color:var(--aus-syd-text)"><em>Sydney</em></h2>
   <p class="stop-intro fade" style="color:var(--aus-syd-soft)">Went up to visit a friend. Aesthetically one of the nicest cities I have been to -- the harbour is genuinely beautiful. Felt a bit like it knew that and traded on it. The people felt slightly more closed off than Melbourne. Good for a few days.</p>
-  <div class="photo-grid pg-2 fade">
-    <div class="photo-slot" style="background:var(--aus-syd-bg3)"><span class="photo-slot-label" style="color:var(--aus-syd-muted)">Sydney Harbour</span></div>
-    <div class="photo-slot" style="background:var(--aus-syd-bg3)"><span class="photo-slot-label" style="color:var(--aus-syd-muted)">Opera House</span></div>
-    </div>
+  <div class="gallery-grid fade" data-gallery="sydney"></div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--aus-syd-soft)"><p>More obviously beautiful than Melbourne, less texture. The harbour earns every photograph. Went to a party out near the Blue Mountains, which was good -- colder than expected out there. Made the mistake of looking for spiders under a house, which was not a good idea.</p></div>
     <div class="stops-list fade"><div class="stop-item">
@@ -199,10 +206,7 @@ footer{padding:1.5rem 4rem;display:flex;justify-content:space-between;}
   <p class="stop-eyebrow fade" style="color:var(--aus-east-accent)">Stop 04</p>
   <h2 class="stop-name fade" style="color:var(--aus-east-text)"><em>Cairns</em> &amp; Port Douglas</h2>
   <p class="stop-intro fade" style="color:var(--aus-east-soft)">Flew up to do the Great Barrier Reef. Cairns itself is not particularly nice -- it has the feel of a place that exists mainly as a staging post for people doing their regional visa hours. Port Douglas up the road was a different story: genuinely beautiful beaches and a quieter pace.</p>
-  <div class="photo-grid pg-2 fade">
-    <div class="photo-slot" style="background:var(--aus-east-bg3)"><span class="photo-slot-label" style="color:var(--aus-east-muted)">Great Barrier Reef</span></div>
-    <div class="photo-slot" style="background:var(--aus-east-bg3)"><span class="photo-slot-label" style="color:var(--aus-east-muted)">Port Douglas</span></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="cairns"></div>
   <div class="stop-grid">
     <div class="stop-text fade" style="color:var(--aus-east-soft)"><p>Went scuba diving on the Great Barrier Reef. Bucket list item, so it needed doing -- I found it a bit overrated in honesty, but the scale of it is undeniable. Port Douglas had stunning beaches and felt more like somewhere to actually be rather than pass through. Cairns had a particular loneliness to it: full of people grinding regional visa hours in rural areas, all a bit transient. Not uninteresting, but not somewhere I would go back to specifically.</p></div>
     <div class="stops-list fade">
@@ -279,6 +283,57 @@ const sectionObs=new IntersectionObserver(entries=>{
   });
 },{threshold:0.4});
 document.querySelectorAll('.stop-section').forEach(s=>sectionObs.observe(s));
+</script>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-count" id="lb-count"></span>
+  <button class="lightbox-btn lightbox-close" id="lb-close" aria-label="Close">&times;</button>
+  <button class="lightbox-btn lightbox-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+  <img class="lightbox-img" id="lb-img" alt="">
+  <button class="lightbox-btn lightbox-next" id="lb-next" aria-label="Next">&#8250;</button>
+  <div class="lightbox-caption" id="lb-caption"></div>
+</div>
+
+<script>
+function cloudTransform(url,t){if(!url||!url.includes('/upload/'))return url;return url.replace('/upload/','/upload/'+t+'/');}
+let lbItems=[],lbIndex=0;
+const lb=document.getElementById('lightbox');
+const lbImg=document.getElementById('lb-img');
+const lbCap=document.getElementById('lb-caption');
+const lbCount=document.getElementById('lb-count');
+function openLightbox(items,i){lbItems=items;lbIndex=i;showLightbox();lb.classList.add('open');document.body.style.overflow='hidden';}
+function showLightbox(){const it=lbItems[lbIndex];lbImg.src=cloudTransform(it.url,'f_auto,q_auto,w_1600,c_limit,h_1600');lbCap.textContent=it.caption||'';lbCount.textContent=(lbIndex+1)+' / '+lbItems.length;}
+function lbNext(){lbIndex=(lbIndex+1)%lbItems.length;showLightbox();}
+function lbPrev(){lbIndex=(lbIndex-1+lbItems.length)%lbItems.length;showLightbox();}
+function closeLightbox(){lb.classList.remove('open');document.body.style.overflow='';}
+document.getElementById('lb-next').onclick=lbNext;
+document.getElementById('lb-prev').onclick=lbPrev;
+document.getElementById('lb-close').onclick=closeLightbox;
+lb.addEventListener('click',e=>{if(e.target===lb)closeLightbox();});
+document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLightbox();else if(e.key==='ArrowRight')lbNext();else if(e.key==='ArrowLeft')lbPrev();});
+let touchX=null;
+lb.addEventListener('touchstart',e=>{touchX=e.changedTouches[0].clientX;},{passive:true});
+lb.addEventListener('touchend',e=>{if(touchX===null)return;const dx=e.changedTouches[0].clientX-touchX;if(Math.abs(dx)>50){dx<0?lbNext():lbPrev();}touchX=null;},{passive:true});
+function renderGalleries(galleries){
+  document.querySelectorAll('[data-gallery]').forEach(container=>{
+    const slug=container.dataset.gallery;
+    const items=(galleries&&galleries[slug])||[];
+    container.innerHTML='';
+    if(!items.length)return;
+    items.forEach((item,i)=>{
+      const b=document.createElement('button');
+      b.className='gallery-thumb';
+      b.style.backgroundImage='url('+cloudTransform(item.url,'c_fill,f_auto,q_auto,w_700,h_525')+')';
+      b.setAttribute('aria-label',item.caption||'Photo '+(i+1));
+      b.onclick=()=>openLightbox(items,i);
+      container.appendChild(b);
+    });
+  });
+}
+fetch('content.json')
+  .then(r=>r.json())
+  .then(data=>{renderGalleries(data.galleries||{});})
+  .catch(()=>{});
 </script>
 </body>
 </html>
