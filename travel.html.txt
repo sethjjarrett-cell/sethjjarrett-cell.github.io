@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Travel — Seth Jarrett</title>
+<title>Travel â€” Seth Jarrett</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -12,15 +12,13 @@
 :root{
   --serif:'Lora',Georgia,serif;
   --sans:'DM Sans',system-ui,sans-serif;
-  /* single quiet palette — cream paper, deep green ink. The immersive
-     colour worlds live on the individual region pages, not the index. */
-  --bg:#F7F4EC;--bg2:#F1ECDE;--text:#2A3324;--text-soft:#56614B;--text-muted:#97947F;
-  --accent:#3E5E38;--rule:#E3DDCB;--nav-bg:rgba(247,244,236,0.96);
+  --bg:#F5F0E8;--text:#2C2820;--text-soft:#5C5448;--text-muted:#9C9488;
+  --accent:#3A8C3A;--rule:rgba(58,140,58,0.15);--nav-bg:rgba(245,240,232,0.96);
 }
 html{scroll-behavior:smooth;}
-body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.7;font-size:16px;transition:background 0.9s ease,color 0.9s ease;}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);transition:background 0.9s ease,border-color 0.9s ease;}
 .nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--text);text-decoration:none;transition:color 0.9s;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-size:0.78rem;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.3s;}
@@ -43,13 +41,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .map-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;transition:color 0.9s;}
 .map-title{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:400;color:var(--text);margin-bottom:0.5rem;transition:color 0.9s;}
 .map-hint{font-size:0.78rem;color:var(--text-muted);margin-bottom:2rem;font-style:italic;}
-#mapContainer{position:relative;width:100%;background:#D8E3E4;border:1px solid var(--rule);overflow:hidden;}
+#mapContainer{position:relative;width:100%;background:#C8DCE8;border:1px solid var(--rule);overflow:hidden;}
 #mapContainer svg{display:block;width:100%;height:auto;}
-.map-tooltip{position:absolute;background:#FFFDF6;color:var(--text);border:1px solid var(--rule);box-shadow:0 2px 10px rgba(42,51,36,0.12);font-size:0.8rem;padding:0.45rem 1rem;pointer-events:none;opacity:0;transition:opacity 0.15s;white-space:nowrap;font-family:var(--serif);font-style:italic;z-index:20;}
+.map-tooltip{position:absolute;background:rgba(30,20,10,0.92);color:#F5F0E8;font-size:0.8rem;padding:0.45rem 1rem;pointer-events:none;opacity:0;transition:opacity 0.15s;white-space:nowrap;font-family:var(--serif);font-style:italic;z-index:20;border-radius:1px;}
 .map-legend{display:flex;flex-wrap:wrap;gap:0.55rem;margin-top:1.1rem;}
-.map-legend-item{font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;padding:0.32rem 0.85rem;border:1px solid var(--rule);background:transparent;transition:all 0.2s;}
-.map-legend-item:hover{color:var(--accent);border-color:var(--accent);}
-.map-legend-dot{display:none;}
+.map-legend-item{font-size:0.72rem;color:var(--text-muted);display:flex;align-items:center;gap:0.45rem;cursor:pointer;padding:0.28rem 0.75rem;border:1px solid var(--rule);transition:all 0.2s;}
+.map-legend-item:hover{color:var(--text);border-color:currentColor;}
+.map-legend-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
 
 .region-section{min-height:100vh;padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;border-top:1px solid var(--rule);transition:border-color 0.9s;}
 .region-content{}
@@ -74,11 +72,6 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 .footer-text{font-size:0.75rem;color:var(--text-muted);}
 .footer-link{font-size:0.75rem;color:var(--accent);text-decoration:none;}
 
-#asia,#japan,#europe{background:var(--bg2);}
-.reflection{background:var(--bg2);}
-/* region illustrations become postcards — framed, slightly tilted, colours softened */
-.region-visual svg{border:10px solid #FFFDF6;box-shadow:0 3px 18px rgba(42,51,36,0.13);filter:saturate(0.55) sepia(0.12);transform:rotate(-1.6deg);}
-.region-section:nth-of-type(even) .region-visual svg{transform:rotate(1.4deg);}
 .map-count{font-size:0.72rem;color:var(--text-muted);margin-top:0.6rem;font-style:italic;}
 .fade{opacity:0;transform:translateY(16px);transition:opacity 0.7s ease,transform 0.7s ease;}
 .fade.in{opacity:1;transform:none;}
@@ -123,20 +116,20 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
   <div class="region-dot" data-target="reflection"></div>
 </div>
 
-<section class="hero" id="hero">
+<section class="hero" id="hero" data-theme="meadow">
   <h1 class="hero-title">Two years,<br><em>six continents</em></h1>
   <p class="hero-sub" id="travel-hero-sub">North America, Asia, Australia, Japan, Africa, Europe, South America. It changed how I see things -- the contrasts in how people live, what communities face, and how much goes unseen from home.</p>
   <div class="hero-stats">
     <div><div class="stat-num">2</div><div class="stat-label">Years</div></div>
     <div><div class="stat-num">6</div><div class="stat-label">Continents</div></div>
-    <div><div class="stat-num" id="statCountries">20+</div><div class="stat-label">Countries</div></div>
+    <div><div class="stat-num">20+</div><div class="stat-label">Countries</div></div>
   </div>
 </section>
 
-<!-- MAP — rendered by D3 with real TopoJSON world data -->
-<section class="map-section" id="map">
+<!-- MAP â€” rendered by D3 with real TopoJSON world data -->
+<section class="map-section" id="map" data-theme="meadow">
   <p class="map-eyebrow">Where I went</p>
-  <h2 class="map-title">The map</h2>
+  <h2 class="map-title">The route</h2>
   <p class="map-hint">Hover a country to see it, click to read that part of the journey</p>
   <div id="mapContainer">
     <div class="map-tooltip" id="mapTip"></div>
@@ -146,7 +139,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
     <div class="map-legend-item" data-region="asia" data-url="asia.html"><div class="map-legend-dot" style="background:#2E9E58"></div>Asia</div>
     <div class="map-legend-item" data-region="australia" data-url="australia.html"><div class="map-legend-dot" style="background:#3878C0"></div>Australia</div>
     <div class="map-legend-item" data-region="japan" data-url="japan.html"><div class="map-legend-dot" style="background:#C848A0"></div>Japan</div>
-    <div class="map-legend-item" data-region="africa" data-url="africa.html"><div class="map-legend-dot" style="background:#C87818"></div>Africa</div>
+    <div class="map-legend-item" data-region="africa" data-url="africa.html"><div class="map-legend-dot" style="background:#C87818"></div>Africa (Morocco)</div>
     <div class="map-legend-item" data-region="europe" data-url="europe.html"><div class="map-legend-dot" style="background:#7878C8"></div>Europe</div>
     <div class="map-legend-item" data-region="samerica" data-url="south-america.html"><div class="map-legend-dot" style="background:#48B828"></div>South America</div>
   </div>
@@ -154,7 +147,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </section>
 
 <!-- 1. NORTH AMERICA -->
-<section class="region-section" id="namerica">
+<section class="region-section" id="namerica" data-theme="namerica">
   <div class="region-content">
     <p class="region-chapter fade">Region 01</p>
     <h2 class="region-name fade">North <em>America</em></h2>
@@ -272,7 +265,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </section>
 
 <!-- 2. ASIA -->
-<section class="region-section" id="asia">
+<section class="region-section" id="asia" data-theme="jungle">
   <div class="region-content">
     <p class="region-chapter fade">Region 02</p>
     <h2 class="region-name fade">Southeast <em>Asia</em></h2>
@@ -320,7 +313,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </section>
 
 <!-- 3. AUSTRALIA -->
-<section class="region-section" id="australia">
+<section class="region-section" id="australia" data-theme="outback">
   <div class="region-content">
     <p class="region-chapter fade">Region 03</p>
     <h2 class="region-name fade"><em>Australia</em></h2>
@@ -359,7 +352,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </section>
 
 <!-- 4. JAPAN -->
-<section class="region-section" id="japan">
+<section class="region-section" id="japan" data-theme="japan">
   <div class="region-content">
     <p class="region-chapter fade">Region 04</p>
     <h2 class="region-name fade"><em>Japan</em></h2>
@@ -396,7 +389,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </section>
 
 <!-- 5. AFRICA -->
-<section class="region-section" id="africa">
+<section class="region-section" id="africa" data-theme="africa">
   <div class="region-content">
     <p class="region-chapter fade">Region 05</p>
     <h2 class="region-name fade"><em>Africa</em></h2>
@@ -443,7 +436,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </section>
 
 <!-- 6. EUROPE -->
-<section class="region-section" id="europe">
+<section class="region-section" id="europe" data-theme="golden">
   <div class="region-content">
     <p class="region-chapter fade">Region 06</p>
     <h2 class="region-name fade"><em>Europe</em></h2>
@@ -487,11 +480,13 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 </section>
 
 <!-- 7. SOUTH AMERICA -->
-<section class="region-section" id="samerica">
+<section class="region-section" id="samerica" data-theme="andes">
   <div class="region-content">
     <p class="region-chapter fade">Region 07</p>
     <h2 class="region-name fade">South <em>America</em></h2>
-    <p class="region-countries fade">Colombia &middot; Peru &middot; Bolivia</p>
+    <p class="region-countries fade">
+Colombia &middot;  Peru &middot;Bolivia
+</p>
     <p class="region-text fade" id="travel-samerica">Mountains, rainforest, colour and a pace of life that makes you question why you were ever in a rush. The continent where the university microgrid project stopped being abstract -- communities without reliable power are not a case study when you have spent time in them.</p>
     <a href="south-america.html" class="region-link fade">Explore South America &#8594;</a>
   </div>
@@ -524,7 +519,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
   </div>
 </section>
 
-<section class="reflection" id="reflection">
+<section class="reflection" id="reflection" data-theme="meadow">
   <div class="reflection-inner">
     <p class="reflection-eyebrow fade">More than a gap year</p>
     <h2 class="reflection-title fade">What it actually did</h2>
@@ -545,7 +540,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--rule);display:flex;justify
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
 // ============================================================
-// VISITED COUNTRIES — edit these lists to add or remove places.
+// VISITED COUNTRIES â€” edit these lists to add or remove places.
 // Only countries listed here are coloured and clickable.
 // Numbers are ISO 3166-1 numeric codes (search "ISO numeric" + country).
 // ============================================================
@@ -577,17 +572,15 @@ const regionMap = {
     // UK, France, Spain, Italy, Bosnia, Czechia, Germany, Netherlands, Greece, Portugal
   },
   samerica: {
-    name:'South America', url:'south-america.html', color:'#48B828',
-    codes: new Set([170,604,68])
-    // Colombia, Peru, Bolivia
-  }
+  name:'South America', url:'south-america.html', color:'#48B828',
+  codes: new Set([170,604,68])
+}
 };
 
 // Show a true country count under the legend
 const totalVisited = Object.values(regionMap).reduce((n, r) => n + r.codes.size, 0);
-document.getElementById('statCountries').textContent = totalVisited;
 document.getElementById('mapCount').textContent =
-  totalVisited + ' countries \u00b7 only the places I\u2019ve actually been are coloured';
+  totalVisited + ' countries \u00b7 only the places I\u2019ve actually been are coloured \u00b7 pins mark longer stays';
 
 const tip = document.getElementById('mapTip');
 const container = document.getElementById('mapContainer');
@@ -614,44 +607,36 @@ const path = d3.geoPath().projection(projection);
 // Ocean background
 svg.append('rect')
   .attr('width', width).attr('height', height)
-  .attr('fill', '#D8E3E4');
+  .attr('fill', '#C4D4DC');
 
 // Load world data
 d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
   const countries = topojson.feature(world, world.objects.countries);
 
-  // One sage green for every visited country; depth comes from hover,
-  // not from a rainbow of region colours.
-  const VISITED_FILL = '#7A9468';
-  const VISITED_HOVER = '#46603C';
-  const LAND_FILL = '#F0EADA';
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const countryPaths = svg.selectAll('path.country')
+  svg.selectAll('path.country')
     .data(countries.features)
     .enter()
     .append('path')
     .attr('class', 'country')
     .attr('d', path)
-    .attr('fill', d => getRegion(+d.id) ? VISITED_FILL : LAND_FILL)
-    .attr('stroke', d => getRegion(+d.id) ? 'rgba(42,51,36,0.3)' : 'rgba(90,85,60,0.22)')
+    .attr('fill', d => {
+      const r = getRegion(+d.id);
+      return r ? r.color : '#D4CEB8';
+    })
+    .attr('stroke', d => {
+      const r = getRegion(+d.id);
+      return r ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.08)';
+    })
     .attr('stroke-width', 0.5)
     .attr('cursor', d => getRegion(+d.id) ? 'pointer' : 'default')
     .on('mouseenter', function(event, d) {
       const r = getRegion(+d.id);
       if (!r) return;
-      // Deepen this region, quieten the rest
-      svg.selectAll('path.country')
-        .attr('fill', c => {
-          const cr = getRegion(+c.id);
-          if (!cr) return LAND_FILL;
-          return cr.key === r.key ? VISITED_HOVER : VISITED_FILL;
-        })
-        .attr('opacity', c => {
-          const cr = getRegion(+c.id);
-          return (!cr || cr.key === r.key) ? 1 : 0.45;
-        });
+      // Dim all, highlight region
+      svg.selectAll('path.country').attr('opacity', c => {
+        const cr = getRegion(+c.id);
+        return cr && cr.key === r.key ? 1 : 0.3;
+      });
       tip.textContent = (d.properties && d.properties.name ? d.properties.name + ' \u2014 ' : '') + r.name;
       tip.style.opacity = '1';
     })
@@ -662,9 +647,7 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(w
     })
     .on('mouseleave', function(event, d) {
       if (!getRegion(+d.id)) return;
-      svg.selectAll('path.country')
-        .attr('fill', c => getRegion(+c.id) ? VISITED_FILL : LAND_FILL)
-        .attr('opacity', 1);
+      svg.selectAll('path.country').attr('opacity', 1);
       tip.style.opacity = '0';
     })
     .on('click', function(event, d) {
@@ -677,26 +660,36 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(w
   svg.append('path').datum(graticule)
     .attr('d', path)
     .attr('fill', 'none')
-    .attr('stroke', 'rgba(255,255,255,0.45)')
+    .attr('stroke', 'rgba(255,255,255,0.12)')
     .attr('stroke-width', 0.4);
 
-  // Gentle reveal: visited countries fade in one by one as the map arrives
-  if (!reduceMotion) {
-    const visited = countryPaths.filter(d => !!getRegion(+d.id));
-    visited.attr('opacity', 0);
-    const mapObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          visited.transition()
-            .delay((d, i) => 120 + i * 55)
-            .duration(700)
-            .attr('opacity', 1);
-          mapObs.disconnect();
-        }
-      });
-    }, {threshold: 0.3});
-    mapObs.observe(container);
-  }
+  // ============================================================
+  // THE ROUTE â€” city pins in journey order. Edit freely:
+  // add/remove stops or reorder to match the actual trip.
+  // ============================================================
+  const cities = [
+    {name:'New York',     coords:[-74.0,40.7],   region:'namerica'},
+    {name:'Washington',   coords:[-77.0,38.9],   region:'namerica'},
+    {name:'Miami',        coords:[-80.2,25.8],   region:'namerica'},
+    {name:'Bangkok',      coords:[100.5,13.75],  region:'asia'},
+    {name:'Bali',         coords:[115.2,-8.4],   region:'asia'},
+    {name:'Sydney',       coords:[151.2,-33.9],  region:'australia'},
+    {name:'Melbourne',    coords:[144.9,-37.8],  region:'australia'},
+    {name:'Tokyo',        coords:[139.7,35.7],   region:'japan'},
+    {name:'Marrakech',    coords:[-7.99,31.63],  region:'africa'},
+    {name:'London',       coords:[-0.1,51.5],    region:'europe'},
+    {name:'Cusco',        coords:[-71.97,-13.53],region:'samerica'},
+  ];
+
+  // City pins on top of the route
+  cities.forEach(c => {
+    const [x, y] = projection(c.coords);
+    const col = regionMap[c.region]?.color || '#fff';
+    svg.append('circle').attr('cx',x).attr('cy',y).attr('r',5)
+      .attr('fill','#fff').attr('stroke',col).attr('stroke-width',2).attr('pointer-events','none');
+    svg.append('circle').attr('cx',x).attr('cy',y).attr('r',2.5)
+      .attr('fill',col).attr('pointer-events','none');
+  });
 
 }).catch(() => {
   // Fallback if CDN fails
@@ -709,41 +702,53 @@ d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(w
 document.querySelectorAll('.map-legend-item').forEach(item => {
   item.addEventListener('mouseenter', () => {
     const key = item.dataset.region;
-    svg.selectAll('path.country')
-      .attr('fill', d => {
-        const r = getRegion(+d.id);
-        if (!r) return '#F0EADA';
-        return r.key === key ? '#46603C' : '#7A9468';
-      })
-      .attr('opacity', d => {
-        const r = getRegion(+d.id);
-        return (!r || r.key === key) ? 1 : 0.45;
-      });
+    svg.selectAll('path.country').attr('opacity', d => {
+      const r = getRegion(+d.id);
+      return r && r.key === key ? 1 : 0.3;
+    });
   });
   item.addEventListener('mouseleave', () => {
-    svg.selectAll('path.country')
-      .attr('fill', d => getRegion(+d.id) ? '#7A9468' : '#F0EADA')
-      .attr('opacity', 1);
+    svg.selectAll('path.country').attr('opacity', 1);
   });
   item.addEventListener('click', () => {
     window.location.href = item.dataset.url;
   });
 });
 
+// Themes
+const themes={
+  meadow:{'--bg':'var(--t-meadow-bg)','--text':'var(--t-meadow-text)','--text-soft':'var(--t-meadow-soft)','--text-muted':'var(--t-meadow-muted)','--accent':'var(--t-meadow-accent)','--rule':'var(--t-meadow-rule)','--nav-bg':'var(--t-meadow-nav)'},
+  namerica:{'--bg':'var(--t-namerica-bg)','--text':'var(--t-namerica-text)','--text-soft':'var(--t-namerica-soft)','--text-muted':'var(--t-namerica-muted)','--accent':'var(--t-namerica-accent)','--rule':'var(--t-namerica-rule)','--nav-bg':'var(--t-namerica-nav)'},
+  jungle:{'--bg':'var(--t-jungle-bg)','--text':'var(--t-jungle-text)','--text-soft':'var(--t-jungle-soft)','--text-muted':'var(--t-jungle-muted)','--accent':'var(--t-jungle-accent)','--rule':'var(--t-jungle-rule)','--nav-bg':'var(--t-jungle-nav)'},
+  outback:{'--bg':'var(--t-outback-bg)','--text':'var(--t-outback-text)','--text-soft':'var(--t-outback-soft)','--text-muted':'var(--t-outback-muted)','--accent':'var(--t-outback-accent)','--rule':'var(--t-outback-rule)','--nav-bg':'var(--t-outback-nav)'},
+  japan:{'--bg':'var(--t-japan-bg)','--text':'var(--t-japan-text)','--text-soft':'var(--t-japan-soft)','--text-muted':'var(--t-japan-muted)','--accent':'var(--t-japan-accent)','--rule':'var(--t-japan-rule)','--nav-bg':'var(--t-japan-nav)'},
+  africa:{'--bg':'var(--t-africa-bg)','--text':'var(--t-africa-text)','--text-soft':'var(--t-africa-soft)','--text-muted':'var(--t-africa-muted)','--accent':'var(--t-africa-accent)','--rule':'var(--t-africa-rule)','--nav-bg':'var(--t-africa-nav)'},
+  golden:{'--bg':'var(--t-europe-bg)','--text':'var(--t-europe-text)','--text-soft':'var(--t-europe-soft)','--text-muted':'var(--t-europe-muted)','--accent':'var(--t-europe-accent)','--rule':'var(--t-europe-rule)','--nav-bg':'var(--t-europe-nav)'},
+  andes:{'--bg':'var(--t-andes-bg)','--text':'var(--t-andes-text)','--text-soft':'var(--t-andes-soft)','--text-muted':'var(--t-andes-muted)','--accent':'var(--t-andes-accent)','--rule':'var(--t-andes-rule)','--nav-bg':'var(--t-andes-nav)'}
+};
+
+function applyTheme(name){
+  const t=themes[name];if(!t)return;
+  Object.entries(t).forEach(([k,v])=>document.documentElement.style.setProperty(k,v));
+}
+
+const allSections=document.querySelectorAll('[data-theme]');
 const dots=document.querySelectorAll('.region-dot');
 const ids=['hero','map','namerica','asia','australia','japan','africa','europe','samerica','reflection'];
 
-// Scrollspy for the side dots — the section crossing the middle band wins
-const spyObs=new IntersectionObserver(entries=>{
+// A section owns the theme while it occupies the middle band of the
+// viewport â€” exactly one winner at a time, so colours never fight.
+const themeObs=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
+      applyTheme(entry.target.dataset.theme);
       const idx=ids.indexOf(entry.target.id);
-      if(idx>-1)dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+      dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
     }
   });
 },{rootMargin:'-40% 0px -40% 0px',threshold:0});
-ids.forEach(id=>{const el=document.getElementById(id);if(el)spyObs.observe(el);});
 
+allSections.forEach(s=>themeObs.observe(s));
 dots.forEach((dot,i)=>dot.addEventListener('click',()=>document.getElementById(ids[i])?.scrollIntoView({behavior:'smooth'})));
 
 // Load content from content.json (managed via admin.html)
@@ -762,7 +767,7 @@ fetch('content.json')
     t('travel-reflection-1', data.travel.reflection_text_1);
     t('travel-reflection-2', data.travel.reflection_text_2);
   })
-  .catch(() => { /* content.json not found — hardcoded content displays instead */ });
+  .catch(() => { /* content.json not found â€” hardcoded content displays instead */ });
 
 const fadeObs=new IntersectionObserver(entries=>{
   entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*80);fadeObs.unobserve(e.target);}});
@@ -771,3 +776,4 @@ document.querySelectorAll('.fade').forEach(el=>fadeObs.observe(el));
 </script>
 </body>
 </html>
+
