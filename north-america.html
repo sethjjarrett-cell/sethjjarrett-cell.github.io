@@ -9,6 +9,14 @@
 <link rel="stylesheet" href="style.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  /* Local override: Miami in daylight — shell pink and flamingo, not
+     neon-on-black, so the scroll from DC no longer slams light to dark */
+  --nam-miami-bg:#FAEDE6;--nam-miami-bg2:#F5E0D5;--nam-miami-bg3:#EDD1C2;
+  --nam-miami-text:#301622;--nam-miami-soft:#5E3448;--nam-miami-muted:#A8808C;
+  --nam-miami-accent:#D2466E;--nam-miami-rule:rgba(210,70,110,0.16);
+  --nam-miami-nav:rgba(250,237,230,0.96);
+}
 html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--nam-nyc-bg);color:var(--nam-nyc-text);line-height:1.7;font-size:16px;transition:background 1.2s ease,color 0.8s ease;}
 
@@ -39,9 +47,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .city-tab.active .city-tab-dot{opacity:1;}
 .city-tab[href="#new-york"].active .city-tab-dot{background:#F0C840;}
 .city-tab[href="#washington"].active .city-tab-dot{background:#7A9AC0;}
-.city-tab[href="#miami"].active .city-tab-dot{background:#E060C0;}
+.city-tab[href="#miami"].active .city-tab-dot{background:#D2466E;}
 
-.city-section{min-height:90vh;padding:6rem 4rem;border-bottom:1px solid rgba(0,0,0,0.08);}
+.city-section{min-height:90vh;padding:6rem 4rem;}
+.city-blend{height:170px;}
+.blend-ny-dc{background:linear-gradient(to bottom,var(--nam-nyc-bg),var(--nam-dc-bg));}
+.blend-dc-mia{background:linear-gradient(to bottom,var(--nam-dc-bg),var(--nam-miami-bg));}
 #new-york{background:var(--nam-nyc-bg);}
 #washington{background:var(--nam-dc-bg);}
 #miami{background:var(--nam-miami-bg);}
@@ -162,7 +173,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
     <a href="travel.html" class="hero-back">&#8592; All regions</a>
     <p class="hero-region">Region 01 &nbsp;/&nbsp; First stop</p>
     <h1 class="hero-title">North<br><em>America</em></h1>
-    <p class="hero-sub">New York, Washington, Miami. A family trip -- mum, sister, brother. First time in America. The scale of it, the disparity of it, and losing a bank card in Washington while someone spent two thousand pounds in Target.</p>
+    <p class="hero-sub">New York, Washington, Miami. A family trip -- mum, sister, brother -- and a first time in the States. The scale of the country, the disparity, and losing a bank card in Washington: by the time I noticed, someone had spent two thousand pounds in Target. And ordered Uber Eats. That one did not get refunded; I suppose it was on me.</p>
   </div>
 </section>
 
@@ -177,48 +188,48 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
   <div class="city-header fade">
     <p class="city-eyebrow">Stop 01</p>
     <h2 class="city-name">New <em>York</em></h2>
-    <p class="city-intro">First stop, family trip. New York is enormous and grand in a way that photographs do not quite convey. What struck me most was the disparity -- serious wealth and serious poverty side by side, people shooting up on the street in a way you just do not see in London. A different level of it.</p>
+    <p class="city-intro">First stop, and a family trip to the big apple. New York is grand in a way you have to physically see. What struck me most was the disparity: serious wealth and serious poverty side by side, homelessness on a level you do not see in London. One morning we walked ten minutes to a diner, a couple of blocks in central Manhattan, and I counted three people shooting heroin and one smoking crack on the way. Twenty-five years in the UK, a year of it in London, and I had never seen either.</p>
   </div>
   <div class="gallery-grid fade" data-gallery="new-york"></div>
-  <div class="gallery-grid fade" data-gallery="washington"></div>
   <div class="highlights fade">
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The Empire State Building</strong> -- one of the biggest buildings in the world. Went up for the view. The city from above changes how you understand it at street level.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Central Park</strong> -- enormous. Spent a good stretch of a day in it. The Natural History Museum alongside it was genuinely good.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The disparity</strong> -- wealth and homelessness in the same street. People shooting up and smoking crack in a way that does not happen visibly in London. A different scale of it.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Natural History Museum</strong> -- very good. One of the better museums I have been to.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Brooklyn Bridge and Brooklyn</strong> -- walked across and into the start of Brooklyn. The view back across the water to Manhattan is one of the better city views I have seen.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The Empire State Building</strong> -- went up for the view. The city from above changes how you understand it at street level. We caught it at sunset and stayed into the dark, watching people in office blocks and apartments wind down from another big day.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Central Park</strong> -- enormous, and a proper park: distinct sections, baseball games going in several places at once. Spent a good stretch of a day in it. I understand why it is so iconic.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Natural History Museum</strong> -- one of the better museums I have been to. Also the setting of Night at the Museum, a family favourite, which made it a required stop.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Brooklyn Bridge and Brooklyn</strong> -- walked across and into the start of Brooklyn, people skating in the square, a part of the city that knows it is cool. The view back across the water to Manhattan is one of the best city views I have seen, and I do not understand why it is not more famous. Also where I accepted that British bridges are pathetic next to their American, and even more so Chinese, counterparts.</div></div>
   </div>
 </section>
+
+<div class="city-blend blend-ny-dc" aria-hidden="true"></div>
 
 <!-- WASHINGTON DC -->
 <section class="city-section" id="washington">
   <div class="city-header fade">
     <p class="city-eyebrow">Stop 02</p>
     <h2 class="city-name"><em>Washington</em> DC</h2>
-    <p class="city-intro">After New York. Visited Arlington Cemetery, the monuments, the tourist circuit. A very considered, grand city. Also where I lost my bank card -- someone found it and spent about two thousand pounds in Target within the hour. A mistake you only make once.</p>
+    <p class="city-intro">After New York: Arlington Cemetery, the monuments, the tourist circuit. A very considered, grand city, and it feels purpose-built because it is -- the height limits keep long views open to the federal buildings and monuments. Also where I lost my bank card. Someone found it and spent about two thousand pounds in Target within the hour, in a rich capital city. It says something about the States: capitalism breeds an individualist mindset, and people who are struggling can end up treating society as a zero-sum game.</p>
   </div>
-  <div class="gallery-grid fade" data-gallery="miami"></div>
+  <div class="gallery-grid fade" data-gallery="washington"></div>
   <div class="highlights fade">
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Arlington Cemetery</strong> -- rows of identical white headstones as far as you can see. Genuinely moving in a way that is hard to explain until you are standing in it.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The monuments and the Mall</strong> -- the Lincoln Memorial, the Washington Monument, the grand civic scale of it. Saw the churches and sights. A city that takes its own importance seriously.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Lost the bank card</strong> -- dropped it somewhere and someone ran up about two thousand pounds in Target before I had noticed. Make a mistake and you pay for it.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Arlington Cemetery</strong> -- rows of identical white headstones as far as you can see. Genuinely quite moving. The Americans do dramatic well.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The monuments and the Mall</strong> -- the White House, the Capitol, the Lincoln Memorial, the Washington Monument. Grand civic buildings on a grand civic scale, plus the churches and sights around them. A city that takes its own importance seriously.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Lost the bank card</strong> -- dropped it somewhere, and someone ran up about two thousand pounds in Target before I had noticed. Plus an Uber Eats order, which did not get refunded. I suppose that one was on me.</div></div>
   </div>
 </section>
+
+<div class="city-blend blend-dc-mia" aria-hidden="true"></div>
 
 <!-- MIAMI -->
 <section class="city-section" id="miami">
   <div class="city-header fade">
     <p class="city-eyebrow">Stop 03</p>
     <h2 class="city-name"><em>Miami</em></h2>
-    <p class="city-intro">Very hot, very multicultural, a particular energy to it -- chains, Spanish music, Cuban influence all over the place. Miami Beach was a bit oversaturated and expensive. Wynwood was much better: cool clothes stores, murals, more of a real neighbourhood.</p>
+    <p class="city-intro">Very hot, very multicultural, a particular energy to it -- chains, Spanish music, Cuban influence all over the place. People say Miami is basically not America, and I can see why. Miami Beach was a bit oversaturated and expensive; Wynwood was much better.</p>
   </div>
-  <div class="photo-grid photo-grid-3 fade" style="display:none">
-    <div class="photo-slot"></div>
-  </div>
+  <div class="gallery-grid fade" data-gallery="miami"></div>
   <div class="highlights fade">
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Miami Beach</strong> -- very hot, very expensive, slightly oversaturated. The Cuban and Latin influence gives it a specific energy that is unlike anywhere else in America.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Wynwood</strong> -- much better than Miami Beach. Cool clothes stores, murals, a neighbourhood with actual character. Glad I went there rather than just staying on the beach strip.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The energy</strong> -- chains, Spanish music playing everywhere, Cuban culture running through everything. Baller in a way that feels genuinely specific to that city.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Miami Beach</strong> -- very hot, very expensive, slightly oversaturated. The Cuban and Latin influence gives it an energy that is specific to that city.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Wynwood</strong> -- a real place compared to Miami Beach: cool clothes stores, murals, a neighbourhood with actual character. An American-Ecuadorian friend took me, and it would not have occurred to me to wander into the city otherwise.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Out of my depth</strong> -- truthfully, at times. The American style, particularly the tougher Floridian version of it, is a bit intimidating to a Brit.</div></div>
   </div>
 </section>
 
