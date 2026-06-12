@@ -9,14 +9,6 @@
 <link rel="stylesheet" href="style.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  /* Local override: Miami in daylight — shell pink and flamingo, not
-     neon-on-black, so the scroll from DC no longer slams light to dark */
-  --nam-miami-bg:#FAEDE6;--nam-miami-bg2:#F5E0D5;--nam-miami-bg3:#EDD1C2;
-  --nam-miami-text:#301622;--nam-miami-soft:#5E3448;--nam-miami-muted:#A8808C;
-  --nam-miami-accent:#D2466E;--nam-miami-rule:rgba(210,70,110,0.16);
-  --nam-miami-nav:rgba(250,237,230,0.96);
-}
 html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--nam-nyc-bg);color:var(--nam-nyc-text);line-height:1.7;font-size:16px;transition:background 1.2s ease,color 0.8s ease;}
 
@@ -39,6 +31,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .hero-title{font-family:var(--serif);font-size:clamp(3rem,8vw,6.5rem);font-weight:400;line-height:0.95;color:#fff;margin-bottom:1rem;}
 .hero-title em{font-style:italic;color:rgba(240,220,160,0.9);}
 .hero-sub{font-size:1rem;color:rgba(255,255,255,0.7);font-weight:300;max-width:500px;line-height:1.8;}
+.hero-date{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:1.1rem;display:none;}
+.hero-date.set{display:block;}
 
 .cities-nav{padding:0 4rem;background:var(--nam-nyc-text);display:flex;border-bottom:1px solid rgba(255,255,255,0.08);transition:background 1.2s ease;}
 .city-tab{padding:1.1rem 1.75rem;font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.38);text-decoration:none;border-right:1px solid rgba(255,255,255,0.08);transition:color 0.2s,background 0.2s;cursor:pointer;display:flex;align-items:center;gap:0.6rem;}
@@ -90,6 +84,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 #new-york .photo-slot-label{color:var(--nam-nyc-muted);}
 #washington .photo-slot-label{color:var(--nam-dc-muted);}
 #miami .photo-slot-label{color:var(--nam-miami-muted);}
+
+/* From the notebook — anecdotes get their own paper */
+.notebook-note{max-width:640px;margin:2.5rem 0;padding:1.6rem 1.9rem 1.5rem;position:relative;transform:rotate(-0.4deg);box-shadow:0 2px 12px rgba(0,0,0,0.06);}
+.notebook-note-label{font-size:0.62rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.7rem;opacity:0.75;}
+.notebook-note p{font-family:var(--serif);font-style:italic;font-size:0.97rem;line-height:1.85;}
+#new-york .notebook-note{background:var(--nam-nyc-bg2);border-left:3px solid var(--nam-nyc-accent);}
+#new-york .notebook-note-label{color:var(--nam-nyc-accent);}
+#new-york .notebook-note p{color:var(--nam-nyc-soft);}
+#washington .notebook-note{background:var(--nam-dc-bg2);border-left:3px solid var(--nam-dc-accent);transform:rotate(0.35deg);}
+#washington .notebook-note-label{color:var(--nam-dc-accent);}
+#washington .notebook-note p{color:var(--nam-dc-soft);}
+#miami .notebook-note{background:var(--nam-miami-bg2);border-left:3px solid var(--nam-miami-accent);}
+#miami .notebook-note-label{color:var(--nam-miami-accent);}
+#miami .notebook-note p{color:var(--nam-miami-soft);}
+
+/* Photo break — one editorial image inside the narrative, modest size so
+   text and image share the stage. Hidden until the photo exists. */
+.photo-break{display:none;max-width:720px;margin:2.75rem 0;}
+.photo-break.set{display:block;}
+.photo-break img{width:100%;display:block;cursor:pointer;box-shadow:0 3px 16px rgba(0,0,0,0.10);}
+.photo-break figcaption{font-family:var(--serif);font-style:italic;font-size:0.82rem;margin-top:0.7rem;opacity:0.75;}
+#new-york .photo-break figcaption{color:var(--nam-nyc-muted);}
+#washington .photo-break figcaption{color:var(--nam-dc-muted);}
+#miami .photo-break figcaption{color:var(--nam-miami-muted);}
 
 .highlights{margin-top:2rem;display:flex;flex-direction:column;}
 .highlight{padding:1rem 0;display:flex;gap:1.5rem;align-items:start;}
@@ -174,6 +192,9 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
     <p class="hero-region">Region 01 &nbsp;/&nbsp; First stop</p>
     <h1 class="hero-title">North<br><em>America</em></h1>
     <p class="hero-sub">New York, Washington, Miami. A family trip -- mum, sister, brother -- and a first time in the States. The scale of the country, the disparity, and losing a bank card in Washington: by the time I noticed, someone had spent two thousand pounds in Target. And ordered Uber Eats. That one did not get refunded; I suppose it was on me.</p>
+    <!-- EDIT: set the trip dates, e.g. "March 2023 &middot; 9 days &middot; family trip".
+         Leave data-when empty and the line stays hidden. -->
+    <p class="hero-date" data-when=""></p>
   </div>
 </section>
 
@@ -188,15 +209,21 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
   <div class="city-header fade">
     <p class="city-eyebrow">Stop 01</p>
     <h2 class="city-name">New <em>York</em></h2>
-    <p class="city-intro">First stop, and a family trip to the big apple. New York is grand in a way you have to physically see. What struck me most was the disparity: serious wealth and serious poverty side by side, homelessness on a level you do not see in London. One morning we walked ten minutes to a diner, a couple of blocks in central Manhattan, and I counted three people shooting heroin and one smoking crack on the way. Twenty-five years in the UK, a year of it in London, and I had never seen either.</p>
+    <p class="city-intro">First stop, and a family trip to the big apple. New York is grand in a way you have to physically see. What struck me most was the disparity: serious wealth and serious poverty side by side, homelessness on a level you do not see in London.</p>
   </div>
-  <div class="gallery-grid fade" data-gallery="new-york"></div>
+  <aside class="notebook-note fade">
+    <p class="notebook-note-label">From the notebook</p>
+    <p>One morning we walked ten minutes to a diner with my mum, a couple of blocks in central Manhattan, about 9am. On the way I counted three people shooting heroin and one smoking crack. Twenty-five years in the UK, a year of it in London, and I had never seen either.</p>
+  </aside>
+  <figure class="photo-break fade" data-break-gallery="new-york" data-break-index="0"></figure>
   <div class="highlights fade">
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The Empire State Building</strong> -- went up for the view. The city from above changes how you understand it at street level. We caught it at sunset and stayed into the dark, watching people in office blocks and apartments wind down from another big day.</div></div>
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Central Park</strong> -- enormous, and a proper park: distinct sections, baseball games going in several places at once. Spent a good stretch of a day in it. I understand why it is so iconic.</div></div>
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Natural History Museum</strong> -- one of the better museums I have been to. Also the setting of Night at the Museum, a family favourite, which made it a required stop.</div></div>
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Brooklyn Bridge and Brooklyn</strong> -- walked across and into the start of Brooklyn, people skating in the square, a part of the city that knows it is cool. The view back across the water to Manhattan is one of the best city views I have seen, and I do not understand why it is not more famous. Also where I accepted that British bridges are pathetic next to their American, and even more so Chinese, counterparts.</div></div>
   </div>
+  <figure class="photo-break fade" data-break-gallery="new-york" data-break-index="1"></figure>
+  <div class="gallery-grid fade" data-gallery="new-york"></div>
 </section>
 
 <div class="city-blend blend-ny-dc" aria-hidden="true"></div>
@@ -206,14 +233,19 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
   <div class="city-header fade">
     <p class="city-eyebrow">Stop 02</p>
     <h2 class="city-name"><em>Washington</em> DC</h2>
-    <p class="city-intro">After New York: Arlington Cemetery, the monuments, the tourist circuit. A very considered, grand city, and it feels purpose-built because it is -- the height limits keep long views open to the federal buildings and monuments. Also where I lost my bank card. Someone found it and spent about two thousand pounds in Target within the hour, in a rich capital city. It says something about the States: capitalism breeds an individualist mindset, and people who are struggling can end up treating society as a zero-sum game.</p>
+    <p class="city-intro">After New York: Arlington Cemetery, the monuments, the tourist circuit. A very considered, grand city, and it feels purpose-built because it is -- the height limits keep long views open to the federal buildings and monuments.</p>
   </div>
-  <div class="gallery-grid fade" data-gallery="washington"></div>
+  <aside class="notebook-note fade">
+    <p class="notebook-note-label">From the notebook</p>
+    <p>Washington is also where I lost my bank card. Someone found it and spent about two thousand pounds in Target within the hour, in a rich capital city. It says something about the States: capitalism breeds an individualist mindset, and people who are struggling can end up treating society as a zero-sum game.</p>
+  </aside>
+  <figure class="photo-break fade" data-break-gallery="washington" data-break-index="0"></figure>
   <div class="highlights fade">
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Arlington Cemetery</strong> -- rows of identical white headstones as far as you can see. Genuinely quite moving. The Americans do dramatic well.</div></div>
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The monuments and the Mall</strong> -- the White House, the Capitol, the Lincoln Memorial, the Washington Monument. Grand civic buildings on a grand civic scale, plus the churches and sights around them. A city that takes its own importance seriously.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Lost the bank card</strong> -- dropped it somewhere, and someone ran up about two thousand pounds in Target before I had noticed. Plus an Uber Eats order, which did not get refunded. I suppose that one was on me.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>The card, again</strong> -- the bank covered Target. The Uber Eats order they treated themselves to did not get refunded. I suppose that one was on me.</div></div>
   </div>
+  <div class="gallery-grid fade" data-gallery="washington"></div>
 </section>
 
 <div class="city-blend blend-dc-mia" aria-hidden="true"></div>
@@ -225,12 +257,16 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--nam-miami-rule);background
     <h2 class="city-name"><em>Miami</em></h2>
     <p class="city-intro">Very hot, very multicultural, a particular energy to it -- chains, Spanish music, Cuban influence all over the place. People say Miami is basically not America, and I can see why. Miami Beach was a bit oversaturated and expensive; Wynwood was much better.</p>
   </div>
-  <div class="gallery-grid fade" data-gallery="miami"></div>
+  <aside class="notebook-note fade">
+    <p class="notebook-note-label">From the notebook</p>
+    <p>An American-Ecuadorian friend took me into Wynwood -- it would not have occurred to me to wander into the city otherwise. Truthfully I felt a bit out of my depth at times. The American style, particularly the tougher Floridian version of it, is a bit intimidating to a Brit.</p>
+  </aside>
+  <figure class="photo-break fade" data-break-gallery="miami" data-break-index="0"></figure>
   <div class="highlights fade">
     <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Miami Beach</strong> -- very hot, very expensive, slightly oversaturated. The Cuban and Latin influence gives it an energy that is specific to that city.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Wynwood</strong> -- a real place compared to Miami Beach: cool clothes stores, murals, a neighbourhood with actual character. An American-Ecuadorian friend took me, and it would not have occurred to me to wander into the city otherwise.</div></div>
-    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Out of my depth</strong> -- truthfully, at times. The American style, particularly the tougher Floridian version of it, is a bit intimidating to a Brit.</div></div>
+    <div class="highlight"><div class="highlight-dot"></div><div class="highlight-text"><strong>Wynwood</strong> -- a real place compared to Miami Beach: cool clothes stores, murals, a neighbourhood with actual character. Glad I went rather than staying on the beach strip.</div></div>
   </div>
+  <div class="gallery-grid fade" data-gallery="miami"></div>
 </section>
 
 <div class="next-section">
@@ -312,9 +348,41 @@ function renderGalleries(galleries){
     });
   });
 }
+// Hero date stamp — shows only when data-when is filled in
+document.querySelectorAll('.hero-date').forEach(el=>{
+  const when=el.dataset.when&&el.dataset.when.trim();
+  if(when){el.textContent=when;el.classList.add('set');}
+});
+
+// Photo breaks — single editorial images inside the narrative, pulled from
+// the same galleries as the grids. data-break-index picks which photo.
+// Invisible until that photo exists in content.json.
+function renderBreaks(galleries){
+  document.querySelectorAll('[data-break-gallery]').forEach(fig=>{
+    const items=(galleries&&galleries[fig.dataset.breakGallery])||[];
+    const item=items[+fig.dataset.breakIndex];
+    if(!item)return;
+    const img=document.createElement('img');
+    img.src=cloudTransform(item.url,'f_auto,q_auto,w_1100,c_limit');
+    img.alt=item.caption||'';
+    img.loading='lazy';
+    img.onclick=()=>openLightbox(items,+fig.dataset.breakIndex);
+    fig.appendChild(img);
+    if(item.caption){
+      const cap=document.createElement('figcaption');
+      cap.textContent=item.caption;
+      fig.appendChild(cap);
+    }
+    fig.classList.add('set');
+  });
+}
+
 fetch('content.json')
   .then(r=>r.json())
-  .then(data=>{renderGalleries(data.galleries||{});})
+  .then(data=>{
+    renderGalleries(data.galleries||{});
+    renderBreaks(data.galleries||{});
+  })
   .catch(()=>{});
 </script>
 </body>

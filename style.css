@@ -198,15 +198,17 @@
   --nam-dc-rule:       rgba(72,88,120,0.15);
   --nam-dc-nav:        rgba(232,234,238,0.97);
 
-  --nam-miami-bg:      #1A0828;
-  --nam-miami-bg2:     #220A34;
-  --nam-miami-bg3:     #2E1040;
-  --nam-miami-text:    #F0D8F8;
-  --nam-miami-soft:    #C090E0;
-  --nam-miami-muted:   #805898;
-  --nam-miami-accent:  #E060C0;
-  --nam-miami-rule:    rgba(224,96,192,0.18);
-  --nam-miami-nav:     rgba(26,8,40,0.96);
+  /* Miami in daylight — shell pink and flamingo, keeps the page in one
+     light family rather than slamming light to dark mid-scroll */
+  --nam-miami-bg:      #FAEDE6;
+  --nam-miami-bg2:     #F5E0D5;
+  --nam-miami-bg3:     #EDD1C2;
+  --nam-miami-text:    #301622;
+  --nam-miami-soft:    #5E3448;
+  --nam-miami-muted:   #A8808C;
+  --nam-miami-accent:  #D2466E;
+  --nam-miami-rule:    rgba(210,70,110,0.16);
+  --nam-miami-nav:     rgba(250,237,230,0.96);
 
   /* -------------------------------------------------- */
   /* ASIA -- per country themes                          */
@@ -223,9 +225,10 @@
   --asia-camb-accent:  #E08030; --asia-camb-rule:   rgba(224,128,48,0.18); --asia-camb-nav: rgba(42,16,8,0.96);
 
   /* Thailand -- tropical teal */
-  --asia-thai-bg:      #0A2420; --asia-thai-bg2:   #0E2C28; --asia-thai-bg3:   #123430;
-  --asia-thai-text:    #C0F0E0; --asia-thai-soft:   #60C0A0; --asia-thai-muted:  #308060;
-  --asia-thai-accent:  #40E0B0; --asia-thai-rule:   rgba(64,224,176,0.15); --asia-thai-nav: rgba(10,36,32,0.96);
+  /* Thailand in daylight — sunlit sea-green, same hue family as before */
+  --asia-thai-bg:      #E7F2EB; --asia-thai-bg2:   #D9EBDF; --asia-thai-bg3:   #C7DFD0;
+  --asia-thai-text:    #0E2C22; --asia-thai-soft:   #2E5246; --asia-thai-muted:  #6E9486;
+  --asia-thai-accent:  #178F69; --asia-thai-rule:   rgba(23,143,105,0.18); --asia-thai-nav: rgba(231,242,235,0.96);
 
   /* Laos -- misty sage */
   --asia-laos-bg:      #EAF0E4; --asia-laos-bg2:   #DDE8D6; --asia-laos-bg3:   #CCDCC4;
