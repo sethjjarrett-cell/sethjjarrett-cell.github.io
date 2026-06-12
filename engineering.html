@@ -34,7 +34,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-links a{font-size:0.75rem;color:var(--eng-ink-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}
 .nav-links a:hover,.nav-links a.active{color:var(--eng-blue);}
 
-.page-header{min-height:48vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9.5rem 4rem 3.5rem;position:relative;border-bottom:2px solid var(--eng-ink);background-image:linear-gradient(rgba(42,74,138,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.07) 1px,transparent 1px);background-size:32px 32px;}
+.page-header{min-height:48vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9.5rem 4rem 3.5rem;position:relative;background-image:linear-gradient(rgba(42,74,138,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.07) 1px,transparent 1px);background-size:32px 32px;}
+.page-header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(to bottom,rgba(247,245,240,0),var(--eng-bg));pointer-events:none;}
+.page-header>*{position:relative;z-index:1;}
 .page-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:1rem;}
 .page-title{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.75rem);font-weight:400;line-height:1.0;color:var(--eng-ink);margin-bottom:1.75rem;}
 .page-title em{font-style:italic;color:var(--eng-blue);}
@@ -44,7 +46,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .meta-value{font-size:0.88rem;color:var(--eng-ink-soft);}
 
 /* chapter nav — sticky, scrollspy */
-.chapter-nav{position:sticky;top:69px;z-index:90;display:flex;gap:0.75rem;align-items:center;padding:1rem 4rem;background:rgba(247,245,240,0.97);backdrop-filter:blur(10px);border-bottom:2px solid var(--eng-rule);flex-wrap:wrap;}
+.chapter-nav{position:sticky;top:69px;z-index:90;display:flex;gap:0.75rem;align-items:center;padding:1rem 4rem;background:rgba(247,245,240,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(42,74,138,0.10);flex-wrap:wrap;}
 .ch-tab{display:flex;align-items:center;gap:0.6rem;padding:0.65rem 1.5rem;border:1.5px solid var(--eng-rule);background:var(--eng-bg);text-decoration:none;transition:all 0.2s;}
 .ch-tab-num{font-family:var(--mono);font-size:0.65rem;color:var(--eng-ink-muted);}
 .ch-tab-label{display:flex;flex-direction:column;line-height:1.25;}
@@ -112,7 +114,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 /* ============================================================
    CH.02 — RED · CAD drawing office
    ============================================================ */
-.cad{padding:5.5rem 4rem 6rem;background:var(--cad-bg);background-image:linear-gradient(rgba(42,74,138,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.08) 1px,transparent 1px);background-size:24px 24px;}
+.cad{padding:5.5rem 4rem 6rem;background:var(--cad-bg);background-image:linear-gradient(rgba(42,74,138,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.08) 1px,transparent 1px);background-size:24px 24px;position:relative;}
+.cad::after{content:'';position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(to bottom,rgba(220,225,232,0),var(--cad-bg));pointer-events:none;}
+.cad>*{position:relative;z-index:1;}
 .cad-head{max-width:1060px;margin:0 auto 2.5rem;display:flex;flex-wrap:wrap;align-items:flex-end;gap:2rem;border-bottom:2px solid var(--cad-line);padding-bottom:1.5rem;}
 .cad-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--cad-muted);margin-bottom:0.9rem;}
 .cad-title{font-family:var(--mono);font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:500;color:var(--cad-ink);letter-spacing:-0.01em;line-height:1.15;text-transform:uppercase;}
@@ -143,6 +147,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sheet-notes{list-style:none;margin-bottom:2rem;}
 .sheet-notes li{font-size:0.83rem;color:var(--cad-ink);opacity:0.82;font-weight:300;line-height:1.65;padding:0.4rem 0 0.4rem 2.1rem;position:relative;}
 .sheet-notes li::before{content:attr(data-n);position:absolute;left:0;top:0.45rem;font-family:var(--mono);font-size:0.62rem;color:var(--cad-line);border:1px solid var(--cad-line-soft);width:1.35rem;height:1.35rem;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+/* calc note — expandable worked example on a drawing sheet */
+.cad-calc{margin:0 0 2rem;border:1px dashed var(--cad-line-soft);background:rgba(42,74,138,0.03);}
+.cad-calc summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.8rem;padding:0.75rem 1.1rem;user-select:none;}
+.cad-calc summary::-webkit-details-marker{display:none;}
+.cad-calc-label{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cad-line);border:1px solid var(--cad-line-soft);padding:0.18rem 0.55rem;background:var(--cad-sheet);}
+.cad-calc-title{font-family:var(--mono);font-size:0.78rem;color:var(--cad-ink);}
+.cad-calc-arrow{margin-left:auto;color:var(--cad-muted);transition:transform 0.25s;font-size:0.75rem;}
+.cad-calc[open] .cad-calc-arrow{transform:rotate(90deg);}
+.cad-calc-body{padding:0.2rem 1.1rem 1.2rem;border-top:1px dashed var(--cad-line-soft);}
+.cad-calc-body p{font-size:0.84rem;color:var(--cad-ink);opacity:0.82;font-weight:300;line-height:1.8;margin-top:0.9rem;}
+.cad-calc-note{font-family:var(--mono);font-size:0.62rem;color:var(--cad-muted);margin-top:0.9rem;letter-spacing:0.04em;}
+
 /* title block */
 .titleblock{border:1px solid var(--cad-line);align-self:start;background:var(--cad-sheet);}
 .tb-row{display:grid;grid-template-columns:84px 1fr;border-bottom:1px solid var(--cad-line-soft);}
@@ -153,11 +169,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .cad-note{max-width:1060px;margin:2.25rem auto 0;font-family:var(--mono);font-size:0.68rem;color:var(--cad-muted);line-height:1.8;}
 
 /* ============================================================
+   transition — out of the drawing office, into the sun
+   ============================================================ */
+.ch-blend{height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;position:relative;}
+.ch-blend>span{position:relative;z-index:1;}
+.blend-uni-cad{background:linear-gradient(to bottom,var(--eng-bg) 0%,#EBEAE2 45%,var(--cad-bg) 100%);}
+.blend-uni-cad::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(42,74,138,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.08) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:linear-gradient(to bottom,transparent 8%,black 92%);mask-image:linear-gradient(to bottom,transparent 8%,black 92%);pointer-events:none;}
+.blend-cad-sx{background:linear-gradient(to bottom,var(--cad-bg) 0%,#E8E4D2 55%,var(--sx-bg) 100%);}
+.ch-blend-num{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#84826A;}
+.ch-blend-line{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:#5E5A42;}
+
+/* ============================================================
    CH.03 — SOVENTIX · sun & sand
    ============================================================ */
-.sx{background:var(--sx-bg);position:relative;overflow:hidden;padding:6rem 4rem 6.5rem;}
+.sx{background:var(--sx-bg);position:relative;overflow:visible;padding:6rem 4rem 6.5rem;}
 /* sun on the horizon — section signature */
-.sx-sun{position:absolute;top:-160px;right:8%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,0.55) 0%,rgba(232,160,32,0.18) 42%,transparent 70%);pointer-events:none;}
+.sx-sun{position:absolute;top:-210px;right:8%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,0.55) 0%,rgba(232,160,32,0.18) 42%,transparent 70%);pointer-events:none;}
 .sx-sun::after{content:'';position:absolute;inset:-60px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(200,112,16,0.10) 0deg 4deg,transparent 4deg 14deg);-webkit-mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);}
 .sx-horizon{position:absolute;left:0;right:0;top:300px;height:1px;background:linear-gradient(90deg,transparent,var(--sx-rule) 18%,var(--sx-rule) 82%,transparent);}
 .sx-head{max-width:980px;margin:0 auto 3rem;position:relative;z-index:1;}
@@ -247,7 +274,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   .sheet-inner{grid-template-columns:1fr;gap:1.6rem;}
   .sheet-strip{margin:0 -1.4rem;padding:0.55rem 1.4rem;flex-wrap:wrap;gap:0.3rem;}
   .sheet-grid-letters{display:none;}
-  .sx-sun{width:280px;height:280px;top:-110px;right:-60px;}
+  .sx-sun{width:240px;height:240px;top:-120px;right:5%;}
   .sx-entry{grid-template-columns:1fr;gap:0.5rem;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
 }
@@ -333,13 +360,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <details class="tb-case">
       <summary>
         <span class="tb-case-label">Worked example</span>
-        <span class="tb-case-title">Method in brief &mdash; from wind data to payback period</span>
+        <span class="tb-case-title">When the measurement plan fails &mdash; wind data without the wind</span>
         <span class="tb-case-arrow">&#9656;</span>
       </summary>
       <div class="tb-case-body">
-        <p>The study works forward from resource to economics. Site wind speeds are fitted to Weibull distributions, which feed expected turbine output; solar generation is sized against the same demand profiles. The storage question is treated as an optimisation: deeper battery discharge means fewer cells but shorter life, so depth-of-discharge is traded against replacement cost across the battery&rsquo;s cycle curve.</p>
-        <p>Each of the four load scenarios is then carried through to a full costing &mdash; capex, O&amp;M, and payback &mdash; so the comparison at the end is economic, not just technical. The result is a recommendation grounded in which configuration actually pays for itself, and when.</p>
-        <div class="tb-fig"><span class="tb-fig-cap">Fig. 1.1 &mdash; Scenario comparison and DOD optimisation curves. Included in the full report, available on request.</span></div>
+        <p>The grid was for a Christmas tree farm near Bristol, built around an old American-style wind pump being converted into a turbine. The plan for the wind resource was empirical: fit a Weibull distribution to the local weather-station data, install an anemometer on the farm, and use the difference between the two to shift the distribution to what the turbine, surrounded by trees and far lower than the station&rsquo;s mast, would actually see.</p>
+        <p>The plan failed in the field. During the measurement window the wind simply did not show up &mdash; most readings fell below the anemometer&rsquo;s 0.7&nbsp;m/s threshold and registered as zero, leaving no usable correction factor and no time to rerun the campaign. The replacement was analytical: the wind shear power law, V&nbsp;=&nbsp;V&#8321;&#8320;(H/10)<sup>1/&alpha;</sup>, with the exponent set by the ground surface, which for that site&rsquo;s geography reduced the station data by 12% at the wind pump&rsquo;s height. From there, the kinetic energy passing through the blades&rsquo; swept area &mdash; an annulus, since the blades start well clear of the hub &mdash; gave an estimated power curve, which was matched to a commercial turbine with a similar characteristic and interpolated at every time-stamped wind speed in the dataset.</p>
+        <p>The report is explicit that this is the study&rsquo;s main limitation: an assumption-built power curve is not a measured one. That honesty was the real lesson &mdash; engineering judgement is less about avoiding assumptions than knowing exactly which ones you have made and what they cost you.</p>
+        <div class="tb-fig"><span class="tb-fig-cap">Fig. 1.1 &mdash; Weibull fit to station data and the estimated vs modelled turbine power curves. Included in the full report, available on request.</span></div>
       </div>
     </details>
     <div class="tb-actions">
@@ -363,13 +391,14 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <details class="tb-case">
       <summary>
         <span class="tb-case-label">Worked example</span>
-        <span class="tb-case-title">Method in brief &mdash; from irradiance data to working hardware</span>
+        <span class="tb-case-title">How long does a battery actually last &mdash; and what is that worth?</span>
         <span class="tb-case-arrow">&#9656;</span>
       </summary>
       <div class="tb-case-body">
-        <p>Sizing was driven by data rather than rules of thumb: five years of measured irradiance fed MATLAB routines that sized the array and battery bank against the community&rsquo;s demand profile, including the bad weeks, not just the average ones.</p>
-        <p>The control system &mdash; maximum power point tracking, droop control for load sharing, and a bidirectional battery management system &mdash; was modelled in Simulink and then tested for real against a PCB prototype the team built. Closing that loop between simulation and physical hardware was the point of the project: the model had to survive contact with a soldering iron.</p>
-        <div class="tb-fig"><span class="tb-fig-cap">Fig. 1.2 &mdash; Simulink control architecture and PCB validation results. Included in the full report, available on request.</span></div>
+        <p>The battery question was my section, and it is mostly an economics question wearing electrical clothes: batteries are the most expensive part of a microgrid, and the datasheet metric &mdash; cycles at a given depth of discharge &mdash; is not the one that matters. What matters is lifetime energy through the battery per pound spent. Converting one into the other means folding together the cycle-life curve, the rated capacity, the depth of discharge, and the round-trip efficiency, then correcting capacity for the site &mdash; interpolated from the datasheet, the Amazon&rsquo;s 28&deg;C average actually nudged capacity slightly up.</p>
+        <p>The optimisation gave an answer the design then deliberately overruled: the curve says a 53% depth of discharge stores the most energy over a battery&rsquo;s life, but reaching demand at 53% needs a far larger bank up front, so 80% was chosen as the trade between lifetime energy and initial cost. Discharge rate fell out of the community&rsquo;s rhythm &mdash; 11.2 non-sunlight hours a day puts the average draw near 0.08C, peaking around 0.22C. Sizing then ran five years of hourly irradiance through MATLAB to find the panel and battery combination that survives the bad weeks, not the average ones.</p>
+        <p>The team&rsquo;s control system &mdash; MPPT, droop control for load sharing, and a bidirectional battery management system &mdash; was modelled in Simulink and validated against a PCB prototype we built: the measured droop coefficient came out within 1.2% of the simulation. The model survived contact with a soldering iron, which was the point of the project.</p>
+        <div class="tb-fig"><span class="tb-fig-cap">Fig. 1.2 &mdash; Lifetime energy stored vs depth of discharge, and the prototype vs simulation droop lines. Included in the full report, available on request.</span></div>
       </div>
     </details>
     <div class="tb-actions">
@@ -386,6 +415,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <a href="education.html" class="tb-appendix-btn">Open the education appendix &rarr;</a>
   </aside>
 </section>
+
+<div class="ch-blend blend-uni-cad">
+  <span class="ch-blend-num">Chapter 01 &rarr; 02</span>
+  <span class="ch-blend-line">From the textbook to the drawing office.</span>
+</div>
 
 <!-- ============================================================
      CH.02 — RED · CAD drawing office
@@ -430,7 +464,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>EMEA</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 2</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>MV design &middot; AutoCAD</dd></div>
-          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
@@ -456,7 +489,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>Power systems &middot; load modelling</dd></div>
-          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
@@ -476,13 +508,25 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
             <li data-n="2">MV substation schematics produced in AutoCAD</li>
             <li data-n="3">Technical notes comparing AIS vs GIS switchgear and block vs distributed redundancy approaches</li>
           </ul>
+          <details class="cad-calc">
+            <summary>
+              <span class="cad-calc-label">Calc note</span>
+              <span class="cad-calc-title">Busbar pairing as a combinatorics problem</span>
+              <span class="cad-calc-arrow">&#9656;</span>
+            </summary>
+            <div class="cad-calc-body">
+              <p>Each row in a data hall is fed by a pair of overhead busbar strings, each loaded to 50% so that either can carry the full row if the other fails. The strings arrive from two sides of the hall, each side fed from its own MV ring. The question is which pair feeds which row.</p>
+              <p>Treat it as combinatorics. Take an illustrative hall with eight strings, four per side: eight strings give 28 unique pairs, and the rows must draw their pairs from that set under two constraints. First, balance &mdash; every string should appear in the same number of rows, or some strings idle while others carry the building. Second, side-mixing &mdash; a pair drawn from one side only shares a single upstream ring, so one ring outage silently removes both halves of that row's supposedly redundant supply. Cross-side pairs survive the loss of an entire ring; same-side pairs only pretend to.</p>
+              <p>I built an algorithm that generates the full combination set for any string count, then selects and orders an assignment that balances string utilisation and maximises cross-side pairing. The practical value was speed under change: when the string count or rack rating moved &mdash; and on a live job it moves &mdash; the assignment regenerated in seconds rather than being re-derived by hand.</p>
+              <p class="cad-calc-note">NOTE &mdash; numbers above are illustrative. Actual string counts, ratings, topology and client are withheld under NDA.</p>
+            </div>
+          </details>
         </div>
         <dl class="titleblock">
           <div class="tb-row"><dt>Project</dt><dd>Large colocation</dd></div>
           <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>Busbar routing &middot; MV schematics</dd></div>
-          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
@@ -508,7 +552,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>England</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>Lighting &middot; planning</dd></div>
-          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
@@ -535,7 +578,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>Confidential</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>LV design &middot; load assessment</dd></div>
-          <div class="tb-row"><dt>Scale</dt><dd>NTS</dd></div>
           <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
@@ -546,6 +588,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 
   <p class="cad-note fade">GENERAL NOTES &mdash; 1. All project work shown is described at the level approved for public reference; client names, locations, capacities and drawings are withheld under NDA. 2. Illustrative recreations of representative schematics and tools, built with fictional data, are available on request. 3. Tools used across these projects: AutoCAD &middot; Excel modelling &middot; DIALux &middot; Amtech &middot; Revit.</p>
 </section>
+
+<div class="ch-blend blend-cad-sx">
+  <span class="ch-blend-num">Chapter 02 &rarr; 03</span>
+  <span class="ch-blend-line">Out of the drawing office, into the sun.</span>
+</div>
 
 <!-- ============================================================
      CH.03 — SOVENTIX · sun & sand
