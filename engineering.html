@@ -121,6 +121,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .tb-appendix-sub{font-size:0.82rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.7;max-width:440px;}
 .tb-appendix-btn{display:inline-block;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;color:#fff;background:var(--eng-blue);text-decoration:none;padding:0.9rem 1.9rem;transition:background 0.2s;white-space:nowrap;}
 .tb-appendix-btn:hover{background:var(--eng-blue-light);}
+.tb-before{max-width:860px;margin:2.6rem auto 0;}
+.tb-before-eyebrow{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.5rem;}
+.tb-before h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--eng-ink);margin-bottom:0.7rem;}
+.tb-before p{font-size:0.86rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.8;max-width:560px;margin-bottom:1.1rem;}
+.tb-alevels{display:flex;gap:0.8rem;flex-wrap:wrap;}
+.tb-al{border:1px solid var(--eng-rule);background:var(--eng-bg2);padding:0.7rem 1.1rem;text-align:center;min-width:104px;}
+.tb-al-subj{font-family:var(--serif);font-size:0.92rem;color:var(--eng-ink);}
+.tb-al-grade{font-family:var(--mono);font-size:1.35rem;font-weight:500;color:var(--eng-blue);margin-top:0.2rem;}
 
 /* ============================================================
    CH.02 — RED · CAD drawing office
@@ -169,6 +177,20 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .cad-calc-body{padding:0.2rem 1.1rem 1.2rem;border-top:1px dashed var(--cad-line-soft);}
 .cad-calc-body p{font-size:0.84rem;color:var(--cad-ink);opacity:0.82;font-weight:300;line-height:1.8;margin-top:0.9rem;}
 .cad-calc-note{font-family:var(--mono);font-size:0.62rem;color:var(--cad-muted);margin-top:0.9rem;letter-spacing:0.04em;}
+.cad-fig{margin:1.3rem 0 0.4rem;border:1px dashed var(--cad-line-soft);background:rgba(253,253,251,0.5);padding:1rem 0.8rem 0.6rem;}
+.cad-fig svg{display:block;width:100%;height:auto;}
+.cad-fig-cap{font-family:var(--mono);font-size:0.6rem;color:var(--cad-muted);letter-spacing:0.04em;margin-top:0.6rem;text-align:center;}
+.cf-ring{stroke:var(--cad-line);stroke-width:1.4;fill:none;}
+.cf-str{stroke:var(--cad-line);stroke-width:1.2;}
+.cf-str-s{stroke:var(--cad-muted);stroke-width:1.2;}
+.cf-hall{fill:none;stroke:var(--cad-line-soft);stroke-width:1.2;}
+.cf-lab{font-family:var(--mono);font-size:9px;fill:var(--cad-ink);}
+.cf-lab-b{font-family:var(--mono);font-size:9px;fill:var(--cad-line);font-weight:500;}
+.cf-mut{font-family:var(--mono);font-size:8px;fill:var(--cad-muted);}
+.cf-ok{stroke:var(--cad-line);stroke-width:1.8;fill:none;}
+.cf-bad{stroke:#B04A2A;stroke-width:1.8;fill:none;stroke-dasharray:4 2;}
+.cf-okt{font-family:var(--mono);font-size:8px;fill:var(--cad-line);}
+.cf-badt{font-family:var(--mono);font-size:8px;fill:#B04A2A;}
 
 /* title block */
 .titleblock{border:1px solid var(--cad-line);align-self:start;background:var(--cad-sheet);}
@@ -197,7 +219,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 /* sun on the horizon — section signature */
 .sx-sun{position:absolute;top:-210px;right:8%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,0.55) 0%,rgba(232,160,32,0.18) 42%,transparent 70%);pointer-events:none;}
 .sx-sun::after{content:'';position:absolute;inset:-60px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(200,112,16,0.10) 0deg 4deg,transparent 4deg 14deg);-webkit-mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);}
-.sx-horizon{position:absolute;left:0;right:0;top:300px;height:1px;background:linear-gradient(90deg,transparent,var(--sx-rule) 18%,var(--sx-rule) 82%,transparent);}
 .sx-head{max-width:980px;margin:0 auto 3rem;position:relative;z-index:1;}
 .sx-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--sx-orange);margin-bottom:1rem;}
 .sx-title{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;color:var(--sx-ink);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;max-width:640px;}
@@ -511,11 +532,21 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     </div>
   </article>
 
+  <section class="tb-before fade">
+    <p class="tb-before-eyebrow">Before Bristol</p>
+    <h3>A-Level results &middot; Rednock Sixth Form</h3>
+    <div class="tb-alevels">
+      <div class="tb-al"><div class="tb-al-subj">Maths</div><div class="tb-al-grade">A*</div></div>
+      <div class="tb-al"><div class="tb-al-subj">Physics</div><div class="tb-al-grade">A*</div></div>
+      <div class="tb-al"><div class="tb-al-subj">Chemistry</div><div class="tb-al-grade">A</div></div>
+    </div>
+  </section>
+
   <aside class="tb-appendix fade">
     <div>
       <p class="tb-appendix-eyebrow">Appendix A</p>
       <h3 class="tb-appendix-title">Module-by-module breakdown</h3>
-      <p class="tb-appendix-sub">All four years &mdash; every module, credit weighting, and how each year counts towards the degree. A-Levels: Maths A* &middot; Physics A* &middot; Chemistry A.</p>
+      <p class="tb-appendix-sub">All four years &mdash; every module, credit weighting, and how each year counts towards the degree.</p>
     </div>
     <a href="education.html" class="tb-appendix-btn">Open the education appendix &rarr;</a>
   </aside>
@@ -569,7 +600,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>EMEA</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 2</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>MV design &middot; AutoCAD</dd></div>
-          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
@@ -594,7 +624,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>Power systems &middot; load modelling</dd></div>
-          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
@@ -621,8 +650,80 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
             </summary>
             <div class="cad-calc-body">
               <p>Each row in a data hall is fed by a pair of overhead busbar strings, each loaded to 50% so that either can carry the full row if the other fails. The strings arrive from two sides of the hall, each side fed from its own MV ring. The question is which pair feeds which row.</p>
-              <p>Treat it as combinatorics. Take an illustrative hall with eight strings, four per side: eight strings give 28 unique pairs, and the rows must draw their pairs from that set under two constraints. First, balance &mdash; every string should appear in the same number of rows, or some strings idle while others carry the building. Second, side-mixing &mdash; a pair drawn from one side only shares a single upstream ring, so one ring outage silently removes both halves of that row's supposedly redundant supply. Cross-side pairs survive the loss of an entire ring; same-side pairs only pretend to.</p>
-              <p>I built an algorithm that generates the full combination set for any string count, then selects and orders an assignment that balances string utilisation and maximises cross-side pairing. The practical value was speed under change: when the string count or rack rating moved &mdash; and on a live job it moves &mdash; the assignment regenerated in seconds rather than being re-derived by hand.</p>
+              <p>Treat it as combinatorics. Take an illustrative hall: eight strings (A&ndash;H, four per side) feeding sixteen rows. The number of distinct ways to pair two strings is the binomial coefficient,</p>
+              <p class="cad-eqn" style="text-align:center;font-family:var(--mono);font-size:0.92rem;color:var(--cad-line);margin:0.6rem 0;">&#8312;C&#8322; = 8! / (2! &middot; 6!) = 28</p>
+              <p>so there are 28 unique pairs but only sixteen rows to fill. The job is to <em>select</em> sixteen of those pairs, not enumerate all of them &mdash; trivial to write out for eight strings, but the count explodes with string number, so in practice an algorithm generates the set and does the choosing. The selection is driven by two goals that pull against each other. First, even utilisation: across the sixteen rows each string should appear roughly the same number of times, or some strings sit idle while others carry the building. Second, side-mixing: a pair drawn from one side of the hall shares a single upstream MV ring, so one ring outage quietly removes both halves of that row's supposedly redundant supply &mdash; whereas a cross-hall pair survives the loss of an entire ring.</p>
+              <div class="cad-fig">
+  <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative data hall: north MV ring feeds strings A to D, south ring feeds E to H, rows paired across the hall">
+    <!-- north ring -->
+    <line class="cf-ring" x1="40" y1="34" x2="300" y2="34"/>
+    <text class="cf-mut" x="40" y="26">NORTH MV RING</text>
+    <line class="cf-str" x1="70" y1="34" x2="70" y2="96"/><text class="cf-lab-b" x="66" y="110">A</text>
+    <line class="cf-str" x1="130" y1="34" x2="130" y2="96"/><text class="cf-lab-b" x="126" y="110">B</text>
+    <line class="cf-str" x1="190" y1="34" x2="190" y2="96"/><text class="cf-lab-b" x="186" y="110">C</text>
+    <line class="cf-str" x1="250" y1="34" x2="250" y2="96"/><text class="cf-lab-b" x="246" y="110">D</text>
+    <!-- hall -->
+    <rect class="cf-hall" x="48" y="120" width="244" height="64" rx="2"/>
+    <text class="cf-mut" x="170" y="156" text-anchor="middle">DATA HALL &middot; 16 ROWS</text>
+    <!-- south ring -->
+    <line class="cf-str-s" x1="70" y1="208" x2="70" y2="270"/><text class="cf-lab" x="66" y="202">E</text>
+    <line class="cf-str-s" x1="130" y1="208" x2="130" y2="270"/><text class="cf-lab" x="126" y="202">F</text>
+    <line class="cf-str-s" x1="190" y1="208" x2="190" y2="270"/><text class="cf-lab" x="186" y="202">G</text>
+    <line class="cf-str-s" x1="250" y1="208" x2="250" y2="270"/><text class="cf-lab" x="246" y="202">H</text>
+    <line class="cf-ring" x1="40" y1="270" x2="300" y2="270"/>
+    <text class="cf-mut" x="40" y="286">SOUTH MV RING</text>
+    <!-- pairing list -->
+    <text class="cf-mut" x="350" y="40">EXAMPLE ROW PAIRING</text>
+    <text class="cf-lab" x="350" y="64">R1 &nbsp; A &mdash; E</text>
+    <text class="cf-lab" x="350" y="84">R2 &nbsp; B &mdash; G</text>
+    <text class="cf-lab" x="350" y="104">R3 &nbsp; C &mdash; H</text>
+    <text class="cf-lab" x="350" y="124">R4 &nbsp; D &mdash; F</text>
+    <text class="cf-mut" x="350" y="150">&hellip; each row drawn from</text>
+    <text class="cf-mut" x="350" y="162">opposite sides of the hall</text>
+    <text class="cf-mut" x="350" y="196">&#8312;C&#8322; = 28 unique pairs;</text>
+    <text class="cf-mut" x="350" y="208">choose 16 that balance use</text>
+    <text class="cf-mut" x="350" y="220">and stay cross-hall.</text>
+  </svg>
+  <p class="cad-fig-cap">Fig. A &mdash; illustrative hall. Eight strings, four per MV ring; rows paired across the two sides.</p>
+</div>
+              <div class="cad-fig">
+  <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparison: a cross-hall pair survives a ring outage, a same-side pair does not">
+    <!-- LEFT PANEL: cross-hall A-E survives -->
+    <text class="cf-okt" x="30" y="18">CROSS-HALL &nbsp;A&mdash;E</text>
+    <!-- rings -->
+    <line class="cf-mut" x1="30" y1="40" x2="250" y2="40" stroke-dasharray="3 2"/><text class="cf-mut" x="254" y="43">N ring</text>
+    <line class="cf-mut" x1="30" y1="168" x2="250" y2="168" stroke-dasharray="3 2"/><text class="cf-mut" x="254" y="171">S ring</text>
+    <!-- row box, connection nodes at x=110 (left) and x=170 (right) -->
+    <rect class="cf-hall" x="110" y="94" width="60" height="22" rx="2"/><text class="cf-mut" x="140" y="109" text-anchor="middle">ROW</text>
+    <!-- A: vertical from N ring straight down to left node (x=110) -->
+    <line class="cf-ok" x1="110" y1="40" x2="110" y2="94"/>
+    <circle cx="110" cy="94" r="2.4" fill="var(--cad-line)"/>
+    <text class="cf-lab-b" x="110" y="34" text-anchor="middle">A</text>
+    <!-- E: vertical from S ring straight up to right node (x=170) -->
+    <line class="cf-ok" x1="170" y1="168" x2="170" y2="116"/>
+    <circle cx="170" cy="116" r="2.4" fill="var(--cad-line)"/>
+    <text class="cf-lab" x="170" y="182" text-anchor="middle">E</text>
+    <text class="cf-okt" x="30" y="200">N ring lost &rarr; E still feeds the row. Survives.</text>
+    <!-- divider -->
+    <line x1="290" y1="14" x2="290" y2="196" stroke="var(--cad-line-soft)" stroke-width="1" stroke-dasharray="3 3"/>
+    <!-- RIGHT PANEL: same-side A-B fails -->
+    <text class="cf-badt" x="320" y="18">SAME-SIDE &nbsp;A&mdash;B</text>
+    <line class="cf-bad" x1="320" y1="40" x2="540" y2="40"/>
+    <text class="cf-badt" x="470" y="34">N ring lost</text>
+    <line class="cf-mut" x1="320" y1="168" x2="540" y2="168" stroke-dasharray="3 2"/><text class="cf-mut" x="544" y="171">S ring</text>
+    <rect class="cf-hall" x="400" y="94" width="60" height="22" rx="2"/><text class="cf-mut" x="430" y="109" text-anchor="middle">ROW</text>
+    <!-- A and B both drop from the (dead) N ring, landing on the two row nodes x=400 and x=460 -->
+    <line class="cf-bad" x1="400" y1="40" x2="400" y2="94"/>
+    <circle cx="400" cy="94" r="2.4" fill="#B04A2A"/>
+    <text class="cf-lab-b" x="400" y="34" text-anchor="middle">A</text>
+    <line class="cf-bad" x1="460" y1="40" x2="460" y2="94"/>
+    <circle cx="460" cy="94" r="2.4" fill="#B04A2A"/>
+    <text class="cf-lab-b" x="460" y="34" text-anchor="middle">B</text>
+    <text class="cf-badt" x="320" y="200">N ring lost &rarr; both halves gone. Fails.</text>
+  </svg>
+  <p class="cad-fig-cap">Fig. B &mdash; same number of busbars, opposite outcome. A&mdash;E spans both rings; A&mdash;B shares one.</p>
+</div>
+              <p>Those two goals genuinely compete. Forcing every pair to be cross-hall constrains which pairs are even available, which can throw the utilisation balance off &mdash; so &ldquo;maximise cross-hall&rdquo; is its own optimisation sitting alongside even use, and alongside others a client might care about (keeping physically adjacent strings together, spreading load across switchgear, leaving room to grow). There is no single clean answer; the right weighting depends on what the client is optimising for. What I built was an algorithm that generates the pair set for any string count and selects an assignment against whichever of those objectives is prioritised. The practical value was speed under change: when the string count or rack rating moved &mdash; and on a live job it moves &mdash; the assignment regenerated in seconds rather than being re-derived by hand.</p>
               <p class="cad-calc-note">NOTE &mdash; numbers above are illustrative. Actual string counts, ratings, topology and client are withheld under NDA.</p>
             </div>
           </details>
@@ -632,7 +733,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>Busbar routing &middot; MV schematics</dd></div>
-          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
@@ -657,7 +757,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>England</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>Lighting &middot; planning</dd></div>
-          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
@@ -683,7 +782,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           <div class="tb-row"><dt>Region</dt><dd>Confidential</dd></div>
           <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
           <div class="tb-row"><dt>Discipline</dt><dd>LV design &middot; load assessment</dd></div>
-          <div class="tb-row"><dt>Status</dt><dd>Details under NDA</dd></div>
         </dl>
       </div>
       <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
@@ -704,7 +802,6 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
      ============================================================ -->
 <section class="sx" id="soventix">
   <div class="sx-sun" aria-hidden="true"></div>
-  <div class="sx-horizon" aria-hidden="true"></div>
 
   <div class="sx-head fade">
     <p class="sx-chapter">Chapter 03 &middot; 2026&ndash; &middot; Soventix</p>
