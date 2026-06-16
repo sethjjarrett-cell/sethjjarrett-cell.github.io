@@ -473,9 +473,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     </div>
     <p class="tb-abstract"><strong>Abstract.</strong> Co-designed and helped build a solar DC microgrid for a remote off-grid community in the Brazilian Amazon &mdash; the full lifecycle from concept through simulation to validated hardware.</p>
     <ul class="tb-points">
-      <li>Led PV sizing, battery selection, wire sizing, and the complete system specification</li>
-      <li>MATLAB algorithms sized battery banks and arrays using five years of real irradiance data</li>
-      <li>Simulink model of MPPT, droop control, and a bidirectional BMS &mdash; validated against a physical PCB prototype</li>
+      <li>Owned the battery side: selection, the temperature and depth-of-discharge lifecycle analysis, and wire sizing</li>
+      <li>MATLAB algorithms sized the battery banks and array over five years of real irradiance data; PV panel selection was shared with a project partner</li>
+      <li>The power electronics, droop control, bidirectional battery-management converter and the validated PCB prototype were built by my three teammates</li>
     </ul>
     <details class="tb-case">
       <summary>
@@ -484,7 +484,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
         <span class="tb-case-arrow">&#9656;</span>
       </summary>
       <div class="tb-case-body">
-        <p>The battery question was my section, and it is mostly an economics question wearing electrical clothes: batteries are the most expensive part of a microgrid, so the design lives or dies on getting two things right &mdash; how much usable capacity the site&rsquo;s climate leaves you, and how hard you are allowed to cycle the battery before the lifetime maths turns against you.</p>
+        <p>The battery question was my section, and it is mostly an economics question wearing electrical clothes. Batteries are the most expensive part of a microgrid, so the design lives or dies on two things: how much usable capacity the site&rsquo;s climate leaves you, and how hard you can cycle the battery before the lifetime maths turns against you.</p>
         <p>The first is temperature. Capacity falls away sharply in the cold and plateaus once it is warm; reading the datasheet curve at the Amazon site&rsquo;s 28&deg;C average actually puts capacity slightly <em>above</em> nominal, at 100.2%. That is a rare case where the environment helps rather than hurts, and it means no derating penalty had to be carried through the rest of the sizing.</p>
         <div class="tb-figrow">
           <figure class="tb-plot">
@@ -524,7 +524,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
             <figcaption class="tb-plot-cap"><b>Fig. 1.2b &mdash; Lifetime energy vs depth of discharge.</b> Using E<sub>lifetime</sub>&nbsp;=&nbsp;(DOD&nbsp;+&nbsp;f(T))&middot;N&middot;E<sub>rated</sub>/100. The curve peaks near 53%, but 80% was chosen: a small loss of lifetime energy in exchange for a much smaller, cheaper battery bank.</figcaption>
           </figure>
         </div>
-        <p>The second is depth of discharge, and it is the more interesting trade. Cycling shallow makes a battery last far longer, so the cumulative energy it delivers over its whole life &mdash; folding the cycle-life curve into the rated capacity and the temperature correction &mdash; actually peaks around a 53% depth of discharge, not at 100%. The honest optimum is to barely use the battery and replace it rarely. But reaching the community&rsquo;s demand at 53% would need a far larger, more expensive bank, so the design deliberately overruled its own optimum and took 80%: you give up a slice of lifetime energy to halve the up-front capital. Naming that trade explicitly &mdash; rather than quietly reporting the number you picked &mdash; was the part I was most pleased with.</p>
+        <p>The second is depth of discharge, and it is the more interesting trade. Cycling shallow makes a battery last far longer, so the cumulative energy it delivers over its whole life (folding the cycle-life curve into the rated capacity and the temperature correction) actually peaks around a 53% depth of discharge, not at 100%. The honest optimum is to barely use the battery and replace it rarely. But reaching the community&rsquo;s demand at 53% would need a far larger, more expensive bank, so the design deliberately overruled its own optimum and took 80%: you give up a slice of lifetime energy to cut the size and up-front cost of the bank. Naming that trade explicitly, rather than quietly reporting the number you picked, was the part I was most pleased with.</p>
       </div>
     </details>
     <div class="tb-actions">
