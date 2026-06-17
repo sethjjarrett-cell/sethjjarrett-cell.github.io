@@ -649,18 +649,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
               <span class="cad-calc-arrow">&#9656;</span>
             </summary>
             <div class="cad-calc-body">
-              <p>Each row in a data hall is fed by a pair of overhead busbar strings, each loaded to 50% so that either can carry the full row if the other fails. The strings arrive from two sides of the hall, each side fed from its own MV ring. The question is which pair feeds which row.</p>
+              <p>Each row in a data hall is fed by a pair of overhead busbar strings, each loaded to 50% so that either can carry the full row if the other fails. The strings run down the sides of the hall, fed from a ring at one end or the other: A&ndash;D from the north end, E&ndash;H from the south. The question is which pair feeds which row, and where on the hall each pair lands.</p>
               <p>Treat it as combinatorics. Take an illustrative hall: eight strings (A&ndash;H, four per side) feeding sixteen rows. The number of distinct ways to pair two strings is the binomial coefficient,</p>
               <p class="cad-eqn" style="text-align:center;font-family:var(--mono);font-size:0.92rem;color:var(--cad-line);margin:0.6rem 0;">&#8312;C&#8322; = 8! / (2! &middot; 6!) = 28</p>
-              <p>so there are 28 unique pairs but only sixteen rows to fill. The job is to <em>select</em> sixteen of those pairs, not enumerate all of them &mdash; trivial to write out for eight strings, but the count explodes with string number, so in practice an algorithm generates the set and does the choosing. The selection is driven by two goals that pull against each other. First, even utilisation: across the sixteen rows each string should appear roughly the same number of times, or some strings sit idle while others carry the building. Second, side-mixing: a pair drawn from one side of the hall shares a single upstream MV ring, so one ring outage quietly removes both halves of that row's supposedly redundant supply &mdash; whereas a cross-hall pair survives the loss of an entire ring.</p>
+              <p>so there are 28 unique pairs but only sixteen rows to fill. The job is to <em>select</em> sixteen of those pairs, not enumerate all of them &mdash; trivial to write out for eight strings, but the count explodes with string number, so in practice an algorithm generates the set and does the choosing. The selection balances two goals. First, even utilisation: across the sixteen rows each string should appear roughly the same number of times, or some strings sit idle while others carry the building. Second, side-mixing: a pair taken from a single ring loses both halves of that row&rsquo;s supposedly redundant supply when that ring drops, whereas a cross-hall pair survives the loss of an entire ring.</p>
               <div class="cad-fig">
   <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative data hall plan: a busbar runs down each side of the hall, and each row busway taps off both sides; the rows before and after are shown without busways for context">
     <text class="cf-mut" x="30" y="20">ILLUSTRATIVE DATA HALL &mdash; PLAN</text>
     <!-- side busbar headers -->
     <text class="cf-lab-b" x="96" y="40">A-SIDE BUSBAR</text>
-    <text class="cf-mut" x="96" y="50">strings A&ndash;D &middot; N ring</text>
-    <text class="cf-lab-b" x="464" y="40" text-anchor="end">B-SIDE BUSBAR</text>
-    <text class="cf-mut" x="464" y="50" text-anchor="end">strings E&ndash;H &middot; S ring</text>
+    <text class="cf-mut" x="96" y="50">strings A&ndash;D &middot; fed from N ring (top)</text>
+    <path d="M108,53 L116,53 L112,60 Z" fill="var(--cad-line)"/>
+    <text class="cf-lab-b" x="464" y="286" text-anchor="end">B-SIDE BUSBAR</text>
+    <text class="cf-mut" x="464" y="296" text-anchor="end">strings E&ndash;H &middot; fed from S ring (bottom)</text>
+    <path d="M444,267 L452,267 L448,260 Z" fill="var(--cad-line)"/>
     <!-- hall footprint -->
     <rect class="cf-hall" x="96" y="58" width="368" height="206" rx="2"/>
     <!-- side busbars running down each side -->
@@ -692,15 +694,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     <rect class="cf-hall" x="150" y="230" width="260" height="20" rx="1.5" opacity="0.45"/>
     <text class="cf-mut" x="280" y="243" text-anchor="middle" opacity="0.75">row after &middot; no busway shown</text>
     <!-- notes -->
-    <text class="cf-mut" x="478" y="120">Each row busway</text>
-    <text class="cf-mut" x="478" y="131">taps both side</text>
-    <text class="cf-mut" x="478" y="142">busbars: either</text>
-    <text class="cf-mut" x="478" y="153">side carries it.</text>
+    <text class="cf-mut" x="478" y="120">Each row taps a</text>
+    <text class="cf-mut" x="478" y="131">north and south</text>
+    <text class="cf-mut" x="478" y="142">busbar: either</text>
+    <text class="cf-mut" x="478" y="153">ring carries it.</text>
     <text class="cf-mut" x="478" y="190">End rows have</text>
     <text class="cf-mut" x="478" y="201">no busway &mdash;</text>
     <text class="cf-mut" x="478" y="212">hall context.</text>
   </svg>
-  <p class="cad-fig-cap">Fig. A &mdash; illustrative hall (plan). A busbar runs down each side; every row busway taps off both, so either side can carry the row. The rows before and after are drawn without busways to set the layout.</p>
+  <p class="cad-fig-cap">Fig. A &mdash; illustrative hall (plan). A busbar runs down each side, the A&ndash;D set fed from the north end and E&ndash;H from the south; every row busway taps one of each, so either ring can carry the row. The rows before and after carry no busway, to set the layout.</p>
 </div>
               <div class="cad-fig">
   <svg viewBox="0 0 560 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Comparison: a cross-hall pair survives a ring outage, a same-side pair does not">
@@ -739,7 +741,74 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   </svg>
   <p class="cad-fig-cap">Fig. B &mdash; same number of busbars, opposite outcome. A&mdash;E spans both rings; A&mdash;B shares one.</p>
 </div>
-              <p>Those two goals genuinely compete. Forcing every pair to be cross-hall constrains which pairs are even available, which can throw the utilisation balance off &mdash; so &ldquo;maximise cross-hall&rdquo; is its own optimisation sitting alongside even use, and alongside others a client might care about (keeping physically adjacent strings together, spreading load across switchgear, leaving room to grow). There is no single clean answer; the right weighting depends on what the client is optimising for. What I built was an algorithm that generates the pair set for any string count and selects an assignment against whichever of those objectives is prioritised. The practical value was speed under change: when the string count or rack rating moved &mdash; and on a live job it moves &mdash; the assignment regenerated in seconds rather than being re-derived by hand.</p>
+              <p>Those two goals usually compete, and the weighting depends on what the client is optimising for. In this small example they barely compete at all: there are exactly sixteen cross-hall pairs for sixteen rows, so the balanced, fully cross-hall set is essentially forced. On a real hall, with more strings than rows or uneven sides, there are many balanced cross-hall sets, and the algorithm chooses among them, weighting in anything else that matters: keeping adjacent strings together, spreading load across switchgear, leaving room to grow.</p>
+              <p>Then comes a third lever the earlier sketch hides. The two rings sit at opposite ends of the hall: the north ring feeds A&ndash;D, the south ring feeds E&ndash;H. A north string only has to run as far south as its deepest row, and a south string only as far north as its shallowest. So once the pairs are fixed, where you place them on the rows decides how much busbar you install. Group a string&rsquo;s rows toward its own end and the run terminates early; scatter them and it runs most of the length of the hall. The two ends pull against each other, since every row needs one feed from each, so you cannot shorten both at once. The algorithm sums the total run for each placement and keeps the cheapest. It is a real saving: on the illustrative hall an optimised placement comes out roughly 10&ndash;15% shorter than an arbitrary one, and the gap grows with hall size.</p>
+              <div class="cad-fig">
+  <svg viewBox="0 0 560 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two placements of the same four north-fed strings: grouping each string's rows lets its busbar terminate early and shortens the total run, while scattering them makes every string run most of the length of the hall">
+    <!-- LEFT: grouped -->
+    <text class="cf-okt" x="30" y="18">GROUPED &middot; short run</text>
+    <text class="cf-mut" x="40" y="32">N ring (top feed)</text>
+    <line x1="40" y1="50" x2="255" y2="50" stroke="var(--cad-muted)" stroke-width="1" stroke-dasharray="3 2"/>
+    <line x1="40" y1="64"  x2="255" y2="64"  stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="40" y1="80"  x2="255" y2="80"  stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="40" y1="96"  x2="255" y2="96"  stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="40" y1="112" x2="255" y2="112" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="40" y1="128" x2="255" y2="128" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="40" y1="144" x2="255" y2="144" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="40" y1="160" x2="255" y2="160" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="40" y1="176" x2="255" y2="176" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <text class="cf-mut" x="34" y="67"  text-anchor="end">1</text>
+    <text class="cf-mut" x="34" y="83"  text-anchor="end">2</text>
+    <text class="cf-mut" x="34" y="99"  text-anchor="end">3</text>
+    <text class="cf-mut" x="34" y="115" text-anchor="end">4</text>
+    <text class="cf-mut" x="34" y="131" text-anchor="end">5</text>
+    <text class="cf-mut" x="34" y="147" text-anchor="end">6</text>
+    <text class="cf-mut" x="34" y="163" text-anchor="end">7</text>
+    <text class="cf-mut" x="34" y="179" text-anchor="end">8</text>
+    <line class="cf-ok" x1="70"  y1="50" x2="70"  y2="80"/>
+    <circle cx="70" cy="64" r="2.3" fill="var(--cad-line)"/><circle cx="70" cy="80" r="2.3" fill="var(--cad-line)"/>
+    <text class="cf-lab-b" x="70" y="44" text-anchor="middle">A</text>
+    <line class="cf-ok" x1="110" y1="50" x2="110" y2="112"/>
+    <circle cx="110" cy="96" r="2.3" fill="var(--cad-line)"/><circle cx="110" cy="112" r="2.3" fill="var(--cad-line)"/>
+    <text class="cf-lab-b" x="110" y="44" text-anchor="middle">B</text>
+    <line class="cf-ok" x1="150" y1="50" x2="150" y2="144"/>
+    <circle cx="150" cy="128" r="2.3" fill="var(--cad-line)"/><circle cx="150" cy="144" r="2.3" fill="var(--cad-line)"/>
+    <text class="cf-lab-b" x="150" y="44" text-anchor="middle">C</text>
+    <line class="cf-ok" x1="190" y1="50" x2="190" y2="176"/>
+    <circle cx="190" cy="160" r="2.3" fill="var(--cad-line)"/><circle cx="190" cy="176" r="2.3" fill="var(--cad-line)"/>
+    <text class="cf-lab-b" x="190" y="44" text-anchor="middle">D</text>
+    <text class="cf-okt" x="147" y="200" text-anchor="middle">&Sigma; run = 20 units</text>
+    <!-- divider -->
+    <line x1="285" y1="14" x2="285" y2="206" stroke="var(--cad-line-soft)" stroke-width="1" stroke-dasharray="3 3"/>
+    <!-- RIGHT: scattered -->
+    <text class="cf-badt" x="320" y="18">SCATTERED &middot; long run</text>
+    <text class="cf-mut" x="310" y="32">N ring (top feed)</text>
+    <line x1="310" y1="50" x2="525" y2="50" stroke="var(--cad-muted)" stroke-width="1" stroke-dasharray="3 2"/>
+    <line x1="310" y1="64"  x2="525" y2="64"  stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="310" y1="80"  x2="525" y2="80"  stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="310" y1="96"  x2="525" y2="96"  stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="310" y1="112" x2="525" y2="112" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="310" y1="128" x2="525" y2="128" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="310" y1="144" x2="525" y2="144" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="310" y1="160" x2="525" y2="160" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line x1="310" y1="176" x2="525" y2="176" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
+    <line class="cf-bad" x1="345" y1="50" x2="345" y2="128"/>
+    <circle cx="345" cy="64" r="2.3" fill="#B04A2A"/><circle cx="345" cy="128" r="2.3" fill="#B04A2A"/>
+    <text class="cf-lab-b" x="345" y="44" text-anchor="middle">A</text>
+    <line class="cf-bad" x1="385" y1="50" x2="385" y2="144"/>
+    <circle cx="385" cy="80" r="2.3" fill="#B04A2A"/><circle cx="385" cy="144" r="2.3" fill="#B04A2A"/>
+    <text class="cf-lab-b" x="385" y="44" text-anchor="middle">B</text>
+    <line class="cf-bad" x1="425" y1="50" x2="425" y2="160"/>
+    <circle cx="425" cy="96" r="2.3" fill="#B04A2A"/><circle cx="425" cy="160" r="2.3" fill="#B04A2A"/>
+    <text class="cf-lab-b" x="425" y="44" text-anchor="middle">C</text>
+    <line class="cf-bad" x1="465" y1="50" x2="465" y2="176"/>
+    <circle cx="465" cy="112" r="2.3" fill="#B04A2A"/><circle cx="465" cy="176" r="2.3" fill="#B04A2A"/>
+    <text class="cf-lab-b" x="465" y="44" text-anchor="middle">D</text>
+    <text class="cf-badt" x="417" y="200" text-anchor="middle">&Sigma; run = 26 units</text>
+  </svg>
+  <p class="cad-fig-cap">Fig. C &mdash; same four strings, same loads, two placements (north end shown; dots mark the rows each string feeds). Grouping a string&rsquo;s rows lets its busbar terminate early and cuts the total run. The south end mirrors this from the bottom, and the two pull against each other, so the algorithm minimises the combined run.</p>
+</div>
+              <p>What I built generates the pair set for any string count, makes the balanced cross-hall selection, then places it to minimise total run. The practical value was speed under change. When the string count or rack rating moved, and on a live job it moves, the whole assignment regenerated in seconds rather than being re-derived by hand.</p>
               <p class="cad-calc-note">NOTE &mdash; numbers above are illustrative. Actual string counts, ratings, topology and client are withheld under NDA.</p>
             </div>
           </details>
