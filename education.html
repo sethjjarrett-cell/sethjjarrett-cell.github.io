@@ -69,9 +69,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .year-intro{font-size:0.95rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.85;max-width:640px;margin-bottom:3rem;}
 
 /* MODULE GRID */
-.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--eng-rule);}
-.module-card{background:var(--eng-bg);padding:1.75rem;transition:background 0.2s;}
-.module-card:hover{background:var(--eng-bg2);}
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem;}
+.module-card{background:var(--eng-bg);border:1px solid var(--eng-rule);padding:1.5rem 1.6rem;transition:background 0.2s,border-color 0.2s;}
+.module-card:hover{background:var(--eng-bg3);}
 .module-code{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.4rem;}
 .module-name{font-family:var(--serif);font-size:0.98rem;color:var(--eng-ink);line-height:1.35;margin-bottom:0.5rem;}
 .module-credits{font-size:0.72rem;color:var(--eng-ink-muted);}
@@ -88,8 +88,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 
 /* KEY PROJECT highlight */
 .module-card.highlight{background:var(--eng-bg2);}
-#year3 .module-card.highlight{border-left:2px solid #6CBE5A;}
-#year4 .module-card.highlight{border-left:2px solid #C060C0;}
+#year3 .module-card.highlight{border-left:2px solid #6CBE5A;background:#EEF7EB;}
+#year4 .module-card.highlight{border-left:2px solid #C060C0;background:#F8EEF8;}
 .module-highlight-label{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
 #year3 .module-highlight-label{color:#6CBE5A;}
 #year4 .module-highlight-label{color:#C060C0;}
@@ -114,6 +114,12 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
   .year-tabs{padding:0 1.5rem;top:68px;}
   .year-section{padding:4rem 1.5rem;}
   .module-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:560px){
+  .module-grid{grid-template-columns:1fr;}
+  .year-tabs{gap:0.4rem;}
+  .year-tab{padding:0.5rem 0.9rem;}
+  .uob-link{display:none;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
 }
 </style>
@@ -274,7 +280,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
     <h2 class="year-label"><em>Year 3</em> &mdash; Specialisation</h2>
     <span class="year-badge">5 modules &middot; 120 credits &middot; 40% of degree</span>
   </div>
-  <p class="year-intro">Specialising in energy systems, power electronics, and advanced dynamics. Includes a substantial 40-credit individual research project -- a wind-solar mini-grid feasibility study awarded 83% and used as a cohort exemplar.</p>
+  <p class="year-intro">Specialising in energy systems, power electronics, and advanced dynamics. Includes a substantial 40-credit individual research project: a wind-solar mini-grid feasibility study awarded 83%.</p>
   <div class="module-grid">
     <div class="module-card">
       <div class="module-name">Sensors, Signals and Control</div>
@@ -300,7 +306,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
       <div class="module-highlight-label">Key project</div>
       <div class="module-name">Individual Research Project</div>
       <div class="module-credits">40 credits</div>
-      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Wind-solar mini-grid feasibility study. Awarded 83%, used as a cohort exemplar paper.</p>
+      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Wind-solar mini-grid feasibility study, awarded 83%. The full worked case study is on the engineering page.</p>
     </div>
   </div>
 </section>
@@ -311,7 +317,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
     <h2 class="year-label"><em>Year 4</em> &mdash; Energy &amp; Renewables</h2>
     <span class="year-badge">7 modules &middot; 120 credits &middot; 50% of degree</span>
   </div>
-  <p class="year-intro">Final year focused on energy systems, sustainability and enterprise. Includes the 40-credit Group Industrial Project -- co-designing and building a solar DC microgrid for a remote community in the Brazilian Amazon.</p>
+  <p class="year-intro">Final year focused on energy systems, sustainability and enterprise. Includes the 40-credit Group Industrial Project: co-designing and building, with a team of four, a solar DC microgrid for a remote community in the Brazilian Amazon.</p>
   <div class="module-grid">
     <div class="module-card">
       <div class="module-name">Innovation, Entrepreneurship and Enterprise</div>
@@ -347,7 +353,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
       <div class="module-highlight-label">Key project</div>
       <div class="module-name">Group Industrial Project &mdash; Solar DC Microgrid</div>
       <div class="module-credits">40 credits</div>
-      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Co-designed and physically built a solar DC microgrid for a remote community in the Brazilian Amazon. Full lifecycle from concept to validated hardware.</p>
+      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Co-designed and built, in a team of four, a solar DC microgrid for a remote community in the Brazilian Amazon. Full lifecycle from concept to validated hardware; I owned the battery design and analysis.</p>
     </div>
   </div>
 </section>
@@ -368,21 +374,22 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;jus
 const tabs = document.querySelectorAll('.year-tab');
 const panels = document.querySelectorAll('.year-section');
 
-function showYear(yr) {
+function showYear(yr, scroll) {
   panels.forEach(p => p.classList.remove('visible'));
   tabs.forEach(t => t.classList.remove('active'));
   const panel = document.getElementById('year' + yr);
   const tab = document.querySelector(`.year-tab[data-year="${yr}"]`);
   if (panel) panel.classList.add('visible');
   if (tab) tab.classList.add('active');
-  // scroll to just below the tab bar
-  window.scrollTo({ top: document.querySelector('.year-tabs').offsetTop - 72, behavior: 'smooth' });
+  if (scroll) {
+    window.scrollTo({ top: document.querySelector('.year-tabs').offsetTop - 72, behavior: 'smooth' });
+  }
 }
 
-tabs.forEach(t => t.addEventListener('click', () => showYear(t.dataset.year)));
+tabs.forEach(t => t.addEventListener('click', () => showYear(t.dataset.year, true)));
 
-// Show year 1 by default
-showYear(1);
+// Show year 1 by default, without scrolling the page on load
+showYear(1, false);
 
 // Fade in visible modules
 const obs = new IntersectionObserver(entries => entries.forEach((e, i) => {
