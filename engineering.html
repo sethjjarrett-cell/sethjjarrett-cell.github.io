@@ -513,19 +513,19 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   <path d="M 58.0,53.6 L 63.0,51.8 L 68.0,50.1 L 73.0,48.5 L 78.0,47.1 L 83.0,45.8 L 88.0,44.7 L 93.0,43.7 L 98.0,42.9 L 103.0,42.2 L 108.0,41.7 L 113.0,41.3 L 118.0,41.1 L 123.0,41.0 L 128.0,41.1 L 133.0,41.3 L 138.0,41.7 L 143.0,42.2 L 148.0,42.9 L 153.0,43.7 L 158.0,44.7 L 163.0,45.8 L 168.0,47.1 L 173.0,48.5 L 178.0,50.1 L 183.0,51.8 L 188.0,53.6 L 193.0,55.6 L 198.0,57.8 L 203.0,60.1 L 208.0,62.6 L 213.0,65.2 L 218.0,67.9 L 223.0,70.8 L 228.0,73.9 L 233.0,77.1 L 238.0,80.4 L 243.0,83.9 L 248.0,87.6 L 253.0,91.4 L 258.0,95.3 L 263.0,99.4 L 268.0,103.7 L 273.0,108.1 L 278.0,112.6 L 283.0,117.3 L 288.0,122.1 L 293.0,127.1 L 298.0,132.3 L 303.0,137.6 L 308.0,143.0 L 313.0,148.6 L 318.0,154.3 L 323.0,160.2 L 328.0,166.2 L 333.0,172.4 L 338.0,178.7 L 343.0,185.2 L 348.0,191.8 L 353.0,198.6 L 358.0,205.5" fill="none" stroke="var(--eng-blue)" stroke-width="2.4"/>
   <line x1="123.0" y1="41.0" x2="123.0" y2="222" stroke="var(--eng-ink-muted)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.7"/>
   <circle cx="123.0" cy="41.0" r="3.4" fill="var(--eng-ink-soft)"/>
-  <text class="plot-tick" x="123.0" y="34.0" text-anchor="middle" fill="var(--eng-ink-soft)">optimum 53% &middot; 31 MWh</text>
+  <text class="plot-tick" x="130.0" y="34.0" text-anchor="middle" fill="var(--eng-ink-soft)">metric optimum &middot; 53% &middot; 31 MWh</text>
   <line x1="258.0" y1="95.3" x2="258.0" y2="222" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.85"/>
   <circle cx="258.0" cy="95.3" r="3.6" fill="var(--eng-blue)"/>
-  <text class="plot-tick" x="263.0" y="90.3" fill="var(--eng-blue)">chosen 80% &middot; 25.3 MWh</text>
+  <text class="plot-tick" x="263.0" y="90.3" fill="var(--eng-blue)">design maximum &middot; 80% &middot; 25.3 MWh</text>
   <text class="plot-tick" x="58.0" y="234" text-anchor="middle">40</text><text class="plot-tick" x="108.0" y="234" text-anchor="middle">50</text><text class="plot-tick" x="158.0" y="234" text-anchor="middle">60</text><text class="plot-tick" x="208.0" y="234" text-anchor="middle">70</text><text class="plot-tick" x="258.0" y="234" text-anchor="middle">80</text><text class="plot-tick" x="308.0" y="234" text-anchor="middle">90</text><text class="plot-tick" x="358.0" y="234" text-anchor="middle">100</text>
   <text class="plot-tick" x="53" y="196.4" text-anchor="end">15</text><text class="plot-tick" x="53" y="148.8" text-anchor="end">20</text><text class="plot-tick" x="53" y="101.2" text-anchor="end">25</text><text class="plot-tick" x="53" y="53.6" text-anchor="end">30</text>
   <text class="plot-axlabel" x="208.0" y="250" text-anchor="middle">Depth of discharge (%)</text>
   <text class="plot-axlabel" x="16" y="122.0" text-anchor="middle" transform="rotate(-90 16 122.0)">Lifetime energy stored (MWh)</text>
 </svg>
-            <figcaption class="tb-plot-cap"><b>Fig. 1.2b &middot; Lifetime energy vs depth of discharge.</b> Using E<sub>lifetime</sub>&nbsp;=&nbsp;(DOD&nbsp;+&nbsp;f(T))&middot;N&middot;E<sub>rated</sub>/100. The curve peaks near 53%, but 80% was chosen: a small loss of lifetime energy in exchange for a much smaller, cheaper battery bank.</figcaption>
+            <figcaption class="tb-plot-cap"><b>Fig. 1.2b &middot; Lifetime energy vs depth of discharge.</b> Using E<sub>lifetime</sub>&nbsp;=&nbsp;(DOD&nbsp;+&nbsp;f(T))&middot;N&middot;E<sub>rated</sub>/100. The peak near 53% is the optimum for one metric, energy delivered per pound over the battery&rsquo;s whole life. Sizing to it would need a bank roughly half as large again, on a project whose binding constraint is capital now. The 80% is not an operating target but a worst-case allowance: once the bank was sized for the rainy season, its average DOD landed near 20%, so the deep cycles the curve punishes are rare events, not the daily routine.</figcaption>
           </figure>
         </div>
-        <p>The second is depth of discharge, and it is the more interesting trade. Cycling shallow makes a battery last far longer, so the cumulative energy it delivers over its whole life (folding the cycle-life curve into the rated capacity and the temperature correction) actually peaks around a 53% depth of discharge, not at 100%. The honest optimum is to barely use the battery and replace it rarely. But reaching the community&rsquo;s demand at 53% would need a far larger, more expensive bank, so the design deliberately overruled its own optimum and took 80%: you give up a slice of lifetime energy to cut the size and up-front cost of the bank. Naming that trade explicitly, rather than quietly reporting the number you picked, was the part I was most pleased with.</p>
+        <p>The second is depth of discharge, and it is the more interesting trade, because the two marked numbers answer different questions. Cycling shallow makes a battery last far longer, so the cumulative energy it delivers over its whole life (folding the cycle-life curve into the rated capacity and the temperature correction) peaks around a 53% depth of discharge, not at 100%. But that peak is the optimum for a narrow metric: energy per pound over decades of replacements. It was not the question the community&rsquo;s economics were asking. Sizing to 53% would have made the bank roughly half as large again, spending scarce capital today to buy a benefit that only accrues across battery lifetimes. So the 80% is not an operating point at all; it is the design maximum, the deepest cycle the sizing must tolerate in the worst season. The full simulation bore that out: sized for the rainy months, the bank&rsquo;s average DOD came out near 20%, nowhere near either marked figure. Recognising which question the peak answers, and that it was the wrong one, was the part I was most pleased with.</p>
       </div>
     </details>
     <div class="tb-actions">
@@ -589,11 +589,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
       <div class="sheet-inner">
         <div>
           <h3 class="sheet-name">MV Distribution Architecture &mdash; Campus</h3>
-          <p class="sheet-desc">Proposed MV&ndash;LV schematic architectures with 2:1 redundancy for a large-scale campus, presenting the design strategy to senior engineers and building analytical tools to validate routing options.</p>
+          <p class="sheet-desc">MV&ndash;LV schematic architecture with 2:1 redundancy for a hyperscale campus built around a repeatable data hall module, so the robustness of the topology compounds across the site. Worked out how the ring topology connects, then translated the schematic into a physical layout.</p>
           <ul class="sheet-notes">
-            <li data-n="1">Designed 2:1 redundant cable configurations to minimise crossover and maximise resilience</li>
-            <li data-n="2">Produced AutoCAD schematics and presented findings to senior engineers</li>
-            <li data-n="3">Excel models to analyse distributed redundancy and evaluate alternative routing strategies</li>
+            <li data-n="1">Designed 2:1 redundant cable configurations to minimise cable length and crossover, resolving how the ring topology links up</li>
+            <li data-n="2">Produced the schematics in AutoCAD and translated them into a Revit layout, showing how the MV components connect physically as well as schematically</li>
+            <li data-n="3">Excel models to analyse distributed redundancy and evaluate alternative routing strategies, presented to senior engineers</li>
+            <li data-n="4">Built the MEP deliverables tracker used to coordinate the stage&rsquo;s outputs across the team</li>
           </ul>
         </div>
         <dl class="titleblock">
@@ -613,11 +614,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
       <div class="sheet-inner">
         <div>
           <h3 class="sheet-name">Power System Design &mdash; Colocation Facility</h3>
-          <p class="sheet-desc">Maximum demand calculations, string-level load modelling, SLD and earthing GA reviews, and coordination across mechanical, BIM, security, and controls teams at RIBA Stage 3.</p>
+          <p class="sheet-desc">Maximum demand modelling under normal and failure cases, equipment GA production, plant room layouts, schematic and earthing GA updates, and assessment of a major client-driven design change, coordinating across mechanical, BIM, security, and controls teams at RIBA Stage 3.</p>
           <ul class="sheet-notes">
-            <li data-n="1">Floor-function load analysis for maximum demand calculations across a high-load facility</li>
-            <li data-n="2">Excel tools to validate transformer, UPS, and DB sizing following client-driven design changes</li>
-            <li data-n="3">Organised and ran coordination call with mechanical team to resolve design clashes</li>
+            <li data-n="1">Built the string-level demand model in Excel, covering normal operation and failure cases with redundancy accounted for across the data hall and mechanical plant</li>
+            <li data-n="2">Assessed a client-driven design change re-feeding the lower floors from the upper strings, confirming transformer and UPS headroom before it was adopted</li>
+            <li data-n="3">Produced equipment GA drawings from manufacturer datasheets, cross-referencing every load back to the maximum demand calculation so nothing went unaccounted</li>
+            <li data-n="4">Organised the mechanical coordination call to capture loads, and created the comments tracker used to log, assign, and close out client comments after submission</li>
           </ul>
         </div>
         <dl class="titleblock">
@@ -637,11 +639,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
       <div class="sheet-inner">
         <div>
           <h3 class="sheet-name">MV Distribution &amp; Busbar Routing</h3>
-          <p class="sheet-desc">Built an algorithm to calculate unique busbar string combinations across a data hall. Validated an N+1 redundancy topology across a range of rack power ratings, and produced comparative technical notes on switchgear selection.</p>
+          <p class="sheet-desc">Built a Python algorithm to solve the busbar string pairing problem across a data hall, validated N+1 redundancy topologies across a wide range of rack power ratings, and produced client-facing technical notes on switchgear selection and redundancy strategy.</p>
           <ul class="sheet-notes">
-            <li data-n="1">Excel redundancy model validating N+1 topology across a range of rack power ratings</li>
-            <li data-n="2">MV substation schematics produced in AutoCAD</li>
-            <li data-n="3">Technical notes comparing AIS vs GIS switchgear and block vs distributed redundancy approaches</li>
+            <li data-n="1">Python algorithm generating and selecting string pairings; Excel redundancy model validating the N+1 topology and its failure cases across a wide range of rack ratings</li>
+            <li data-n="2">MV substation schematics produced in AutoCAD, with switchgear requirements determined per redundancy type</li>
+            <li data-n="3">Client-facing technical notes: AIS vs GIS switchgear (including SF6-free legislation, footprint, and cost) and block vs distributed redundancy, covering the utilisation advantage of distributing it</li>
+            <li data-n="4">Proposed combining adjacent row busbars to reduce the required busbar rating, presented to the client for feedback</li>
           </ul>
           <details class="cad-calc">
             <summary>
@@ -905,11 +908,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
       <div class="sheet-inner">
         <div>
           <h3 class="sheet-name">Exterior Lighting &amp; Environmental Assessment</h3>
-          <p class="sheet-desc">Recreated existing site lighting from as-built drawings in DIALux, redesigned around a new gantry structure, and produced an obtrusive lighting report for a council planning submission.</p>
+          <p class="sheet-desc">Recreated the existing site lighting from as-built drawings in DIALux, redesigned around a new gantry structure with supplier-validated luminaires, and independently authored the obtrusive lighting report submitted within a live council planning application.</p>
           <ul class="sheet-notes">
-            <li data-n="1">Obtrusive lighting analysis for planning permission, compliance verified against planning thresholds</li>
-            <li data-n="2">Ecology report analysis and local authority constraint assessment</li>
-            <li data-n="3">Obtrusive lighting report submitted to the local authority, including a proposed updated external lighting scheme</li>
+            <li data-n="1">Modelled levels marginally exceeded the limit at a sensitive ecological boundary, so the compliance case was argued through documented mitigation the model could not capture: foliage screening and topographical drop-off</li>
+            <li data-n="2">Classified receptors and thresholds by ILP GN01 environmental zone, assessing sky glow, light intrusion, and luminaire intensity across the site</li>
+            <li data-n="3">Restricted gantry lighting under normal operation, then modelled a worst-case emergency scenario localised to a single point and confirmed it fell within the limits</li>
+            <li data-n="4">Authored the report independently for a non-technical council audience; submitted to the local authority as part of a live planning application</li>
           </ul>
         </div>
         <dl class="titleblock">
@@ -929,12 +933,12 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
       <div class="sheet-inner">
         <div>
           <h3 class="sheet-name">Office LV Design &amp; Masterplan Power Zoning</h3>
-          <p class="sheet-desc">Full electrical design for an office fit-out within a live data centre environment, alongside masterplan-level LV distribution and power zoning. Scope spans from generator through transformers and switchboards to end loads, with UPS-backed critical circuits and life safety systems throughout.</p>
+          <p class="sheet-desc">Took full ownership of the office and ancillary electrical deliverables: a standalone system with its own HV connection covering the office building, guardhouse, security equipment, and external areas, alongside masterplan-level LV distribution and power zoning for the wider campus.</p>
           <ul class="sheet-notes">
-            <li data-n="1">Office layout design: LV schematics, distribution boards, fire alarm zoning, and lighting zone layouts</li>
-            <li data-n="2">Load assessment and LV schematic development from generator through transformers and switchboards to end loads, with UPS backing for critical equipment</li>
-            <li data-n="3">Life safety board design requiring multi-discipline coordination across electrical, IT, and mechanical teams</li>
-            <li data-n="4">Masterplan LV distribution layout and power zoning: mapping which data halls power which external areas across the wider campus</li>
+            <li data-n="1">Built an automated Excel load assessment matching load categories to area type across internal and external areas, then sized equipment and checked HV cable adequacy in Amtech from its outputs</li>
+            <li data-n="2">Produced the full deliverable set: SLD, DB zoning, riser diagram, containment, equipment layouts, lighting lux and control zones, and fire alarm zones</li>
+            <li data-n="3">Investigated in-country life safety legislation with the local fire team, and designed the SLD around it: a life safety generator, dedicated life safety DB, and dual-fed UPS boards for security and controls</li>
+            <li data-n="4">Masterplan power zoning, distribution strategy, and feeder pillar diagrams, using Amtech to prove the secondary exit sat too far from the office hub and needed its own feed</li>
           </ul>
         </div>
         <dl class="titleblock">
@@ -949,7 +953,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 
   </div>
 
-  <p class="cad-note fade">GENERAL NOTES &mdash; 1. All project work shown is described at the level approved for public reference; client names, locations, capacities and drawings are withheld under NDA. 2. Illustrative recreations of representative schematics and tools, built with fictional data, are available on request. 3. Tools used across these projects: AutoCAD &middot; Excel modelling &middot; DIALux &middot; Amtech &middot; Revit.</p>
+  <p class="cad-note fade">GENERAL NOTES &mdash; 1. All project work shown is described at the level approved for public reference; client names, locations, capacities and drawings are withheld under NDA. 2. Illustrative recreations of representative schematics and tools, built with fictional data, are available on request. 3. Tools used across these projects: AutoCAD &middot; Excel modelling &middot; Python &middot; DIALux &middot; Amtech &middot; Revit.</p>
 </section>
 
 <div class="ch-blend blend-cad-sx">
