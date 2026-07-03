@@ -3,311 +3,122 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engineering &mdash; Seth Jarrett</title>
+<title>Education — Seth Jarrett</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-/* ============================================================
-   ENGINEERING — three chapters, three visual languages
-   Ch.01 University  — textbook (cream paper, serif, figures)
-   Ch.02 RED         — CAD drawing office (sheets, mono)
-   Ch.03 Soventix    — sun & sand (warm, clean, field log)
-   ============================================================ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-:root{
-  --mono:'IBM Plex Mono',ui-monospace,monospace;
-  /* CAD section */
-  --cad-bg:#DCE1E8;--cad-sheet:#FDFDFB;--cad-line:#2A4A8A;--cad-line-soft:rgba(42,74,138,0.35);
-  --cad-rule:rgba(42,74,138,0.18);--cad-ink:#1A2436;--cad-muted:#66708A;
-  /* Soventix section */
-  --sx-bg:#F8F0D8;--sx-bg2:#F3E8C8;--sx-ink:#2A1400;--sx-soft:#6A4010;--sx-muted:#A08050;
-  --sx-orange:#C87010;--sx-sun:#E8A020;--sx-rule:rgba(200,112,16,0.22);
-}
 html{scroll-behavior:smooth;}
 body{font-family:var(--sans);background:var(--eng-bg);color:var(--eng-ink);line-height:1.7;font-size:16px;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--eng-rule) 1px,transparent 1px),linear-gradient(90deg,var(--eng-rule) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;opacity:0.5;}
 
-/* ---------- shared shell ---------- */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.25rem 4rem;background:rgba(247,245,240,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--eng-rule);}
-.nav-name{font-family:var(--serif);font-size:1.05rem;color:var(--eng-blue);text-decoration:none;}
+.nav-back{font-family:var(--serif);font-size:1.05rem;color:var(--eng-blue);text-decoration:none;}
 .nav-links{display:flex;gap:2rem;list-style:none;}
-.nav-links a{font-size:0.75rem;color:var(--eng-ink-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color 0.25s;}
+.nav-links a{font-size:0.75rem;color:var(--eng-ink-muted);text-decoration:none;letter-spacing:0.09em;text-transform:uppercase;transition:color 0.25s;}
 .nav-links a:hover,.nav-links a.active{color:var(--eng-blue);}
 
-.page-header{min-height:48vh;display:flex;flex-direction:column;justify-content:flex-end;padding:9.5rem 4rem 3.5rem;position:relative;background-image:linear-gradient(rgba(42,74,138,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.07) 1px,transparent 1px);background-size:32px 32px;}
-.page-header::after{content:'';position:absolute;left:0;right:0;bottom:0;height:180px;background:linear-gradient(to bottom,rgba(247,245,240,0),var(--eng-bg));pointer-events:none;}
-.page-header>*{position:relative;z-index:1;}
-.page-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:1rem;}
-.page-title{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.75rem);font-weight:400;line-height:1.0;color:var(--eng-ink);margin-bottom:1.75rem;}
+/* HEADER */
+.page-header{padding:9rem 4rem 4rem;border-bottom:2px solid var(--eng-ink);position:relative;z-index:1;}
+.header-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;}
+.page-eyebrow{font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.75rem;}
+.page-title{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4rem);font-weight:400;line-height:1.05;color:var(--eng-ink);}
 .page-title em{font-style:italic;color:var(--eng-blue);}
-.header-meta{display:flex;gap:3rem;flex-wrap:wrap;}
-.meta-item{border-left:2px solid var(--eng-blue-pale);padding-left:1rem;max-width:300px;}
-.meta-label{font-size:0.63rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.2rem;}
-.meta-value{font-size:0.88rem;color:var(--eng-ink-soft);}
+.header-right{padding-bottom:0.5rem;}
+.header-summary{font-size:0.97rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.85;margin-bottom:1.5rem;}
+.header-stats{display:flex;gap:2.5rem;}
+.stat{border-left:2px solid var(--eng-blue-pale);padding-left:1rem;}
+.stat-num{font-family:var(--serif);font-size:1.5rem;color:var(--eng-blue);line-height:1;}
+.stat-label{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-top:0.25rem;}
 
-/* chapter nav — sticky, scrollspy */
-.chapter-nav{position:sticky;top:69px;z-index:90;display:flex;gap:0.75rem;align-items:center;padding:1rem 4rem;background:rgba(247,245,240,0.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(42,74,138,0.10);flex-wrap:wrap;}
-.ch-tab{display:flex;align-items:center;gap:0.6rem;padding:0.65rem 1.5rem;border:1.5px solid var(--eng-rule);background:var(--eng-bg);text-decoration:none;transition:all 0.2s;}
-.ch-tab-num{font-family:var(--mono);font-size:0.65rem;color:var(--eng-ink-muted);}
-.ch-tab-label{display:flex;flex-direction:column;line-height:1.25;}
-.ch-tab-label strong{font-size:0.78rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--eng-ink-soft);}
-.ch-tab-label span{font-size:0.62rem;color:var(--eng-ink-muted);font-weight:300;}
-.ch-tab:hover{border-color:var(--eng-blue-light);}
-.ch-tab[data-ch="uni"].current{border-color:var(--eng-blue);background:#EAF0FA;}
-.ch-tab[data-ch="red"].current{border-color:#66708A;background:#E8ECF2;}
-.ch-tab[data-ch="sx"].current{border-color:var(--sx-orange);background:#FBF2DC;}
+/* YEAR TABS */
+.year-tabs{padding:1.5rem 4rem;background:var(--eng-bg2);display:flex;gap:0.75rem;align-items:center;position:sticky;top:72px;z-index:90;border-bottom:2px solid var(--eng-rule);flex-wrap:wrap;}
+.year-tab{padding:0.7rem 1.75rem;font-size:0.8rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--eng-ink-muted);background:var(--eng-bg);border:1.5px solid var(--eng-rule);cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:0.6rem;user-select:none;}
+.year-tab:hover{border-color:var(--eng-blue-light);color:var(--eng-ink);}
+.year-tab-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:background 0.2s;}
+.year-tab[data-year="1"] .year-tab-dot{background:#C8A040;}
+.year-tab[data-year="2"] .year-tab-dot{background:#50A8D8;}
+.year-tab[data-year="3"] .year-tab-dot{background:#6CBE5A;}
+.year-tab[data-year="4"] .year-tab-dot{background:#C060C0;}
+.year-tab.active{color:var(--eng-ink);background:var(--eng-bg3);border-color:var(--eng-blue);font-weight:500;}
+.year-tab[data-year="1"].active{border-color:#C8A040;background:#FBF5E4;}
+.year-tab[data-year="2"].active{border-color:#50A8D8;background:#EAF3FA;}
+.year-tab[data-year="3"].active{border-color:#6CBE5A;background:#EEF7EB;}
+.year-tab[data-year="4"].active{border-color:#C060C0;background:#F8EEF8;}
+.uob-link{margin-left:auto;font-size:0.72rem;letter-spacing:0.06em;color:var(--eng-blue-light);text-decoration:none;display:flex;align-items:center;gap:0.35rem;transition:color 0.2s;flex-shrink:0;}
+.uob-link:hover{color:var(--eng-blue);}
+.year-tab-label{display:flex;flex-direction:column;gap:0.1rem;}
+.year-tab-sub{font-size:0.62rem;font-weight:300;letter-spacing:0.04em;text-transform:none;opacity:0.7;}
+.year-section{padding:4.5rem 4rem;position:relative;z-index:1;scroll-margin-top:150px;}
+#year1{background:var(--eng-bg);}
+#year2{background:var(--eng-bg2);}
+#year3{background:var(--eng-bg);}
+#year4{background:var(--eng-bg2);}
+
+.year-header{display:flex;align-items:baseline;gap:2rem;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--eng-rule);}
+.year-label{font-family:var(--serif);font-size:clamp(1.75rem,4vw,2.75rem);font-weight:400;color:var(--eng-ink);}
+.year-label em{font-style:italic;}
+.year-badge{font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid var(--eng-rule);color:var(--eng-ink-muted);}
+#year1 .year-label em{color:#C8A040;}
+#year2 .year-label em{color:#50A8D8;}
+#year3 .year-label em{color:#6CBE5A;}
+#year4 .year-label em{color:#C060C0;}
+
+.year-intro{font-size:0.95rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.85;max-width:640px;margin-bottom:3rem;}
+
+/* MODULE GRID */
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem;}
+.module-card{background:var(--eng-bg);border:1px solid var(--eng-rule);padding:1.5rem 1.6rem;transition:background 0.2s,border-color 0.2s;}
+.module-card:hover{background:var(--eng-bg3);}
+.module-code{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.4rem;}
+.module-name{font-family:var(--serif);font-size:0.98rem;color:var(--eng-ink);line-height:1.35;margin-bottom:0.5rem;}
+.module-credits{font-size:0.72rem;color:var(--eng-ink-muted);}
+.module-tag{display:inline-block;font-size:0.62rem;padding:0.18rem 0.55rem;border:1px solid var(--eng-rule);color:var(--eng-ink-muted);margin-top:0.6rem;}
+/* colour accent per year */
+#year1 .module-card{border-left:2px solid transparent;}
+#year1 .module-card:hover{border-left-color:#C8A040;}
+#year2 .module-card:hover{border-left-color:#50A8D8;}
+#year2 .module-card{border-left:2px solid transparent;}
+#year3 .module-card{border-left:2px solid transparent;}
+#year3 .module-card:hover{border-left-color:#6CBE5A;}
+#year4 .module-card{border-left:2px solid transparent;}
+#year4 .module-card:hover{border-left-color:#C060C0;}
+
+/* KEY PROJECT highlight */
+.module-card.highlight{background:var(--eng-bg2);}
+#year3 .module-card.highlight{border-left:2px solid #6CBE5A;background:#EEF7EB;}
+#year4 .module-card.highlight{border-left:2px solid #C060C0;background:#F8EEF8;}
+.module-highlight-label{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
+#year3 .module-highlight-label{color:#6CBE5A;}
+#year4 .module-highlight-label{color:#C060C0;}
+
+.next-chapter{padding:4.5rem 4rem;border-top:2px solid var(--eng-ink);background:var(--eng-bg2);text-align:center;position:relative;z-index:1;}
+.next-eyebrow{font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.9rem;}
+.next-title{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.3rem);font-weight:400;color:var(--eng-ink);margin-bottom:1.75rem;}
+.next-title em{font-style:italic;color:var(--eng-blue);}
+.next-btn{display:inline-block;font-size:0.9rem;font-weight:500;letter-spacing:0.05em;color:#fff;background:var(--eng-blue);text-decoration:none;padding:0.95rem 2.4rem;transition:background 0.2s;}
+.next-btn:hover{background:var(--eng-blue-light);}
+footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;justify-content:space-between;position:relative;z-index:1;background:var(--eng-bg);}
+.footer-text{font-size:0.72rem;color:var(--eng-ink-muted);}
+.footer-link{font-size:0.72rem;color:var(--eng-blue);text-decoration:none;}
 
 .fade{opacity:0;transform:translateY(14px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .fade.in{opacity:1;transform:none;}
 
-/* ============================================================
-   CH.01 — UNIVERSITY · textbook
-   ============================================================ */
-.tb{padding:5.5rem 4rem 6rem;background:var(--eng-bg);position:relative;}
-.tb-head{max-width:860px;margin:0 auto 3.5rem;text-align:left;border-bottom:3px double var(--eng-ink);padding-bottom:2rem;}
-.tb-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.9rem;}
-.tb-title{font-family:var(--serif);font-size:clamp(1.9rem,4vw,3rem);font-weight:400;color:var(--eng-ink);line-height:1.1;}
-.tb-title em{font-style:italic;color:var(--eng-blue);}
-.tb-lede{max-width:860px;margin:0 auto 1rem;font-size:0.95rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.9;}
-.tb-lede:first-letter{font-family:var(--serif);font-size:3.2rem;float:left;line-height:0.82;padding-right:0.55rem;padding-top:0.3rem;color:var(--eng-blue);}
-.tb-stats{max-width:860px;margin:2.25rem auto 0;display:flex;gap:0;border:1px solid var(--eng-rule);}
-.tb-stat{flex:1;padding:0.9rem 1.25rem;border-right:1px solid var(--eng-rule);}
-.tb-stat:last-child{border-right:none;}
-.tb-stat-num{font-family:var(--serif);font-size:1.3rem;color:var(--eng-blue);line-height:1.15;}
-.tb-stat-label{font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-top:0.2rem;}
-
-.tb-proj{max-width:860px;margin:3.5rem auto 0;position:relative;}
-.tb-proj-rule{display:flex;align-items:baseline;gap:1.25rem;border-bottom:1px solid var(--eng-ink);padding-bottom:0.6rem;margin-bottom:1.4rem;}
-.tb-sec-num{font-family:var(--serif);font-style:italic;font-size:1.4rem;color:var(--eng-blue);}
-.tb-proj-title{font-family:var(--serif);font-size:1.45rem;font-weight:400;color:var(--eng-ink);}
-.tb-proj-meta{margin-left:auto;font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--eng-ink-muted);white-space:nowrap;}
-.tb-abstract{font-size:0.93rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.9;margin-bottom:1.4rem;}
-.tb-abstract strong{font-weight:500;color:var(--eng-ink);}
-.tb-points{margin:0 0 1.5rem;padding-left:0;list-style:none;}
-.tb-points li{font-size:0.87rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.7;padding:0.45rem 0 0.45rem 1.6rem;position:relative;border-bottom:1px solid rgba(42,74,138,0.08);}
-.tb-points li::before{content:'\25B8';position:absolute;left:0.2rem;color:var(--eng-blue-light);font-size:0.7rem;top:0.65rem;}
-
-/* worked-example style expandable case study */
-.tb-case{border:1px solid var(--eng-rule);background:var(--eng-bg2);margin-bottom:1.4rem;}
-.tb-case summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.8rem;padding:0.9rem 1.4rem;user-select:none;}
-.tb-case summary::-webkit-details-marker{display:none;}
-.tb-case-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--eng-blue);border:1px solid var(--eng-blue-pale);padding:0.2rem 0.6rem;background:var(--eng-bg);}
-.tb-case-title{font-family:var(--serif);font-size:0.95rem;color:var(--eng-ink);}
-.tb-case-arrow{margin-left:auto;color:var(--eng-blue-light);transition:transform 0.25s;font-size:0.8rem;}
-.tb-case[open] .tb-case-arrow{transform:rotate(90deg);}
-.tb-case-body{padding:0.4rem 1.4rem 1.5rem;border-top:1px solid var(--eng-rule);}
-.tb-case-body p{font-size:0.87rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.85;margin-top:1rem;}
-.tb-fig{margin:1.4rem 0 0.4rem;border:1px solid var(--eng-rule);background:repeating-linear-gradient(45deg,var(--eng-bg),var(--eng-bg) 10px,var(--eng-bg2) 10px,var(--eng-bg2) 11px);padding:2.2rem 1.5rem;text-align:center;}
-.tb-fig-cap{font-family:var(--serif);font-style:italic;font-size:0.8rem;color:var(--eng-ink-muted);}
-.tb-figrow{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin:1.6rem 0 0.4rem;}
-.tb-plot{border:1px solid var(--eng-rule);background:var(--eng-bg);padding:0.9rem 0.9rem 0.7rem;}
-.tb-plot svg{display:block;width:100%;height:auto;}
-.tb-plot-cap{font-family:var(--serif);font-style:italic;font-size:0.76rem;color:var(--eng-ink-muted);line-height:1.5;margin-top:0.6rem;}
-.tb-plot-cap b{font-style:normal;font-weight:500;color:var(--eng-ink-soft);}
-.plot-axis{stroke:var(--eng-ink-muted);stroke-width:1;}
-.plot-grid{stroke:rgba(42,74,138,0.10);stroke-width:1;}
-.plot-tick{font-family:var(--mono);font-size:8px;fill:var(--eng-ink-muted);}
-.plot-axlabel{font-family:var(--sans);font-size:9px;fill:var(--eng-ink-soft);font-weight:500;}
-.plot-legend{font-family:var(--sans);font-size:9px;fill:var(--eng-ink-soft);}
-@media(max-width:680px){.tb-figrow{grid-template-columns:1fr;}}
-.tb-actions{display:flex;gap:1rem;flex-wrap:wrap;}
-.tb-btn{font-size:0.75rem;font-weight:500;letter-spacing:0.06em;color:var(--eng-blue);text-decoration:none;border:1px solid var(--eng-blue-pale);padding:0.45rem 1.05rem;background:none;cursor:pointer;font-family:var(--sans);transition:all 0.2s;}
-.tb-btn:hover{background:rgba(42,74,138,0.08);border-color:var(--eng-blue);}
-.tb-btn.ghost{color:var(--eng-ink-muted);border-color:var(--eng-rule);}
-.tb-btn.ghost:hover{color:var(--eng-blue);}
-.tb-appendix{max-width:860px;margin:3.5rem auto 0;border:1px solid var(--eng-ink);border-top:3px double var(--eng-ink);background:var(--eng-bg2);padding:1.9rem 2.1rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;}
-.tb-appendix-eyebrow{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.4rem;}
-.tb-appendix-title{font-family:var(--serif);font-size:1.3rem;font-weight:400;color:var(--eng-ink);margin-bottom:0.4rem;}
-.tb-appendix-sub{font-size:0.82rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.7;max-width:440px;}
-.tb-appendix-btn{display:inline-block;font-size:0.85rem;font-weight:500;letter-spacing:0.05em;color:#fff;background:var(--eng-blue);text-decoration:none;padding:0.9rem 1.9rem;transition:background 0.2s;white-space:nowrap;}
-.tb-appendix-btn:hover{background:var(--eng-blue-light);}
-.tb-before{max-width:860px;margin:2.6rem auto 0;}
-.tb-before-eyebrow{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--eng-blue-light);margin-bottom:0.5rem;}
-.tb-before h3{font-family:var(--serif);font-size:1.2rem;font-weight:400;color:var(--eng-ink);margin-bottom:0.7rem;}
-.tb-before p{font-size:0.86rem;color:var(--eng-ink-soft);font-weight:300;line-height:1.8;max-width:560px;margin-bottom:1.1rem;}
-.tb-alevels{display:flex;gap:0.8rem;flex-wrap:wrap;}
-.tb-al{border:1px solid var(--eng-rule);background:var(--eng-bg2);padding:0.7rem 1.1rem;text-align:center;min-width:104px;}
-.tb-al-subj{font-family:var(--serif);font-size:0.92rem;color:var(--eng-ink);}
-.tb-al-grade{font-family:var(--mono);font-size:1.35rem;font-weight:500;color:var(--eng-blue);margin-top:0.2rem;}
-
-/* ============================================================
-   CH.02 — RED · CAD drawing office
-   ============================================================ */
-.cad{padding:5.5rem 4rem 6rem;background:var(--cad-bg);background-image:linear-gradient(rgba(42,74,138,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.08) 1px,transparent 1px);background-size:24px 24px;position:relative;}
-.cad::after{content:'';position:absolute;left:0;right:0;bottom:0;height:170px;background:linear-gradient(to bottom,rgba(220,225,232,0),var(--cad-bg));pointer-events:none;}
-.cad>*{position:relative;z-index:1;}
-.cad-head{max-width:1060px;margin:0 auto 2.5rem;display:flex;flex-wrap:wrap;align-items:flex-end;gap:2rem;border-bottom:2px solid var(--cad-line);padding-bottom:1.5rem;}
-.cad-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--cad-muted);margin-bottom:0.9rem;}
-.cad-title{font-family:var(--mono);font-size:clamp(1.5rem,3.5vw,2.4rem);font-weight:500;color:var(--cad-ink);letter-spacing:-0.01em;line-height:1.15;text-transform:uppercase;}
-.cad-title span{color:var(--cad-line);}
-.cad-intro{max-width:520px;font-size:0.9rem;color:var(--cad-ink);opacity:0.78;font-weight:300;line-height:1.8;margin-left:auto;}
-
-/* working filter */
-.cad-filter{max-width:1060px;margin:0 auto 2.5rem;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;}
-.cad-filter-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cad-muted);margin-right:0.4rem;}
-.cad-chip{font-family:var(--mono);font-size:0.68rem;padding:0.35rem 0.9rem;border:1px solid var(--cad-line-soft);color:var(--cad-ink);background:var(--cad-sheet);cursor:pointer;transition:all 0.2s;}
-.cad-chip:hover{border-color:var(--cad-line);}
-.cad-chip.on{background:var(--cad-line);color:#fff;border-color:var(--cad-line);}
-
-/* drawing sheet */
-.cad-sheets{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:2.25rem;}
-.sheet{background:var(--cad-sheet);border:1.5px solid var(--cad-line);position:relative;padding:2.4rem 2.6rem 0;box-shadow:0 2px 14px rgba(26,36,54,0.10);transition:opacity 0.3s,transform 0.3s;}
-.sheet::after{content:'';position:absolute;inset:9px;border:0.5px solid var(--cad-line-soft);pointer-events:none;}
-.sheet.dim{opacity:0.22;}
-/* corner ticks */
-.tick{position:absolute;font-family:var(--mono);font-size:0.58rem;color:var(--cad-muted);}
-.tick.tl{top:-1.15rem;left:0;}
-.tick.tr{top:-1.15rem;right:0;}
-.sheet-grid-letters{position:absolute;left:-1.4rem;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-around;}
-.sheet-grid-letters span{font-family:var(--mono);font-size:0.58rem;color:var(--cad-muted);}
-.sheet-inner{display:grid;grid-template-columns:1fr 250px;gap:2.4rem;position:relative;z-index:1;}
-.sheet-name{font-family:var(--mono);font-size:1.02rem;font-weight:500;color:var(--cad-ink);text-transform:uppercase;letter-spacing:0.02em;padding-bottom:0.8rem;margin-bottom:1rem;border-bottom:1px dashed var(--cad-line-soft);}
-.sheet-desc{font-size:0.89rem;color:var(--cad-ink);opacity:0.78;font-weight:300;line-height:1.8;margin-bottom:1.1rem;}
-.sheet-notes{list-style:none;margin-bottom:2rem;}
-.sheet-notes li{font-size:0.83rem;color:var(--cad-ink);opacity:0.82;font-weight:300;line-height:1.65;padding:0.4rem 0 0.4rem 2.1rem;position:relative;}
-.sheet-notes li::before{content:attr(data-n);position:absolute;left:0;top:0.45rem;font-family:var(--mono);font-size:0.62rem;color:var(--cad-line);border:1px solid var(--cad-line-soft);width:1.35rem;height:1.35rem;display:flex;align-items:center;justify-content:center;border-radius:50%;}
-/* calc note — expandable worked example on a drawing sheet */
-.cad-calc{margin:0 0 2rem;border:1px dashed var(--cad-line-soft);background:rgba(42,74,138,0.03);}
-.cad-calc summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.8rem;padding:0.75rem 1.1rem;user-select:none;}
-.cad-calc summary::-webkit-details-marker{display:none;}
-.cad-calc-label{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--cad-line);border:1px solid var(--cad-line-soft);padding:0.18rem 0.55rem;background:var(--cad-sheet);}
-.cad-calc-title{font-family:var(--mono);font-size:0.78rem;color:var(--cad-ink);}
-.cad-calc-arrow{margin-left:auto;color:var(--cad-muted);transition:transform 0.25s;font-size:0.75rem;}
-.cad-calc[open] .cad-calc-arrow{transform:rotate(90deg);}
-.cad-calc-body{padding:0.2rem 1.1rem 1.2rem;border-top:1px dashed var(--cad-line-soft);}
-.cad-calc-body p{font-size:0.84rem;color:var(--cad-ink);opacity:0.82;font-weight:300;line-height:1.8;margin-top:0.9rem;}
-.cad-calc-note{font-family:var(--mono);font-size:0.62rem;color:var(--cad-muted);margin-top:0.9rem;letter-spacing:0.04em;}
-.cad-fig{margin:1.3rem 0 0.4rem;border:1px dashed var(--cad-line-soft);background:rgba(253,253,251,0.5);padding:1rem 0.8rem 0.6rem;}
-.cad-fig svg{display:block;width:100%;height:auto;}
-.cad-fig-cap{font-family:var(--mono);font-size:0.6rem;color:var(--cad-muted);letter-spacing:0.04em;margin-top:0.6rem;text-align:center;}
-.cf-ring{stroke:var(--cad-line);stroke-width:1.4;fill:none;}
-.cf-str{stroke:var(--cad-line);stroke-width:1.2;}
-.cf-str-s{stroke:var(--cad-muted);stroke-width:1.2;}
-.cf-hall{fill:none;stroke:var(--cad-line-soft);stroke-width:1.2;}
-.cf-lab{font-family:var(--mono);font-size:9px;fill:var(--cad-ink);}
-.cf-lab-b{font-family:var(--mono);font-size:9px;fill:var(--cad-line);font-weight:500;}
-.cf-mut{font-family:var(--mono);font-size:8px;fill:var(--cad-muted);}
-.cf-ok{stroke:var(--cad-line);stroke-width:1.8;fill:none;}
-.cf-bad{stroke:#B04A2A;stroke-width:1.8;fill:none;stroke-dasharray:4 2;}
-.cf-okt{font-family:var(--mono);font-size:8px;fill:var(--cad-line);}
-.cf-badt{font-family:var(--mono);font-size:8px;fill:#B04A2A;}
-
-/* title block */
-.titleblock{border:1px solid var(--cad-line);align-self:start;background:var(--cad-sheet);}
-.tb-row{display:grid;grid-template-columns:84px 1fr;border-bottom:1px solid var(--cad-line-soft);}
-.tb-row:last-child{border-bottom:none;}
-.tb-row dt{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--cad-muted);padding:0.5rem 0.6rem;border-right:1px solid var(--cad-line-soft);}
-.tb-row dd{font-family:var(--mono);font-size:0.66rem;color:var(--cad-ink);padding:0.5rem 0.6rem;line-height:1.45;}
-.sheet-strip{margin:0 -2.6rem;padding:0.55rem 2.6rem;border-top:1px solid var(--cad-line);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--cad-muted);}
-.cad-note{max-width:1060px;margin:2.25rem auto 0;font-family:var(--mono);font-size:0.68rem;color:var(--cad-muted);line-height:1.8;}
-
-/* ============================================================
-   transition — out of the drawing office, into the sun
-   ============================================================ */
-.ch-blend{height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;position:relative;}
-.ch-blend>span{position:relative;z-index:1;}
-.blend-uni-cad{background:linear-gradient(to bottom,var(--eng-bg) 0%,#EBEAE2 45%,var(--cad-bg) 100%);}
-.blend-uni-cad::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(42,74,138,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(42,74,138,0.08) 1px,transparent 1px);background-size:24px 24px;-webkit-mask-image:linear-gradient(to bottom,transparent 8%,black 92%);mask-image:linear-gradient(to bottom,transparent 8%,black 92%);pointer-events:none;}
-.blend-cad-sx{background:linear-gradient(to bottom,var(--cad-bg) 0%,#E8E4D2 55%,var(--sx-bg) 100%);}
-.ch-blend-num{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:#84826A;}
-.ch-blend-line{font-family:var(--serif);font-style:italic;font-size:1.02rem;color:#5E5A42;}
-
-/* ============================================================
-   CH.03 — SOVENTIX · sun & sand
-   ============================================================ */
-.sx{background:var(--sx-bg);position:relative;overflow:visible;padding:6rem 4rem 6.5rem;}
-/* sun on the horizon — section signature */
-.sx-sun{position:absolute;top:-210px;right:8%;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(232,160,32,0.55) 0%,rgba(232,160,32,0.18) 42%,transparent 70%);pointer-events:none;}
-.sx-sun::after{content:'';position:absolute;inset:-60px;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(200,112,16,0.10) 0deg 4deg,transparent 4deg 14deg);-webkit-mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);mask:radial-gradient(circle,transparent 38%,#000 39%,#000 58%,transparent 59%);}
-.sx-head{max-width:980px;margin:0 auto 3rem;position:relative;z-index:1;}
-.sx-chapter{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--sx-orange);margin-bottom:1rem;}
-.sx-title{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:500;color:var(--sx-ink);line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.5rem;max-width:640px;}
-.sx-title em{font-style:normal;color:var(--sx-orange);}
-.sx-lede{max-width:560px;font-size:0.97rem;color:var(--sx-soft);font-weight:300;line-height:1.9;}
-.sx-meta{display:flex;gap:2.75rem;flex-wrap:wrap;margin-top:2.25rem;}
-.sx-meta-item{border-top:2px solid var(--sx-orange);padding-top:0.6rem;min-width:130px;}
-.sx-meta-label{font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--sx-muted);}
-.sx-meta-value{font-size:0.9rem;color:var(--sx-ink);margin-top:0.2rem;}
-
-/* field log */
-.sx-log{max-width:980px;margin:0 auto;position:relative;z-index:1;}
-.sx-log-title{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;border-bottom:1px solid var(--sx-rule);padding-bottom:0.9rem;}
-.sx-log-title h3{font-size:1.05rem;font-weight:500;letter-spacing:0.05em;text-transform:uppercase;color:var(--sx-ink);}
-.sx-log-title span{font-size:0.78rem;color:var(--sx-muted);font-weight:300;font-style:italic;}
-.sx-entry{display:grid;grid-template-columns:150px 1fr;gap:2rem;padding:1.6rem 0;border-bottom:1px solid var(--sx-rule);}
-.sx-date{font-family:var(--mono);font-size:0.72rem;color:var(--sx-orange);letter-spacing:0.06em;padding-top:0.25rem;}
-.sx-date small{display:block;font-family:var(--sans);font-size:0.66rem;color:var(--sx-muted);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.3rem;}
-.sx-entry-title{font-size:1.05rem;font-weight:500;color:var(--sx-ink);margin-bottom:0.4rem;}
-.sx-entry-body{font-size:0.88rem;color:var(--sx-soft);font-weight:300;line-height:1.8;}
-.sx-tags{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.8rem;}
-.sx-tag{font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--sx-orange);border:1px solid var(--sx-rule);padding:0.22rem 0.65rem;border-radius:999px;background:rgba(248,240,216,0.6);}
-/* empty / upcoming state */
-.sx-entry.upcoming{opacity:0.75;}
-.sx-entry.upcoming .sx-entry-title{color:var(--sx-soft);}
-.sx-entry.upcoming .sx-date{color:var(--sx-muted);}
-.sx-coming{max-width:980px;margin:2.5rem auto 0;position:relative;z-index:1;border:1.5px dashed var(--sx-rule);padding:1.5rem 1.8rem;display:flex;align-items:center;gap:1.25rem;background:rgba(243,232,200,0.45);}
-.sx-coming-dot{width:10px;height:10px;border-radius:50%;background:var(--sx-sun);flex-shrink:0;animation:sxpulse 2.4s ease-in-out infinite;}
-@keyframes sxpulse{0%,100%{box-shadow:0 0 0 0 rgba(232,160,32,0.45);}50%{box-shadow:0 0 0 9px rgba(232,160,32,0);}}
-.sx-coming p{font-size:0.85rem;color:var(--sx-soft);font-weight:300;line-height:1.7;}
-
-/* ---------- footer ---------- */
-footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;justify-content:space-between;background:var(--eng-bg);}
-.footer-text{font-size:0.72rem;color:var(--eng-ink-muted);}
-.footer-link{font-size:0.72rem;color:var(--eng-blue);text-decoration:none;}
-.footer-link:hover{text-decoration:underline;}
-
-/* ---------- modal ---------- */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,30,42,0.55);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
-.modal-overlay.open{display:flex;}
-.modal{background:var(--eng-bg);border:1px solid var(--eng-rule);padding:2.5rem;max-width:480px;width:90%;position:relative;}
-.modal-title{font-family:var(--serif);font-size:1.15rem;color:var(--eng-ink);margin-bottom:0.5rem;}
-.modal-sub{font-size:0.82rem;color:var(--eng-ink-muted);line-height:1.65;margin-bottom:1.75rem;}
-.modal-field{margin-bottom:1rem;}
-.modal-field label{display:block;font-size:0.7rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--eng-ink-muted);margin-bottom:0.4rem;}
-.modal-field input,.modal-field textarea,.modal-field select{width:100%;font-family:var(--sans);font-size:0.85rem;color:var(--eng-ink);background:var(--eng-bg2);border:1px solid var(--eng-rule);padding:0.6rem 0.85rem;outline:none;transition:border-color 0.2s;}
-.modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{border-color:var(--eng-blue);}
-.modal-field textarea{resize:vertical;min-height:80px;}
-.modal-actions{display:flex;gap:0.75rem;margin-top:1.5rem;}
-.btn-primary{font-size:0.78rem;font-weight:500;letter-spacing:0.06em;color:#fff;background:var(--eng-blue);border:none;padding:0.6rem 1.4rem;cursor:pointer;transition:background 0.2s;font-family:var(--sans);}
-.btn-primary:hover{background:var(--eng-blue-light);}
-.btn-primary:disabled{opacity:0.55;cursor:wait;}
-.btn-ghost{font-size:0.78rem;color:var(--eng-ink-muted);background:none;border:1px solid var(--eng-rule);padding:0.6rem 1.1rem;cursor:pointer;transition:all 0.2s;font-family:var(--sans);}
-.btn-ghost:hover{border-color:var(--eng-ink-muted);color:var(--eng-ink);}
-.modal-close{position:absolute;top:1rem;right:1.25rem;font-size:1.1rem;color:var(--eng-ink-muted);background:none;border:none;cursor:pointer;line-height:1;}
-.modal-close:hover{color:var(--eng-ink);}
-.modal-success{display:none;text-align:center;padding:1rem 0;}
-.modal-success.show{display:block;}
-.modal-success-icon{font-size:2rem;margin-bottom:0.75rem;color:var(--eng-blue);}
-.modal-success p{font-size:0.88rem;color:var(--eng-ink-soft);}
-.modal-error{display:none;font-size:0.78rem;color:#A83434;margin-top:0.9rem;line-height:1.6;}
-.modal-error.show{display:block;}
-
-/* ---------- a11y & motion ---------- */
-a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--eng-blue);outline-offset:2px;}
-@media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto;}
-  .fade{opacity:1;transform:none;transition:none;}
-  .sx-coming-dot{animation:none;}
-}
-
-/* ---------- responsive ---------- */
-@media(max-width:920px){
+@media(max-width:860px){
   nav{padding:1rem 1.5rem;}
   .page-header{padding:8rem 1.5rem 3rem;}
-  .chapter-nav{padding:0.85rem 1.5rem;top:65px;}
-  .ch-tab{padding:0.5rem 0.9rem;}
-  .ch-tab-label span{display:none;}
-  .tb,.cad,.sx{padding-left:1.5rem;padding-right:1.5rem;}
-  .tb-stats{flex-wrap:wrap;}
-  .tb-stat{min-width:46%;border-bottom:1px solid var(--eng-rule);}
-  .tb-proj-rule{flex-wrap:wrap;gap:0.5rem 1rem;}
-  .tb-proj-meta{margin-left:0;width:100%;}
-  .sheet{padding:1.8rem 1.4rem 0;}
-  .sheet-inner{grid-template-columns:1fr;gap:1.6rem;}
-  .sheet-strip{margin:0 -1.4rem;padding:0.55rem 1.4rem;flex-wrap:wrap;gap:0.3rem;}
-  .sheet-grid-letters{display:none;}
-  .sx-sun{width:240px;height:240px;top:-120px;right:5%;}
-  .sx-entry{grid-template-columns:1fr;gap:0.5rem;}
+  .header-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .year-tabs{padding:0 1.5rem;top:68px;}
+  .year-section{padding:4rem 1.5rem;}
+  .module-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:560px){
+  .module-grid{grid-template-columns:1fr;}
+  .year-tabs{gap:0.4rem;}
+  .year-tab{padding:0.5rem 0.9rem;}
+  .uob-link{display:none;}
   footer{padding:1.5rem;flex-direction:column;gap:0.4rem;}
 }
 </style>
@@ -315,7 +126,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 <body>
 
 <nav>
-  <a href="index.html" class="nav-name">Seth Jarrett</a>
+  <a href="index.html" class="nav-back">Seth Jarrett</a>
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="travel.html">Travel</a></li>
@@ -325,871 +136,257 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 </nav>
 
 <header class="page-header">
-  <p class="page-eyebrow">Chapter 02 &mdash; Three chapters, one thread: getting power where it&rsquo;s needed</p>
-  <h1 class="page-title">Electrical<br><em>Engineering</em></h1>
-  <div class="header-meta">
-    <div class="meta-item">
-      <div class="meta-label">Currently</div>
-      <!-- EDIT: confirm exact job title with Soventix -->
-      <div class="meta-value">PV Design Engineer, Soventix &mdash; solar projects across Africa</div>
+  <div class="header-grid">
+    <div>
+      <p class="page-eyebrow">Appendix A &middot; Chapter 01 &mdash; University of Bristol</p>
+      <h1 class="page-title">MEng Mechanical &amp;<br><em>Electrical Engineering</em></h1>
     </div>
-    <div class="meta-item">
-      <div class="meta-label">Previously</div>
-      <div class="meta-value">Graduate Electrical Engineer, RED Engineering Design &mdash; data centres</div>
-    </div>
-    <div class="meta-item">
-      <div class="meta-label">Education</div>
-      <div class="meta-value">MEng First Class, University of Bristol &mdash; Energy &amp; Renewables</div>
+    <div class="header-right">
+      <p class="header-summary">Four years across mechanical and electrical fundamentals, specialising in energy and renewables in Years 3 and 4. First Class Honours, 73% average.</p>
+      <div class="header-stats">
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Years</div></div>
+        <div class="stat"><div class="stat-num">1st</div><div class="stat-label">Classification</div></div>
+        <div class="stat"><div class="stat-num">73%</div><div class="stat-label">Average</div></div>
+        <div class="stat"><div class="stat-num">2019&ndash;23</div><div class="stat-label">Dates</div></div>
+      </div>
     </div>
   </div>
 </header>
 
-<!-- sticky chapter navigation -->
-<div class="chapter-nav" id="chapterNav">
-  <a class="ch-tab" data-ch="uni" href="#university">
-    <span class="ch-tab-num">01</span>
-    <span class="ch-tab-label"><strong>University</strong><span>Renewables research &amp; builds</span></span>
-  </a>
-  <a class="ch-tab" data-ch="red" href="#datacentres">
-    <span class="ch-tab-num">02</span>
-    <span class="ch-tab-label"><strong>Data Centres</strong><span>MV/LV design at RED</span></span>
-  </a>
-  <a class="ch-tab" data-ch="sx" href="#soventix">
-    <span class="ch-tab-num">03</span>
-    <span class="ch-tab-label"><strong>Soventix</strong><span>Solar design, Africa</span></span>
-  </a>
+<div class="year-tabs">
+  <a class="year-tab" href="#year1" data-year="1"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 1</span><span class="year-tab-sub">Foundations</span></span></a>
+  <a class="year-tab" href="#year2" data-year="2"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 2</span><span class="year-tab-sub">Core Engineering</span></span></a>
+  <a class="year-tab" href="#year3" data-year="3"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 3</span><span class="year-tab-sub">Specialisation</span></span></a>
+  <a class="year-tab" href="#year4" data-year="4"><span class="year-tab-dot"></span><span class="year-tab-label"><span>Year 4</span><span class="year-tab-sub">Energy &amp; Renewables</span></span></a>
+  <a href="https://www.bris.ac.uk/unit-programme-catalogue/RouteStructureCohort.jsa?ayrCode=19%2F20&byCohort=Y&programmeCode=4EENG013U" target="_blank" rel="noopener" class="uob-link">University of Bristol catalogue &#8599;</a>
 </div>
 
-<!-- ============================================================
-     CH.01 — UNIVERSITY · textbook
-     ============================================================ -->
-<section class="tb" id="university">
-  <div class="tb-head fade">
-    <p class="tb-chapter">Chapter 01 &middot; 2019&ndash;2023 &middot; University of Bristol</p>
-    <h2 class="tb-title">Foundations in <em>Energy &amp; Renewables</em></h2>
+<!-- YEAR 1 -->
+<section class="year-section fade" id="year1">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 1</em> &mdash; Foundations</h2>
+    <span class="year-badge">10 modules &middot; 120 credits &middot; not weighted</span>
   </div>
-  <p class="tb-lede fade">Four years of mechanical and electrical engineering, specialising in energy systems in the final two. The degree closed with two substantial pieces of work: an individual feasibility study of a wind&ndash;solar mini-grid, and a group project that designed and physically built a solar DC microgrid for an off-grid community in the Brazilian Amazon. Both are available in full on request.</p>
-  <div class="tb-stats fade">
-    <div class="tb-stat"><div class="tb-stat-num">First</div><div class="tb-stat-label">Classification</div></div>
-    <div class="tb-stat"><div class="tb-stat-num">73%</div><div class="tb-stat-label">Average</div></div>
-    <div class="tb-stat"><div class="tb-stat-num">83%</div><div class="tb-stat-label">Research project</div></div>
-    <div class="tb-stat"><div class="tb-stat-num">Exemplar</div><div class="tb-stat-label">Cohort paper</div></div>
+  <p class="year-intro">Core engineering foundations across mechanical and electrical disciplines. Mathematics, circuits, dynamics, thermodynamics and an introduction to programming and design.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Electro-Mechanical Design Project</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Project</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Fluids</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Linear Circuits</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Digital Circuits and Systems</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Electrical Systems Engineering</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Engineering Mathematics</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mathematics</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Introduction to Computer Programming</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Computing</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Dynamics of Rigid Bodies</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Thermodynamics</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Design &amp; Manufacturing Principles</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Design</span>
+    </div>
   </div>
-
-  <!-- §1.1 -->
-  <article class="tb-proj fade">
-    <div class="tb-proj-rule">
-      <span class="tb-sec-num">&sect;1.1</span>
-      <h3 class="tb-proj-title">Wind&ndash;Solar Mini-Grid &mdash; Feasibility Study</h3>
-      <span class="tb-proj-meta">Individual &middot; 83% &middot; Cohort exemplar</span>
-    </div>
-    <p class="tb-abstract"><strong>Abstract.</strong> An independent, end-to-end feasibility study of a hybrid wind&ndash;solar mini-grid, assessed across four load scenarios. The work covers resource modelling, storage optimisation, and full lifetime cost analysis, and was later used as an exemplar paper for the following cohort.</p>
-    <ul class="tb-points">
-      <li>Wind resource modelled with Weibull distributions to estimate generation across the candidate site</li>
-      <li>Battery depth-of-discharge and lifecycle optimisation evaluated across all four load scenarios</li>
-      <li>Full cost analysis: capital expenditure, operation &amp; maintenance, and payback period per scenario</li>
-    </ul>
-    <details class="tb-case">
-      <summary>
-        <span class="tb-case-label">Worked example</span>
-        <span class="tb-case-title">When the measurement plan fails: wind data without the wind</span>
-        <span class="tb-case-arrow">&#9656;</span>
-      </summary>
-      <div class="tb-case-body">
-        <p>The grid was for a Christmas tree farm near Bristol, built around an old American-style wind pump being converted into a turbine. The plan for the wind resource was empirical: fit a Weibull distribution to the local weather-station data, install an anemometer on the farm, and use the difference between the two to shift the distribution to what the turbine, surrounded by trees and far lower than the station&rsquo;s mast, would actually see.</p>
-        <p>The plan failed in the field. During the measurement window the wind simply did not show up: most readings fell below the anemometer&rsquo;s 0.7&nbsp;m/s threshold and registered as zero, leaving no usable correction factor and no time to rerun the campaign. The replacement was analytical: the wind shear power law, V&nbsp;=&nbsp;V&#8321;&#8320;(H/10)<sup>1/&alpha;</sup>, with the exponent set by the ground surface, which for that site&rsquo;s geography reduced the station data by 12% at the wind pump&rsquo;s height. From there, the kinetic energy passing through the blades&rsquo; swept area (an annulus, since the blades start well clear of the hub) gave an estimated power curve, which was matched to a commercial turbine with a similar characteristic and interpolated at every time-stamped wind speed in the dataset.</p>
-        <p>The report is explicit that this is the study&rsquo;s main limitation: an assumption-built power curve is not the same thing as measured performance. The exercise became less about finding a perfect answer and more about making defensible engineering assumptions with incomplete information, which, in practice, is most of the job.</p>
-        <div class="tb-figrow">
-          <figure class="tb-plot">
-            <svg viewBox="0 0 470 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Weibull wind-speed distributions for station data and corrected site estimate">
-  <path d="M 66.0,234.0 L 66.0,234.0 L 68.7,226.4 L 71.5,218.9 L 74.2,211.4 L 77.0,203.9 L 79.7,196.5 L 82.5,189.2 L 85.2,182.0 L 87.9,174.9 L 90.7,168.0 L 93.4,161.2 L 96.2,154.6 L 98.9,148.1 L 101.7,141.9 L 104.4,135.8 L 107.1,130.0 L 109.9,124.4 L 112.6,119.0 L 115.4,113.9 L 118.1,109.0 L 120.9,104.4 L 123.6,100.1 L 126.3,96.0 L 129.1,92.2 L 131.8,88.7 L 134.6,85.5 L 137.3,82.6 L 140.1,80.0 L 142.8,77.7 L 145.5,75.6 L 148.3,73.9 L 151.0,72.4 L 153.8,71.2 L 156.5,70.3 L 159.3,69.7 L 162.0,69.3 L 164.7,69.2 L 167.5,69.4 L 170.2,69.7 L 173.0,70.4 L 175.7,71.3 L 178.5,72.3 L 181.2,73.6 L 183.9,75.2 L 186.7,76.9 L 189.4,78.7 L 192.2,80.8 L 194.9,83.0 L 197.7,85.4 L 200.4,87.9 L 203.1,90.5 L 205.9,93.3 L 208.6,96.1 L 211.4,99.1 L 214.1,102.1 L 216.9,105.2 L 219.6,108.4 L 222.3,111.7 L 225.1,114.9 L 227.8,118.3 L 230.6,121.6 L 233.3,125.0 L 236.1,128.4 L 238.8,131.7 L 241.5,135.1 L 244.3,138.5 L 247.0,141.8 L 249.8,145.1 L 252.5,148.4 L 255.3,151.6 L 258.0,154.8 L 260.7,157.9 L 263.5,161.0 L 266.2,164.1 L 269.0,167.0 L 271.7,169.9 L 274.5,172.8 L 277.2,175.6 L 279.9,178.2 L 282.7,180.9 L 285.4,183.4 L 288.2,185.9 L 290.9,188.3 L 293.7,190.6 L 296.4,192.8 L 299.1,195.0 L 301.9,197.0 L 304.6,199.0 L 307.4,201.0 L 310.1,202.8 L 312.9,204.6 L 315.6,206.3 L 318.3,207.9 L 321.1,209.4 L 323.8,210.9 L 326.6,212.3 L 329.3,213.6 L 332.1,214.9 L 334.8,216.1 L 337.5,217.3 L 340.3,218.3 L 343.0,219.4 L 345.8,220.4 L 348.5,221.3 L 351.3,222.1 L 354.0,223.0 L 356.7,223.7 L 359.5,224.5 L 362.2,225.1 L 365.0,225.8 L 367.7,226.4 L 370.5,226.9 L 373.2,227.5 L 375.9,228.0 L 378.7,228.4 L 381.4,228.8 L 384.2,229.2 L 386.9,229.6 L 389.7,230.0 L 392.4,230.3 L 395.1,230.6 L 397.9,230.9 L 400.6,231.1 L 403.4,231.4 L 406.1,231.6 L 408.9,231.8 L 411.6,232.0 L 414.3,232.2 L 417.1,232.3 L 419.8,232.5 L 422.6,232.6 L 425.3,232.7 L 428.1,232.8 L 430.8,232.9 L 433.5,233.0 L 436.3,233.1 L 439.0,233.2 L 441.8,233.3 L 444.5,233.4 L 447.3,233.4 L 450.0,233.5 L 450.0,234.0 Z" fill="var(--eng-blue)" opacity="0.05"/>
-  <path d="M 66.0,234.0 L 66.0,234.0 L 68.7,224.2 L 71.5,214.5 L 74.2,204.8 L 77.0,195.2 L 79.7,185.7 L 82.5,176.4 L 85.2,167.3 L 87.9,158.3 L 90.7,149.5 L 93.4,141.1 L 96.2,132.8 L 98.9,124.9 L 101.7,117.3 L 104.4,110.0 L 107.1,103.0 L 109.9,96.5 L 112.6,90.3 L 115.4,84.4 L 118.1,79.0 L 120.9,74.0 L 123.6,69.5 L 126.3,65.3 L 129.1,61.6 L 131.8,58.2 L 134.6,55.4 L 137.3,52.9 L 140.1,50.9 L 142.8,49.2 L 145.5,48.0 L 148.3,47.2 L 151.0,46.8 L 153.8,46.8 L 156.5,47.1 L 159.3,47.8 L 162.0,48.8 L 164.7,50.2 L 167.5,51.9 L 170.2,53.8 L 173.0,56.1 L 175.7,58.6 L 178.5,61.4 L 181.2,64.4 L 183.9,67.6 L 186.7,70.9 L 189.4,74.5 L 192.2,78.2 L 194.9,82.1 L 197.7,86.1 L 200.4,90.1 L 203.1,94.3 L 205.9,98.5 L 208.6,102.8 L 211.4,107.2 L 214.1,111.5 L 216.9,115.9 L 219.6,120.2 L 222.3,124.6 L 225.1,128.9 L 227.8,133.1 L 230.6,137.4 L 233.3,141.5 L 236.1,145.6 L 238.8,149.7 L 241.5,153.6 L 244.3,157.5 L 247.0,161.2 L 249.8,164.9 L 252.5,168.4 L 255.3,171.9 L 258.0,175.2 L 260.7,178.4 L 263.5,181.6 L 266.2,184.5 L 269.0,187.4 L 271.7,190.2 L 274.5,192.8 L 277.2,195.4 L 279.9,197.8 L 282.7,200.1 L 285.4,202.3 L 288.2,204.4 L 290.9,206.4 L 293.7,208.3 L 296.4,210.0 L 299.1,211.7 L 301.9,213.3 L 304.6,214.8 L 307.4,216.2 L 310.1,217.5 L 312.9,218.8 L 315.6,219.9 L 318.3,221.0 L 321.1,222.1 L 323.8,223.0 L 326.6,223.9 L 329.3,224.7 L 332.1,225.5 L 334.8,226.2 L 337.5,226.9 L 340.3,227.5 L 343.0,228.0 L 345.8,228.6 L 348.5,229.0 L 351.3,229.5 L 354.0,229.9 L 356.7,230.3 L 359.5,230.6 L 362.2,230.9 L 365.0,231.2 L 367.7,231.5 L 370.5,231.7 L 373.2,232.0 L 375.9,232.2 L 378.7,232.3 L 381.4,232.5 L 384.2,232.7 L 386.9,232.8 L 389.7,232.9 L 392.4,233.0 L 395.1,233.1 L 397.9,233.2 L 400.6,233.3 L 403.4,233.4 L 406.1,233.5 L 408.9,233.5 L 411.6,233.6 L 414.3,233.6 L 417.1,233.7 L 419.8,233.7 L 422.6,233.7 L 425.3,233.8 L 428.1,233.8 L 430.8,233.8 L 433.5,233.8 L 436.3,233.9 L 439.0,233.9 L 441.8,233.9 L 444.5,233.9 L 447.3,233.9 L 450.0,233.9 L 450.0,234.0 Z" fill="var(--eng-blue)" opacity="0.05"/>
-  <line class="plot-grid" x1="120.9" y1="28" x2="120.9" y2="234"/><line class="plot-grid" x1="175.7" y1="28" x2="175.7" y2="234"/><line class="plot-grid" x1="230.6" y1="28" x2="230.6" y2="234"/><line class="plot-grid" x1="285.4" y1="28" x2="285.4" y2="234"/><line class="plot-grid" x1="340.3" y1="28" x2="340.3" y2="234"/><line class="plot-grid" x1="395.1" y1="28" x2="395.1" y2="234"/><line class="plot-grid" x1="450.0" y1="28" x2="450.0" y2="234"/>
-  <line class="plot-axis" x1="66" y1="234" x2="450.0" y2="234"/>
-  <line class="plot-axis" x1="66" y1="28" x2="66" y2="234"/>
-  <line x1="189.4" y1="78.7" x2="189.4" y2="234" stroke="var(--eng-blue)" stroke-width="1" stroke-dasharray="2 2" opacity="0.55"/>
-  <line x1="174.6" y1="57.6" x2="174.6" y2="234" stroke="var(--eng-blue)" stroke-width="1" stroke-dasharray="2 2" opacity="0.55"/>
-  <path d="M 66.0,234.0 L 68.7,226.4 L 71.5,218.9 L 74.2,211.4 L 77.0,203.9 L 79.7,196.5 L 82.5,189.2 L 85.2,182.0 L 87.9,174.9 L 90.7,168.0 L 93.4,161.2 L 96.2,154.6 L 98.9,148.1 L 101.7,141.9 L 104.4,135.8 L 107.1,130.0 L 109.9,124.4 L 112.6,119.0 L 115.4,113.9 L 118.1,109.0 L 120.9,104.4 L 123.6,100.1 L 126.3,96.0 L 129.1,92.2 L 131.8,88.7 L 134.6,85.5 L 137.3,82.6 L 140.1,80.0 L 142.8,77.7 L 145.5,75.6 L 148.3,73.9 L 151.0,72.4 L 153.8,71.2 L 156.5,70.3 L 159.3,69.7 L 162.0,69.3 L 164.7,69.2 L 167.5,69.4 L 170.2,69.7 L 173.0,70.4 L 175.7,71.3 L 178.5,72.3 L 181.2,73.6 L 183.9,75.2 L 186.7,76.9 L 189.4,78.7 L 192.2,80.8 L 194.9,83.0 L 197.7,85.4 L 200.4,87.9 L 203.1,90.5 L 205.9,93.3 L 208.6,96.1 L 211.4,99.1 L 214.1,102.1 L 216.9,105.2 L 219.6,108.4 L 222.3,111.7 L 225.1,114.9 L 227.8,118.3 L 230.6,121.6 L 233.3,125.0 L 236.1,128.4 L 238.8,131.7 L 241.5,135.1 L 244.3,138.5 L 247.0,141.8 L 249.8,145.1 L 252.5,148.4 L 255.3,151.6 L 258.0,154.8 L 260.7,157.9 L 263.5,161.0 L 266.2,164.1 L 269.0,167.0 L 271.7,169.9 L 274.5,172.8 L 277.2,175.6 L 279.9,178.2 L 282.7,180.9 L 285.4,183.4 L 288.2,185.9 L 290.9,188.3 L 293.7,190.6 L 296.4,192.8 L 299.1,195.0 L 301.9,197.0 L 304.6,199.0 L 307.4,201.0 L 310.1,202.8 L 312.9,204.6 L 315.6,206.3 L 318.3,207.9 L 321.1,209.4 L 323.8,210.9 L 326.6,212.3 L 329.3,213.6 L 332.1,214.9 L 334.8,216.1 L 337.5,217.3 L 340.3,218.3 L 343.0,219.4 L 345.8,220.4 L 348.5,221.3 L 351.3,222.1 L 354.0,223.0 L 356.7,223.7 L 359.5,224.5 L 362.2,225.1 L 365.0,225.8 L 367.7,226.4 L 370.5,226.9 L 373.2,227.5 L 375.9,228.0 L 378.7,228.4 L 381.4,228.8 L 384.2,229.2 L 386.9,229.6 L 389.7,230.0 L 392.4,230.3 L 395.1,230.6 L 397.9,230.9 L 400.6,231.1 L 403.4,231.4 L 406.1,231.6 L 408.9,231.8 L 411.6,232.0 L 414.3,232.2 L 417.1,232.3 L 419.8,232.5 L 422.6,232.6 L 425.3,232.7 L 428.1,232.8 L 430.8,232.9 L 433.5,233.0 L 436.3,233.1 L 439.0,233.2 L 441.8,233.3 L 444.5,233.4 L 447.3,233.4 L 450.0,233.5" fill="none" stroke="var(--eng-blue)" stroke-width="2.2"/>
-  <path d="M 66.0,234.0 L 68.7,224.2 L 71.5,214.5 L 74.2,204.8 L 77.0,195.2 L 79.7,185.7 L 82.5,176.4 L 85.2,167.3 L 87.9,158.3 L 90.7,149.5 L 93.4,141.1 L 96.2,132.8 L 98.9,124.9 L 101.7,117.3 L 104.4,110.0 L 107.1,103.0 L 109.9,96.5 L 112.6,90.3 L 115.4,84.4 L 118.1,79.0 L 120.9,74.0 L 123.6,69.5 L 126.3,65.3 L 129.1,61.6 L 131.8,58.2 L 134.6,55.4 L 137.3,52.9 L 140.1,50.9 L 142.8,49.2 L 145.5,48.0 L 148.3,47.2 L 151.0,46.8 L 153.8,46.8 L 156.5,47.1 L 159.3,47.8 L 162.0,48.8 L 164.7,50.2 L 167.5,51.9 L 170.2,53.8 L 173.0,56.1 L 175.7,58.6 L 178.5,61.4 L 181.2,64.4 L 183.9,67.6 L 186.7,70.9 L 189.4,74.5 L 192.2,78.2 L 194.9,82.1 L 197.7,86.1 L 200.4,90.1 L 203.1,94.3 L 205.9,98.5 L 208.6,102.8 L 211.4,107.2 L 214.1,111.5 L 216.9,115.9 L 219.6,120.2 L 222.3,124.6 L 225.1,128.9 L 227.8,133.1 L 230.6,137.4 L 233.3,141.5 L 236.1,145.6 L 238.8,149.7 L 241.5,153.6 L 244.3,157.5 L 247.0,161.2 L 249.8,164.9 L 252.5,168.4 L 255.3,171.9 L 258.0,175.2 L 260.7,178.4 L 263.5,181.6 L 266.2,184.5 L 269.0,187.4 L 271.7,190.2 L 274.5,192.8 L 277.2,195.4 L 279.9,197.8 L 282.7,200.1 L 285.4,202.3 L 288.2,204.4 L 290.9,206.4 L 293.7,208.3 L 296.4,210.0 L 299.1,211.7 L 301.9,213.3 L 304.6,214.8 L 307.4,216.2 L 310.1,217.5 L 312.9,218.8 L 315.6,219.9 L 318.3,221.0 L 321.1,222.1 L 323.8,223.0 L 326.6,223.9 L 329.3,224.7 L 332.1,225.5 L 334.8,226.2 L 337.5,226.9 L 340.3,227.5 L 343.0,228.0 L 345.8,228.6 L 348.5,229.0 L 351.3,229.5 L 354.0,229.9 L 356.7,230.3 L 359.5,230.6 L 362.2,230.9 L 365.0,231.2 L 367.7,231.5 L 370.5,231.7 L 373.2,232.0 L 375.9,232.2 L 378.7,232.3 L 381.4,232.5 L 384.2,232.7 L 386.9,232.8 L 389.7,232.9 L 392.4,233.0 L 395.1,233.1 L 397.9,233.2 L 400.6,233.3 L 403.4,233.4 L 406.1,233.5 L 408.9,233.5 L 411.6,233.6 L 414.3,233.6 L 417.1,233.7 L 419.8,233.7 L 422.6,233.7 L 425.3,233.8 L 428.1,233.8 L 430.8,233.8 L 433.5,233.8 L 436.3,233.9 L 439.0,233.9 L 441.8,233.9 L 444.5,233.9 L 447.3,233.9 L 450.0,233.9" fill="none" stroke="var(--eng-blue-light)" stroke-width="2" stroke-dasharray="6 3"/>
-  <path d="M 189.4 36 L 174.6 36" stroke="var(--eng-blue)" stroke-width="1" marker-end="url(#wa)"/>
-  <text class="plot-legend" x="182.0" y="32" text-anchor="middle" fill="var(--eng-blue)">&minus;12%</text>
-  <defs><marker id="wa" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--eng-blue)"/></marker></defs>
-  <text class="plot-tick" x="174.6" y="246" text-anchor="middle" fill="var(--eng-blue-light)">3.96</text>
-  <text class="plot-tick" x="189.4" y="256" text-anchor="middle" fill="var(--eng-blue)">4.5</text>
-  <text class="plot-tick" x="66.0" y="246" text-anchor="middle">0</text><text class="plot-tick" x="120.9" y="246" text-anchor="middle">2</text><text class="plot-tick" x="230.6" y="246" text-anchor="middle">6</text><text class="plot-tick" x="285.4" y="246" text-anchor="middle">8</text><text class="plot-tick" x="340.3" y="246" text-anchor="middle">10</text><text class="plot-tick" x="395.1" y="246" text-anchor="middle">12</text><text class="plot-tick" x="450.0" y="246" text-anchor="middle">14</text>
-  <text class="plot-axlabel" x="258.0" y="268" text-anchor="middle">Wind speed (m/s)</text>
-  <text class="plot-axlabel" x="18" y="131.0" text-anchor="middle" transform="rotate(-90 18 131.0)">Probability density</text>
-  <line x1="312" y1="44" x2="334" y2="44" stroke="var(--eng-blue)" stroke-width="2.2"/>
-  <text class="plot-legend" x="339" y="47">Station fit &middot; 4.5 m/s</text>
-  <line x1="312" y1="58" x2="334" y2="58" stroke="var(--eng-blue-light)" stroke-width="2" stroke-dasharray="6 3"/>
-  <text class="plot-legend" x="339" y="61">Corrected &middot; 3.96 m/s</text>
-</svg>
-            <figcaption class="tb-plot-cap"><b>Fig. 1.1a &middot; Weibull correction.</b> The fit to the weather-station data (solid, mean 4.5&#8201;m/s) and the corrected site estimate (dashed, mean 3.96&#8201;m/s) after the terrain and height adjustments. The whole distribution shifts down by about 12%.</figcaption>
-          </figure>
-          <figure class="tb-plot">
-            <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wind-shear power-law profiles for three terrain types with the turbine interpolation marked">
-  <line class="plot-grid" x1="56" y1="160.0" x2="356" y2="160.0"/><line class="plot-grid" x1="56" y1="90.0" x2="356" y2="90.0"/><line class="plot-grid" x1="56" y1="20.0" x2="356" y2="20.0"/>
-  <line class="plot-axis" x1="56" y1="230" x2="356" y2="230"/>
-  <line class="plot-axis" x1="56" y1="20" x2="56" y2="230"/>
-  <path d="M 172.9,227.9 L 185.0,225.8 L 192.7,223.7 L 198.5,221.6 L 203.1,219.5 L 207.0,217.4 L 210.3,215.3 L 213.3,213.2 L 216.0,211.1 L 218.4,209.0 L 220.6,206.9 L 222.7,204.8 L 224.6,202.7 L 226.4,200.6 L 228.1,198.5 L 229.7,196.4 L 231.2,194.3 L 232.6,192.2 L 234.0,190.1 L 235.3,188.0 L 236.5,185.9 L 237.7,183.8 L 238.9,181.7 L 240.0,179.6 L 241.1,177.5 L 242.1,175.4 L 243.1,173.3 L 244.1,171.2 L 245.1,169.1 L 246.0,167.0 L 246.9,164.9 L 247.7,162.8 L 248.6,160.7 L 249.4,158.6 L 250.2,156.5 L 251.0,154.4 L 251.8,152.3 L 252.5,150.2 L 253.2,148.1 L 253.9,146.0 L 254.6,143.9 L 255.3,141.8 L 256.0,139.7 L 256.7,137.6 L 257.3,135.5 L 257.9,133.4 L 258.6,131.3 L 259.2,129.2 L 259.8,127.1 L 260.4,125.0 L 260.9,122.9 L 261.5,120.8 L 262.1,118.7 L 262.6,116.6 L 263.2,114.5 L 263.7,112.4 L 264.2,110.3 L 264.7,108.2 L 265.2,106.1 L 265.8,104.0 L 266.2,101.9 L 266.7,99.8 L 267.2,97.7 L 267.7,95.6 L 268.2,93.5 L 268.6,91.4 L 269.1,89.3 L 269.5,87.2 L 270.0,85.1 L 270.4,83.0 L 270.9,80.9 L 271.3,78.8 L 271.7,76.7 L 272.1,74.6 L 272.5,72.5 L 273.0,70.4 L 273.4,68.3 L 273.8,66.2 L 274.2,64.1 L 274.6,62.0 L 274.9,59.9 L 275.3,57.8 L 275.7,55.7 L 276.1,53.6 L 276.5,51.5 L 276.8,49.4 L 277.2,47.3 L 277.5,45.2 L 277.9,43.1 L 278.3,41.0 L 278.6,38.9 L 279.0,36.8 L 279.3,34.7 L 279.6,32.6 L 280.0,30.5 L 280.3,28.4 L 280.6,26.3 L 281.0,24.2 L 281.3,22.1 L 281.6,20.0" fill="none" stroke="var(--eng-blue-light)" stroke-width="1.6" opacity="0.7"/>
-  <path d="M 103.4,227.9 L 118.6,225.8 L 129.6,223.7 L 138.6,221.6 L 146.3,219.5 L 153.1,217.4 L 159.3,215.3 L 165.0,213.2 L 170.2,211.1 L 175.1,209.0 L 179.8,206.9 L 184.2,204.8 L 188.3,202.7 L 192.3,200.6 L 196.1,198.5 L 199.8,196.4 L 203.3,194.3 L 206.7,192.2 L 210.0,190.1 L 213.2,188.0 L 216.3,185.9 L 219.3,183.8 L 222.3,181.7 L 225.1,179.6 L 227.9,177.5 L 230.6,175.4 L 233.3,173.3 L 235.9,171.2 L 238.4,169.1 L 240.9,167.0 L 243.3,164.9 L 245.7,162.8 L 248.1,160.7 L 250.4,158.6 L 252.7,156.5 L 254.9,154.4 L 257.1,152.3 L 259.2,150.2 L 261.4,148.1 L 263.4,146.0 L 265.5,143.9 L 267.5,141.8 L 269.5,139.7 L 271.5,137.6 L 273.5,135.5 L 275.4,133.4 L 277.3,131.3 L 279.1,129.2 L 281.0,127.1 L 282.8,125.0 L 284.6,122.9 L 286.4,120.8 L 288.2,118.7 L 289.9,116.6 L 291.6,114.5 L 293.3,112.4 L 295.0,110.3 L 296.7,108.2 L 298.3,106.1 L 300.0,104.0 L 301.6,101.9 L 303.2,99.8 L 304.8,97.7 L 306.4,95.6 L 307.9,93.5 L 309.5,91.4 L 311.0,89.3 L 312.5,87.2 L 314.0,85.1 L 315.5,83.0 L 317.0,80.9 L 318.4,78.8 L 319.9,76.7 L 321.3,74.6 L 322.8,72.5 L 324.2,70.4 L 325.6,68.3 L 327.0,66.2 L 328.4,64.1 L 329.7,62.0 L 331.1,59.9 L 332.4,57.8 L 333.8,55.7 L 335.1,53.6 L 336.4,51.5 L 337.8,49.4 L 339.1,47.3 L 340.4,45.2 L 341.7,43.1 L 342.9,41.0 L 344.2,38.9 L 345.5,36.8 L 346.7,34.7 L 348.0,32.6 L 349.2,30.5 L 350.4,28.4 L 351.7,26.3 L 352.9,24.2 L 354.1,22.1 L 355.3,20.0" fill="none" stroke="var(--eng-ink-muted)" stroke-width="1.6" opacity="0.55"/>
-  <path d="M 136.3,227.9 L 151.4,225.8 L 161.6,223.7 L 169.5,221.6 L 176.0,219.5 L 181.6,217.4 L 186.6,215.3 L 191.0,213.2 L 195.0,211.1 L 198.7,209.0 L 202.2,206.9 L 205.4,204.8 L 208.4,202.7 L 211.3,200.6 L 214.0,198.5 L 216.5,196.4 L 219.0,194.3 L 221.3,192.2 L 223.6,190.1 L 225.7,188.0 L 227.8,185.9 L 229.8,183.8 L 231.8,181.7 L 233.7,179.6 L 235.5,177.5 L 237.2,175.4 L 239.0,173.3 L 240.6,171.2 L 242.3,169.1 L 243.8,167.0 L 245.4,164.9 L 246.9,162.8 L 248.4,160.7 L 249.8,158.6 L 251.2,156.5 L 252.6,154.4 L 254.0,152.3 L 255.3,150.2 L 256.6,148.1 L 257.9,146.0 L 259.1,143.9 L 260.3,141.8 L 261.5,139.7 L 262.7,137.6 L 263.9,135.5 L 265.0,133.4 L 266.2,131.3 L 267.3,129.2 L 268.4,127.1 L 269.4,125.0 L 270.5,122.9 L 271.5,120.8 L 272.6,118.7 L 273.6,116.6 L 274.6,114.5 L 275.6,112.4 L 276.5,110.3 L 277.5,108.2 L 278.4,106.1 L 279.4,104.0 L 280.3,101.9 L 281.2,99.8 L 282.1,97.7 L 283.0,95.6 L 283.9,93.5 L 284.8,91.4 L 285.6,89.3 L 286.5,87.2 L 287.3,85.1 L 288.2,83.0 L 289.0,80.9 L 289.8,78.8 L 290.6,76.7 L 291.4,74.6 L 292.2,72.5 L 293.0,70.4 L 293.8,68.3 L 294.5,66.2 L 295.3,64.1 L 296.0,62.0 L 296.8,59.9 L 297.5,57.8 L 298.3,55.7 L 299.0,53.6 L 299.7,51.5 L 300.4,49.4 L 301.1,47.3 L 301.8,45.2 L 302.5,43.1 L 303.2,41.0 L 303.9,38.9 L 304.6,36.8 L 305.3,34.7 L 305.9,32.6 L 306.6,30.5 L 307.2,28.4 L 307.9,26.3 L 308.5,24.2 L 309.2,22.1 L 309.8,20.0" fill="none" stroke="var(--eng-blue)" stroke-width="2.6"/>
-  <line x1="56" y1="160.0" x2="248.9" y2="160.0" stroke="var(--eng-ink-muted)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.7"/>
-  <line x1="248.9" y1="160.0" x2="248.9" y2="230" stroke="var(--eng-ink-muted)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.6"/>
-  <line x1="56" y1="188.0" x2="225.7" y2="188.0" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
-  <line x1="225.7" y1="188.0" x2="225.7" y2="230" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
-  <circle cx="248.9" cy="160.0" r="3.2" fill="var(--eng-ink-soft)"/>
-  <circle cx="225.7" cy="188.0" r="3.6" fill="var(--eng-blue)"/>
-  <text class="plot-tick" x="255.0" y="168.0" fill="var(--eng-ink-soft)">station &middot; 10 m &middot; 4.5</text>
-  <text class="plot-tick" x="88" y="118" fill="var(--eng-blue)">turbine &middot; 6 m</text>
-  <text class="plot-tick" x="88" y="130" fill="var(--eng-blue)">3.96 m/s &middot; &minus;12%</text>
-  <line x1="146" y1="136" x2="220" y2="182" stroke="var(--eng-blue)" stroke-width="0.7" stroke-dasharray="2 2" opacity="0.55"/>
-  <text class="plot-tick" x="56.0" y="242" text-anchor="middle">0</text><text class="plot-tick" x="98.9" y="242" text-anchor="middle">1</text><text class="plot-tick" x="141.7" y="242" text-anchor="middle">2</text><text class="plot-tick" x="184.6" y="242" text-anchor="middle">3</text><text class="plot-tick" x="227.4" y="242" text-anchor="middle">4</text><text class="plot-tick" x="270.3" y="242" text-anchor="middle">5</text><text class="plot-tick" x="313.1" y="242" text-anchor="middle">6</text><text class="plot-tick" x="356.0" y="242" text-anchor="middle">7</text>
-  <text class="plot-tick" x="50" y="233.0" text-anchor="end">0</text><text class="plot-tick" x="50" y="163.0" text-anchor="end">10</text><text class="plot-tick" x="50" y="93.0" text-anchor="end">20</text><text class="plot-tick" x="50" y="23.0" text-anchor="end">30</text>
-  <text class="plot-axlabel" x="206.0" y="260" text-anchor="middle">Wind speed (m/s)</text>
-  <text class="plot-axlabel" x="16" y="125.0" text-anchor="middle" transform="rotate(-90 16 125.0)">Height above ground (m)</text>
-  <line x1="66" y1="34" x2="84" y2="34" stroke="var(--eng-blue-light)" stroke-width="1.6" opacity="0.7"/>
-  <text class="plot-legend" x="89" y="37">Open (&alpha;=7)</text>
-  <line x1="66" y1="48" x2="84" y2="48" stroke="var(--eng-blue)" stroke-width="2.6"/>
-  <text class="plot-legend" x="89" y="51">Farm (&alpha;=4)</text>
-  <line x1="66" y1="62" x2="84" y2="62" stroke="var(--eng-ink-muted)" stroke-width="1.6" opacity="0.55"/>
-  <text class="plot-legend" x="89" y="65">Obstructed (&alpha;=2.5)</text>
-</svg>
-            <figcaption class="tb-plot-cap"><b>Fig. 1.1b &middot; Wind-shear interpolation.</b> V&nbsp;=&nbsp;V&#8321;&#8320;(H/10)<sup>1/&alpha;</sup> for three terrains, all pinned to the same 4.5&#8201;m/s reading at the 10&#8201;m station. Following the farm&rsquo;s profile (&alpha;&nbsp;=&nbsp;4) down to the 6&#8201;m turbine gives 3.96&#8201;m/s.</figcaption>
-          </figure>
-        </div>
-      </div>
-    </details>
-    <div class="tb-actions">
-      <button class="tb-btn" onclick="openModal('Wind-Solar Mini-Grid Feasibility Study')">Request the full report</button>
-    </div>
-  </article>
-
-  <!-- §1.2 -->
-  <article class="tb-proj fade">
-    <div class="tb-proj-rule">
-      <span class="tb-sec-num">&sect;1.2</span>
-      <h3 class="tb-proj-title">Solar DC Microgrid &mdash; Design &amp; Build</h3>
-      <span class="tb-proj-meta">Group industrial project &middot; 40 credits</span>
-    </div>
-    <p class="tb-abstract"><strong>Abstract.</strong> Co-designed and helped build a solar DC microgrid for a remote off-grid community in the Brazilian Amazon &mdash; the full lifecycle from concept through simulation to validated hardware.</p>
-    <ul class="tb-points">
-      <li>Owned the battery side: selection, the temperature and depth-of-discharge lifecycle analysis, and wire sizing</li>
-      <li>MATLAB algorithms sized the battery banks and array over five years of real irradiance data; PV panel selection was shared with a project partner</li>
-      <li>The power electronics, droop control, bidirectional battery-management converter and the validated PCB prototype were built by my three teammates</li>
-    </ul>
-    <details class="tb-case">
-      <summary>
-        <span class="tb-case-label">Worked example</span>
-        <span class="tb-case-title">How long does a battery actually last, and what is that worth?</span>
-        <span class="tb-case-arrow">&#9656;</span>
-      </summary>
-      <div class="tb-case-body">
-        <p>The battery question was my section, and it is mostly an economics question wearing electrical clothes. Batteries are the most expensive part of a microgrid, so the design lives or dies on two things: how much usable capacity the site&rsquo;s climate leaves you, and how hard you can cycle the battery before the lifetime maths turns against you.</p>
-        <p>The first is temperature. Capacity falls away sharply in the cold and plateaus once it is warm; reading the datasheet curve at the Amazon site&rsquo;s 28&deg;C average actually puts capacity slightly <em>above</em> nominal, at 100.2%. That is a rare case where the environment helps rather than hurts, and it means no derating penalty had to be carried through the rest of the sizing.</p>
-        <div class="tb-figrow">
-          <figure class="tb-plot">
-            <svg viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Battery capacity versus temperature">
-  <line class="plot-grid" x1="58" y1="222.0" x2="358" y2="222.0"/><line class="plot-grid" x1="58" y1="172.0" x2="358" y2="172.0"/><line class="plot-grid" x1="58" y1="122.0" x2="358" y2="122.0"/><line class="plot-grid" x1="58" y1="72.0" x2="358" y2="72.0"/><line class="plot-grid" x1="58" y1="22.0" x2="358" y2="22.0"/>
-  <line class="plot-axis" x1="58" y1="222" x2="358" y2="222"/>
-  <line class="plot-axis" x1="58" y1="22" x2="58" y2="222"/>
-  <path d="M 58.0,217.0 L 61.8,204.6 L 65.5,193.0 L 69.2,182.3 L 73.0,172.3 L 76.8,162.9 L 80.5,154.3 L 84.2,146.2 L 88.0,138.6 L 91.8,131.6 L 95.5,125.1 L 99.2,119.0 L 103.0,113.4 L 106.8,108.1 L 110.5,103.2 L 114.2,98.7 L 118.0,94.4 L 121.8,90.4 L 125.5,86.8 L 129.2,83.3 L 133.0,80.1 L 136.8,77.2 L 140.5,74.4 L 144.2,71.8 L 148.0,69.4 L 151.8,67.2 L 155.5,65.1 L 159.2,63.2 L 163.0,61.4 L 166.8,59.7 L 170.5,58.1 L 174.2,56.7 L 178.0,55.3 L 181.8,54.0 L 185.5,52.9 L 189.2,51.8 L 193.0,50.8 L 196.8,49.8 L 200.5,48.9 L 204.2,48.1 L 208.0,47.3 L 211.8,46.6 L 215.5,46.0 L 219.2,45.3 L 223.0,44.8 L 226.8,44.2 L 230.5,43.7 L 234.2,43.3 L 238.0,42.8 L 241.8,42.4 L 245.5,42.1 L 249.2,41.7 L 253.0,41.4 L 256.8,41.1 L 260.5,40.8 L 264.2,40.5 L 268.0,40.3 L 271.8,40.1 L 275.5,39.9 L 279.2,39.7 L 283.0,39.5 L 286.8,39.3 L 290.5,39.1 L 294.2,39.0 L 298.0,38.9 L 301.8,38.7 L 305.5,38.6 L 309.2,38.5 L 313.0,38.4 L 316.8,38.3 L 320.5,38.2 L 324.2,38.1 L 328.0,38.1 L 331.8,38.0 L 335.5,37.9 L 339.2,37.8 L 343.0,37.8 L 346.8,37.7 L 350.5,37.7 L 354.2,37.6 L 358.0,37.6" fill="none" stroke="var(--eng-blue)" stroke-width="2.4"/>
-  <line x1="238.0" y1="46.0" x2="238.0" y2="222" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
-  <line x1="58" y1="46.0" x2="238.0" y2="46.0" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
-  <circle cx="238.0" cy="46.0" r="3.6" fill="var(--eng-blue)"/>
-  <text class="plot-tick" x="232.0" y="40.0" text-anchor="end" fill="var(--eng-blue)">site 28&deg;C &middot; 100.2%</text>
-  <text class="plot-tick" x="58.0" y="234" text-anchor="middle">-20</text><text class="plot-tick" x="133.0" y="234" text-anchor="middle">0</text><text class="plot-tick" x="208.0" y="234" text-anchor="middle">20</text><text class="plot-tick" x="283.0" y="234" text-anchor="middle">40</text><text class="plot-tick" x="358.0" y="234" text-anchor="middle">60</text>
-  <text class="plot-tick" x="53" y="225.0" text-anchor="end">65</text><text class="plot-tick" x="53" y="175.0" text-anchor="end">75</text><text class="plot-tick" x="53" y="125.0" text-anchor="end">85</text><text class="plot-tick" x="53" y="75.0" text-anchor="end">95</text><text class="plot-tick" x="53" y="25.0" text-anchor="end">105</text>
-  <text class="plot-axlabel" x="208.0" y="250" text-anchor="middle">Temperature (&deg;C)</text>
-  <text class="plot-axlabel" x="16" y="122.0" text-anchor="middle" transform="rotate(-90 16 122.0)">Battery capacity (%)</text>
-</svg>
-            <figcaption class="tb-plot-cap"><b>Fig. 1.2a &middot; Capacity vs temperature.</b> Recreated from the battery datasheet. Capacity collapses below 0&deg;C but is flat through the tropics; at the site&rsquo;s 28&deg;C it reads 100.2%, so the climate gives a small bonus rather than a penalty.</figcaption>
-          </figure>
-          <figure class="tb-plot">
-            <svg viewBox="0 0 380 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cumulative lifetime energy stored versus depth of discharge">
-  <line class="plot-grid" x1="58" y1="193.4" x2="358" y2="193.4"/><line class="plot-grid" x1="58" y1="145.8" x2="358" y2="145.8"/><line class="plot-grid" x1="58" y1="98.2" x2="358" y2="98.2"/><line class="plot-grid" x1="58" y1="50.6" x2="358" y2="50.6"/>
-  <line class="plot-axis" x1="58" y1="222" x2="358" y2="222"/>
-  <line class="plot-axis" x1="58" y1="22" x2="58" y2="222"/>
-  <path d="M 58.0,53.6 L 63.0,51.8 L 68.0,50.1 L 73.0,48.5 L 78.0,47.1 L 83.0,45.8 L 88.0,44.7 L 93.0,43.7 L 98.0,42.9 L 103.0,42.2 L 108.0,41.7 L 113.0,41.3 L 118.0,41.1 L 123.0,41.0 L 128.0,41.1 L 133.0,41.3 L 138.0,41.7 L 143.0,42.2 L 148.0,42.9 L 153.0,43.7 L 158.0,44.7 L 163.0,45.8 L 168.0,47.1 L 173.0,48.5 L 178.0,50.1 L 183.0,51.8 L 188.0,53.6 L 193.0,55.6 L 198.0,57.8 L 203.0,60.1 L 208.0,62.6 L 213.0,65.2 L 218.0,67.9 L 223.0,70.8 L 228.0,73.9 L 233.0,77.1 L 238.0,80.4 L 243.0,83.9 L 248.0,87.6 L 253.0,91.4 L 258.0,95.3 L 263.0,99.4 L 268.0,103.7 L 273.0,108.1 L 278.0,112.6 L 283.0,117.3 L 288.0,122.1 L 293.0,127.1 L 298.0,132.3 L 303.0,137.6 L 308.0,143.0 L 313.0,148.6 L 318.0,154.3 L 323.0,160.2 L 328.0,166.2 L 333.0,172.4 L 338.0,178.7 L 343.0,185.2 L 348.0,191.8 L 353.0,198.6 L 358.0,205.5" fill="none" stroke="var(--eng-blue)" stroke-width="2.4"/>
-  <line x1="123.0" y1="41.0" x2="123.0" y2="222" stroke="var(--eng-ink-muted)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.7"/>
-  <circle cx="123.0" cy="41.0" r="3.4" fill="var(--eng-ink-soft)"/>
-  <text class="plot-tick" x="130.0" y="34.0" text-anchor="middle" fill="var(--eng-ink-soft)">metric optimum &middot; 53% &middot; 31 MWh</text>
-  <line x1="258.0" y1="95.3" x2="258.0" y2="222" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.85"/>
-  <circle cx="258.0" cy="95.3" r="3.6" fill="var(--eng-blue)"/>
-  <text class="plot-tick" x="263.0" y="90.3" fill="var(--eng-blue)">design maximum &middot; 80% &middot; 25.3 MWh</text>
-  <text class="plot-tick" x="58.0" y="234" text-anchor="middle">40</text><text class="plot-tick" x="108.0" y="234" text-anchor="middle">50</text><text class="plot-tick" x="158.0" y="234" text-anchor="middle">60</text><text class="plot-tick" x="208.0" y="234" text-anchor="middle">70</text><text class="plot-tick" x="258.0" y="234" text-anchor="middle">80</text><text class="plot-tick" x="308.0" y="234" text-anchor="middle">90</text><text class="plot-tick" x="358.0" y="234" text-anchor="middle">100</text>
-  <text class="plot-tick" x="53" y="196.4" text-anchor="end">15</text><text class="plot-tick" x="53" y="148.8" text-anchor="end">20</text><text class="plot-tick" x="53" y="101.2" text-anchor="end">25</text><text class="plot-tick" x="53" y="53.6" text-anchor="end">30</text>
-  <text class="plot-axlabel" x="208.0" y="250" text-anchor="middle">Depth of discharge (%)</text>
-  <text class="plot-axlabel" x="16" y="122.0" text-anchor="middle" transform="rotate(-90 16 122.0)">Lifetime energy stored (MWh)</text>
-</svg>
-            <figcaption class="tb-plot-cap"><b>Fig. 1.2b &middot; Lifetime energy vs depth of discharge.</b> Using E<sub>lifetime</sub>&nbsp;=&nbsp;(DOD&nbsp;+&nbsp;f(T))&middot;N&middot;E<sub>rated</sub>/100. The peak near 53% is the optimum for one metric, energy delivered per pound over the battery&rsquo;s whole life. Sizing to it would need a bank roughly half as large again, on a project whose binding constraint is capital now. The 80% is not an operating target but a worst-case allowance: once the bank was sized for the rainy season, its average DOD landed near 20%, so the deep cycles the curve punishes are rare events, not the daily routine.</figcaption>
-          </figure>
-        </div>
-        <p>The second is depth of discharge, and it is the more interesting trade, because the two marked numbers answer different questions. Cycling shallow makes a battery last far longer, so the cumulative energy it delivers over its whole life (folding the cycle-life curve into the rated capacity and the temperature correction) peaks around a 53% depth of discharge, not at 100%. But that peak is the optimum for a narrow metric: energy per pound over decades of replacements. It was not the question the community&rsquo;s economics were asking. Sizing to 53% would have made the bank roughly half as large again, spending scarce capital today to buy a benefit that only accrues across battery lifetimes. So the 80% is not an operating point at all; it is the design maximum, the deepest cycle the sizing must tolerate in the worst season. The full simulation bore that out: sized for the rainy months, the bank&rsquo;s average DOD came out near 20%, nowhere near either marked figure. Recognising which question the peak answers, and that it was the wrong one, was the part I was most pleased with.</p>
-      </div>
-    </details>
-    <div class="tb-actions">
-      <button class="tb-btn" onclick="openModal('Solar DC Microgrid &mdash; Remote Community')">Request the full report</button>
-    </div>
-  </article>
-
-  <section class="tb-before fade">
-    <p class="tb-before-eyebrow">Before Bristol</p>
-    <h3>A-Level results &middot; Rednock Sixth Form</h3>
-    <div class="tb-alevels">
-      <div class="tb-al"><div class="tb-al-subj">Maths</div><div class="tb-al-grade">A*</div></div>
-      <div class="tb-al"><div class="tb-al-subj">Physics</div><div class="tb-al-grade">A*</div></div>
-      <div class="tb-al"><div class="tb-al-subj">Chemistry</div><div class="tb-al-grade">A</div></div>
-    </div>
-  </section>
-
-  <aside class="tb-appendix fade">
-    <div>
-      <p class="tb-appendix-eyebrow">Appendix A</p>
-      <h3 class="tb-appendix-title">Module-by-module breakdown</h3>
-      <p class="tb-appendix-sub">All four years: every module, credit weighting, and how each year counts towards the degree.</p>
-    </div>
-    <a href="education.html" class="tb-appendix-btn">Open the education appendix &rarr;</a>
-  </aside>
 </section>
 
-<div class="ch-blend blend-uni-cad">
-  <span class="ch-blend-num">Chapter 01 &rarr; 02</span>
-  <span class="ch-blend-line">From the textbook to the drawing office.</span>
-</div>
-
-<!-- ============================================================
-     CH.02 — RED · CAD drawing office
-     ============================================================ -->
-<section class="cad" id="datacentres">
-  <div class="cad-head fade">
-    <div>
-      <p class="cad-chapter">Chapter 02 &middot; 2025&ndash;2026 &middot; RED Engineering Design</p>
-      <h2 class="cad-title">Data Centre <span>Electrical Design</span></h2>
+<!-- YEAR 2 -->
+<section class="year-section fade" id="year2">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 2</em> &mdash; Core Engineering</h2>
+    <span class="year-badge">8 modules &middot; 120 credits &middot; 10% of degree</span>
+  </div>
+  <p class="year-intro">Deeper technical grounding across electro-mechanical systems, signals and control, engineering mathematics, and thermofluids. Building the analytical toolkit for specialisation.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Electro-Mechanical Energy Conversion</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
     </div>
-    <p class="cad-intro">Graduate electrical engineer across hyperscale and colocation data centre projects in EMEA, from RIBA Stage 1 concept through Stage 3 coordination. Client and site details are withheld under NDA &mdash; each sheet below shows the scope and what I delivered, not whose campus it is.</p>
+    <div class="module-card">
+      <div class="module-name">Electro-Mechanical System Design</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Systems</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Signals and Systems</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Electronics 2</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Electrical</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Engineering Mathematics 2</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mathematics</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Dynamics and Control</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Control</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Principles of Professional Practice</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Professional</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Thermofluids 2</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
   </div>
-
-  <div class="cad-filter fade" id="cadFilter">
-    <span class="cad-filter-label">Filter / discipline</span>
-    <button class="cad-chip on" data-f="all">All</button>
-    <button class="cad-chip" data-f="mv">MV design</button>
-    <button class="cad-chip" data-f="lv">LV design</button>
-    <button class="cad-chip" data-f="power">Power systems</button>
-    <button class="cad-chip" data-f="model">Modelling</button>
-    <button class="cad-chip" data-f="light">Lighting</button>
-  </div>
-
-  <div class="cad-sheets">
-
-    <!-- DRG-001 -->
-    <article class="sheet fade" data-tags="mv model">
-      <span class="tick tl">DRG-001</span><span class="tick tr">SHT 1 OF 5</span>
-      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
-      <div class="sheet-inner">
-        <div>
-          <h3 class="sheet-name">MV Distribution Architecture &mdash; Campus</h3>
-          <p class="sheet-desc">MV&ndash;LV schematic architecture with 2:1 redundancy for a hyperscale campus built around a repeatable data hall module, so the robustness of the topology compounds across the site. Worked out how the ring topology connects, then translated the schematic into a physical layout.</p>
-          <ul class="sheet-notes">
-            <li data-n="1">Designed 2:1 redundant cable configurations to minimise cable length and crossover, resolving how the ring topology links up</li>
-            <li data-n="2">Produced the schematics in AutoCAD and translated them into a Revit layout, showing how the MV components connect physically as well as schematically</li>
-            <li data-n="3">Excel models to analyse distributed redundancy and evaluate alternative routing strategies, presented to senior engineers</li>
-            <li data-n="4">Built the MEP deliverables tracker used to coordinate the stage&rsquo;s outputs across the team</li>
-          </ul>
-        </div>
-        <dl class="titleblock">
-          <div class="tb-row"><dt>Project</dt><dd>Hyperscale campus</dd></div>
-          <div class="tb-row"><dt>Region</dt><dd>EMEA</dd></div>
-          <div class="tb-row"><dt>Stage</dt><dd>RIBA 2</dd></div>
-          <div class="tb-row"><dt>Discipline</dt><dd>MV design &middot; AutoCAD</dd></div>
-        </dl>
-      </div>
-      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
-    </article>
-
-    <!-- DRG-002 -->
-    <article class="sheet fade" data-tags="power model">
-      <span class="tick tl">DRG-002</span><span class="tick tr">SHT 2 OF 5</span>
-      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
-      <div class="sheet-inner">
-        <div>
-          <h3 class="sheet-name">Power System Design &mdash; Colocation Facility</h3>
-          <p class="sheet-desc">Maximum demand modelling under normal and failure cases, equipment GA production, plant room layouts, schematic and earthing GA updates, and assessment of a major client-driven design change, coordinating across mechanical, BIM, security, and controls teams at RIBA Stage 3.</p>
-          <ul class="sheet-notes">
-            <li data-n="1">Built the string-level demand model in Excel, covering normal operation and failure cases with redundancy accounted for across the data hall and mechanical plant</li>
-            <li data-n="2">Assessed a client-driven design change re-feeding the lower floors from the upper strings, confirming transformer and UPS headroom before it was adopted</li>
-            <li data-n="3">Produced equipment GA drawings from manufacturer datasheets, cross-referencing every load back to the maximum demand calculation so nothing went unaccounted</li>
-            <li data-n="4">Organised the mechanical coordination call to capture loads, and created the comments tracker used to log, assign, and close out client comments after submission</li>
-          </ul>
-        </div>
-        <dl class="titleblock">
-          <div class="tb-row"><dt>Project</dt><dd>Large colocation</dd></div>
-          <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
-          <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
-          <div class="tb-row"><dt>Discipline</dt><dd>Power systems &middot; load modelling</dd></div>
-        </dl>
-      </div>
-      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
-    </article>
-
-    <!-- DRG-003 -->
-    <article class="sheet fade" data-tags="mv model">
-      <span class="tick tl">DRG-003</span><span class="tick tr">SHT 3 OF 5</span>
-      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
-      <div class="sheet-inner">
-        <div>
-          <h3 class="sheet-name">MV Distribution &amp; Busbar Routing</h3>
-          <p class="sheet-desc">Built a Python algorithm to solve the busbar string pairing problem across a data hall, validated N+1 redundancy topologies across a wide range of rack power ratings, and produced client-facing technical notes on switchgear selection and redundancy strategy.</p>
-          <ul class="sheet-notes">
-            <li data-n="1">Python algorithm generating and selecting string pairings; Excel redundancy model validating the N+1 topology and its failure cases across a wide range of rack ratings</li>
-            <li data-n="2">MV substation schematics produced in AutoCAD, with switchgear requirements determined per redundancy type</li>
-            <li data-n="3">Client-facing technical notes: AIS vs GIS switchgear (including SF6-free legislation, footprint, and cost) and block vs distributed redundancy, covering the utilisation advantage of distributing it</li>
-            <li data-n="4">Proposed combining adjacent row busbars to reduce the required busbar rating, presented to the client for feedback</li>
-          </ul>
-          <details class="cad-calc">
-            <summary>
-              <span class="cad-calc-label">Calc note</span>
-              <span class="cad-calc-title">Busbar pairing as a combinatorics problem</span>
-              <span class="cad-calc-arrow">&#9656;</span>
-            </summary>
-            <div class="cad-calc-body">
-              <p>Each row in a data hall is fed by a pair of overhead busbar strings, each loaded to 50% so that either can carry the full row if the other fails. The strings run down the sides of the hall, fed from a ring at one end or the other: A&ndash;D from the north end, E&ndash;H from the south. The question is which pair feeds which row, and where on the hall each pair lands.</p>
-              <p>Treat it as combinatorics. Take an illustrative hall: eight strings (A&ndash;H, four per side) feeding sixteen rows. The number of distinct ways to pair two strings is the binomial coefficient,</p>
-              <p class="cad-eqn" style="text-align:center;font-family:var(--mono);font-size:0.92rem;color:var(--cad-line);margin:0.6rem 0;">&#8312;C&#8322; = 8! / (2! &middot; 6!) = 28</p>
-              <p>so there are 28 unique pairs but only sixteen rows to fill. The job is to <em>select</em> sixteen of those pairs, not enumerate all of them. That is trivial to write out for eight strings, but the count explodes with string number, so in practice an algorithm generates the set and does the choosing. The selection balances two goals. First, even utilisation: across the sixteen rows each string should appear roughly the same number of times, or some strings sit idle while others carry the building. Second, side-mixing: a pair taken from a single ring loses both halves of that row&rsquo;s supposedly redundant supply when that ring drops, whereas a cross-hall pair survives the loss of an entire ring.</p>
-              <div class="cad-fig">
-  <svg viewBox="0 0 560 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrative data hall plan: four string busbars run down each side, A to D fed from the north end and E to H from the south. Each live row carries two busbars tapped from one string on each side, and each row shown uses a different pair. The rows before and after carry no busway.">
-    <text class="cf-mut" x="24" y="18">ILLUSTRATIVE DATA HALL &middot; PLAN</text>
-    <!-- side headers -->
-    <text class="cf-lab-b" x="88" y="38">A-SIDE &middot; strings A&ndash;D</text>
-    <text class="cf-mut" x="88" y="48">fed from N ring (top)</text>
-    <path d="M114,51 L122,51 L118,58 Z" fill="var(--cad-line)"/>
-    <text class="cf-lab-b" x="472" y="306" text-anchor="end">B-SIDE &middot; strings E&ndash;H</text>
-    <text class="cf-mut" x="472" y="316" text-anchor="end">fed from S ring (bottom)</text>
-    <path d="M438,289 L446,289 L442,282 Z" fill="var(--cad-line)"/>
-    <!-- hall footprint -->
-    <rect class="cf-hall" x="88" y="56" width="384" height="226" rx="2"/>
-    <!-- four A-side string busbars, north-fed -->
-    <line class="cf-str" x1="100" y1="60" x2="100" y2="278" stroke-width="1.6"/>
-    <line class="cf-str" x1="112" y1="60" x2="112" y2="278" stroke-width="1.6"/>
-    <line class="cf-str" x1="124" y1="60" x2="124" y2="278" stroke-width="1.6"/>
-    <line class="cf-str" x1="136" y1="60" x2="136" y2="278" stroke-width="1.6"/>
-    <text class="cf-mut" x="100" y="70" text-anchor="middle">A</text>
-    <text class="cf-mut" x="112" y="78" text-anchor="middle">B</text>
-    <text class="cf-mut" x="124" y="70" text-anchor="middle">C</text>
-    <text class="cf-mut" x="136" y="78" text-anchor="middle">D</text>
-    <!-- four B-side string busbars, south-fed -->
-    <line class="cf-str" x1="424" y1="60" x2="424" y2="278" stroke-width="1.6"/>
-    <line class="cf-str" x1="436" y1="60" x2="436" y2="278" stroke-width="1.6"/>
-    <line class="cf-str" x1="448" y1="60" x2="448" y2="278" stroke-width="1.6"/>
-    <line class="cf-str" x1="460" y1="60" x2="460" y2="278" stroke-width="1.6"/>
-    <text class="cf-mut" x="424" y="272" text-anchor="middle">E</text>
-    <text class="cf-mut" x="436" y="264" text-anchor="middle">F</text>
-    <text class="cf-mut" x="448" y="272" text-anchor="middle">G</text>
-    <text class="cf-mut" x="460" y="264" text-anchor="middle">H</text>
-    <!-- row before: footprint only -->
-    <rect class="cf-hall" x="164" y="86" width="232" height="18" rx="1.5" opacity="0.45"/>
-    <text class="cf-mut" x="280" y="98" text-anchor="middle" opacity="0.75">row before &middot; busways not shown</text>
-    <!-- R1: pair A + F -->
-    <line class="cf-str-s" x1="100" y1="120" x2="392" y2="120" stroke-width="1.5"/>
-    <rect x="97" y="117" width="6" height="6" fill="var(--cad-line)"/>
-    <line class="cf-str-s" x1="436" y1="125" x2="168" y2="125" stroke-width="1.5"/>
-    <rect x="433" y="122" width="6" height="6" fill="var(--cad-line)"/>
-    <rect class="cf-hall" x="164" y="129" width="232" height="18" rx="1.5"/>
-    <text class="cf-lab" x="170" y="142">R1 &middot; A + F</text>
-    <!-- R2: pair C + E -->
-    <line class="cf-str-s" x1="124" y1="164" x2="392" y2="164" stroke-width="1.5"/>
-    <rect x="121" y="161" width="6" height="6" fill="var(--cad-line)"/>
-    <line class="cf-str-s" x1="424" y1="169" x2="168" y2="169" stroke-width="1.5"/>
-    <rect x="421" y="166" width="6" height="6" fill="var(--cad-line)"/>
-    <rect class="cf-hall" x="164" y="173" width="232" height="18" rx="1.5"/>
-    <text class="cf-lab" x="170" y="186">R2 &middot; C + E</text>
-    <!-- R3: pair B + H -->
-    <line class="cf-str-s" x1="112" y1="208" x2="392" y2="208" stroke-width="1.5"/>
-    <rect x="109" y="205" width="6" height="6" fill="var(--cad-line)"/>
-    <line class="cf-str-s" x1="460" y1="213" x2="168" y2="213" stroke-width="1.5"/>
-    <rect x="457" y="210" width="6" height="6" fill="var(--cad-line)"/>
-    <rect class="cf-hall" x="164" y="217" width="232" height="18" rx="1.5"/>
-    <text class="cf-lab" x="170" y="230">R3 &middot; B + H</text>
-    <!-- row after: footprint only -->
-    <rect class="cf-hall" x="164" y="252" width="232" height="18" rx="1.5" opacity="0.45"/>
-    <text class="cf-mut" x="280" y="264" text-anchor="middle" opacity="0.75">row after &middot; busways not shown</text>
-    <!-- notes, right of hall, kept clear of the string lines -->
-    <text class="cf-mut" x="484" y="120">Two busbars</text>
-    <text class="cf-mut" x="484" y="131">per row, one</text>
-    <text class="cf-mut" x="484" y="142">string from</text>
-    <text class="cf-mut" x="484" y="153">each side.</text>
-    <text class="cf-mut" x="484" y="176">Each row taps</text>
-    <text class="cf-mut" x="484" y="187">a different</text>
-    <text class="cf-mut" x="484" y="198">pair.</text>
-  </svg>
-  <p class="cad-fig-cap">Fig. A &middot; illustrative hall (plan). Four string busbars run down each side: A&ndash;D fed from the north end, E&ndash;H from the south. Each live row carries two busbars, one tapped from a string on each side, and each row uses a different pair (here A+F, C+E, B+H). The rows before and after are drawn without busways to set the layout; the rest of the pair set feeds them.</p>
-</div>
-              <div class="cad-fig">
-  <svg viewBox="0 0 560 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The same hall with the ring mains drawn in. The north ring main loop at the top feeds strings A to D down the A-side; the south ring main at the bottom feeds E to H up the B-side. The north ring is shown lost. Row R1, tapping A and F, keeps its live south feed and survives. Row R2, tapping B and C from the same dead side, loses both busbars and fails.">
-    <text class="cf-mut" x="24" y="16">SAME HALL &middot; N RING MAIN LOST</text>
-    <!-- N ring main loop (lost) -->
-    <rect x="64" y="26" width="180" height="22" rx="11" fill="none" stroke="#B04A2A" stroke-width="1.8" stroke-dasharray="4 2"/>
-    <text class="cf-badt" x="154" y="40" text-anchor="middle">N RING MAIN &middot; LOST</text>
-    <!-- S ring main loop (live) -->
-    <rect x="316" y="284" width="180" height="22" rx="11" fill="none" stroke="var(--cad-line)" stroke-width="1.8"/>
-    <text class="cf-okt" x="406" y="298" text-anchor="middle">S RING MAIN &middot; LIVE</text>
-    <!-- hall footprint -->
-    <rect class="cf-hall" x="88" y="68" width="384" height="200" rx="2"/>
-    <!-- A-side strings A-D: fed from dead N ring, so dead -->
-    <line class="cf-bad" x1="100" y1="48" x2="100" y2="262" stroke-width="1.4"/>
-    <line class="cf-bad" x1="112" y1="48" x2="112" y2="262" stroke-width="1.4"/>
-    <line class="cf-bad" x1="124" y1="48" x2="124" y2="262" stroke-width="1.4"/>
-    <line class="cf-bad" x1="136" y1="48" x2="136" y2="262" stroke-width="1.4"/>
-    <text class="cf-badt" x="100" y="80" text-anchor="middle">A</text>
-    <text class="cf-badt" x="112" y="88" text-anchor="middle">B</text>
-    <text class="cf-badt" x="124" y="80" text-anchor="middle">C</text>
-    <text class="cf-badt" x="136" y="88" text-anchor="middle">D</text>
-    <!-- B-side strings E-H: fed from live S ring -->
-    <line class="cf-ok" x1="424" y1="74" x2="424" y2="284" stroke-width="1.4"/>
-    <line class="cf-ok" x1="436" y1="74" x2="436" y2="284" stroke-width="1.4"/>
-    <line class="cf-ok" x1="448" y1="74" x2="448" y2="284" stroke-width="1.4"/>
-    <line class="cf-ok" x1="460" y1="74" x2="460" y2="284" stroke-width="1.4"/>
-    <text class="cf-okt" x="424" y="258" text-anchor="middle">E</text>
-    <text class="cf-okt" x="436" y="250" text-anchor="middle">F</text>
-    <text class="cf-okt" x="448" y="258" text-anchor="middle">G</text>
-    <text class="cf-okt" x="460" y="250" text-anchor="middle">H</text>
-    <!-- R1: cross-hall pair A + F, F still live -->
-    <line class="cf-bad" x1="100" y1="112" x2="392" y2="112" stroke-width="1.4"/>
-    <rect x="97" y="109" width="6" height="6" fill="#B04A2A"/>
-    <line class="cf-ok" x1="436" y1="117" x2="168" y2="117" stroke-width="1.4"/>
-    <rect x="433" y="114" width="6" height="6" fill="var(--cad-line)"/>
-    <rect class="cf-hall" x="164" y="121" width="232" height="20" rx="1.5"/>
-    <text class="cf-lab" x="170" y="135">R1 &middot; A + F</text>
-    <text class="cf-okt" x="390" y="135" text-anchor="end">SURVIVES</text>
-    <!-- R2: same-side pair B + C, both dead -->
-    <line class="cf-bad" x1="112" y1="176" x2="392" y2="176" stroke-width="1.4"/>
-    <rect x="109" y="173" width="6" height="6" fill="#B04A2A"/>
-    <line class="cf-bad" x1="124" y1="181" x2="392" y2="181" stroke-width="1.4"/>
-    <rect x="121" y="178" width="6" height="6" fill="#B04A2A"/>
-    <rect class="cf-hall" x="164" y="185" width="232" height="20" rx="1.5"/>
-    <text class="cf-lab" x="170" y="199">R2 &middot; B + C</text>
-    <text class="cf-badt" x="390" y="199" text-anchor="end">FAILS</text>
-    <!-- outcome lines -->
-    <text class="cf-okt" x="24" y="280">R1 pairs across the hall:</text>
-    <text class="cf-okt" x="24" y="292">A dies with the ring, F keeps feeding it.</text>
-    <text class="cf-badt" x="24" y="308">R2 took both from one side: both die.</text>
-  </svg>
-  <p class="cad-fig-cap">Fig. B &middot; the same hall with the ring mains drawn in, north ring lost. R1 paired one string from each side, so the south feed keeps it alive; R2 paired two strings from the same side, so both of its busbars die with the one ring. Same busbar count, opposite outcome, which is why the selection prefers cross-hall pairs.</p>
-</div>
-              <p>Those two goals usually compete, and the weighting depends on what the client is optimising for. In this small example they barely compete at all: there are exactly sixteen cross-hall pairs for sixteen rows, so the balanced, fully cross-hall set is essentially forced. On a real hall, with more strings than rows or uneven sides, there are many balanced cross-hall sets, and the algorithm chooses among them, weighting in anything else that matters: keeping adjacent strings together, spreading load across switchgear, leaving room to grow.</p>
-              <p>Then comes a third lever the earlier sketch hides. The two rings sit at opposite ends of the hall: the north ring feeds A&ndash;D, the south ring feeds E&ndash;H. A north string only has to run as far south as its deepest row, and a south string only as far north as its shallowest. So once the pairs are fixed, where you place them on the rows decides how much busbar you install. Group a string&rsquo;s rows toward its own end and the run terminates early; scatter them and it runs most of the length of the hall. The two ends pull against each other, since every row needs one feed from each, so you cannot shorten both at once. The algorithm sums the total run for every placement and keeps the cheapest. The saving matters more than it might look, because each of these busbars is rated to carry its entire string, so it is physically large, expensive kit rather than cable. On the illustrative hall an optimised placement comes out roughly 10&ndash;15% shorter than an arbitrary one, and when a single hall runs to around 20&nbsp;MW and a campus can hold twenty or more of them, that percentage stops being academic.</p>
-              <div class="cad-fig">
-  <svg viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Two placements of the same eight cross-hall pairs on eight rows. North strings A to D hang from a top feed and run down to their deepest row; south strings E to H rise from a bottom feed to their shallowest. In the optimised placement each string's rows sit near its own end and the total run is 42 units. In the scattered placement every string runs deep and the total is 52 units.">
-    <!-- ================= LEFT PANEL: OPTIMISED ================= -->
-    <text class="cf-okt" x="46" y="16">OPTIMISED PLACEMENT</text>
-    <!-- row grid + numbers -->
-    <line x1="68" y1="62" x2="268" y2="62" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="68" y1="80" x2="268" y2="80" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="68" y1="98" x2="268" y2="98" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="68" y1="116" x2="268" y2="116" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="68" y1="134" x2="268" y2="134" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="68" y1="152" x2="268" y2="152" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="68" y1="170" x2="268" y2="170" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="68" y1="188" x2="268" y2="188" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <text class="cf-mut" x="62" y="65" text-anchor="end">1</text>
-    <text class="cf-mut" x="62" y="83" text-anchor="end">2</text>
-    <text class="cf-mut" x="62" y="101" text-anchor="end">3</text>
-    <text class="cf-mut" x="62" y="119" text-anchor="end">4</text>
-    <text class="cf-mut" x="62" y="137" text-anchor="end">5</text>
-    <text class="cf-mut" x="62" y="155" text-anchor="end">6</text>
-    <text class="cf-mut" x="62" y="173" text-anchor="end">7</text>
-    <text class="cf-mut" x="62" y="191" text-anchor="end">8</text>
-    <!-- feeds -->
-    <line x1="70" y1="44" x2="166" y2="44" stroke="var(--cad-muted)" stroke-width="1" stroke-dasharray="3 2"/>
-    <text class="cf-mut" x="70" y="30">N feed</text>
-    <line x1="172" y1="206" x2="268" y2="206" stroke="var(--cad-muted)" stroke-width="1" stroke-dasharray="3 2"/>
-    <text class="cf-mut" x="268" y="234" text-anchor="end">S feed</text>
-    <!-- north strings: run from top feed to deepest row -->
-    <text class="cf-okt" x="78" y="40" text-anchor="middle">A</text>
-    <line class="cf-ok" x1="78" y1="44" x2="78" y2="80" stroke-width="1.6"/>
-    <circle cx="78" cy="62" r="2.4" fill="var(--cad-line)"/><circle cx="78" cy="80" r="2.4" fill="var(--cad-line)"/>
-    <text class="cf-okt" x="104" y="40" text-anchor="middle">B</text>
-    <line class="cf-ok" x1="104" y1="44" x2="104" y2="116" stroke-width="1.6"/>
-    <circle cx="104" cy="98" r="2.4" fill="var(--cad-line)"/><circle cx="104" cy="116" r="2.4" fill="var(--cad-line)"/>
-    <text class="cf-okt" x="130" y="40" text-anchor="middle">C</text>
-    <line class="cf-ok" x1="130" y1="44" x2="130" y2="152" stroke-width="1.6"/>
-    <circle cx="130" cy="134" r="2.4" fill="var(--cad-line)"/><circle cx="130" cy="152" r="2.4" fill="var(--cad-line)"/>
-    <text class="cf-okt" x="156" y="40" text-anchor="middle">D</text>
-    <line class="cf-ok" x1="156" y1="44" x2="156" y2="188" stroke-width="1.6"/>
-    <circle cx="156" cy="170" r="2.4" fill="var(--cad-line)"/><circle cx="156" cy="188" r="2.4" fill="var(--cad-line)"/>
-    <!-- south strings: rise from bottom feed to shallowest row -->
-    <text class="cf-okt" x="182" y="220" text-anchor="middle">E</text>
-    <line class="cf-ok" x1="182" y1="206" x2="182" y2="62" stroke-width="1.6"/>
-    <circle cx="182" cy="62" r="2.4" fill="var(--cad-line)"/><circle cx="182" cy="98" r="2.4" fill="var(--cad-line)"/>
-    <text class="cf-okt" x="208" y="220" text-anchor="middle">F</text>
-    <line class="cf-ok" x1="208" y1="206" x2="208" y2="80" stroke-width="1.6"/>
-    <circle cx="208" cy="80" r="2.4" fill="var(--cad-line)"/><circle cx="208" cy="116" r="2.4" fill="var(--cad-line)"/>
-    <text class="cf-okt" x="234" y="220" text-anchor="middle">G</text>
-    <line class="cf-ok" x1="234" y1="206" x2="234" y2="134" stroke-width="1.6"/>
-    <circle cx="234" cy="134" r="2.4" fill="var(--cad-line)"/><circle cx="234" cy="170" r="2.4" fill="var(--cad-line)"/>
-    <text class="cf-okt" x="260" y="220" text-anchor="middle">H</text>
-    <line class="cf-ok" x1="260" y1="206" x2="260" y2="152" stroke-width="1.6"/>
-    <circle cx="260" cy="152" r="2.4" fill="var(--cad-line)"/><circle cx="260" cy="188" r="2.4" fill="var(--cad-line)"/>
-    <text class="cf-okt" x="168" y="256" text-anchor="middle">&Sigma; run = 42 units</text>
-    <!-- divider -->
-    <line x1="292" y1="14" x2="292" y2="262" stroke="var(--cad-line-soft)" stroke-width="1" stroke-dasharray="3 3"/>
-    <!-- ================= RIGHT PANEL: SCATTERED ================= -->
-    <text class="cf-badt" x="322" y="16">SCATTERED PLACEMENT</text>
-    <line x1="344" y1="62" x2="544" y2="62" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="344" y1="80" x2="544" y2="80" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="344" y1="98" x2="544" y2="98" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="344" y1="116" x2="544" y2="116" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="344" y1="134" x2="544" y2="134" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="344" y1="152" x2="544" y2="152" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="344" y1="170" x2="544" y2="170" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <line x1="344" y1="188" x2="544" y2="188" stroke="var(--cad-line-soft)" stroke-width="0.6"/>
-    <text class="cf-mut" x="338" y="65" text-anchor="end">1</text>
-    <text class="cf-mut" x="338" y="83" text-anchor="end">2</text>
-    <text class="cf-mut" x="338" y="101" text-anchor="end">3</text>
-    <text class="cf-mut" x="338" y="119" text-anchor="end">4</text>
-    <text class="cf-mut" x="338" y="137" text-anchor="end">5</text>
-    <text class="cf-mut" x="338" y="155" text-anchor="end">6</text>
-    <text class="cf-mut" x="338" y="173" text-anchor="end">7</text>
-    <text class="cf-mut" x="338" y="191" text-anchor="end">8</text>
-    <line x1="346" y1="44" x2="442" y2="44" stroke="var(--cad-muted)" stroke-width="1" stroke-dasharray="3 2"/>
-    <text class="cf-mut" x="346" y="30">N feed</text>
-    <line x1="448" y1="206" x2="544" y2="206" stroke="var(--cad-muted)" stroke-width="1" stroke-dasharray="3 2"/>
-    <text class="cf-mut" x="544" y="234" text-anchor="end">S feed</text>
-    <!-- north strings -->
-    <text class="cf-badt" x="354" y="40" text-anchor="middle">A</text>
-    <line class="cf-bad" x1="354" y1="44" x2="354" y2="134" stroke-width="1.6"/>
-    <circle cx="354" cy="62" r="2.4" fill="#B04A2A"/><circle cx="354" cy="134" r="2.4" fill="#B04A2A"/>
-    <text class="cf-badt" x="380" y="40" text-anchor="middle">B</text>
-    <line class="cf-bad" x1="380" y1="44" x2="380" y2="152" stroke-width="1.6"/>
-    <circle cx="380" cy="80" r="2.4" fill="#B04A2A"/><circle cx="380" cy="152" r="2.4" fill="#B04A2A"/>
-    <text class="cf-badt" x="406" y="40" text-anchor="middle">C</text>
-    <line class="cf-bad" x1="406" y1="44" x2="406" y2="170" stroke-width="1.6"/>
-    <circle cx="406" cy="98" r="2.4" fill="#B04A2A"/><circle cx="406" cy="170" r="2.4" fill="#B04A2A"/>
-    <text class="cf-badt" x="432" y="40" text-anchor="middle">D</text>
-    <line class="cf-bad" x1="432" y1="44" x2="432" y2="188" stroke-width="1.6"/>
-    <circle cx="432" cy="116" r="2.4" fill="#B04A2A"/><circle cx="432" cy="188" r="2.4" fill="#B04A2A"/>
-    <!-- south strings -->
-    <text class="cf-badt" x="464" y="220" text-anchor="middle">E</text>
-    <line class="cf-bad" x1="464" y1="206" x2="464" y2="62" stroke-width="1.6"/>
-    <circle cx="464" cy="62" r="2.4" fill="#B04A2A"/><circle cx="464" cy="152" r="2.4" fill="#B04A2A"/>
-    <text class="cf-badt" x="490" y="220" text-anchor="middle">F</text>
-    <line class="cf-bad" x1="490" y1="206" x2="490" y2="80" stroke-width="1.6"/>
-    <circle cx="490" cy="80" r="2.4" fill="#B04A2A"/><circle cx="490" cy="134" r="2.4" fill="#B04A2A"/>
-    <text class="cf-badt" x="516" y="220" text-anchor="middle">G</text>
-    <line class="cf-bad" x1="516" y1="206" x2="516" y2="98" stroke-width="1.6"/>
-    <circle cx="516" cy="98" r="2.4" fill="#B04A2A"/><circle cx="516" cy="188" r="2.4" fill="#B04A2A"/>
-    <text class="cf-badt" x="542" y="220" text-anchor="middle">H</text>
-    <line class="cf-bad" x1="542" y1="206" x2="542" y2="116" stroke-width="1.6"/>
-    <circle cx="542" cy="116" r="2.4" fill="#B04A2A"/><circle cx="542" cy="170" r="2.4" fill="#B04A2A"/>
-    <text class="cf-badt" x="444" y="256" text-anchor="middle">&Sigma; run = 52 units</text>
-  </svg>
-  <p class="cad-fig-cap">Fig. C &middot; the same eight cross-hall pairs (A&ndash;E, A&ndash;F, B&ndash;E, B&ndash;F, C&ndash;G, C&ndash;H, D&ndash;G, D&ndash;H) placed on eight rows two ways; dots mark the rows each string feeds. North strings run from the top feed down to their deepest row, south strings rise from the bottom to their shallowest. Left, the optimised placement keeps each string near its own end: 42 units of busbar. Right, the scattered placement makes every string run deep: 52 units, about a fifth more, for the identical pairs and loads.</p>
-</div>
-              <p>What I built generates the pair set for any string count, makes the balanced cross-hall selection, then places it to minimise total run. The practical value was speed under change. When the string count or rack rating moved, and on a live job it moves, the whole assignment regenerated in seconds rather than being re-derived by hand.</p>
-              <p class="cad-calc-note">NOTE &mdash; numbers above are illustrative. Actual string counts, ratings, topology and client are withheld under NDA.</p>
-            </div>
-          </details>
-        </div>
-        <dl class="titleblock">
-          <div class="tb-row"><dt>Project</dt><dd>Large colocation</dd></div>
-          <div class="tb-row"><dt>Region</dt><dd>Europe</dd></div>
-          <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
-          <div class="tb-row"><dt>Discipline</dt><dd>Busbar routing &middot; MV schematics</dd></div>
-        </dl>
-      </div>
-      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
-    </article>
-
-    <!-- DRG-004 -->
-    <article class="sheet fade" data-tags="light">
-      <span class="tick tl">DRG-004</span><span class="tick tr">SHT 4 OF 5</span>
-      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
-      <div class="sheet-inner">
-        <div>
-          <h3 class="sheet-name">Exterior Lighting &amp; Environmental Assessment</h3>
-          <p class="sheet-desc">Recreated the existing site lighting from as-built drawings in DIALux, redesigned around a new gantry structure with supplier-validated luminaires, and independently authored the obtrusive lighting report submitted within a live council planning application.</p>
-          <ul class="sheet-notes">
-            <li data-n="1">Modelled levels marginally exceeded the limit at a sensitive ecological boundary, so the compliance case was argued through documented mitigation the model could not capture: foliage screening and topographical drop-off</li>
-            <li data-n="2">Classified receptors and thresholds by ILP GN01 environmental zone, assessing sky glow, light intrusion, and luminaire intensity across the site</li>
-            <li data-n="3">Restricted gantry lighting under normal operation, then modelled a worst-case emergency scenario localised to a single point and confirmed it fell within the limits</li>
-            <li data-n="4">Authored the report independently for a non-technical council audience; submitted to the local authority as part of a live planning application</li>
-          </ul>
-        </div>
-        <dl class="titleblock">
-          <div class="tb-row"><dt>Project</dt><dd>Medium colocation</dd></div>
-          <div class="tb-row"><dt>Region</dt><dd>England</dd></div>
-          <div class="tb-row"><dt>Stage</dt><dd>RIBA 3</dd></div>
-          <div class="tb-row"><dt>Discipline</dt><dd>Lighting &middot; planning</dd></div>
-        </dl>
-      </div>
-      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
-    </article>
-
-    <!-- DRG-005 -->
-    <article class="sheet fade" data-tags="lv power">
-      <span class="tick tl">DRG-005</span><span class="tick tr">SHT 5 OF 5</span>
-      <div class="sheet-grid-letters"><span>A</span><span>B</span><span>C</span></div>
-      <div class="sheet-inner">
-        <div>
-          <h3 class="sheet-name">Office LV Design &amp; Masterplan Power Zoning</h3>
-          <p class="sheet-desc">Took full ownership of the office and ancillary electrical deliverables: a standalone system with its own HV connection covering the office building, guardhouse, security equipment, and external areas, alongside masterplan-level LV distribution and power zoning for the wider campus.</p>
-          <ul class="sheet-notes">
-            <li data-n="1">Built an automated Excel load assessment matching load categories to area type across internal and external areas, then sized equipment and checked HV cable adequacy in Amtech from its outputs</li>
-            <li data-n="2">Produced the full deliverable set: SLD, DB zoning, riser diagram, containment, equipment layouts, lighting lux and control zones, and fire alarm zones</li>
-            <li data-n="3">Investigated in-country life safety legislation with the local fire team, and designed the SLD around it: a life safety generator, dedicated life safety DB, and dual-fed UPS boards for security and controls</li>
-            <li data-n="4">Masterplan power zoning, distribution strategy, and feeder pillar diagrams, using Amtech to prove the secondary exit sat too far from the office hub and needed its own feed</li>
-          </ul>
-        </div>
-        <dl class="titleblock">
-          <div class="tb-row"><dt>Project</dt><dd>Large data centre</dd></div>
-          <div class="tb-row"><dt>Region</dt><dd>Confidential</dd></div>
-          <div class="tb-row"><dt>Stage</dt><dd>RIBA 1&ndash;2</dd></div>
-          <div class="tb-row"><dt>Discipline</dt><dd>LV design &middot; load assessment</dd></div>
-        </dl>
-      </div>
-      <div class="sheet-strip"><span>RED Engineering Design</span><span>S. Jarrett &middot; Electrical</span></div>
-    </article>
-
-  </div>
-
-  <p class="cad-note fade">GENERAL NOTES &mdash; 1. All project work shown is described at the level approved for public reference; client names, locations, capacities and drawings are withheld under NDA. 2. Illustrative recreations of representative schematics and tools, built with fictional data, are available on request. 3. Tools used across these projects: AutoCAD &middot; Excel modelling &middot; Python &middot; DIALux &middot; Amtech &middot; Revit.</p>
 </section>
 
-<div class="ch-blend blend-cad-sx">
-  <span class="ch-blend-num">Chapter 02 &rarr; 03</span>
-  <span class="ch-blend-line">Out of the drawing office, into the sun.</span>
-</div>
-
-<!-- ============================================================
-     CH.03 — SOVENTIX · sun & sand
-     ============================================================ -->
-<section class="sx" id="soventix">
-  <div class="sx-sun" aria-hidden="true"></div>
-
-  <div class="sx-head fade">
-    <p class="sx-chapter">Chapter 03 &middot; 2026&ndash; &middot; Soventix</p>
-    <h2 class="sx-title">Solar design, <em>built for Africa</em></h2>
-    <p class="sx-lede">The chapter the first two were building towards: designing solar PV systems for projects across Africa with Soventix: renewables training, data centre discipline, applied where the energy transition matters most. This section is a working log: entries are added as projects progress, within what each client allows.</p>
-    <div class="sx-meta">
-      <div class="sx-meta-item">
-        <div class="sx-meta-label">Role</div>
-        <!-- EDIT: confirm exact title -->
-        <div class="sx-meta-value">PV Design Engineer</div>
-      </div>
-      <div class="sx-meta-item">
-        <div class="sx-meta-label">Focus</div>
-        <div class="sx-meta-value">Solar PV &middot; system design</div>
-      </div>
-      <div class="sx-meta-item">
-        <div class="sx-meta-label">Region</div>
-        <div class="sx-meta-value">Africa</div>
-      </div>
+<!-- YEAR 3 -->
+<section class="year-section fade" id="year3">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 3</em> &mdash; Specialisation</h2>
+    <span class="year-badge">5 modules &middot; 120 credits &middot; 40% of degree</span>
+  </div>
+  <p class="year-intro">Specialising in energy systems, power electronics, and advanced dynamics. Includes a substantial 40-credit individual research project: a wind-solar mini-grid feasibility study awarded 83%.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Sensors, Signals and Control</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Control</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Power Electronics, Machines &amp; Drive Technologies</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Power</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Behaviour of Dynamic Systems</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Dynamics</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Fluid Mechanics and Heat Transfer</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Mechanical</span>
+    </div>
+    <div class="module-card highlight">
+      <div class="module-highlight-label">Key project</div>
+      <div class="module-name">Individual Research Project</div>
+      <div class="module-credits">40 credits</div>
+      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Wind-solar mini-grid feasibility study, awarded 83%. The full worked case study is on the engineering page.</p>
     </div>
   </div>
+</section>
 
-  <div class="sx-log fade">
-    <div class="sx-log-title">
-      <h3>Field log</h3>
-      <span>most recent first</span>
+<!-- YEAR 4 -->
+<section class="year-section fade" id="year4">
+  <div class="year-header">
+    <h2 class="year-label"><em>Year 4</em> &mdash; Energy &amp; Renewables</h2>
+    <span class="year-badge">7 modules &middot; 120 credits &middot; 50% of degree</span>
+  </div>
+  <p class="year-intro">Final year focused on energy systems, sustainability and enterprise. Includes the 40-credit Group Industrial Project: co-designing and building, with a team of four, a solar DC microgrid for a remote community in the Brazilian Amazon.</p>
+  <div class="module-grid">
+    <div class="module-card">
+      <div class="module-name">Innovation, Entrepreneurship and Enterprise</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Business</span>
     </div>
-
-    <!-- TEMPLATE — copy this block to add a new entry:
-    <article class="sx-entry">
-      <div class="sx-date">MMM YYYY<small>Country / project type</small></div>
-      <div>
-        <h4 class="sx-entry-title">Entry title</h4>
-        <p class="sx-entry-body">What happened, what you designed, what you learned. Keep client specifics within what's been approved.</p>
-        <div class="sx-tags"><span class="sx-tag">PV design</span><span class="sx-tag">Tag two</span></div>
-      </div>
-    </article>
-    -->
-
-    <article class="sx-entry">
-      <div class="sx-date">Jul 2026<small>The beginning</small></div>
-      <div>
-        <h4 class="sx-entry-title">Joined Soventix</h4>
-        <p class="sx-entry-body">Starting as a solar PV design engineer working on projects across Africa. First assignments to follow: design work, site context, and lessons learned will be logged here as each project allows.</p>
-        <div class="sx-tags"><span class="sx-tag">Solar PV</span><span class="sx-tag">New chapter</span></div>
-      </div>
-    </article>
-
+    <div class="module-card">
+      <div class="module-name">Infrastructure Systems Management</div>
+      <div class="module-credits">20 credits</div>
+      <span class="module-tag">Systems</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Low Carbon Energy Systems</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Energy</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Energy Management</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Energy</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Bio-Inspired Artificial Intelligence Business Proposal</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Computing</span>
+    </div>
+    <div class="module-card">
+      <div class="module-name">Transport and Mobility Modelling</div>
+      <div class="module-credits">10 credits</div>
+      <span class="module-tag">Systems</span>
+    </div>
+    <div class="module-card highlight">
+      <div class="module-highlight-label">Key project</div>
+      <div class="module-name">Group Industrial Project &mdash; Solar DC Microgrid</div>
+      <div class="module-credits">40 credits</div>
+      <p style="font-size:0.8rem;color:var(--eng-ink-soft);font-weight:300;margin-top:0.5rem;line-height:1.6;">Co-designed and built, in a team of four, a solar DC microgrid for a remote community in the Brazilian Amazon. Full lifecycle from concept to validated hardware; I owned the battery design and analysis.</p>
+    </div>
   </div>
+</section>
 
-  <div class="sx-coming fade">
-    <span class="sx-coming-dot" aria-hidden="true"></span>
-    <p>First project entries are on their way. In the meantime, the university reports above show the design approach this work builds on.</p>
-  </div>
+<section class="next-chapter fade">
+  <p class="next-eyebrow">End of appendix</p>
+  <h2 class="next-title">Continue to <em>Chapter 02</em> &mdash; Data Centre Design</h2>
+  <a href="engineering.html#datacentres" class="next-btn">Back to the engineering page &rarr;</a>
 </section>
 
 <footer>
-  <span class="footer-text">Seth Jarrett &mdash; Engineering</span>
-  <a href="life.html" class="footer-link">Life &amp; Projects &#8594;</a>
+  <span class="footer-text">Seth Jarrett &mdash; Education</span>
+  <a href="engineering.html" class="footer-link">&#8592; Engineering</a>
 </footer>
 
-<!-- Request modal -->
-<div class="modal-overlay" id="requestModal" onclick="handleOverlayClick(event)">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
-    <div id="modalForm">
-      <div class="modal-title" id="modalTitle">Request project download</div>
-      <p class="modal-sub" id="modalSubtext">Fill in your details below. I review all requests manually and will get back to you within a couple of days.</p>
-      <div class="modal-field">
-        <label for="req-name">Name</label>
-        <input type="text" id="req-name" placeholder="Your name" autocomplete="name">
-      </div>
-      <div class="modal-field">
-        <label for="req-email">Email</label>
-        <input type="email" id="req-email" placeholder="your@email.com" autocomplete="email">
-      </div>
-      <div class="modal-field">
-        <label for="req-reason">Reason for request</label>
-        <select id="req-reason">
-          <option value="">Select one...</option>
-          <option value="recruiter">Recruiter / hiring</option>
-          <option value="academic">Academic / research</option>
-          <option value="professional">Professional interest</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-      <div class="modal-field">
-        <label for="req-note">Additional notes (optional)</label>
-        <textarea id="req-note" placeholder="Anything else useful for context"></textarea>
-      </div>
-      <div class="modal-actions">
-        <button class="btn-primary" id="sendBtn" onclick="submitRequest()">Send request</button>
-        <button class="btn-ghost" onclick="closeModal()">Cancel</button>
-      </div>
-      <p class="modal-error" id="modalError"></p>
-    </div>
-    <div class="modal-success" id="modalSuccess">
-      <div class="modal-success-icon">&#10003;</div>
-      <p>Request received. I'll review it and be in touch shortly.</p>
-    </div>
-  </div>
-</div>
-
 <script>
-/* ---------- scroll fades ---------- */
+// Scrollspy: highlight the year tab for the section in view
+const tabs = document.querySelectorAll('.year-tab');
+const panels = document.querySelectorAll('.year-section');
+
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      tabs.forEach(t => t.classList.toggle('active', t.dataset.year === e.target.id.replace('year','')));
+    }
+  });
+}, { rootMargin: '-40% 0px -55% 0px' });
+panels.forEach(p => spy.observe(p));
+
+// Fade in modules as they scroll into view
 const obs = new IntersectionObserver(entries => entries.forEach((e, i) => {
   if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 60); obs.unobserve(e.target); }
 }), { threshold: 0.06 });
 document.querySelectorAll('.fade').forEach(el => obs.observe(el));
-
-/* ---------- chapter scrollspy ---------- */
-const chTabs = { uni: document.querySelector('[data-ch="uni"]'), red: document.querySelector('[data-ch="red"]'), sx: document.querySelector('[data-ch="sx"]') };
-const sections = [['uni', document.getElementById('university')], ['red', document.getElementById('datacentres')], ['sx', document.getElementById('soventix')]];
-const spy = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const key = sections.find(([, el]) => el === e.target)[0];
-      Object.values(chTabs).forEach(t => t.classList.remove('current'));
-      chTabs[key].classList.add('current');
-    }
-  });
-}, { rootMargin: '-35% 0px -55% 0px' });
-sections.forEach(([, el]) => spy.observe(el));
-
-/* ---------- CAD discipline filter ---------- */
-const chips = document.querySelectorAll('.cad-chip');
-const sheets = document.querySelectorAll('.sheet');
-chips.forEach(chip => chip.addEventListener('click', () => {
-  chips.forEach(c => c.classList.remove('on'));
-  chip.classList.add('on');
-  const f = chip.dataset.f;
-  sheets.forEach(s => {
-    const match = f === 'all' || s.dataset.tags.split(' ').includes(f);
-    s.classList.toggle('dim', !match);
-  });
-}));
-
-/* ---------- request modal ----------
-   SETUP (two minutes):
-   1. Create a free form at https://formspree.io and paste its endpoint
-      into FORM_ENDPOINT below (looks like https://formspree.io/f/abcdwxyz).
-   2. Put your email in FALLBACK_EMAIL. If FORM_ENDPOINT is left as-is,
-      the form falls back to opening the visitor's mail client instead.   */
-const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-const FALLBACK_EMAIL = 'you@example.com';
-
-let currentProject = '';
-
-function openModal(projectName) {
-  currentProject = projectName;
-  document.getElementById('modalSubtext').textContent =
-    'Requesting: ' + projectName.replace(/&mdash;|—/g, '-') + '. Fill in your details below and I\'ll review and respond within a couple of days.';
-  document.getElementById('modalForm').style.display = 'block';
-  document.getElementById('modalSuccess').classList.remove('show');
-  document.getElementById('modalError').classList.remove('show');
-  document.getElementById('requestModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('req-name').focus();
-}
-
-function closeModal() {
-  document.getElementById('requestModal').classList.remove('open');
-  document.body.style.overflow = '';
-  setTimeout(() => {
-    ['req-name', 'req-email', 'req-reason', 'req-note'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('modalForm').style.display = 'block';
-    document.getElementById('modalSuccess').classList.remove('show');
-    document.getElementById('modalError').classList.remove('show');
-  }, 300);
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('requestModal')) closeModal();
-}
-
-async function submitRequest() {
-  const name = document.getElementById('req-name').value.trim();
-  const email = document.getElementById('req-email').value.trim();
-  const reason = document.getElementById('req-reason').value;
-  const note = document.getElementById('req-note').value.trim();
-  const errEl = document.getElementById('modalError');
-  errEl.classList.remove('show');
-
-  if (!name || !email || !reason) {
-    errEl.textContent = 'Please fill in your name, email, and reason for the request.';
-    errEl.classList.add('show');
-    return;
-  }
-
-  const payload = { name, email, reason, project: currentProject, notes: note };
-
-  // Fallback to mailto if Formspree hasn't been configured yet
-  if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) {
-    const subject = encodeURIComponent('Project download request: ' + currentProject);
-    const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nProject: ' + currentProject + '\nReason: ' + reason + (note ? '\nNotes: ' + note : ''));
-    window.location.href = 'mailto:' + FALLBACK_EMAIL + '?subject=' + subject + '&body=' + body;
-    showSuccess();
-    return;
-  }
-
-  const btn = document.getElementById('sendBtn');
-  btn.disabled = true;
-  try {
-    const res = await fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error('Request failed');
-    showSuccess();
-  } catch (err) {
-    errEl.textContent = 'The request could not be sent. Email me directly at ' + FALLBACK_EMAIL + ' instead.';
-    errEl.classList.add('show');
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-function showSuccess() {
-  document.getElementById('modalForm').style.display = 'none';
-  document.getElementById('modalSuccess').classList.add('show');
-}
-
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 </script>
 </body>
 </html>
