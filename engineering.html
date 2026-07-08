@@ -130,6 +130,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .tb-al-subj{font-family:var(--serif);font-size:0.92rem;color:var(--eng-ink);}
 .tb-al-grade{font-family:var(--mono);font-size:1.35rem;font-weight:500;color:var(--eng-blue);margin-top:0.2rem;}
 
+/* interactive figure controls (§1.1 hub-height explorer) */
+.tb-widget-controls{display:flex;flex-wrap:wrap;gap:1rem 2.2rem;margin:1.2rem 0 0.2rem;padding:0.9rem 1rem;border:1px solid var(--eng-rule);background:var(--eng-bg);}
+.tb-widget-ctl{flex:1 1 190px;display:flex;flex-direction:column;gap:0.3rem;}
+.tb-widget-ctl label{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);}
+.tb-widget-ctl label .whx-val{font-family:var(--serif);font-style:italic;font-size:0.85rem;letter-spacing:0;text-transform:none;color:var(--eng-blue);}
+.tb-widget-ctl input[type=range]{width:100%;accent-color:var(--eng-blue);}
+.tb-widget-ctl select{font-family:var(--sans);font-size:0.8rem;color:var(--eng-ink-soft);background:var(--eng-bg);border:1px solid var(--eng-rule);padding:0.35rem 0.5rem;}
+.tb-widget-reads{display:flex;flex-wrap:wrap;border:1px solid var(--eng-rule);background:var(--eng-bg);margin:1.2rem 0 0;}
+.tb-widget-read{flex:1 1 130px;padding:0.7rem 0.9rem;border-right:1px solid var(--eng-rule);text-align:center;}
+.tb-widget-read:last-child{border-right:none;}
+.tb-widget-read-num{font-family:var(--serif);font-size:1.15rem;color:var(--eng-blue);line-height:1.2;}
+.tb-widget-read-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--eng-ink-muted);margin-top:0.15rem;}
+
 /* ============================================================
    CH.02 — RED · CAD drawing office
    ============================================================ */
@@ -249,6 +262,37 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sx-coming-dot{width:10px;height:10px;border-radius:50%;background:var(--sx-sun);flex-shrink:0;animation:sxpulse 2.4s ease-in-out infinite;}
 @keyframes sxpulse{0%,100%{box-shadow:0 0 0 0 rgba(232,160,32,0.45);}50%{box-shadow:0 0 0 9px rgba(232,160,32,0);}}
 .sx-coming p{font-size:0.85rem;color:var(--sx-soft);font-weight:300;line-height:1.7;}
+
+/* Soventix interactive: module IV and PV explorer */
+.sx-case{border:1px solid var(--sx-rule);background:rgba(243,232,200,0.45);margin-top:1rem;}
+.sx-case summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:0.8rem;padding:0.85rem 1.2rem;user-select:none;}
+.sx-case summary::-webkit-details-marker{display:none;}
+.sx-case-label{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--sx-orange);border:1px solid var(--sx-rule);padding:0.2rem 0.6rem;background:var(--sx-bg);}
+.sx-case-title{font-size:0.92rem;font-weight:500;color:var(--sx-ink);}
+.sx-case-arrow{margin-left:auto;color:var(--sx-orange);transition:transform 0.25s;font-size:0.8rem;}
+.sx-case[open] .sx-case-arrow{transform:rotate(90deg);}
+.sx-case-body{padding:0.4rem 1.2rem 1.4rem;border-top:1px solid var(--sx-rule);}
+.sx-case-body p{font-size:0.86rem;color:var(--sx-soft);font-weight:300;line-height:1.8;margin-top:1rem;}
+.sx-mod-line{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.04em;color:var(--sx-muted);margin-top:0.9rem;}
+.sx-widget-controls{display:flex;flex-wrap:wrap;gap:1rem 2.2rem;margin:1rem 0 0.2rem;padding:0.9rem 1rem;border:1px solid var(--sx-rule);background:var(--sx-bg);}
+.sx-widget-ctl{flex:1 1 200px;display:flex;flex-direction:column;gap:0.3rem;}
+.sx-widget-ctl label{font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--sx-muted);}
+.sx-widget-ctl label .pvw-val{font-family:var(--mono);font-size:0.8rem;letter-spacing:0;text-transform:none;color:var(--sx-orange);}
+.sx-widget-ctl input[type=range]{width:100%;accent-color:var(--sx-orange);}
+.sx-plot{border:1px solid var(--sx-rule);background:var(--sx-bg);padding:0.9rem 0.9rem 0.7rem;margin-top:1.1rem;}
+.sx-plot svg{display:block;width:100%;height:auto;}
+.sx-plot-cap{font-size:0.76rem;font-style:italic;color:var(--sx-muted);line-height:1.5;margin-top:0.6rem;}
+.sx-plot-cap b{font-style:normal;font-weight:500;color:var(--sx-soft);}
+.sxp-axis{stroke:var(--sx-soft);stroke-width:1;}
+.sxp-grid{stroke:rgba(200,112,16,0.12);stroke-width:1;}
+.sxp-tick{font-family:var(--mono);font-size:8px;fill:var(--sx-muted);}
+.sxp-axlabel{font-family:var(--sans);font-size:9px;fill:var(--sx-soft);font-weight:500;}
+.sxp-legend{font-family:var(--sans);font-size:9px;fill:var(--sx-soft);}
+.sx-widget-reads{display:flex;flex-wrap:wrap;border:1px solid var(--sx-rule);background:var(--sx-bg);margin:1.1rem 0 0;}
+.sx-widget-read{flex:1 1 110px;padding:0.7rem 0.8rem;border-right:1px solid var(--sx-rule);text-align:center;}
+.sx-widget-read:last-child{border-right:none;}
+.sx-widget-read-num{font-family:var(--mono);font-size:1.05rem;color:var(--sx-orange);line-height:1.2;}
+.sx-widget-read-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--sx-muted);margin-top:0.15rem;}
 
 /* ---------- footer ---------- */
 footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;justify-content:space-between;background:var(--eng-bg);}
@@ -458,6 +502,85 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
             <figcaption class="tb-plot-cap"><b>Fig. 1.1b &middot; Wind-shear interpolation.</b> V&nbsp;=&nbsp;V&#8321;&#8320;(H/10)<sup>1/&alpha;</sup> for three terrains, all pinned to the same 4.5&#8201;m/s reading at the 10&#8201;m station. Following the farm&rsquo;s profile (&alpha;&nbsp;=&nbsp;4) down to the 6&#8201;m turbine gives 3.96&#8201;m/s.</figcaption>
           </figure>
         </div>
+      </div>
+    </details>
+    <details class="tb-case" id="whxCase">
+      <summary>
+        <span class="tb-case-label">Interactive figure</span>
+        <span class="tb-case-title">Raise the tower: hub height against the model turbine curve</span>
+        <span class="tb-case-arrow">&#9656;</span>
+      </summary>
+      <div class="tb-case-body">
+        <p>The report left one obvious question on the table: the wind pump stands at 6&nbsp;m, below even the weather station&rsquo;s mast, in the worst of the shear. This figure makes the tower height a free variable. The shear model and terrain exponents are the ones from Fig.&nbsp;1.1b, and the power curve is the model turbine characteristic digitised from the report, interpolated exactly as the analysis did.</p>
+        <div class="tb-widget-controls">
+          <div class="tb-widget-ctl">
+            <label for="whxH">Hub height &middot; <span class="whx-val" id="whxHval">6 m</span></label>
+            <input type="range" id="whxH" min="4" max="40" step="1" value="6">
+          </div>
+          <div class="tb-widget-ctl">
+            <label for="whxU">Mean at the 10 m station &middot; <span class="whx-val" id="whxUval">4.5 m/s</span></label>
+            <input type="range" id="whxU" min="3" max="8" step="0.1" value="4.5">
+          </div>
+          <div class="tb-widget-ctl">
+            <label for="whxA">Terrain</label>
+            <select id="whxA">
+              <option value="7">Open country (&alpha; = 7)</option>
+              <option value="4" selected>The farm (&alpha; = 4)</option>
+              <option value="2.5">Obstructed (&alpha; = 2.5)</option>
+            </select>
+          </div>
+        </div>
+        <div class="tb-figrow">
+          <figure class="tb-plot">
+            <svg id="whxSvgA" viewBox="0 0 470 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wind speed against height with the wind pump drawn at the chosen hub height">
+  <line class="plot-grid" x1="56" y1="180" x2="356" y2="180"/><line class="plot-grid" x1="56" y1="130" x2="356" y2="130"/><line class="plot-grid" x1="56" y1="80" x2="356" y2="80"/><line class="plot-grid" x1="56" y1="30" x2="356" y2="30"/>
+  <line class="plot-axis" x1="56" y1="230" x2="356" y2="230"/>
+  <line class="plot-axis" x1="56" y1="20" x2="56" y2="230"/>
+  <path id="whxProfile" d="" fill="none" stroke="var(--eng-blue)" stroke-width="2.6"/>
+  <g id="whxPump"></g>
+  <line id="whxGuideH" x1="0" y1="0" x2="0" y2="0" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
+  <line id="whxGuideV" x1="0" y1="0" x2="0" y2="0" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
+  <circle id="whxDot" cx="0" cy="0" r="3.6" fill="var(--eng-blue)"/>
+  <text id="whxAnnA" class="plot-tick" x="0" y="0" fill="var(--eng-blue)"></text>
+  <text class="plot-tick" x="56" y="242" text-anchor="middle">0</text><text class="plot-tick" x="98.9" y="242" text-anchor="middle">2</text><text class="plot-tick" x="141.7" y="242" text-anchor="middle">4</text><text class="plot-tick" x="184.6" y="242" text-anchor="middle">6</text><text class="plot-tick" x="227.4" y="242" text-anchor="middle">8</text><text class="plot-tick" x="270.3" y="242" text-anchor="middle">10</text><text class="plot-tick" x="313.1" y="242" text-anchor="middle">12</text><text class="plot-tick" x="356" y="242" text-anchor="middle">14</text>
+  <text class="plot-tick" x="50" y="233" text-anchor="end">0</text><text class="plot-tick" x="50" y="183" text-anchor="end">10</text><text class="plot-tick" x="50" y="133" text-anchor="end">20</text><text class="plot-tick" x="50" y="83" text-anchor="end">30</text><text class="plot-tick" x="50" y="33" text-anchor="end">40</text>
+  <text class="plot-axlabel" x="206" y="260" text-anchor="middle">Mean wind speed (m/s)</text>
+  <text class="plot-axlabel" x="16" y="125" text-anchor="middle" transform="rotate(-90 16 125)">Height above ground (m)</text>
+</svg>
+            <figcaption class="tb-plot-cap"><b>Fig. 1.1c &middot; Raising the tower.</b> The same power law as Fig.&nbsp;1.1b, V&nbsp;=&nbsp;V&#8321;&#8320;(H/10)<sup>1/&alpha;</sup>, with the hub height now adjustable. The wind pump is drawn at the chosen height; the marker reads the mean speed its rotor would see.</figcaption>
+          </figure>
+          <figure class="tb-plot">
+            <svg id="whxSvgB" viewBox="0 0 470 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Model turbine power curve with operating point and wind speed distribution at hub height">
+  <line class="plot-grid" x1="56" y1="160" x2="356" y2="160"/><line class="plot-grid" x1="56" y1="90" x2="356" y2="90"/><line class="plot-grid" x1="56" y1="20" x2="356" y2="20"/>
+  <line class="plot-axis" x1="56" y1="230" x2="356" y2="230"/>
+  <line class="plot-axis" x1="56" y1="20" x2="56" y2="230"/>
+  <path id="whxPdf" d="" fill="var(--eng-blue)" opacity="0.07"/>
+  <path id="whxPdfLine" d="" fill="none" stroke="var(--eng-blue-light)" stroke-width="1.2" opacity="0.6"/>
+  <path id="whxPcurve" d="" fill="none" stroke="var(--eng-blue)" stroke-width="2.6"/>
+  <line id="whxGuidePv" x1="0" y1="0" x2="0" y2="0" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
+  <line id="whxGuidePh" x1="0" y1="0" x2="0" y2="0" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
+  <circle id="whxDotP" cx="0" cy="0" r="3.6" fill="var(--eng-blue)"/>
+  <text id="whxAnnP" class="plot-tick" x="0" y="0" fill="var(--eng-blue)"></text>
+  <text class="plot-tick" x="56" y="242" text-anchor="middle">0</text><text class="plot-tick" x="106" y="242" text-anchor="middle">4</text><text class="plot-tick" x="156" y="242" text-anchor="middle">8</text><text class="plot-tick" x="206" y="242" text-anchor="middle">12</text><text class="plot-tick" x="256" y="242" text-anchor="middle">16</text><text class="plot-tick" x="306" y="242" text-anchor="middle">20</text><text class="plot-tick" x="356" y="242" text-anchor="middle">24</text>
+  <text class="plot-tick" x="50" y="233" text-anchor="end">0</text><text class="plot-tick" x="50" y="163" text-anchor="end">250</text><text class="plot-tick" x="50" y="93" text-anchor="end">500</text><text class="plot-tick" x="50" y="23" text-anchor="end">750</text>
+  <text class="plot-axlabel" x="206" y="260" text-anchor="middle">Wind speed (m/s)</text>
+  <text class="plot-axlabel" x="16" y="125" text-anchor="middle" transform="rotate(-90 16 125)">Power output (W)</text>
+  <line x1="66" y1="34" x2="84" y2="34" stroke="var(--eng-blue)" stroke-width="2.6"/>
+  <text class="plot-legend" x="89" y="37">Model turbine curve</text>
+  <rect x="66" y="43" width="18" height="8" fill="var(--eng-blue)" opacity="0.12"/>
+  <text class="plot-legend" x="89" y="51">Rayleigh speeds at hub</text>
+</svg>
+            <figcaption class="tb-plot-cap"><b>Fig. 1.1d &middot; Reading the curve.</b> The model turbine characteristic digitised from the report, peaking near 690&#8201;W at about 13&#8201;m/s. The shaded band is the distribution of hourly speeds at hub height; the season energy weights the curve by that band rather than reading it once at the mean.</figcaption>
+          </figure>
+        </div>
+        <div class="tb-widget-reads">
+          <div class="tb-widget-read"><div class="tb-widget-read-num" id="whxUhub">&middot;</div><div class="tb-widget-read-label">Mean at hub</div></div>
+          <div class="tb-widget-read"><div class="tb-widget-read-num" id="whxPmean">&middot;</div><div class="tb-widget-read-label">P at mean speed</div></div>
+          <div class="tb-widget-read"><div class="tb-widget-read-num" id="whxPdist">&middot;</div><div class="tb-widget-read-label">Weighted mean power</div></div>
+          <div class="tb-widget-read"><div class="tb-widget-read-num" id="whxSeason">&middot;</div><div class="tb-widget-read-label">Energy &middot; 34-day season</div></div>
+        </div>
+        <p id="whxNote"></p>
+        <p>The gap between the two power figures is the point. Output climbs steeply with speed, so the gusty hours above the mean earn more than the calm hours below it lose; reading the curve once at the mean speed always undersells the site. The other lesson is in the terrain selector: the rougher the ground, the more a taller tower gives back. The absolute numbers deserve gentle handling, since the curve is the study&rsquo;s own weakest assumption, borrowed from a commercial machine with a similar characteristic.</p>
       </div>
     </details>
     <div class="tb-actions">
@@ -1006,6 +1129,73 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
     -->
 
     <article class="sx-entry">
+      <div class="sx-date">Jul 2026<small>Design tooling</small></div>
+      <div>
+        <h4 class="sx-entry-title">What the site does to a module</h4>
+        <p class="sx-entry-body">String sizing is an exercise in extremes: the coldest morning sets the open-circuit voltage the string must stay under, and the hottest afternoon sets how far the operating voltage sags. Built alongside an IEC string-sizing workbook, this figure shows why, using a 545&#8201;W module of the kind these arrays are actually built from.</p>
+        <details class="sx-case">
+          <summary>
+            <span class="sx-case-label">Interactive figure</span>
+            <span class="sx-case-title">Irradiance, temperature and the IV curve</span>
+            <span class="sx-case-arrow">&#9656;</span>
+          </summary>
+          <div class="sx-case-body">
+            <p class="sx-mod-line">JA Solar 545&#8201;Wp &middot; 72-cell format &middot; STC: V<sub>oc</sub> 49.7&#8201;V &middot; I<sub>sc</sub> 13.9&#8201;A &middot; V<sub>mp</sub> 41.8&#8201;V &middot; I<sub>mp</sub> 13.0&#8201;A &middot; &beta;<sub>Voc</sub> &minus;0.275&#8201;%/&deg;C &middot; &alpha;<sub>Isc</sub> +0.045&#8201;%/&deg;C</p>
+            <div class="sx-widget-controls">
+              <div class="sx-widget-ctl">
+                <label for="pvwG">Irradiance &middot; <span class="pvw-val" id="pvwGval">1000 W/m&sup2;</span></label>
+                <input type="range" id="pvwG" min="100" max="1200" step="25" value="1000">
+              </div>
+              <div class="sx-widget-ctl">
+                <label for="pvwT">Cell temperature &middot; <span class="pvw-val" id="pvwTval">25 &deg;C</span></label>
+                <input type="range" id="pvwT" min="10" max="75" step="1" value="25">
+              </div>
+            </div>
+            <figure class="sx-plot">
+              <svg id="pvwSvg" viewBox="0 0 470 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Module current-voltage and power-voltage curves at the chosen irradiance and cell temperature">
+  <line class="sxp-grid" x1="56" y1="177.5" x2="356" y2="177.5"/><line class="sxp-grid" x1="56" y1="125" x2="356" y2="125"/><line class="sxp-grid" x1="56" y1="72.5" x2="356" y2="72.5"/><line class="sxp-grid" x1="56" y1="20" x2="356" y2="20"/>
+  <line class="sxp-axis" x1="56" y1="230" x2="356" y2="230"/>
+  <line class="sxp-axis" x1="56" y1="20" x2="56" y2="230"/>
+  <line class="sxp-axis" x1="356" y1="20" x2="356" y2="230"/>
+  <path id="pvwIVstc" d="" fill="none" stroke="var(--sx-orange)" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.45"/>
+  <path id="pvwPVstc" d="" fill="none" stroke="var(--sx-ink)" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.3"/>
+  <path id="pvwIV" d="" fill="none" stroke="var(--sx-orange)" stroke-width="2.4"/>
+  <path id="pvwPV" d="" fill="none" stroke="var(--sx-ink)" stroke-width="2.2" opacity="0.85"/>
+  <line id="pvwGuideV" x1="0" y1="0" x2="0" y2="0" stroke="var(--sx-soft)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.7"/>
+  <line id="pvwGuideP" x1="0" y1="0" x2="0" y2="0" stroke="var(--sx-soft)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.7"/>
+  <circle id="pvwDot" cx="0" cy="0" r="3.6" fill="var(--sx-orange)" stroke="var(--sx-bg)" stroke-width="1"/>
+  <text id="pvwAnn" class="sxp-tick" x="0" y="0" fill="var(--sx-soft)"></text>
+  <text class="sxp-tick" x="56" y="242" text-anchor="middle">0</text><text class="sxp-tick" x="110.5" y="242" text-anchor="middle">10</text><text class="sxp-tick" x="165.1" y="242" text-anchor="middle">20</text><text class="sxp-tick" x="219.6" y="242" text-anchor="middle">30</text><text class="sxp-tick" x="274.2" y="242" text-anchor="middle">40</text><text class="sxp-tick" x="328.7" y="242" text-anchor="middle">50</text>
+  <text class="sxp-tick" x="50" y="233" text-anchor="end">0</text><text class="sxp-tick" x="50" y="180.5" text-anchor="end">5</text><text class="sxp-tick" x="50" y="128" text-anchor="end">10</text><text class="sxp-tick" x="50" y="75.5" text-anchor="end">15</text><text class="sxp-tick" x="50" y="23" text-anchor="end">20</text>
+  <text class="sxp-tick" x="362" y="233" text-anchor="start">0</text><text class="sxp-tick" x="362" y="180.5" text-anchor="start">200</text><text class="sxp-tick" x="362" y="128" text-anchor="start">400</text><text class="sxp-tick" x="362" y="75.5" text-anchor="start">600</text><text class="sxp-tick" x="362" y="23" text-anchor="start">800</text>
+  <text class="sxp-axlabel" x="206" y="260" text-anchor="middle">Voltage (V)</text>
+  <text class="sxp-axlabel" x="16" y="125" text-anchor="middle" transform="rotate(-90 16 125)">Current (A)</text>
+  <text class="sxp-axlabel" x="452" y="125" text-anchor="middle" transform="rotate(90 452 125)">Power (W)</text>
+  <line x1="66" y1="34" x2="84" y2="34" stroke="var(--sx-orange)" stroke-width="2.4"/>
+  <text class="sxp-legend" x="89" y="37">I&ndash;V</text>
+  <line x1="120" y1="34" x2="138" y2="34" stroke="var(--sx-ink)" stroke-width="2.2" opacity="0.85"/>
+  <text class="sxp-legend" x="143" y="37">P&ndash;V</text>
+  <line x1="174" y1="34" x2="192" y2="34" stroke="var(--sx-soft)" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text class="sxp-legend" x="197" y="37">STC reference</text>
+</svg>
+              <figcaption class="sx-plot-cap"><b>Module behaviour off the datasheet corner.</b> Solid curves at the chosen conditions; dashed at STC (1000&#8201;W/m&sup2;, 25&#8201;&deg;C). Irradiance scales the current; temperature eats the voltage. The marker tracks the maximum power point. Single-diode approximation fitted to the datasheet points; it carries the voltage and current coefficients but not fill-factor losses, so it slightly flatters hot-weather output.</figcaption>
+            </figure>
+            <div class="sx-widget-reads">
+              <div class="sx-widget-read"><div class="sx-widget-read-num" id="pvwPmp">&middot;</div><div class="sx-widget-read-label">P at MPP</div></div>
+              <div class="sx-widget-read"><div class="sx-widget-read-num" id="pvwVmp">&middot;</div><div class="sx-widget-read-label">V at MPP</div></div>
+              <div class="sx-widget-read"><div class="sx-widget-read-num" id="pvwVoc">&middot;</div><div class="sx-widget-read-label">Open circuit</div></div>
+              <div class="sx-widget-read"><div class="sx-widget-read-num" id="pvwIsc">&middot;</div><div class="sx-widget-read-label">Short circuit</div></div>
+              <div class="sx-widget-read"><div class="sx-widget-read-num" id="pvwRel">&middot;</div><div class="sx-widget-read-label">vs nameplate</div></div>
+            </div>
+            <p id="pvwNote"></p>
+            <p>The string design consequence: V<sub>oc</sub> is highest on the coldest, brightest morning of the year, and that value multiplied up the string is what must stay under the inverter&rsquo;s voltage ceiling. V<sub>mp</sub> is lowest on the hottest afternoon, and that sets whether the string still sits inside the MPPT window. Every string calculation is really these two curves evaluated at the site&rsquo;s two worst days.</p>
+          </div>
+        </details>
+        <div class="sx-tags"><span class="sx-tag">Solar PV</span><span class="sx-tag">Module physics</span><span class="sx-tag">Interactive</span></div>
+      </div>
+    </article>
+
+    <article class="sx-entry">
       <div class="sx-date">Jul 2026<small>The beginning</small></div>
       <div>
         <h4 class="sx-entry-title">Joined Soventix</h4>
@@ -1110,7 +1300,7 @@ chips.forEach(chip => chip.addEventListener('click', () => {
    2. Put your email in FALLBACK_EMAIL. If FORM_ENDPOINT is left as-is,
       the form falls back to opening the visitor's mail client instead.   */
 const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
-const FALLBACK_EMAIL = 'you@example.com';
+const FALLBACK_EMAIL = 'sethjjarrett@gmail.com';
 
 let currentProject = '';
 
@@ -1190,6 +1380,239 @@ function showSuccess() {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+<script>
+/* ---------- §1.1 interactive figure: hub height explorer ---------- */
+(function () {
+  var svgA = document.getElementById('whxSvgA');
+  if (!svgA) return;
+  var NS = 'http://www.w3.org/2000/svg';
+
+  /* Model turbine curve digitised from the report (Fig. 12, model characteristic).
+     Linear interpolation between points, exactly as the MATLAB analysis did. */
+  var PTS = [[2,0],[3,15],[4,35],[5,65],[6,115],[7,180],[8,265],[9,370],[10,480],
+             [11,580],[12,660],[13,690],[14,685],[15,660],[16,625],[17,575],
+             [18,520],[19,460],[20,400],[21,340],[22,280],[25,280]];
+
+  function pcurve(v) {
+    if (v <= PTS[0][0]) return 0;
+    if (v >= PTS[PTS.length - 1][0]) return PTS[PTS.length - 1][1];
+    for (var i = 1; i < PTS.length; i++) {
+      if (v <= PTS[i][0]) {
+        var a = PTS[i - 1], b = PTS[i];
+        return a[1] + (b[1] - a[1]) * (v - a[0]) / (b[0] - a[0]);
+      }
+    }
+    return 0;
+  }
+  function shear(u10, z, alpha) { return u10 * Math.pow(z / 10, 1 / alpha); }
+  function rayleigh(v, c) { return (2 * v / (c * c)) * Math.exp(-(v / c) * (v / c)); }
+  function meanPower(ubar) {
+    var c = ubar / 0.8862, s = 0, dv = 0.05;
+    for (var v = dv / 2; v < 25; v += dv) s += pcurve(v) * rayleigh(v, c) * dv;
+    return s;
+  }
+
+  /* Fig 1.1c geometry: speed 0-14 across 56-356, height 0-42 down 230-20 */
+  function ax(v) { return 56 + v * (300 / 14); }
+  function ay(z) { return 230 - z * 5; }
+  /* Fig 1.1d geometry: speed 0-24, power 0-750 */
+  function bx(v) { return 56 + v * 12.5; }
+  function by(p) { return 230 - p * 0.28; }
+
+  function el(id) { return document.getElementById(id); }
+  function make(tag, attrs) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  /* static power curve, drawn once */
+  (function () {
+    var d = '';
+    for (var v = 0; v <= 24; v += 0.2) d += (v === 0 ? 'M' : 'L') + bx(v).toFixed(1) + ',' + by(pcurve(v)).toFixed(1);
+    el('whxPcurve').setAttribute('d', d);
+  })();
+
+  function drawPump(hub) {
+    var g = el('whxPump');
+    g.innerHTML = '';
+    var tx = 330, hy = ay(hub), gy = 230, r = 15, style = 'var(--eng-ink-soft)';
+    /* lattice tower: two converging legs plus cross braces */
+    g.appendChild(make('line', { x1: tx - 8, y1: gy, x2: tx - 2, y2: hy + 6, stroke: style, 'stroke-width': 1.2 }));
+    g.appendChild(make('line', { x1: tx + 8, y1: gy, x2: tx + 2, y2: hy + 6, stroke: style, 'stroke-width': 1.2 }));
+    for (var f = 0.25; f < 1; f += 0.25) {
+      var w = 8 - 6 * f, y = gy + (hy + 6 - gy) * f;
+      g.appendChild(make('line', { x1: tx - w, y1: y, x2: tx + w, y2: y - 6, stroke: style, 'stroke-width': 0.7, opacity: 0.8 }));
+      g.appendChild(make('line', { x1: tx + w, y1: y, x2: tx - w, y2: y - 6, stroke: style, 'stroke-width': 0.7, opacity: 0.8 }));
+    }
+    /* tail vane */
+    g.appendChild(make('line', { x1: tx, y1: hy, x2: tx + 20, y2: hy - 2, stroke: style, 'stroke-width': 1 }));
+    g.appendChild(make('polygon', { points: (tx + 20) + ',' + (hy - 8) + ' ' + (tx + 28) + ',' + (hy - 2) + ' ' + (tx + 20) + ',' + (hy + 4), fill: 'none', stroke: style, 'stroke-width': 1 }));
+    /* multi-blade rosette: rim, hub and sixteen sails */
+    g.appendChild(make('circle', { cx: tx, cy: hy, r: r, fill: 'none', stroke: style, 'stroke-width': 1 }));
+    g.appendChild(make('circle', { cx: tx, cy: hy, r: 4.5, fill: 'none', stroke: style, 'stroke-width': 1 }));
+    for (var b = 0; b < 16; b++) {
+      var a1 = b * Math.PI / 8, a2 = a1 + Math.PI / 14;
+      g.appendChild(make('line', {
+        x1: tx + 4.5 * Math.cos(a1), y1: hy + 4.5 * Math.sin(a1),
+        x2: tx + r * Math.cos(a2), y2: hy + r * Math.sin(a2),
+        stroke: style, 'stroke-width': 1
+      }));
+    }
+    g.appendChild(make('circle', { cx: tx, cy: hy, r: 1.6, fill: style }));
+  }
+
+  function update() {
+    var hub = parseInt(el('whxH').value, 10);
+    var u10 = parseFloat(el('whxU').value);
+    var alpha = parseFloat(el('whxA').value);
+    el('whxHval').textContent = hub + ' m';
+    el('whxUval').textContent = u10.toFixed(1) + ' m/s';
+
+    var uh = shear(u10, hub, alpha);
+    var pAtMean = pcurve(uh);
+    var pDist = meanPower(uh);
+    var season = pDist * 816 / 1000; /* 34 days x 24 h */
+
+    /* Fig 1.1c: shear profile, guides, wind pump */
+    var d = '';
+    for (var z = 1; z <= 42; z += 0.5) d += (z === 1 ? 'M' : 'L') + ax(Math.min(shear(u10, z, alpha), 14)).toFixed(1) + ',' + ay(z).toFixed(1);
+    el('whxProfile').setAttribute('d', d);
+    var mx = ax(Math.min(uh, 14)), my = ay(hub);
+    drawPump(hub);
+    el('whxGuideH').setAttribute('x1', mx); el('whxGuideH').setAttribute('y1', my);
+    el('whxGuideH').setAttribute('x2', 313); el('whxGuideH').setAttribute('y2', my);
+    el('whxGuideV').setAttribute('x1', mx); el('whxGuideV').setAttribute('y1', my);
+    el('whxGuideV').setAttribute('x2', mx); el('whxGuideV').setAttribute('y2', 230);
+    el('whxDot').setAttribute('cx', mx); el('whxDot').setAttribute('cy', my);
+    var annA = el('whxAnnA');
+    annA.textContent = uh.toFixed(2) + ' m/s at ' + hub + ' m';
+    annA.setAttribute('x', Math.min(mx + 6, 240)); annA.setAttribute('y', Math.max(my - 7, 30));
+
+    /* Fig 1.1d: Rayleigh band and operating point */
+    var c = uh / 0.8862, peak = 0, v;
+    for (v = 0.1; v <= 24; v += 0.1) peak = Math.max(peak, rayleigh(v, c));
+    var band = 'M' + bx(0).toFixed(1) + ',230';
+    for (v = 0.2; v <= 24; v += 0.2) band += 'L' + bx(v).toFixed(1) + ',' + (230 - (rayleigh(v, c) / peak) * 58).toFixed(1);
+    el('whxPdf').setAttribute('d', band + 'L' + bx(24).toFixed(1) + ',230 Z');
+    el('whxPdfLine').setAttribute('d', band);
+    var px = bx(Math.min(uh, 24)), py = by(pAtMean);
+    el('whxGuidePv').setAttribute('x1', px); el('whxGuidePv').setAttribute('y1', 230);
+    el('whxGuidePv').setAttribute('x2', px); el('whxGuidePv').setAttribute('y2', py);
+    el('whxGuidePh').setAttribute('x1', 56); el('whxGuidePh').setAttribute('y1', py);
+    el('whxGuidePh').setAttribute('x2', px); el('whxGuidePh').setAttribute('y2', py);
+    el('whxDotP').setAttribute('cx', px); el('whxDotP').setAttribute('cy', py);
+    var annP = el('whxAnnP');
+    annP.textContent = Math.round(pAtMean) + ' W at ' + uh.toFixed(1) + ' m/s';
+    annP.setAttribute('x', Math.min(px + 6, 250)); annP.setAttribute('y', Math.max(py - 7, 62));
+
+    /* readouts and note */
+    el('whxUhub').innerHTML = uh.toFixed(2) + '&#8201;m/s';
+    el('whxPmean').innerHTML = Math.round(pAtMean) + '&#8201;W';
+    el('whxPdist').innerHTML = Math.round(pDist) + '&#8201;W';
+    el('whxSeason').innerHTML = season.toFixed(0) + '&#8201;kWh';
+    var note = el('whxNote');
+    if (pAtMean > 1) {
+      var gap = Math.round((pDist / pAtMean - 1) * 100);
+      note.textContent = gap >= 0
+        ? 'At these settings the weighted mean is ' + gap + '% above a single reading at the mean speed, and the season yield is ' + season.toFixed(0) + ' kWh over the 34 days the farm trades.'
+        : 'At these settings the mean speed sits near the top of the curve, so the distribution spills past the peak onto its falling side and the weighted mean lands ' + Math.abs(gap) + '% below the single-point reading. The season yield is ' + season.toFixed(0) + ' kWh over the 34 days the farm trades.';
+    } else {
+      note.textContent = 'At these settings the mean speed sits below the cut-in, so a single reading at the mean would say the turbine produces nothing. The distribution knows better: the windier hours still deliver ' + season.toFixed(0) + ' kWh across the season.';
+    }
+  }
+
+  ['whxH', 'whxU'].forEach(function (id) { el(id).addEventListener('input', update); });
+  el('whxA').addEventListener('change', update);
+  update();
+})();
+</script>
+<script>
+/* ---------- Soventix interactive: module IV and PV explorer ---------- */
+(function () {
+  if (!document.getElementById('pvwSvg')) return;
+
+  /* JA Solar 545 Wp, 72-cell format, datasheet STC values */
+  var M = { Voc: 49.65, Isc: 13.92, Vmp: 41.80, Imp: 13.04, aI: 0.00045, bV: -0.00275, Ns: 72, n: 1.1 };
+  var C2 = (M.Vmp / M.Voc - 1) / Math.log(1 - M.Imp / M.Isc);
+  var C1 = (1 - M.Imp / M.Isc) * Math.exp(-M.Vmp / (C2 * M.Voc));
+
+  function el(id) { return document.getElementById(id); }
+  /* geometry: V 0-55 across 56-356, I 0-20 down 230-20, P 0-800 down 230-20 */
+  function gx(v) { return 56 + v * (300 / 55); }
+  function gyI(i) { return 230 - i * 10.5; }
+  function gyP(p) { return 230 - p * 0.2625; }
+
+  function params(G, Tc) {
+    var isc = M.Isc * (G / 1000) * (1 + M.aI * (Tc - 25));
+    var vt = 0.025693 * (Tc + 273.15) / 298.15;
+    var voc = M.Voc * (1 + M.bV * (Tc - 25)) + M.Ns * M.n * vt * Math.log(G / 1000);
+    return { isc: isc, voc: Math.max(voc, 1) };
+  }
+  function current(V, pr) {
+    var i = pr.isc * (1 - C1 * (Math.exp(V / (C2 * pr.voc)) - 1));
+    return i > 0 ? i : 0;
+  }
+
+  function trace(G, Tc) {
+    var pr = params(G, Tc), dIV = '', dPV = '', best = { p: 0, v: 0, i: 0 };
+    for (var s = 0; s <= 220; s++) {
+      var V = pr.voc * s / 220, I = current(V, pr), P = V * I;
+      dIV += (s === 0 ? 'M' : 'L') + gx(V).toFixed(1) + ',' + gyI(I).toFixed(1);
+      dPV += (s === 0 ? 'M' : 'L') + gx(V).toFixed(1) + ',' + gyP(P).toFixed(1);
+      if (P > best.p) best = { p: P, v: V, i: I };
+    }
+    return { iv: dIV, pv: dPV, mpp: best, isc: pr.isc, voc: pr.voc };
+  }
+
+  /* STC ghost curves, drawn once */
+  var stc = trace(1000, 25);
+  el('pvwIVstc').setAttribute('d', stc.iv);
+  el('pvwPVstc').setAttribute('d', stc.pv);
+
+  function update() {
+    var G = parseInt(el('pvwG').value, 10);
+    var Tc = parseInt(el('pvwT').value, 10);
+    el('pvwGval').innerHTML = G + ' W/m&sup2;';
+    el('pvwTval').innerHTML = Tc + ' &deg;C';
+
+    var t = trace(G, Tc);
+    el('pvwIV').setAttribute('d', t.iv);
+    el('pvwPV').setAttribute('d', t.pv);
+
+    var mx = gx(t.mpp.v), my = gyP(t.mpp.p);
+    el('pvwGuideV').setAttribute('x1', mx); el('pvwGuideV').setAttribute('y1', my);
+    el('pvwGuideV').setAttribute('x2', mx); el('pvwGuideV').setAttribute('y2', 230);
+    el('pvwGuideP').setAttribute('x1', mx); el('pvwGuideP').setAttribute('y1', my);
+    el('pvwGuideP').setAttribute('x2', 356); el('pvwGuideP').setAttribute('y2', my);
+    el('pvwDot').setAttribute('cx', mx); el('pvwDot').setAttribute('cy', my);
+    var ann = el('pvwAnn');
+    ann.textContent = Math.round(t.mpp.p) + ' W';
+    ann.setAttribute('x', Math.max(mx - 34, 60)); ann.setAttribute('y', Math.max(my - 8, 30));
+
+    el('pvwPmp').innerHTML = Math.round(t.mpp.p) + '&#8201;W';
+    el('pvwVmp').innerHTML = t.mpp.v.toFixed(1) + '&#8201;V';
+    el('pvwVoc').innerHTML = t.voc.toFixed(1) + '&#8201;V';
+    el('pvwIsc').innerHTML = t.isc.toFixed(2) + '&#8201;A';
+    var rel = 100 * t.mpp.p / 545;
+    el('pvwRel').innerHTML = rel.toFixed(0) + '&#8201;%';
+
+    var note = el('pvwNote');
+    if (G === 1000 && Tc === 25) {
+      note.textContent = 'These are the datasheet conditions, which the module will meet roughly never: 25 \u00B0C cell temperature at full sun does not happen, because full sun is what heats the cell.';
+    } else if (Tc > 25) {
+      note.textContent = 'At ' + Tc + ' \u00B0C the module gives ' + Math.round(t.mpp.p) + ' W, ' + (100 - rel).toFixed(0) +
+        '% off nameplate. The current barely moves; the loss is voltage, following the \u22120.275%/\u00B0C open-circuit coefficient. In strong sun a module typically runs 25 to 35 \u00B0C above ambient.';
+    } else {
+      note.textContent = 'Below 25 \u00B0C the voltage climbs above the datasheet value: ' + t.voc.toFixed(1) +
+        ' V open circuit here. This is the number that matters on a cold clear morning, when a long string can push past the inverter\u2019s voltage ceiling before the site has even warmed up.';
+    }
+  }
+
+  ['pvwG', 'pvwT'].forEach(function (id) { el(id).addEventListener('input', update); });
+  update();
+})();
 </script>
 </body>
 </html>
