@@ -519,7 +519,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
           </div>
           <div class="tb-widget-ctl">
             <label for="whxU">Mean at the 10 m station &middot; <span class="whx-val" id="whxUval">4.5 m/s</span></label>
-            <input type="range" id="whxU" min="3" max="8" step="0.1" value="4.5">
+            <input type="range" id="whxU" min="3" max="12" step="0.1" value="4.5">
           </div>
           <div class="tb-widget-ctl">
             <label for="whxA">Terrain</label>
@@ -542,7 +542,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   <line id="whxGuideV" x1="0" y1="0" x2="0" y2="0" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.8"/>
   <circle id="whxDot" cx="0" cy="0" r="3.6" fill="var(--eng-blue)"/>
   <text id="whxAnnA" class="plot-tick" x="0" y="0" fill="var(--eng-blue)"></text>
-  <text class="plot-tick" x="56" y="242" text-anchor="middle">0</text><text class="plot-tick" x="98.9" y="242" text-anchor="middle">2</text><text class="plot-tick" x="141.7" y="242" text-anchor="middle">4</text><text class="plot-tick" x="184.6" y="242" text-anchor="middle">6</text><text class="plot-tick" x="227.4" y="242" text-anchor="middle">8</text><text class="plot-tick" x="270.3" y="242" text-anchor="middle">10</text><text class="plot-tick" x="313.1" y="242" text-anchor="middle">12</text><text class="plot-tick" x="356" y="242" text-anchor="middle">14</text>
+  <text class="plot-tick" x="56" y="242" text-anchor="middle">0</text><text class="plot-tick" x="98.9" y="242" text-anchor="middle">3</text><text class="plot-tick" x="141.7" y="242" text-anchor="middle">6</text><text class="plot-tick" x="184.6" y="242" text-anchor="middle">9</text><text class="plot-tick" x="227.4" y="242" text-anchor="middle">12</text><text class="plot-tick" x="270.3" y="242" text-anchor="middle">15</text><text class="plot-tick" x="313.1" y="242" text-anchor="middle">18</text><text class="plot-tick" x="356" y="242" text-anchor="middle">21</text>
   <text class="plot-tick" x="50" y="233" text-anchor="end">0</text><text class="plot-tick" x="50" y="183" text-anchor="end">10</text><text class="plot-tick" x="50" y="133" text-anchor="end">20</text><text class="plot-tick" x="50" y="83" text-anchor="end">30</text><text class="plot-tick" x="50" y="33" text-anchor="end">40</text>
   <text class="plot-axlabel" x="206" y="260" text-anchor="middle">Mean wind speed (m/s)</text>
   <text class="plot-axlabel" x="16" y="125" text-anchor="middle" transform="rotate(-90 16 125)">Height above ground (m)</text>
@@ -639,7 +639,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   <text class="plot-tick" x="130.0" y="34.0" text-anchor="middle" fill="var(--eng-ink-soft)">metric optimum &middot; 53% &middot; 31 MWh</text>
   <line x1="258.0" y1="95.3" x2="258.0" y2="222" stroke="var(--eng-blue)" stroke-width="0.9" stroke-dasharray="2 2" opacity="0.85"/>
   <circle cx="258.0" cy="95.3" r="3.6" fill="var(--eng-blue)"/>
-  <text class="plot-tick" x="263.0" y="90.3" fill="var(--eng-blue)">design maximum &middot; 80% &middot; 25.3 MWh</text>
+  <text class="plot-tick" x="252.0" y="120.0" text-anchor="end" fill="var(--eng-blue)">design maximum &middot; 80% &middot; 25.3 MWh</text>
   <text class="plot-tick" x="58.0" y="234" text-anchor="middle">40</text><text class="plot-tick" x="108.0" y="234" text-anchor="middle">50</text><text class="plot-tick" x="158.0" y="234" text-anchor="middle">60</text><text class="plot-tick" x="208.0" y="234" text-anchor="middle">70</text><text class="plot-tick" x="258.0" y="234" text-anchor="middle">80</text><text class="plot-tick" x="308.0" y="234" text-anchor="middle">90</text><text class="plot-tick" x="358.0" y="234" text-anchor="middle">100</text>
   <text class="plot-tick" x="53" y="196.4" text-anchor="end">15</text><text class="plot-tick" x="53" y="148.8" text-anchor="end">20</text><text class="plot-tick" x="53" y="101.2" text-anchor="end">25</text><text class="plot-tick" x="53" y="53.6" text-anchor="end">30</text>
   <text class="plot-axlabel" x="208.0" y="250" text-anchor="middle">Depth of discharge (%)</text>
@@ -1148,7 +1148,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
               </div>
               <div class="sx-widget-ctl">
                 <label for="pvwT">Cell temperature &middot; <span class="pvw-val" id="pvwTval">25 &deg;C</span></label>
-                <input type="range" id="pvwT" min="10" max="75" step="1" value="25">
+                <input type="range" id="pvwT" min="-5" max="75" step="1" value="25">
               </div>
             </div>
             <figure class="sx-plot">
@@ -1188,6 +1188,32 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
               <div class="sx-widget-read"><div class="sx-widget-read-num" id="pvwRel">&middot;</div><div class="sx-widget-read-label">vs nameplate</div></div>
             </div>
             <p id="pvwNote"></p>
+            <div class="sx-widget-controls">
+              <div class="sx-widget-ctl">
+                <label for="pvwN">Modules in series &middot; <span class="pvw-val" id="pvwNval">24</span></label>
+                <input type="range" id="pvwN" min="8" max="30" step="1" value="24">
+              </div>
+            </div>
+            <figure class="sx-plot">
+              <svg id="pvwStr" viewBox="0 0 470 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="String voltage check against an example inverter window">
+  <rect x="159.1" y="26" width="238.3" height="66" fill="var(--sx-orange)" opacity="0.07"/>
+  <line x1="159.1" y1="26" x2="159.1" y2="92" stroke="var(--sx-orange)" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.6"/>
+  <line x1="397.4" y1="20" x2="397.4" y2="92" stroke="var(--sx-orange)" stroke-width="1.4"/>
+  <text class="sxp-legend" x="397.4" y="16" text-anchor="middle">inverter ceiling &middot; 1500 V</text>
+  <text class="sxp-legend" x="164" y="36" text-anchor="start" opacity="0.8">MPPT window &middot; 500&ndash;1500 V</text>
+  <line class="sxp-axis" x1="40" y1="92" x2="445" y2="92"/>
+  <line id="pvwBarC" x1="40" y1="52" x2="40" y2="52" stroke-width="2.4"/>
+  <circle id="pvwDotC" cx="40" cy="52" r="3.4" stroke="var(--sx-bg)" stroke-width="1"/>
+  <text id="pvwLabC" class="sxp-tick" x="0" y="46"></text>
+  <line id="pvwBarH" x1="40" y1="76" x2="40" y2="76" stroke-width="2.4"/>
+  <circle id="pvwDotH" cx="40" cy="76" r="3.4" stroke="var(--sx-bg)" stroke-width="1"/>
+  <text id="pvwLabH" class="sxp-tick" x="0" y="70"></text>
+  <text class="sxp-tick" x="40" y="104" text-anchor="middle">0</text><text class="sxp-tick" x="159.1" y="104" text-anchor="middle">500</text><text class="sxp-tick" x="278.3" y="104" text-anchor="middle">1000</text><text class="sxp-tick" x="397.4" y="104" text-anchor="middle">1500</text>
+  <text class="sxp-axlabel" x="242" y="117" text-anchor="middle">String voltage (V)</text>
+</svg>
+              <figcaption class="sx-plot-cap"><b>String check.</b> Against an example 1500&#8201;V string inverter with a 500&ndash;1500&#8201;V MPPT window. The cold case takes the cell at &minus;5&#8201;&deg;C, the highest V<sub>oc</sub> the string will ever present; the hot case takes the cell at 70&#8201;&deg;C, hot ambient plus the module&rsquo;s own heating. Change the inverter and the answer changes with it.</figcaption>
+            </figure>
+            <p id="pvwVerdict"></p>
             <p>The string design consequence: V<sub>oc</sub> is highest on the coldest, brightest morning of the year, and that value multiplied up the string is what must stay under the inverter&rsquo;s voltage ceiling. V<sub>mp</sub> is lowest on the hottest afternoon, and that sets whether the string still sits inside the MPPT window. Every string calculation is really these two curves evaluated at the site&rsquo;s two worst days.</p>
           </div>
         </details>
@@ -1413,8 +1439,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
     return s;
   }
 
-  /* Fig 1.1c geometry: speed 0-14 across 56-356, height 0-42 down 230-20 */
-  function ax(v) { return 56 + v * (300 / 14); }
+  /* Fig 1.1c geometry: speed 0-21 across 56-356, height 0-42 down 230-20 */
+  function ax(v) { return 56 + v * (300 / 21); }
   function ay(z) { return 230 - z * 5; }
   /* Fig 1.1d geometry: speed 0-24, power 0-750 */
   function bx(v) { return 56 + v * 12.5; }
@@ -1477,9 +1503,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
     /* Fig 1.1c: shear profile, guides, wind pump */
     var d = '';
-    for (var z = 1; z <= 42; z += 0.5) d += (z === 1 ? 'M' : 'L') + ax(Math.min(shear(u10, z, alpha), 14)).toFixed(1) + ',' + ay(z).toFixed(1);
+    for (var z = 1; z <= 42; z += 0.5) d += (z === 1 ? 'M' : 'L') + ax(Math.min(shear(u10, z, alpha), 21)).toFixed(1) + ',' + ay(z).toFixed(1);
     el('whxProfile').setAttribute('d', d);
-    var mx = ax(Math.min(uh, 14)), my = ay(hub);
+    var mx = ax(Math.min(uh, 21)), my = ay(hub);
     drawPump(hub);
     el('whxGuideH').setAttribute('x1', mx); el('whxGuideH').setAttribute('y1', my);
     el('whxGuideH').setAttribute('x2', 313); el('whxGuideH').setAttribute('y2', my);
@@ -1520,6 +1546,9 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
         : 'At these settings the mean speed sits near the top of the curve, so the distribution spills past the peak onto its falling side and the weighted mean lands ' + Math.abs(gap) + '% below the single-point reading. The season yield is ' + season.toFixed(0) + ' kWh over the 34 days the farm trades.';
     } else {
       note.textContent = 'At these settings the mean speed sits below the cut-in, so a single reading at the mean would say the turbine produces nothing. The distribution knows better: the windier hours still deliver ' + season.toFixed(0) + ' kWh across the season.';
+    }
+    if (u10 >= 7) {
+      note.textContent += ' Worth saying: a 10 m mean of ' + u10.toFixed(1) + ' m/s is rare onshore. The Filton station measured 4.5, and means like this belong to exposed coasts and offshore sites, which is much of why turbines went to sea.';
     }
   }
 
@@ -1612,6 +1641,45 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 
   ['pvwG', 'pvwT'].forEach(function (id) { el(id).addEventListener('input', update); });
   update();
+
+  /* string check: fixed design cases against an example 1500 V inverter */
+  var VMAX = 1500, VMIN = 500;
+  var VOC_COLD = params(1000, -5).voc;      /* highest string Voc, cold clear morning */
+  var VMP_HOT = trace(1000, 70).mpp.v;      /* lowest operating voltage, hot cell */
+  function sv(v) { return 40 + v * (405 / 1700); }
+
+  function setBar(bar, dot, lab, volts, y, text, ok) {
+    var col = ok ? 'var(--sx-orange)' : '#A03020';
+    var x = sv(Math.min(volts, 1700));
+    bar.setAttribute('x2', x); bar.setAttribute('stroke', col);
+    dot.setAttribute('cx', x); dot.setAttribute('fill', col);
+    var anchorEnd = x > 300;
+    lab.setAttribute('x', anchorEnd ? x - 8 : x + 8);
+    lab.setAttribute('text-anchor', anchorEnd ? 'end' : 'start');
+    lab.setAttribute('fill', col);
+    lab.textContent = text;
+  }
+
+  function updateStr() {
+    var N = parseInt(el('pvwN').value, 10);
+    el('pvwNval').textContent = N;
+    var vc = N * VOC_COLD, vh = N * VMP_HOT;
+    var okC = vc <= VMAX, okH = vh >= VMIN;
+    setBar(el('pvwBarC'), el('pvwDotC'), el('pvwLabC'), vc, 52,
+      'cold Voc \u00B7 ' + Math.round(vc) + ' V', okC);
+    setBar(el('pvwBarH'), el('pvwDotH'), el('pvwLabH'), vh, 76,
+      'hot Vmp \u00B7 ' + Math.round(vh) + ' V', okH);
+    var v = el('pvwVerdict');
+    if (okC && okH) {
+      v.textContent = N + ' in series works: ' + Math.round(vc) + ' V on the coldest morning stays under the 1500 V ceiling, and ' + Math.round(vh) + ' V at the hottest cell temperature stays inside the MPPT window. The design margin is ' + Math.round(VMAX - vc) + ' V of cold headroom.';
+    } else if (!okC) {
+      v.textContent = N + ' in series fails the cold check: ' + Math.round(vc) + ' V of open-circuit voltage on a \u22125 \u00B0C morning, ' + Math.round(vc - VMAX) + ' V over the ceiling. This is the failure that damages hardware, and it happens at dawn before any power has flowed.';
+    } else {
+      v.textContent = N + ' in series fails the hot check: ' + Math.round(vh) + ' V at the hottest cell temperature, below the 500 V MPPT floor. The inverter cannot track the string and the yield quietly collapses on exactly the days with the most sun.';
+    }
+  }
+  el('pvwN').addEventListener('input', updateStr);
+  updateStr();
 })();
 </script>
 </body>
