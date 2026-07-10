@@ -293,6 +293,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sx-widget-read:last-child{border-right:none;}
 .sx-widget-read-num{font-family:var(--mono);font-size:1.05rem;color:var(--sx-orange);line-height:1.2;}
 .sx-widget-read-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--sx-muted);margin-top:0.15rem;}
+.sx-steps{margin:1rem 0 0;padding-left:1.4rem;}
+.sx-steps li{font-size:0.86rem;color:var(--sx-soft);font-weight:300;line-height:1.7;margin-bottom:0.55rem;}
+.sx-steps li b{font-weight:500;color:var(--sx-ink);}
+.sx-btn{display:inline-block;margin-top:1.1rem;font-family:var(--mono);font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--sx-orange);border:1px solid var(--sx-orange);background:var(--sx-bg);padding:0.55rem 1.1rem;text-decoration:none;transition:background 0.2s,color 0.2s;}
+.sx-btn:hover{background:var(--sx-orange);color:var(--sx-bg);}
 
 /* ---------- footer ---------- */
 footer{padding:1.5rem 4rem;border-top:1px solid var(--eng-rule);display:flex;justify-content:space-between;background:var(--eng-bg);}
@@ -1127,6 +1132,37 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
       </div>
     </article>
     -->
+
+    <article class="sx-entry">
+      <div class="sx-date">Jul 2026<small>Process</small></div>
+      <div>
+        <h4 class="sx-entry-title">How a preliminary design proceeds</h4>
+        <p class="sx-entry-body">Written as a runbook to be followed rather than an essay to be admired: the sequence of a utility-scale preliminary design in the order the constraints actually bite, with the checks that keep the numbers honest. Condensed below; the full version, with the worked P50/P90 example and the collected rules of thumb, is in the PDF.</p>
+        <details class="sx-case">
+          <summary>
+            <span class="sx-case-label">Runbook</span>
+            <span class="sx-case-title">Ten steps, in the order they bite</span>
+            <span class="sx-case-arrow">&#9656;</span>
+          </summary>
+          <div class="sx-case-body">
+            <ol class="sx-steps" start="0">
+              <li><b>Requirements and constraints, before any software.</b> Client requirements, land boundary, and above all what the project is optimising: yield per kWp, MWh per hectare, or cost per MWh. The grid connection belongs here too, since the export capacity at the point of interconnection fixes the AC size of the plant before a module is chosen.</li>
+              <li><b>Resource, with stated suspicion.</b> At least two meteo sources, the spread recorded, the best-validated one chosen and the reason written down. Temperature extremes, albedo and the soiling environment come along with it.</li>
+              <li><b>The technology fork.</b> Fixed tilt or tracker, module class and availability, central or string inverters. These reshape everything downstream, so they are decided explicitly even when the client has pre-decided.</li>
+              <li><b>First pass in PVsyst.</b> A deliberately simple baseline: tilt from latitude (with a 5 to 10 degree floor near the equator so rain cleans the modules), pitch from the shading limit, strings from the cold V<sub>oc</sub> and hot V<sub>mp</sub> checks.</li>
+              <li><b>Layout on the real site.</b> Boundary and topography into PVcase, then the keep-outs that redraw layouts late if missed early: drainage, flood zones, wayleaves, buffers. Roads, fence, and the substation near the cable-length centroid. The buildable capacity emerges here.</li>
+              <li><b>Electrical blocking.</b> The plant is repeated power blocks: inverters per transformer skid, blocks per MV feeder, feeders plus spares setting the switchgear ways at the substation. Round numbers and symmetric blocks at every level.</li>
+              <li><b>The optimisation matrix.</b> Pitch, tilt and DC/AC swept as a grid across several inverter counts, judged against the metric named in step 0. Clipping is a trade against the tariff shape, not an error.</li>
+              <li><b>Loss ladder and sanity.</b> Every loss present even if approximate, soiling scrutinised hardest in dusty climates, and the top-down check: site irradiation times a plausible PR should land in the same postcode as the simulation.</li>
+              <li><b>Uncertainty.</b> P50 is the median, P90 the year exceeded nine times in ten, and the gap is set by how honest the meteo and modelling uncertainties are. The design lives at P50; lenders size debt at P90.</li>
+              <li><b>What preliminary design actually delivers.</b> The layout, the yield, the single-line concept, and the assumptions register: assumed versus confirmed, so the design carries an honest statement of what it is contingent on.</li>
+            </ol>
+            <a class="sx-btn" href="preliminary_pv_design_runbook.pdf" download>Download the full runbook &middot; PDF</a>
+          </div>
+        </details>
+        <div class="sx-tags"><span class="sx-tag">Solar PV</span><span class="sx-tag">Process</span><span class="sx-tag">Runbook</span></div>
+      </div>
+    </article>
 
     <article class="sx-entry">
       <div class="sx-date">Jul 2026<small>Design tooling</small></div>
