@@ -85,6 +85,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .sp-desc{font-size:0.92rem;color:var(--ink-soft);font-weight:300;line-height:1.85;}
 .sp-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1rem;}
 .sp-tag{font-size:0.68rem;padding:0.22rem 0.65rem;border:1px solid var(--warm3);color:var(--ink-muted);background:var(--warm);}
+.sp-desc a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--green-pale);transition:border-color 0.2s;}
+.sp-desc a:hover{border-bottom-color:var(--green);}
 
 /* READING */
 .reading{padding:6rem 4rem;border-bottom:1px solid var(--warm3);}
@@ -207,6 +209,17 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--warm3);display:flex;justif
     <div>
       <p class="sp-desc">Indoor and out. The long-running project &mdash; always a grade or a route being worked on.</p>
       <div class="sp-tags"><span class="sp-tag">Lead</span><span class="sp-tag">Bouldering</span><span class="sp-tag">Outdoors</span></div>
+    </div>
+  </div>
+  <div class="sp-item fade">
+    <div>
+      <span class="sp-status status-ongoing">Ongoing</span>
+      <div class="sp-name">Batch</div>
+      <div class="sp-category">Personal project</div>
+    </div>
+    <div>
+      <p class="sp-desc">Cook once, eat all week. A meal planner that scales recipes to however many meals you actually want, then works backwards to a single shopping list and an order to cook things in. Built because the arithmetic of cooking for the week is dull and I kept getting it wrong. Runs in the browser, nothing to install: <a href="https://sethjjarrett-cell.github.io/batch/" target="_blank" rel="noopener">have a look</a>.</p>
+      <div class="sp-tags"><span class="sp-tag">Personal</span><span class="sp-tag">Cooking</span><span class="sp-tag">Built it</span></div>
     </div>
   </div>
   <div class="sp-item fade">
