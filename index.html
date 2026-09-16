@@ -58,7 +58,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .built-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:stretch;}
 
 .app-card{display:flex;flex-direction:column;text-decoration:none;overflow:hidden;transition:transform 0.35s cubic-bezier(0.22,1,0.36,1),box-shadow 0.35s ease;}
-.app-card:hover{transform:translateY(-5px);}
+a.app-card:hover{transform:translateY(-5px);}
+.app-pv:hover .app-cta,.app-pv .app-cta:hover{background:#f90;}
 .app-chrome{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:0.85rem 1.15rem;}
 .app-mark{display:flex;align-items:center;}
 .app-chrome-note{font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;white-space:nowrap;}
@@ -68,19 +69,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .app-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1.4rem;}
 .app-tag{font-size:0.64rem;letter-spacing:0.04em;padding:0.22rem 0.62rem;}
 .app-cta{margin-top:auto;align-self:flex-start;}
+button.app-cta{font-family:inherit;border:none;cursor:pointer;}
 
-/* PVhub -- dark instrument panel, amber accent, as the app boots */
-.app-pvhub{background:#14171c;border-radius:6px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 2px 14px rgba(20,23,28,0.18);}
-.app-pvhub:hover{box-shadow:0 16px 34px rgba(20,23,28,0.30);}
-.app-pvhub .app-chrome{background:#0d0f12;border-bottom:1px solid #22272f;}
-.app-pvhub .app-mark{font:800 1.05rem system-ui,sans-serif;letter-spacing:-0.5px;color:#fff;align-items:baseline;}
-.app-pvhub .app-mark s{text-decoration:none;color:#000;background:#f90;border-radius:5px;padding:0 6px;margin-left:3px;}
-.app-pvhub .app-chrome-note{color:#8b95a3;}
-.app-pvhub .app-tagline{color:#e8820c;}
-.app-pvhub .app-desc{color:#8b95a3;}
-.app-pvhub .app-tag{color:#9fb4d8;background:#1c2128;border:1px solid #2c333d;border-radius:4px;}
-.app-pvhub .app-cta{font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#14171c;background:#e8820c;border-radius:5px;padding:0.55rem 1rem;transition:background 0.2s;}
-.app-pvhub:hover .app-cta{background:#f90;}
+/* PV tool -- dark instrument panel, amber accent, as the app boots */
+.app-pv{background:#14171c;border-radius:6px;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;box-shadow:0 2px 14px rgba(20,23,28,0.18);}
+.app-pv:hover{box-shadow:0 16px 34px rgba(20,23,28,0.30);}
+.app-pv .app-chrome{background:#0d0f12;border-bottom:1px solid #22272f;}
+.app-pv .app-mark{font:800 1.05rem system-ui,sans-serif;letter-spacing:-0.5px;color:#fff;align-items:baseline;}
+.app-pv .app-mark s{text-decoration:none;color:#000;background:#f90;border-radius:5px;padding:0 6px;margin-left:3px;}
+.app-pv .app-chrome-note{color:#8b95a3;}
+.app-pv .app-tagline{color:#e8820c;}
+.app-pv .app-desc{color:#8b95a3;}
+.app-pv .app-tag{color:#9fb4d8;background:#1c2128;border:1px solid #2c333d;border-radius:4px;}
+.app-pv .app-cta{font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#14171c;background:#e8820c;border-radius:5px;padding:0.55rem 1rem;transition:background 0.2s;}
 
 /* Batch -- warm stone and deep green, round pills, as the app reads */
 .app-batch{background:#FAFAF9;border:1px solid #E7E5E4;border-radius:18px;font-family:var(--sans);box-shadow:0 2px 10px rgba(28,25,23,0.05);}
@@ -132,7 +133,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 /* a hint of "pages" revealed behind the lifting cover */
 .chapter-swatch::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(255,255,255,0.5),transparent 30%);opacity:0;transition:opacity 0.5s ease;}
 .chapter-card:hover .chapter-swatch::after{opacity:1;}
-@media(prefers-reduced-motion:reduce){.chapter-card,.chapter-swatch,.app-card{transition:none;}.chapter-card:hover .chapter-swatch{transform:none;}.app-card:hover{transform:none;}}
+@media(prefers-reduced-motion:reduce){.chapter-card,.chapter-swatch,.app-card{transition:none;}.chapter-card:hover .chapter-swatch{transform:none;}a.app-card:hover{transform:none;}}
 .chapter-body{padding:1.5rem 1.75rem 2rem;}
 .chapter-num{font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.5rem;}
 .chapter-name{font-family:var(--serif);font-size:1.2rem;margin-bottom:0.5rem;line-height:1.2;}
@@ -330,18 +331,19 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
     <p class="built-intro">Side projects that started as problems I kept solving by hand. Each one is a single page of HTML and JavaScript, no install, no account, and nothing leaving the machine it runs on. Each card below is dressed in the app's own colours.</p>
     <div class="built-grid">
 
-      <a class="app-card app-pvhub" href="https://sethjjarrett-cell.github.io/PVHub/" target="_blank" rel="noopener">
+      <div class="app-card app-pv">
         <div class="app-chrome">
-          <span class="app-mark"><b>PV</b><s>hub</s></span>
-          <span class="app-chrome-note">Runs in browser</span>
+          <span class="app-mark"><b>PV</b><s>tool</s></span>
+          <span class="app-chrome-note">Internal</span>
         </div>
         <div class="app-body">
           <p class="app-tagline">Utility-scale PV design</p>
           <p class="app-desc">Seven tools that take a project from a module datasheet to a laid-out array on a real boundary: string sizing, cable sizing, short-circuit withstand, pitch comparison and layout. Every step shows the formula, the substituted numbers and why the rule exists, because a preliminary design is only as good as the assumptions someone else can check.</p>
+          <p class="app-desc">It is an internal tool rather than something to hand out, so there is no public link. Ask and I will walk you through it.</p>
           <div class="app-tags"><span class="app-tag">React</span><span class="app-tag">IEC 62548</span><span class="app-tag">PVGIS &amp; ERA5</span></div>
-          <span class="app-cta">Open PVhub &#8594;</span>
+          <button class="app-cta" onclick="document.getElementById('accessOverlay').classList.add('open')">Request a look &#8594;</button>
         </div>
-      </a>
+      </div>
 
       <a class="app-card app-batch" href="https://sethjjarrett-cell.github.io/batch/" target="_blank" rel="noopener">
         <div class="app-chrome">
@@ -506,6 +508,26 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
   </div>
 </div>
 
+<div class="cv-overlay" id="accessOverlay" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="cv-modal">
+    <button class="cv-close" onclick="document.getElementById('accessOverlay').classList.remove('open')">&times;</button>
+    <p class="cv-eyebrow">PV tool</p>
+    <h2 class="cv-title">Ask for a look</h2>
+    <p class="cv-sub">It is an internal design tool, so access goes out case by case. Leave your name and email with a line on what you are after and I'll come back to you.</p>
+    <div class="cv-form" id="accessForm">
+      <input class="cv-input" type="text" id="accessName" placeholder="Your name" required>
+      <input class="cv-input" type="email" id="accessEmail" placeholder="Your email" required>
+      <input class="cv-input" type="text" id="accessContext" placeholder="Company / what you'd use it for (optional)">
+      <button class="cv-submit" onclick="submitAccess()">Send request &nbsp;&#8594;</button>
+    </div>
+    <div class="cv-done" id="accessDone">
+      <div class="cv-done-check">&#10003;</div>
+      <div class="cv-done-title">Request received</div>
+      <div class="cv-done-sub">I'll be in touch within a couple of days.</div>
+    </div>
+  </div>
+</div>
+
 <footer>
   <span class="footer-text">Seth Jarrett</span>
   <span class="footer-text">London, 2026</span>
@@ -515,7 +537,7 @@ footer{padding:1.5rem 4rem;border-top:1px solid var(--stone3);display:flex;justi
 const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*100);obs.unobserve(e.target);}}),{threshold:0.1});
 document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('cvOverlay').classList.remove('open');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.cv-overlay').forEach(o=>o.classList.remove('open'));});
 
 const track=document.getElementById('pathTrack');
 if(track){
@@ -539,6 +561,17 @@ fetch('content.json')
     img('photo-portrait', data.photos.home_portrait);
   })
   .catch(() => { /* content.json not found — hardcoded content displays instead */ });
+
+function submitAccess(){
+  const name=document.getElementById('accessName').value.trim();
+  const email=document.getElementById('accessEmail').value.trim();
+  if(!name||!email){alert('Please fill in your name and email.');return;}
+  const subject=encodeURIComponent('PV tool access request from '+name);
+  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nContext: '+(document.getElementById('accessContext').value.trim()||'Not provided'));
+  window.location.href='mailto:sethjjarrett@gmail.com?subject='+subject+'&body='+body;
+  document.getElementById('accessForm').style.display='none';
+  document.getElementById('accessDone').style.display='block';
+}
 
 function submitCV(){
   const name=document.getElementById('cvName').value.trim();
